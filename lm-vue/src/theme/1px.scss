@@ -1,0 +1,21 @@
+
+.#{$class-prefix} {
+  &-border-top,
+  &-border-bottom,
+  &-border-right,
+  &-border-left{
+    position: relative;
+  }
+  &-border-left:before{
+    @include borderStype(left);
+  }
+  &-border-right:after{ 
+    @include borderStype(right);
+  }
+  &-border-top:before{
+    @include borderStype(top);
+  }
+  &-border-bottom:after{
+    @include borderStype(bottom);
+  }
+}

@@ -1,0 +1,26 @@
+.#{ $class-prefix } {
+  &-loading {
+    animation-duration: 0.6s;
+    animation-iteration-count: infinite;
+    animation-name: page-loading;
+    animation-timing-function: linear;
+    border-radius: 99em;
+    border: pxTorem(viewTransform(3)) solid #DDD;
+    border-left-color: #666;
+    display: inline-block;
+    width: pxTorem(viewTransform(16));
+    height: pxTorem(viewTransform(16));
+    border-width: pxTorem(viewTransform(2));
+    display:table-cell;
+    vertical-align:middle;
+  }
+}
+
+@keyframes page-loading {
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(360deg)
+  }
+}
