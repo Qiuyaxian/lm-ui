@@ -1,59 +1,59 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Dialog</vup-navbar>
-    <vup-group>
-      <vup-switch v-model="show" title="Toggle"></vup-switch>
-      <vup-switch v-model="show2" title="use .sync"></vup-switch>
-      <vup-switch v-model="showToast" title="show toast"></vup-switch>
-      <vup-switch v-model="showHideOnBlur" title="hide on clicking mask"></vup-switch>
-      <vup-switch v-model="showDialogStyle" title="Toggle" inline-desc="custom dialog style"></vup-switch>
-    </vup-group>
+  <lm-template>
+    <lm-navbar>Dialog</lm-navbar>
+    <lm-group>
+      <lm-switch v-model="show" title="Toggle"></lm-switch>
+      <lm-switch v-model="show2" title="use .sync"></lm-switch>
+      <lm-switch v-model="showToast" title="show toast"></lm-switch>
+      <lm-switch v-model="showHideOnBlur" title="hide on clicking mask"></lm-switch>
+      <lm-switch v-model="showDialogStyle" title="Toggle" inline-desc="custom dialog style"></lm-switch>
+    </lm-group>
 
     <div v-transfer-dom>
-      <vup-dialog v-model="showToast" class="dialog-demo">
+      <lm-dialog v-model="showToast" class="dialog-demo">
         <div style="padding:15px;">
-          <vup-button @click.native="doShowToast" type="primary">show toast</vup-button>
+          <lm-button @click.native="doShowToast" type="primary">show toast</lm-button>
         </div>
         <div @click="showToast=false">
-          <span class="vup-close"></span>
+          <span class="lm-close"></span>
         </div>
-      </vup-dialog>
+      </lm-dialog>
     </div>
 
     <div v-transfer-dom>
-      <vup-dialog v-model="show" class="dialog-demo">
+      <lm-dialog v-model="show" class="dialog-demo">
         <div class="img-box">
           <img src="https://ws1.sinaimg.cn/large/663d3650gy1fq6824ur1dj20ia0pydlm.jpg" style="max-width:100%">
         </div>
         <div @click="show=false">
-          <span class="vup-close"></span>
+          <span class="lm-close"></span>
         </div>
-      </vup-dialog>
+      </lm-dialog>
     </div>
 
     <div v-transfer-dom>
-      <vup-dialog :show.sync="show2" class="dialog-demo">
+      <lm-dialog :show.sync="show2" class="dialog-demo">
         <div class="img-box">
           <img src="https://ws1.sinaimg.cn/large/663d3650gy1fq6824ur1dj20ia0pydlm.jpg" style="max-width:100%">
         </div>
         <div @click="show2=false">
-          <span class="vup-close"></span>
+          <span class="lm-close"></span>
         </div>
-      </vup-dialog>
+      </lm-dialog>
     </div>
 
     <div v-transfer-dom>
-      <vup-dialog v-model="showHideOnBlur" class="dialog-demo" hide-on-blur>
+      <lm-dialog v-model="showHideOnBlur" class="dialog-demo" hide-on-blur>
         <div class="img-box">
           <img src="https://ws1.sinaimg.cn/large/663d3650gy1fq6824ur1dj20ia0pydlm.jpg" style="max-width:100%">
         </div>
         <div @click="showHideOnBlur=false">
-          <span class="vup-close"></span>
+          <span class="lm-close"></span>
         </div>
-      </vup-dialog>
+      </lm-dialog>
     </div>
     <div v-transfer-dom>
-      <vup-dialog
+      <lm-dialog
       v-model="showDialogStyle"
       hide-on-blur
       :dialog-style="{'max-width': '100%', width: '100%', height: '50%', 'background-color': 'transparent'}">
@@ -62,12 +62,12 @@
           <br>
           <br>
           <div @click="showDialogStyle = false">
-            <vup-icon type="cancel"></vup-icon>
+            <lm-icon type="cancel"></lm-icon>
           </div>
         </p>
-      </vup-dialog>
+      </lm-dialog>
     </div>
-  </vup-wrapper>
+  </lm-template>
 </template>
 <script>
 import TransferDom from '@/directives/transfer-dom'
@@ -110,7 +110,7 @@ export default {
     height: pxTorem(viewTransform(350));
     overflow: hidden;
   }
-  .vup-close {
+  .lm-close {
     margin-top: pxTorem(viewTransform(8));
     margin-bottom: pxTorem(viewTransform(8));
   }

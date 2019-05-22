@@ -788,6 +788,7 @@ export default {
   height: 100%;
   overflow: hidden;
   z-index: 2;
+  box-sizing: border-box;
   /*background: transparent;*/
 }
 .scroll-content {

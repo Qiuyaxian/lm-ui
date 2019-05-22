@@ -1,8 +1,8 @@
 <template>
-  <div class="vup-picker">
+  <div class="lm-picker">
     <flexbox :gutter="0">
-      <flexbox-item :span="columnWidth && columnWidth[index]" v-for="(one, index) in currentData" :key="index" style="margin-left:0;">
-        <div class="vup-picker-item" :id="`vup-picker-${uuid}-${index}`"></div>
+      <flexbox-item :span="columnWidth && columnWidth[index]" v-for="(one, index) in currentData" :key="index" style="margin-left: 0;">
+        <div class="lm-picker-item" :id="`lm-picker-${uuid}-${index}`"></div>
       </flexbox-item>
     </flexbox>
   </div>
@@ -17,23 +17,6 @@ import value2name from '@/filters/value2name'
 import { isArray } from '@/utils'
 export default {
   name: 'picker',
-  components: {
-    Flexbox,
-    FlexboxItem
-  },
-  created () {
-    if (this.columns !== 0) {
-      const length = this.columns
-      this.store = new Manager(this.data, length, this.fixedColumns || this.columns)
-      this.currentData = this.store.getColumns(this.value)
-    }
-  },
-  mounted () {
-    this.uuid = Math.random().toString(36).substring(3, 8)
-    this.$nextTick(() => {
-      this.render(this.currentData, this.currentValue)
-    })
-  },
   props: {
     data: Array,
     columns: {
@@ -51,13 +34,45 @@ export default {
     },
     columnWidth: Array
   },
+  components: {
+    Flexbox,
+    FlexboxItem
+  },
+  created () {
+    if (this.columns !== 0) {
+      const length = this.columns;
+      this.store = new Manager(this.data, length, this.fixedColumns || this.columns);
+      this.currentData = this.store.getColumns(this.value)
+    }
+  },
+  mounted () {
+    this.uuid = Math.random().toString(36).substring(3, 8)
+    this.$nextTick(() => {
+      this.render(this.currentData, this.currentValue)
+    })
+  },
   methods: {
+    /**
+     * [getNameValues description]
+     * @return {[type]} [description]
+     */
     getNameValues () {
       return value2name(this.currentValue, this.data)
     },
+    /**
+     * [getId description]
+     * @param  {[type]} i [description]
+     * @return {[type]}   [description]
+     */
     getId (i) {
-      return `#vup-picker-${this.uuid}-${i}`
+      return `#lm-picker-${this.uuid}-${i}`
     },
+    /**
+     * [render description]
+     * @param  {[type]} data  [description]
+     * @param  {[type]} value [description]
+     * @return {[type]}       [description]
+     */
     render (data, value) {
       this.count = this.currentData.length
       const _this = this
@@ -68,13 +83,8 @@ export default {
       // set first item as value
       if (value.length < count) {
         for (let i = 0; i < count; i++) {
-          if (process.env.NODE_ENV === 'development' &&
-            typeof data[i][0] === 'undefined' &&
-            isArray(this.data) &&
-            this.data[0] &&
-            typeof this.data[0].value !== 'undefined' &&
-            !this.columns) {
-            console.error('[VUX error] 渲染出错，如果为联动模式，需要指定 columns(列数)')
+          if (typeof data[i][0] === 'undefined' && isArray(this.data) && this.data[0] && typeof this.data[0].value !== 'undefined' && !this.columns) {
+            console.error('渲染出错，当前是联动模式，需要指定columns(列数)');
           }
           this.$set(_this.currentValue, i, data[i][0].value || data[i][0])
         }
@@ -108,6 +118,11 @@ export default {
         }
       }
     },
+    /**
+     * [renderChain description]
+     * @param  {[type]} i [description]
+     * @return {[type]}   [description]
+     */
     renderChain (i) {
       if (!this.columns) {
         return
@@ -140,8 +155,12 @@ export default {
         this.$set(this.currentValue, i, null)
       }
     },
+    /**
+     * [getValue description]
+     * @return {[type]} [description]
+     */
     getValue () {
-      let data = []
+      let data = [];
       for (let i = 0; i < this.currentData.length; i++) {
         if (this.scroller[i]) {
           data.push(this.scroller[i].value)
@@ -149,8 +168,13 @@ export default {
           return []
         }
       }
-      return data
+      return data;
     },
+    /**
+     * [emitValueChange description]
+     * @param  {[type]} val [description]
+     * @return {[type]}     [description]
+     */
     emitValueChange (val) {
       if (!this.columns || (this.columns && val.length === this.store.count)) {
         this.$emit('on-change', val)

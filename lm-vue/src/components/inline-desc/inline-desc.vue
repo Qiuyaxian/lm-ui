@@ -1,5 +1,5 @@
 <template>
-  <span class="vup-label-desc"><slot></slot></span>
+  <span class="lm-label-desc"><slot></slot></span>
 </template>
 
 <script>

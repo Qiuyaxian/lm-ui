@@ -20,17 +20,17 @@ const plugin = {
       }
     }
 
-    if (!Vue.$vup) {
-      Vue.$vup = {
+    if (!Vue.$lm) {
+      Vue.$lm = {
         alert
       }
     } else {
-      Vue.$vup.alert = alert
+      Vue.$lm.alert = alert
     }
 
     Vue.mixin({
       created: function () {
-        this.$vup = Vue.$vup
+        this.$lm = Vue.$lm
       }
     })
   }

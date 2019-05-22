@@ -1,14 +1,14 @@
 <template>
-  <div ref="page-view" class="page-views vup-fix-safari-overflow-scrolling" :style="{ 'padding-top': paddingTop, 'padding-bottom': paddingBottom }">
+  <div ref="view" class="lm-view lm-fix-safari-overflow-scrolling" :style="{ 'padding-top': paddingTop, 'padding-bottom': paddingBottom }">
     <!-- header start  -->
-    <!-- <page-header>百丽春</page-header>  -->
-    <slot name="page-header"></slot>
+    <!-- <header>百丽春</header>  -->
+    <slot name="header"></slot>
     <!-- header end -->
     <!-- body start -->
     <slot></slot>
     <!-- body end -->
     <!-- tabbar start -->
-    <slot name="page-footer"></slot>
+    <slot name="footer"></slot>
     <!-- tabbar end -->
   </div>
 </template>
@@ -16,7 +16,7 @@
 <script>
 import { viewTransform, pxTorem, removeEventHandle, addEventHandle, querySelector } from '@/utils'
 export default {
-  name: 'vup-template',
+  name: 'lm-template',
   props: {
     /**
      * [bodyPaddingTop 距离头部距离]
@@ -41,42 +41,25 @@ export default {
     }
   },
   computed: {
-    /**
-     * [description]
-     * @param  {[type]} state [description]
-     * @return {[type]}       [description]
-     */
-    // ...mapState({
-    //   route: state => state.route,
-    //   path: state => state.route.path
-    // }),
-    /**
-     * [getBodyPaddingTop 获取头部距离]
-     * @return {[type]} [description]
-     */
     getBodyPaddingTop () {
       return pxTorem(viewTransform(this.bodyPaddingTop))
     },
-    /**
-     * [getBodyPaddingBottom 获取底部距离]
-     * @return {[type]} [description]
-     */
     getBodyPaddingBottom () {
       return pxTorem(viewTransform(this.bodyPaddingBottom))
     }
   },
   created () {
     if (this.bodyPaddingTop) {
-      this.paddingTop = this.bodyPaddingTop === 46 ? pxTorem(viewTransform(this.bodyPaddingTop)) : pxTorem(this.bodyPaddingTop)
-    } else if (this.$slots['page-header']) {
-      this.paddingTop = pxTorem(viewTransform(46))
+      this.paddingTop = pxTorem(this.bodyPaddingTop, this.bodyPaddingTop === 46 ? 2 : 1);
+    } else if (this.$slots['header']) {
+      this.paddingTop = pxTorem(46, 2);
     } else {
     }
 
     if (this.bodyPaddingBottom) {
-      this.paddingBottom = this.bodyPaddingBottom === 53 ? pxTorem(viewTransform(this.bodyPaddingBottom)) : pxTorem(this.bodyPaddingBottom)
-    } else if (this.$slots['page-footer']) {
-      this.paddingBottom = pxTorem(viewTransform(53))
+      this.paddingBottom = pxTorem(this.bodyPaddingBottom, this.bodyPaddingBottom === 53 ? 2 : 1);
+    } else if (this.$slots['footer']) {
+      this.paddingBottom = pxTorem(53, 2);
     } else {
     }
 
@@ -97,13 +80,13 @@ export default {
      * @return {[type]}       [description]
      */
     touchmoveHandle (event) {
-      if (querySelector('.vup-header') && !querySelector('.vup-header').contains(event['target'])) {
+      if (querySelector('.lm-header') && !querySelector('.lm-header').contains(event['target'])) {
         event.preventDefault()
       } else {
 
       }
 
-      if (querySelector('.vup-tabbar-absolute') && !querySelector('.vup-tabbar-absolute').contains(event['target'])) {
+      if (querySelector('.lm-tabbar-absolute') && !querySelector('.lm-tabbar-absolute').contains(event['target'])) {
         event.preventDefault()
       } else {
 
@@ -116,8 +99,8 @@ export default {
      */
     scrollTo (top) {
       this.$nextTick(() => {
-        if (this.$refs['page-view']) {
-          this.$refs['page-view'].scrollTop = top
+        if (this.$refs['view']) {
+          this.$refs['view'].scrollTop = top
         } else {
 
         }
@@ -136,5 +119,10 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+.lm-view{
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
 </style>

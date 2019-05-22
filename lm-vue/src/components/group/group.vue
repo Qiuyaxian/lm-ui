@@ -1,8 +1,12 @@
 <template>
-  <div class="vup-group" :class="{
-      'vup-group-border': showBorders
+  <div class="lm-group">
+    <slot name="group-title"></slot>
+    <div class="lm-group-cells"
+         :class="{
+      'lm-group-border': showBorders
     }">
-    <slot></slot>
+      <slot></slot>
+    </div>
   </div>
 </template>
 <script>
@@ -28,7 +32,10 @@ export default {
      * [itemsLeft 左边label 的距离左边的宽度]
      * @type {Object}
      */
-    borderIntent: Boolean,
+    borderIntent: {
+      type: Boolean,
+      default: true
+    },
     /**
      * [gutter 间距]
      * @type {Array}
@@ -49,7 +56,4 @@ export default {
 };
 </script>
 <style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/cell.scss';
-@import '~@/theme/form.scss';
 </style>

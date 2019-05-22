@@ -1,11 +1,11 @@
 <template>
-  <div class="vup-flex vup-flex-items-c vup-form-row" :class="cellClass">
+  <div class="lm-flex lm-flex-items-c lm-form-row" :class="cellClass">
     <p>
-      <label :for="labelFor" class="vup-flex-shrink vup-form-label">
+      <label :for="labelFor" class="lm-flex-shrink lm-form-label">
         <slot name="title">{{ title }}</slot>
       </label>
     </p>
-    <div class="vup-flex-grow">
+    <div class="lm-flex-grow">
       <slot></slot>
     </div>
   </div>
@@ -16,8 +16,8 @@ import WxValidate from './validate'
 import { isObject, isFunction, isArray, isString, getPropByPath, addEventHandle, getByName, cleanStyle, getParentProp } from '@/utils'
 import addMethodMap from '@/utils/validate.js'
 export default {
-  name: 'vup-form-item',
-  componentName: 'vup-form-item',
+  name: 'lm-form-item',
+  componentName: 'lm-form-item',
   /**
    * [mixins 混合注入]
    * @type {Array}
@@ -29,14 +29,14 @@ export default {
    */
   provide () {
     return {
-      vupFormItem: this
+      lmFormItem: this
     };
   },
   /**
    * [inject 注入父级]
    * @type {Array}
    */
-  inject: ['vup-form'],
+  inject: ['lm-form'],
   props: {
     /**
      * [title label 文字内容]
@@ -87,7 +87,7 @@ export default {
   computed: {
     cellClass () {
       return {
-        'vup-flex-items-s': this.labelAlign === 'top' || this.form.labelAlign === 'top'
+        'lm-flex-items-s': this.labelAlign === 'top' || this.form.labelAlign === 'top'
       }
     },
     /**
@@ -98,8 +98,8 @@ export default {
       let parent = this.$parent
       let _this = this
       let parentName = parent.$options.componentName
-      while (parentName !== 'vup-form') {
-        if (parentName === 'vup-form-item') {
+      while (parentName !== 'lm-form') {
+        if (parentName === 'lm-form-item') {
           _this.isNested = true
         }
         parent = parent.$parent
@@ -283,7 +283,7 @@ export default {
   mounted () {
     // 当前item上的校验规则附加到form上 调用父级的添加方法
     if (this.validate && this.prop) {
-      this.dispatch('vupForm', 'vup.form.addMethod', {
+      this.dispatch('lmForm', 'lm.form.addMethod', {
         'prop': this.prop,
         'rules': this.getRules(),
         'messages': this.getMessages()
@@ -298,12 +298,12 @@ export default {
     /**
      * 清除绑定
      */
-    this.dispatch('vup-form', 'vup.form.removeMethod', [this]);
+    this.dispatch('lm-form', 'lm.form.removeMethod', [this]);
   }
 }
 </script>
 <style scoped lang="scss">
-.vup-flex-grow{
+.lm-flex-grow{
   overflow: hidden;
 }
 </style>

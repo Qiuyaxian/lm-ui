@@ -1,24 +1,24 @@
 <template>
-  <div class="vup-actionsheet-wrapper">
-    <transition name="vup-actionsheet-mask">
+  <div class="lm-actionsheet-wrapper">
+    <transition name="lm-actionsheet-mask">
       <div
-        class="vup-mask vup-mask_transparent"
+        class="lm-mask lm-mask-transparent"
         @click="onClickingMask"
         v-show="show"></div>
     </transition>
     <div
-      class="vup-skin_android"
+      class="lm-skin_android"
       v-if="theme === 'android'">
       <transition
-        name="vup-android-actionsheet"
+        name="lm-android-actionsheet"
         @after-enter="$emit('on-after-show')"
         @after-leave="$emit('on-after-hide')">
         <div
-          class="vup-actionsheet"
+          class="lm-actionsheet"
           v-show="show">
-          <div class="vup-actionsheet__menu">
+          <div class="lm-actionsheet-menu">
             <div
-              class="vup-actionsheet__cell"
+              class="lm-actionsheet-cell"
               v-for="(text, key) in menus"
               :key="key"
               @click="onMenuClick(text, key)"
@@ -28,32 +28,30 @@
         </div>
       </transition>
     </div>
-
     <div
-      class="vup-actionsheet"
-      :class="{'vup-actionsheet_toggle': show}"
+      class="lm-actionsheet"
+      :class="{'lm-actionsheet_toggle': show}"
       v-else
       ref="iOSMenu">
-      <div class="vup-actionsheet__menu">
-        <div class="vup-actionsheet__cell" v-if="hasHeaderSlot">
+      <div class="lm-actionsheet-menu">
+        <div class="lm-actionsheet-cell" v-if="hasHeaderSlot">
           <slot name="header"></slot>
         </div>
-        <div class="vup-actionsheet__cell"
+        <div class="lm-actionsheet-cell"
           v-for="(text, key) in menus"
           :key="key"
           @click="onMenuClick(text, key)"
           v-html="text.label || text"
-          :class="`vup-actionsheet-menu-${text.type || 'default'}`">
+          :class="`lm-actionsheet-menu-${text.type || 'default'}`">
         </div>
       </div>
       <div
-        class="vup-actionsheet__action"
+        class="lm-actionsheet-action"
         @click="emitEvent('on-click-menu', 'cancel')"
         v-if="showCancel">
-        <div class="vup-actionsheet__cell">{{ cancelText || '取消' }}</div>
+        <div class="lm-actionsheet-cell">{{ cancelText || '取消' }}</div>
       </div>
     </div>
-
   </div>
 </template>
 <script>
@@ -62,7 +60,7 @@ export default {
   mounted () {
     this.hasHeaderSlot = !!this.$slots.header
     this.$nextTick(() => {
-      this.$tabbar = document.querySelector('.vup-tabbar')
+      this.$tabbar = document.querySelector('.lm-tabbar')
       this.$refs.iOSMenu && this.$refs.iOSMenu.addEventListener('transitionend', this.onTransitionEnd)
     })
   },

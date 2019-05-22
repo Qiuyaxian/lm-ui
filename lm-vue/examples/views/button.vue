@@ -1,18 +1,18 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Button</vup-navbar>
+  <lm-template>
+    <lm-navbar>Button</lm-navbar>
     <div class="" style="padding: 15px;">
-      <vup-button>内容</vup-button>
+      <lm-button>内容</lm-button>
     </div>
-    <vup-button type="warn" plain>warn</vup-button>
+    <lm-button type="warn" plain>warn</lm-button>
     <div class="" style="padding: 15px;">
-      <vup-button mini>mini</vup-button>
-      <vup-button mini type="warn">mini</vup-button>
-      <vup-button mini>mini</vup-button>
-      <vup-button mini>mini</vup-button>
+      <lm-button mini>mini</lm-button>
+      <lm-button mini type="warn">mini</lm-button>
+      <lm-button mini>mini</lm-button>
+      <lm-button mini>mini</lm-button>
     </div>
-    <vup-button type="warn" plain>warn</vup-button>
-  </vup-wrapper>
+    <lm-button type="warn" plain>warn</lm-button>
+  </lm-template>
 </template>
 
 <script>

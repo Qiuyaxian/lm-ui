@@ -16,15 +16,21 @@ import './assets/style/style.scss'
 import ConfigPlugin from '@/plugins/config'
 import addressPlugin from '@/plugins/address'
 import alertPlugin from '@/plugins/alert'
+import confirmPlugin from '@/plugins/confirm'
+import toastPlugin from '@/plugins/toast'
 
 // global VUP config
 Vue.use(ConfigPlugin, {
   $layout: 'PAGE_VIEW' // global config for VUX, since v2.5.12
 })
 Vue.use(alertPlugin)
-// Vue.use(addressPlugin)
+Vue.use(confirmPlugin)
+Vue.use(toastPlugin)
 Vue.config.productionTip = false
 
+Vue.config.errorHandler = (err, vm, info) => {
+  console.log(err, 'err');
+}
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

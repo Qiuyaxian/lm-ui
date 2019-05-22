@@ -1,29 +1,19 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Alert</vup-navbar>
-    <vup-group>
-      <vup-switch title="Show Me" v-model="show"></vup-switch>
-    </vup-group>
+  <lm-template>
+    <lm-navbar>Alert</lm-navbar>
+    <lm-group>
+      <lm-switch title="Show Me" v-model="show"></lm-switch>
+    </lm-group>
     <div v-transfer-dom>
-      <vup-alert v-model="show" title="Congratulations" @on-show="onShow" @on-hide="onHide">Your Message is sent successfully~</vup-alert>
+      <lm-alert v-model="show" title="Congratulations" @on-show="onShow" @on-hide="onHide">Your Message is sent successfully~</lm-alert>
     </div>
-    <vup-group title="Prop: content">
-      <vup-switch title="Show Me" v-model="show2"></vup-switch>
-    </vup-group>
+    <lm-group title="Prop: content">
+      <lm-switch title="Show Me" v-model="show2"></lm-switch>
+    </lm-group>
     <div v-transfer-dom>
-      <vup-alert v-model="show2" title="Congratulations" content="Your Message is sent successfully~"></vup-alert>
+      <lm-alert v-model="show2" title="Congratulations" content="Your Message is sent successfully~"></lm-alert>
     </div>
-
-    <vup-group title="Use as a plugin">
-      <vup-cell label="Show Me" @click.native="showPlugin" is-link></vup-cell>
-      <vup-cell label="Will auto close in 3s" @click.native="showPluginAuto" is-link></vup-cell>
-    </vup-group>
-
-    <vup-group title="Use as a module">
-      <vup-cell label="Show Me" @click.native="showModule" is-link></vup-cell>
-      <vup-cell label="Will auto close in 3s" @click.native="showModuleAuto" is-link></vup-cell>
-    </vup-group>
-  </vup-wrapper>
+  </lm-template>
 </template>
 <script>
 import TransferDom from '@/directives/transfer-dom'
@@ -32,8 +22,8 @@ export default {
     TransferDom
   },
   created () {
-    console.log(this.$vup, 'this.$vup');
-    this.$vup.alert.show({
+    console.log(this.$lm, 'this.$lm');
+    this.$lm.alert.show({
       title: 'Vux is Cool',
       content: 'Do you agree?',
       onShow () {
@@ -52,40 +42,28 @@ export default {
       console.log('on show')
     },
     showPlugin () {
-      // this.$vux.alert.show({
-      //   title: 'VUX is Cool',
-      //   content: this.$t('Do you agree?'),
-      //   onShow () {
-      //     console.log('Plugin: I\'m showing')
-      //   },
-      //   onHide () {
-      //     console.log('Plugin: I\'m hiding now')
-      //   }
-      // })
+      this.$lm.alert.show({
+        title: 'VUX is Cool',
+        content: 'Do you agree?',
+        onShow () {
+          console.log('Plugin: I\'m showing')
+        },
+        onHide () {
+          console.log('Plugin: I\'m hiding now')
+        }
+      })
     },
     showModule () {
-      // AlertModule.show({
-      //   title: 'VUX is Cool',
-      //   content: this.$t('Do you agree?'),
-      //   onShow () {
-      //     console.log('Module: I\'m showing')
-      //   },
-      //   onHide () {
-      //     console.log('Module: I\'m hiding now')
-      //   }
-      // })
-    },
-    showModuleAuto () {
-      // this.showModule()
-      // setTimeout(() => {
-      //   AlertModule.hide()
-      // }, 3000)
-    },
-    showPluginAuto () {
-      // this.showPlugin()
-      // setTimeout(() => {
-      //   this.$vux.alert.hide()
-      // }, 3000)
+      this.$lm.alert.show({
+        title: 'VUX is Cool',
+        content: 'Do you agree?',
+        onShow () {
+          console.log('Module: I\'m showing')
+        },
+        onHide () {
+          console.log('Module: I\'m hiding now')
+        }
+      })
     }
   },
   data () {
@@ -102,20 +80,20 @@ export default {
 @import '~@/theme/close.scss';
 .dialog-demo {
   .weui-dialog{
-    border-radius: pxTorem(viewTransform(8));
-    padding-bottom: pxTorem(viewTransform(8));
+    border-radius: pxTorem(8, 2);
+    padding-bottom: pxTorem(8, 2);
   }
   .dialog-title {
-    line-height: pxTorem(viewTransform(30));
+    line-height: pxTorem(30, 2);
     color: #666;
   }
   .img-box {
-    height: pxTorem(viewTransform(350));
+    height: pxTorem(350, 2);
     overflow: hidden;
   }
-  .vup-close {
-    margin-top: pxTorem(viewTransform(8));
-    margin-bottom: pxTorem(viewTransform(8));
+  .lm-close {
+    margin-top: pxTorem(8, 2);
+    margin-bottom: pxTorem(8, 2);
   }
 }
 </style>

@@ -4,12 +4,12 @@
       <popup
       v-bind="$attrs" v-on="$listeners"
       v-model="showValue"
-      class="blc-popup-picker"
-      :id="`blc-popup-picker-${uuid}`"
+      class="lm-popup-picker"
+      :id="`lm-popup-picker-${uuid}`"
       @on-hide="onPopupHide"
       @on-show="onPopupShow"
       :popup-style="popupStyle">
-        <div class="blc-popup-picker-container">
+        <div class="lm-popup-picker-container">
           <popup-header
           v-bind="$attrs" v-on="$listeners"
           :left-text="cancelText || '取消'"
@@ -24,7 +24,7 @@
           @on-change="onPickerChange"
           :fixed-columns="hideDistrict ? 2 : 0"
           :columns="3"
-          :container="'#blc-popup-picker-'+uuid"
+          :container="'#lm-popup-picker-'+uuid"
           :column-width="columnWidth"></picker>
         </div>
       </popup>

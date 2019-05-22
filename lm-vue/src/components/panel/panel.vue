@@ -1,19 +1,22 @@
 <template>
-  <div class="vup-panel vup-panel_access">
-    <div class="vup-panel-header" v-if="header" @click="onClickHeader" v-html="header">
+  <div class="lm-panel">
+    <div class="lm-panel-header"
+         v-if="header"
+         @click="onClickHeader"
+         v-html="header">
       <slot name="header"></slot>
     </div>
-    <div class="vup-panel-body">
+    <div class="lm-panel-body">
       <slot></slot>
     </div>
-    <div class="vup-panel-footer">
+    <div class="lm-panel-footer">
       <slot name="footer">
-        <a
-          class="vup-cell vup-cell_access vup-cell_link"
-          :href="getUrl(footer.url)"
-          v-if="footer && footer.title"
-          @click.prevent="onClickFooter">
-          <div class="vup-cell__bd" v-html="footer.title"></div>
+        <a class="lm-cell lm-cell-access lm-cell-link"
+           :href="getUrl(footer.url)"
+           v-if="footer && footer.title"
+           @click.prevent="onClickFooter">
+          <div class="lm-cell__bd"
+               v-html="footer.title"></div>
         </a>
       </slot>
     </div>
@@ -25,7 +28,15 @@ export default {
   name: 'panel',
   props: {
     header: String,
-    footer: Object
+    footer: Object,
+    /**
+     * [borderIntent 是否开启边框]
+     * @type {Object}
+     */
+    borderIntent: {
+      type: Boolean,
+      default: true
+    }
   },
   data () {
     return {}
@@ -53,6 +64,6 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/panel.scss';
+@import "~@/theme/index.scss";
+@import "~@/theme/panel.scss";
 </style>

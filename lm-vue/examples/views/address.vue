@@ -1,8 +1,8 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Address</vup-navbar>
-    <vup-group>
-      <vup-address
+  <lm-template>
+    <lm-navbar>Address</lm-navbar>
+    <lm-group>
+      <lm-address
         @on-hide="logHide"
         @on-show="logShow"
         title="App.vue"
@@ -11,9 +11,9 @@
         :show.sync="showAddress"
         @on-shadow-change="onShadowChange"
         placeholder="请选择地址">
-      </vup-address>
-    </vup-group>
-  </vup-wrapper>
+      </lm-address>
+    </lm-group>
+  </lm-template>
 </template>
 <script>
 import ChinaAddressV4Data from '@/components/address/china_address_v4.json'

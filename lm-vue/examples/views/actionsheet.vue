@@ -1,58 +1,58 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Actionsheet</vup-navbar>
-    <vup-group>
-      <vup-switch :title="'Basic Usage'" v-model="show1"></vup-switch>
-      <vup-switch :title="'Android Theme'" v-model="show7"></vup-switch>
-      <vup-switch :title="'Show cancel menu'" v-model="show2"></vup-switch>
-      <vup-switch :title="'Array menu'" v-model="show5"></vup-switch>
-    </vup-group>
+  <lm-template>
+    <lm-navbar>Actionsheet</lm-navbar>
+    <lm-group>
+      <lm-switch :title="'Basic Usage'" v-model="show1"></lm-switch>
+      <lm-switch :title="'Android Theme'" v-model="show7"></lm-switch>
+      <lm-switch :title="'Show cancel menu'" v-model="show2"></lm-switch>
+      <lm-switch :title="'Array menu'" v-model="show5"></lm-switch>
+    </lm-group>
 
-    <vup-group :title="'Prevent closing when clicking mask'">
-      <vup-switch :title="'Basic Usage'" v-model="show4"></vup-switch>
-    </vup-group>
+    <lm-group :title="'Prevent closing when clicking mask'">
+      <lm-switch :title="'Basic Usage'" v-model="show4"></lm-switch>
+    </lm-group>
 
-    <vup-group>
-      <vup-switch :title="'Menu as tips'" v-model="show3"></vup-switch>
-      <vup-switch :title="'Slot: header'" v-model="show6"></vup-switch>
-      <vup-switch :title="'Prevent auto closing'" v-model="show8"></vup-switch>
-    </vup-group>
+    <lm-group>
+      <lm-switch :title="'Menu as tips'" v-model="show3"></lm-switch>
+      <lm-switch :title="'Slot: header'" v-model="show6"></lm-switch>
+      <lm-switch :title="'Prevent auto closing'" v-model="show8"></lm-switch>
+    </lm-group>
 
-    <vup-actionsheet v-model="show4" :menus="menus1" :close-on-clicking-mask="false" show-cancel @on-click-mask="console('on click mask')"></vup-actionsheet>
+    <lm-actionsheet v-model="show4" :menus="menus1" :close-on-clicking-mask="false" show-cancel @on-click-mask="console('on click mask')"></lm-actionsheet>
 
-    <vup-actionsheet
+    <lm-actionsheet
       v-model="show1"
       :menus="menus1"
       @on-click-menu="click"
       @on-after-hide="log('after hide')"
-      @on-after-show="log('after show')"></vup-actionsheet>
+      @on-after-show="log('after show')"></lm-actionsheet>
 
-    <vup-actionsheet v-model="show2" :menus="menus2" @on-click-menu="click" show-cancel></vup-actionsheet>
+    <lm-actionsheet v-model="show2" :menus="menus2" @on-click-menu="click" show-cancel></lm-actionsheet>
 
-    <vup-actionsheet v-model="show3" :menus="menus3" @on-click-menu="click" @on-click-menu-delete="onDelete" show-cancel></vup-actionsheet>
+    <lm-actionsheet v-model="show3" :menus="menus3" @on-click-menu="click" @on-click-menu-delete="onDelete" show-cancel></lm-actionsheet>
 
-    <vup-actionsheet v-model="show5" :menus="menus5" show-cancel @on-click-menu="click5"></vup-actionsheet>
+    <lm-actionsheet v-model="show5" :menus="menus5" show-cancel @on-click-menu="click5"></lm-actionsheet>
 
-    <vup-actionsheet v-model="show6" :menus="menus1">
+    <lm-actionsheet v-model="show6" :menus="menus1">
       <p slot="header" v-html="'Actionsheet header'"></p>
-    </vup-actionsheet>
+    </lm-actionsheet>
 
-    <vup-actionsheet
+    <lm-actionsheet
       v-model="show7"
       :menus="menu7"
       theme="android"
       @on-click-menu="click"
       @on-after-hide="log('after hide')"
       @on-after-show="log('after show')">
-    </vup-actionsheet>
+    </lm-actionsheet>
 
-    <vup-toast v-model="showSuccess">Deleted~</vup-toast>
+    <lm-toast v-model="showSuccess">Deleted~</lm-toast>
 
     <div v-transfer-dom>
-      <vup-actionsheet v-model="show8" :menus="menus8" @on-click-menu="demo8doClose" :close-on-clicking-mask="false" :close-on-clicking-menu="false">
-      </vup-actionsheet>
+      <lm-actionsheet v-model="show8" :menus="menus8" @on-click-menu="demo8doClose" :close-on-clicking-mask="false" :close-on-clicking-menu="false">
+      </lm-actionsheet>
     </div>
-  </vup-wrapper>
+  </lm-template>
 </template>
 <script>
 import TransferDom from '@/directives/transfer-dom'
@@ -116,6 +116,7 @@ export default {
       console.log(str)
     },
     demo8doClose () {
+      this.show8 = false;
       // this.$vux.loading.show({
       //   text: 'processing'
       // })
@@ -155,7 +156,7 @@ export default {
     height: pxTorem(viewTransform(350));
     overflow: hidden;
   }
-  .vup-close {
+  .lm-close {
     margin-top: pxTorem(viewTransform(8));
     margin-bottom: pxTorem(viewTransform(8));
   }

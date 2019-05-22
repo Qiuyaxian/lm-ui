@@ -1,23 +1,24 @@
 <template>
-  <div class="vup-panel-item" ref="panel"
+  <div class="lm-panel-item" ref="panel"
    :class="{
-     'vup-panel-horizontal': type === 'horizontal',
-     'vup-panel-vertical': type === 'vertical'
+     'lm-panel-horizontal': type === 'horizontal',
+     'lm-panel-vertical': type === 'vertical',
+     'lm-panel-item-divide': getBorderIntent
    }"
    @click="onClick"
   >
     <slot name="panel-item-header"></slot>
     <slot name="panel-item-image">
-      <div class="vup-panel-img">
+      <div class="lm-panel-img">
         <img v-if="src" :src="src" />
       </div>
     </slot>
-    <div class="vup-panel-item-body">
+    <div class="lm-panel-item-body">
       <slot name="panel-item-title">
-        <h3 class="vup-panel-title">{{ title }}</h3>
+        <h3 class="lm-panel-title">{{ title }}</h3>
       </slot>
       <slot name="panel-item-desc">
-        <p class="vup-panel-desc">{{ desc }}</p>
+        <p class="lm-panel-desc">{{ desc }}</p>
       </slot>
       <slot></slot>
     </div>
@@ -26,6 +27,7 @@
 <script>
 import Router from '@/utils/router'
 import { hasClass, getParentNode } from '@/utils/dom'
+import { getParentProp } from '@/utils'
 export default {
   name: 'panel-item',
   props: {
@@ -41,6 +43,11 @@ export default {
   },
   data () {
     return {}
+  },
+  computed: {
+    getBorderIntent () {
+      return getParentProp(this, 'borderIntent');
+    }
   },
   methods: {
     /**

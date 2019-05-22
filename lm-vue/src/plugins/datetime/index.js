@@ -33,17 +33,17 @@ export default {
       document.body.appendChild($vm.$el)
     }
 
-    if (!Vue.$vup) {
-      Vue.$vup = {
+    if (!Vue.$lm) {
+      Vue.$lm = {
         datetime: libs
       }
     } else {
-      Vue.$vup.datetime = libs
+      Vue.$lm.datetime = libs
     }
 
     Vue.mixin({
       created: function () {
-        this.$vup = Vue.$vup
+        this.$lm = Vue.$lm
       }
     })
   }

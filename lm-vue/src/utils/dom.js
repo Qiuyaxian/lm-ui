@@ -114,8 +114,8 @@ const Layout = 75;
  * @param  {[type]} val [description]
  * @return {[type]}     [description]
  */
-export function pxTorem (val) {
-  return `${( ( val / Layout ) / dpr ) * 1}rem`;
+export function pxTorem (val, scale = 1) {
+  return `${(((val * scale) / Layout) / dpr) * 1}rem`;
 }   
 /**
  * [viewTransform 倍数转换]

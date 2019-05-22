@@ -11,7 +11,7 @@
 [class^="weui-icon-"], [class*=" weui-icon-"] {
   display: inline-block;
   vertical-align: middle;
-  font: normal normal normal pxTorem(viewTransform(14))/1 "weui";
+  font: normal normal normal pxTorem(14, 2)/1 "weui";
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -90,43 +90,43 @@
   content: "\EA11"; 
 } /* '' */
 .weui-icon-success {
-  font-size: pxTorem(viewTransform(23));
+  font-size: pxTorem(23, 2);
   color: $icon-success-color;
 }
 .weui-icon-waiting {
-  font-size: pxTorem(viewTransform(23));
+  font-size: pxTorem(23, 2);
   color: #10AEFF;
 }
 .weui-icon-warn {
-  font-size: pxTorem(viewTransform(23));
+  font-size: pxTorem(23, 2);
   color: #F43530;
 }
 .weui-icon-info {
-  font-size: pxTorem(viewTransform(23));
+  font-size: pxTorem(23, 2);
   color: #10AEFF;
 }
 .weui-icon-success-circle {
-  font-size: pxTorem(viewTransform(23));
+  font-size: pxTorem(23, 2);
   color: #09BB07;
 }
 .weui-icon-success-no-circle {
-  font-size: pxTorem(viewTransform(23));
+  font-size: pxTorem(23, 2);
   color: #09BB07;
 }
 .weui-icon-waiting-circle {
-  font-size: pxTorem(viewTransform(23));
+  font-size: pxTorem(23, 2);
   color: #10AEFF;
 }
 .weui-icon-circle {
-  font-size: pxTorem(viewTransform(23));
+  font-size: pxTorem(23, 2);
   color: #C9C9C9;
 }
 .weui-icon-download {
-  font-size: pxTorem(viewTransform(23));
+  font-size: pxTorem(23, 2);
   color: #09BB07;
 }
 .weui-icon-info-circle {
-  font-size: pxTorem(viewTransform(23));
+  font-size: pxTorem(23, 2);
   color: #09BB07;
 }
 .weui-icon-safe-success {
@@ -137,31 +137,31 @@
 }
 .weui-icon-cancel {
   color: #F43530;
-  font-size: pxTorem(viewTransform(22));
+  font-size: pxTorem(22, 2);
 }
 .weui-icon-search {
   color: #B2B2B2;
-  font-size: pxTorem(viewTransform(14));
+  font-size: pxTorem(14, 2);
 }
 .weui-icon-clear {
   color: #B2B2B2;
-  font-size: pxTorem(viewTransform(14));
+  font-size: pxTorem(14, 2);
 }
 .weui-icon-delete {
   &.weui-icon_gallery-delete{
     color:#FFFFFF;
-    font-size:pxTorem(viewTransform(22));
+    font-size:pxTorem(22, 2);
   }
 }
 .weui-icon_msg {
-  font-size: pxTorem(viewTransform(93));
+  font-size: pxTorem(93, 2);
   &.weui-icon-warn {
     color: #F76260;
   }
 }
 .weui-icon_msg-primary {
-  font-size: pxTorem(viewTransform(93));
+  font-size: pxTorem(93, 2);
   &.weui-icon-warn {
-	color: #FFBE00;
+	  color: #FFBE00;
   }
 }

@@ -1,8 +1,8 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Clock</vup-navbar>
-    <vup-clock :time="time"></vup-clock>
-  </vup-wrapper>
+  <lm-template>
+    <lm-navbar>Clock</lm-navbar>
+    <lm-clock :time="time"></lm-clock>
+  </lm-template>
 </template>
 <script>
 export default {

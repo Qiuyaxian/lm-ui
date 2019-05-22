@@ -1,44 +1,47 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Picker</vup-navbar>
-
-    <div> 默认，不设置默认值时选中第一个 {{year1}}</div>
-    <vup-picker :data='years' v-model='year1' @on-change='change'></vup-picker>
-    <br>
-    <div> 异步加载及动态改变数据 </div>
-    <vup-picker :data='years001' v-model='year001' @on-change='change'></vup-picker>
-    <br>
-    <vup-group>
-      <vup-cell title="选中值" :value="year001"></vup-cell>
-    </vup-group>
-    <vup-button type="primary" @click.native="changeValue([['1','3','5','7','9','11'],['2','3','4','5'],['a','b','c']])"> 设置数值1</vup-button>
-    <vup-button type="primary" @click.native="changeValue([['1','3','5','7','9','11'],['2','3','4','5']])"> 设置数值2 </vup-button>
-    <vup-button type="primary" @click.native="changeValue([['2','4','6','8','10','11']])"> 设置数值3 </vup-button>
-    <br>
-    <div> 设置默认值时 </div>
-    <vup-picker :data='years' v-model='year2' @on-change='change'></vup-picker>
-    <br>
-    <div> 双向绑定 </div>
-    <vup-picker :data='years' v-model='year3' @on-change='change3'></vup-picker>
-    <select v-model='year5'>
-      <option v-for='(one, key) in years[0]' :value='one.value' :key="key">{{one.name}}</option>
-    </select>
-    <br>
-    <div> 非联动多列 </div>
-    <vup-picker :data='years1' v-model='year4' @on-change='change'></vup-picker>
-    <br>
-    <div> 五列 </div>
-    <vup-picker :data='year6' v-model='year6Value' @on-change='change'></vup-picker>
-    <br>
-    <div>地区联动: 当前值 {{year7Value}} <br> 选中值所对应的文字: {{$refs.picker1 && $refs.picker1.getNameValues()}}</div>
-    <vup-picker :data='year7' :columns=3 v-model='year7Value' @on-change='change' ref="picker1"></vup-picker>
-    <vup-button @click.native="setData1" type="primary"> Set value to ["USA", "usa002", "0005"]</vup-button>
-    <vup-button @click.native="setData2" type="primary"> Set value to ["china", "china002", "gz"]</vup-button>
-    <vup-button @click.native="setList" type="primary">Set List</vup-button>
-    <br>
-    <div> 3列的数据，只显示两列 </div>
-    <vup-picker :data='year7' :fixed-columns="2" :columns=3 v-model='year8Value' @on-change='change'></vup-picker>
-  </vup-wrapper>
+  <lm-template>
+    <lm-navbar>Picker</lm-navbar>
+    <div style="overflow: hidden;">
+      <div style="overflow: auto;-webkit-overflow-scrolling: touch;">
+        <lm-divider>默认，不设置默认值时选中第一个 {{year1}}</lm-divider>
+        <lm-picker :data='years' v-model='year1' @on-change='change'></lm-picker>
+        <br>
+        <div> 异步加载及动态改变数据 </div>
+        <lm-picker :data='years001' v-model='year001' @on-change='change'></lm-picker>
+        <br>
+        <lm-group>
+          <lm-cell title="选中值" :value="year001"></lm-cell>
+        </lm-group>
+        <lm-button type="primary" @click.native="changeValue([['1','3','5','7','9','11'],['2','3','4','5'],['a','b','c']])"> 设置数值1</lm-button>
+        <lm-button type="primary" @click.native="changeValue([['1','3','5','7','9','11'],['2','3','4','5']])"> 设置数值2 </lm-button>
+        <lm-button type="primary" @click.native="changeValue([['2','4','6','8','10','11']])"> 设置数值3 </lm-button>
+        <br>
+        <div> 设置默认值时 </div>
+        <lm-picker :data='years' v-model='year2' @on-change='change'></lm-picker>
+        <br>
+        <div> 双向绑定 </div>
+        <lm-picker :data='years' v-model='year3' @on-change='change3'></lm-picker>
+        <select v-model='year5'>
+          <option v-for='(one, key) in years[0]' :value='one.value' :key="key">{{one.name}}</option>
+        </select>
+        <br>
+        <div> 非联动多列 </div>
+        <lm-picker :data='years1' v-model='year4' @on-change='change'></lm-picker>
+        <br>
+        <div> 五列 </div>
+        <lm-picker :data='year6' v-model='year6Value' @on-change='change'></lm-picker>
+        <br>
+        <div>地区联动: 当前值 {{year7Value}} <br> 选中值所对应的文字: {{$refs.picker1 && $refs.picker1.getNameValues()}}</div>
+        <lm-picker :data='year7' :columns=3 v-model='year7Value' @on-change='change' ref="picker1"></lm-picker>
+        <lm-button @click.native="setData1" type="primary"> Set value to ["USA", "usa002", "0005"]</lm-button>
+        <lm-button @click.native="setData2" type="primary"> Set value to ["china", "china002", "gz"]</lm-button>
+        <lm-button @click.native="setList" type="primary">Set List</lm-button>
+        <br>
+        <div> 3列的数据，只显示两列 </div>
+        <lm-picker :data='year7' :fixed-columns="2" :columns=3 v-model='year8Value' @on-change='change'></lm-picker>
+      </div>
+    </div>
+  </lm-template>
 </template>
 <script>
 let years = []

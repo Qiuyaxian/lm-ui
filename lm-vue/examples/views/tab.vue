@@ -1,12 +1,12 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Tab</vup-navbar>
-    <vup-tab>
-      <vup-tab-item selected>已发货</vup-tab-item>
-      <vup-tab-item>未发货</vup-tab-item>
-      <vup-tab-item>全部订单</vup-tab-item>
-    </vup-tab>
-  </vup-wrapper>
+  <lm-template>
+    <lm-navbar>Tab</lm-navbar>
+    <lm-tab>
+      <lm-tab-item selected>已发货</lm-tab-item>
+      <lm-tab-item>未发货</lm-tab-item>
+      <lm-tab-item>全部订单</lm-tab-item>
+    </lm-tab>
+  </lm-template>
 </template>
 
 <script>

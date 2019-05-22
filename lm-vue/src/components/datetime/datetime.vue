@@ -1,36 +1,26 @@
 <template>
-  <a
-    class="vup-datetime vup-cell"
-    :class="{'vup-cell_access': !readonly}"
-    :data-cancel-text="'取消'"
-    :data-confirm-text="'确定'"
-    href="javascript:">
+  <a class="lm-datetime lm-cell"
+     :class="{'lm-cell-access': !readonly}"
+     :data-cancel-text="'取消'"
+     :data-confirm-text="'确定'"
+     href="javascript:;">
     <slot>
       <div>
         <slot name="title">
-          <p
-            :style="styles"
-            :class="labelClass"
-            v-html="title"></p>
+          <p :style="styles"
+             :class="labelClass"
+             v-html="label"></p>
         </slot>
         <inline-desc v-if="inlineDesc">{{ inlineDesc }}</inline-desc>
       </div>
-      <div
-        class="vup-cell_content vup-cell-primary vup-datetime-value"
-        :style="{
+      <div class="lm-cell-content lm-cell-primary lm-datetime-value"
+           :style="{
           textAlign: valueTextAlign
         }">
-        <span
-          class="vup-cell-placeholder"
-          v-if="!currentValue && placeholder">{{ placeholder }}</span>
-        <span
-          class="vup-cell-value"
-          v-if="currentValue">{{ displayFormat ? displayFormat(currentValue) : currentValue }}</span>
-        <!-- <icon
-          class="vup-input-icon"
-          type="warn"
-          v-show="!valid"
-          :title="firstError"></icon> -->
+        <span class="lm-cell-placeholder"
+              v-if="!currentValue && placeholder">{{ placeholder }}</span>
+        <span class="lm-cell-value"
+              v-if="currentValue">{{ displayFormat ? displayFormat(currentValue) : currentValue }}</span>
       </div>
     </slot>
   </a>
@@ -43,9 +33,10 @@ import Group from '../group/group'
 import InlineDesc from '../inline-desc/inline-desc'
 import { uuidMixin } from '@/mixins'
 import { format } from '@/utils';
+
 export default {
   name: 'datetime',
-  mixins: [ uuidMixin ],
+  mixins: [uuidMixin],
   components: {
     Group,
     InlineDesc
@@ -63,7 +54,7 @@ export default {
         return true
       }
     },
-    title: String,
+    label: String,
     value: {
       type: String,
       default: ''
@@ -156,7 +147,7 @@ export default {
   },
   mounted () {
     const uuid = this.uuid
-    this.$el.setAttribute('id', `vup-datetime-${uuid}`)
+    this.$el.setAttribute('id', `lm-datetime-${uuid}`)
     if (!this.readonly) {
       this.$nextTick(() => {
         this.render()
@@ -182,10 +173,10 @@ export default {
     pickerOptions () {
       let _this = this
       let options = {
-        trigger: '#vup-datetime-' + this.uuid,
+        trigger: '#lm-datetime-' + this.uuid,
         format: this.format,
         value: this.currentValue,
-        output: '.vup-datetime-value',
+        output: '.lm-datetime-value',
         confirmText: _this.getButtonText('confirm'),
         cancelText: _this.getButtonText('cancel'),
         clearText: _this.clearText,
@@ -256,7 +247,7 @@ export default {
         return {}
       }
       return {
-        'vup-cell-justify': this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify'
+        'lm-cell-justify': this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify'
       }
     }
   },
@@ -342,7 +333,8 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/scroller.scss';
-@import '~@/theme/datetime.scss';
+@import "~@/theme/index.scss";
+@import "~@/theme/cell.scss";
+@import "~@/theme/scroller.scss";
+@import "~@/theme/datetime.scss";
 </style>

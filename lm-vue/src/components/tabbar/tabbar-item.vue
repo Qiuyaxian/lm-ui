@@ -1,16 +1,16 @@
 <template>
   <a
    href="javascript:;"
-   class="vup-tabbar__item"
+   class="lm-tabbar-item"
    :class="{
-     'vup-bar__item_on': isActive,
-     'vup-tabbar-simple': simple
+     'lm-bar-item-on': isActive,
+     'lm-tabbar-simple': simple
    }"
    @click="onItemClick(true)">
-    <div class="vup-tabbar__icon"
+    <div class="lm-tabbar-icon"
        :class="[
          iconClass || $parent.iconClass,
-         { 'vup-reddot': showDot }
+         { 'lm-reddot': showDot }
        ]"
        v-if="!simple"
        >
@@ -18,7 +18,7 @@
       <slot name="icon-active" v-if="!simple && hasActiveIcon && isActive"></slot>
       <sup v-if="badge"><badge :text="badge"></badge></sup>
     </div>
-    <p class="vup-tabbar__label">
+    <p class="lm-tabbar-label">
       <slot name="label"></slot>
     </p>
   </a>

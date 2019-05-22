@@ -5,12 +5,12 @@
     animation-name: page-loading;
     animation-timing-function: linear;
     border-radius: 99em;
-    border: pxTorem(viewTransform(3)) solid #DDD;
+    border: pxTorem(3, 2) solid #DDD;
     border-left-color: #666;
     display: inline-block;
-    width: pxTorem(viewTransform(16));
-    height: pxTorem(viewTransform(16));
-    border-width: pxTorem(viewTransform(2));
+    width: pxTorem(16, 2);
+    height: pxTorem(16, 2);
+    border-width: pxTorem(2, 2);
     display:table-cell;
     vertical-align:middle;
   }

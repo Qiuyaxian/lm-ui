@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'vup-marquee-item',
+  name: 'lm-marquee-item',
   mounted () {
     this.$nextTick(() => {
       this.$parent.destroy()

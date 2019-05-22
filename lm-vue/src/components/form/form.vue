@@ -1,5 +1,5 @@
 <template>
-  <form class="vup-form">
+  <form class="lm-form">
     <slot></slot>
   </form>
 </template>
@@ -8,11 +8,11 @@ import WxValidate from './validate'
 import { isObject, isFunction, isArray, isString } from '@/utils'
 import addMethodMap from '@/utils/validate'
 export default {
-  name: 'vup-form',
-  componentName: 'vup-form',
+  name: 'lm-form',
+  componentName: 'lm-form',
   provide () {
     return {
-      'vup-form': this
+      'lm-form': this
     }
   },
   props: {
@@ -83,11 +83,11 @@ export default {
   created () {
     /**
      * [对外提供添加自定校验规则]
-     * @param  {[type]} 'vup.form.addMethod' [description]
+     * @param  {[type]} 'lm.form.addMethod' [description]
      * @param  {[type]} (field             [description]
      * @return {[type]}                    [description]
      */
-    this.$on('vup.form.addMethod', (fields) => {
+    this.$on('lm.form.addMethod', (fields) => {
       if (fields && fields['prop'] && fields['rules'] && fields['messages']) {
         let key = fields['prop']
         if (!this.validateRules[key]) this.validateRules[key] = {}
@@ -101,11 +101,11 @@ export default {
     /* istanbul ignore next */
     /**
      * [对外提供移除功能]
-     * @param  {[type]} 'vup.form.removeMethod' [description]
+     * @param  {[type]} 'lm.form.removeMethod' [description]
      * @param  {[type]} (field                [description]
      * @return {[type]}                       [description]
      */
-    this.$on('vup.form.removeMethod', (fields) => {
+    this.$on('lm.form.removeMethod', (fields) => {
       if (fields.prop) {
         let key = fields['prop']
         delete this.validateRules[key]

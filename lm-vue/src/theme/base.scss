@@ -41,7 +41,7 @@ $fonts: 20, 22, 24, 26, 28, 30, 32 !default;
 } 
 ##{$class-prefix}-page-footer{
   width: 100%;
-  height: pxTorem(viewTransform( 53 ));
+  height: pxTorem(53, 2);
   position: absolute !important;
   left: 0 !important;
   bottom: 0 !important;
@@ -90,13 +90,13 @@ $fonts: 20, 22, 24, 26, 28, 30, 32 !default;
     background: #f74c31;
     color: #fff; 
 
-    @include setWidthHeight(viewTransform(26), viewTransform(26)); 
+    @include setWidthHeight(26, 26, 2); 
     /*width: pxTorem(viewTransform(26));
     height: pxTorem(viewTransform(26));*/
-    @include fontsize(viewTransform(16), viewTransform(24));
+    @include fontsize(16, 24, 2);
     /*font-size: pxTorem(viewTransform(16));
     line-height: pxTorem(viewTransform(24));*/
-    border-radius: pxTorem(viewTransform(13));
+    border-radius: pxTorem(13, 2);
     text-align: center;
     padding: 0;
     background-clip: padding-box;

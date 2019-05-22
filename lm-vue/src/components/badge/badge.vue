@@ -1,5 +1,5 @@
 <template>
-  <span v-text="text" :class="['vup-badge', {'vup-badge-dot': typeof text === 'undefined', 'vup-badge-single': typeof text !== 'undefined' && text.toString().length === 1}, `vup-badge-${type}`]"><slot></slot></span>
+  <span v-text="text" :class="['lm-badge', {'lm-badge-dot': typeof text === 'undefined', 'lm-badge-single': typeof text !== 'undefined' && text.toString().length === 1}, `lm-badge-${type}`]"><slot></slot></span>
 </template>
 
 <script>
@@ -21,11 +21,11 @@ export default {
   &-badge {
     display: inline-block;
     text-align: center;
-    font-size: pxTorem(viewTransform(12));
-    height: pxTorem(viewTransform(16));
-    line-height: pxTorem(viewTransform(16));
-    border-radius: pxTorem(viewTransform(8));
-    padding: 0 pxTorem(viewTransform(6));
+    font-size: pxTorem(12, 2);
+    height: pxTorem(16, 2);
+    line-height: pxTorem(16, 2);
+    border-radius: pxTorem(8, 2);
+    padding: 0 pxTorem(6, 2);
     background-clip: padding-box;
     vertical-align: middle;
   }
@@ -47,11 +47,11 @@ export default {
   }
   &-badge-single {
     padding: 0;
-    width: pxTorem(viewTransform(16));
+    width: pxTorem(16, 2);
   }
   &-badge-dot {
     height: auto;
-    padding: pxTorem(viewTransform(5))
+    padding: pxTorem(5, 2);
   }
 }
 

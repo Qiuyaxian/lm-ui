@@ -4,17 +4,19 @@
     position: relative;
     overflow: hidden;
     &:after {
-      @include borderStype(bottom, red);  
+      @include borderStype(bottom, $onepx-border-color);  
     }
     &:before {
-      @include borderStype(top, red); 
+      @include borderStype(top, $onepx-border-color); 
     }
   }
   &-panel-item {
     padding: pxTorem(32);
+  }
+  &-panel-item-divide{
     position: relative;
     &:after {
-      @include borderStype(top, red);  
+      @include borderStype(top, $onepx-border-color);  
     }
     &:first-child {
       &:after {
@@ -57,11 +59,11 @@
 
   &-panel-header {
     padding: pxTorem(28) pxTorem(32);
-    color: gray;
-    font-size: pxTorem(viewTransform(13));
+    color: $color-default;
+    font-size: pxTorem(13, 2);
     position: relative;
     &:after {
-      @include borderStype(bottom, red);
+      @include borderStype(bottom, $onepx-border-color);
       left: 0;
     }
   }

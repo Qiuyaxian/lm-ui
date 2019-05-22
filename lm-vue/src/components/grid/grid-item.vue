@@ -1,31 +1,21 @@
 <template>
   <a href="javascript:;"
-    class="vup-grid"
+    class="lm-grid"
     :class="{
-      'vup-grid-item-no-border': (isLast && !$parent.showLrBorders) || (!isLast && !$parent.showVerticalDividers),
+      'lm-grid-item-no-border': (isLast && !$parent.showLrBorders) || (!isLast && !$parent.showVerticalDividers),
     }"
     @click="onClick"
     :style="style">
-    <div class="vup-grid_icon">
+    <div class="lm-grid-icon">
       <slot name="icon">
         <img v-if="icon" :src="icon" alt="" />
       </slot>
     </div>
-    <!-- <div class="vup-grid_icon" :class="{ 'vup-grid-skeleton_icon': isShowSkeleton }" v-if="hasIconSlot || icon">
-      <slot name="icon">
-        <img v-if="icon" :src="icon" alt="" />
-      </slot>
-    </div> -->
-    <p class="vup-grid_label">
+    <p class="lm-grid-label">
       <slot name="label">
         <span v-if="label" v-html="label"></span>
       </slot>
     </p>
-   <!--  <p v-if="hasLabelSlot || label" class="vup-grid_label">
-      <slot name="label">
-        <span v-html="label"></span>
-      </slot>
-    </p> -->
     <slot></slot>
   </a>
 </template>

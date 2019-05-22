@@ -1,5 +1,5 @@
 <template>
-  <p class="vup-divider">
+  <p class="lm-divider">
     <slot></slot>
   </p>
 </template>
@@ -21,7 +21,7 @@ export default {
     overflow: hidden;
     line-height: 1;
     text-align: center;
-    padding: pxTorem(viewTransform(10)) 0;
+    padding: pxTorem(10, 2) 0;
     color: #666;
     font-size: pxTorem(32);
   }
@@ -34,7 +34,7 @@ export default {
     width: 50%;
     background: linear-gradient(180deg, #ccc, #ccc, rgba(229, 229, 229, 0)) bottom left no-repeat;
     background-repeat: no-repeat;
-    background-size: 100% pxTorem(viewTransform(1));
+    background-size: 100% pxTorem(1, 2);
   }
   &-divider:before {
     background-position: right 1em top 50%;

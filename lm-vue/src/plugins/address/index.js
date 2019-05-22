@@ -71,18 +71,18 @@ const plugin = {
       }
     }
 
-    // all Vux's plugins are included in this.$vup
-    if (!vue.$vup) {
-      vue.$vup = {
+    // all Vux's plugins are included in this.$lm
+    if (!vue.$lm) {
+      vue.$lm = {
         address
       }
     } else {
-      vue.$vup.address = address
+      vue.$lm.address = address
     }
 
     vue.mixin({
       created: function () {
-        this.$vup = vue.$vup
+        this.$lm = vue.$lm
       }
     })
   }

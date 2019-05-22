@@ -68,8 +68,8 @@
     top: 0;
     left: 0;
     right: 0;
-    padding: pxTorem(viewTransform(5));
-    font-size: pxTorem(viewTransform(14));
+    padding: pxTorem(5, 2);
+    font-size: pxTorem(14, 2);
     text-align: center;
     color: #FFF;
     z-index: 5000;

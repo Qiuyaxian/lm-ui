@@ -1,5 +1,5 @@
 <template>
-  <div class="vup-flexbox-item" :style="style">
+  <div class="lm-flexbox-item" :style="style">
     <slot></slot>
   </div>
 </template>

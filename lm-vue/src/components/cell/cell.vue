@@ -1,27 +1,27 @@
 <template>
-  <div class="vup-cell" :class="{
-      'vup-tap-active': isLink || !!link,
-      'vup-cell_access': isLink || !!link,
-      'vup-cell-no-border-intent': !getBorderIntent,
-      'vup-cell-disabled': disabled
+  <div class="lm-cell" :class="{
+      'lm-tap-active': isLink || !!link,
+      'lm-cell-access': isLink || !!link,
+      'lm-cell-no-border-intent': !getBorderIntent,
+      'lm-cell-disabled': disabled
     }"
     :style="style"
     @click="onClick"
     >
     <!-- icon start -->
-    <div class="vup-cell_icon">
+    <div class="lm-cell-icon">
       <slot name="icon"></slot>
     </div>
     <!-- icon end -->
     <!-- 左侧文字 start -->
-    <div class="vup-cell_label" :style="cellStyles" :class="{'vup-cell-primary': primary === 'title' && valueAlign !== 'left'}">
+    <div class="lm-cell-label" :style="cellStyles" :class="{'lm-cell-primary': primary === 'title' && valueAlign !== 'left'}">
       <p class="">
         <label class="" :style="labelStyles" :class="labelClass">
           <slot name="label">{{ label }}</slot>
         </label>
       </p>
       <!-- 小文字 start -->
-      <inline-desc>
+      <inline-desc v-if="inlineDesc">
         <slot name="inline-desc">{{ inlineDesc }}</slot>
       </inline-desc>
       <!-- 小文字 end -->
@@ -29,8 +29,8 @@
     <!-- 左侧文字 end -->
 
     <!-- 右侧文字 start -->
-    <div class="vup-cell_content">
-      <slot>{{ content }}</slot>
+    <div class="lm-cell-content" :class="{ 'lm-cell-placeholder': !content || (content && content.length === 0) }">
+      <slot>{{ content || placeholder }}</slot>
     </div>
     <!-- 右侧文字 end -->
   </div>
@@ -93,7 +93,12 @@ export default {
      * [alignItems 右侧文字对齐]
      * @type {[type]}
      */
-    alignItems: String
+    alignItems: String,
+    /**
+     * [placeholder 没有选中值的时候显示的提示语]
+     * @type {[type]}
+     */
+    placeholder: String
   },
   data () {
     return {}
@@ -110,7 +115,11 @@ export default {
      */
     onClick () {
       // 跳转
-      !this.disabled && this.link && Router.go && Router.go(this.link, this.$router)
+      if (!this.disabled && this.link) {
+        Router.go && Router.go(this.link, this.$router)
+      } else {
+        this.$emit('on-cell-click');
+      }
     }
   },
   computed: {
@@ -142,7 +151,7 @@ export default {
      */
     labelClass () {
       return {
-        'vup-cell-justify': this.$parent && (this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify')
+        'lm-cell-justify': this.$parent && (this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify')
       }
     },
     /**
@@ -151,10 +160,7 @@ export default {
      */
     valueClass () {
       return {
-        'vup-cell-primary': this.primary === 'content' || this.valueAlign === 'left'
-        // 'vup-cell-align-left': this.valueAlign === 'left',
-        // 'vup-cell-arrow-up': this.arrowDirection === 'up',
-        // 'vup-cell-arrow-down': this.arrowDirection === 'down'
+        'lm-cell-primary': this.primary === 'content' || this.valueAlign === 'left'
       }
     },
     /**
@@ -172,6 +178,6 @@ export default {
 };
 </script>
 <style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/cell.scss';
+@import "~@/theme/index.scss";
+@import "~@/theme/cell.scss";
 </style>

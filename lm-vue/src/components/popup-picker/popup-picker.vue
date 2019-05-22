@@ -1,50 +1,45 @@
 <template>
-  <div class="vup-cell-box">
-    <div class="vup-cell vup-tap-active" :class="{'vup-cell_access': !disabled}" @click="onClick" v-show="showCell">
-      <div class="vup-cell__hd">
-        <slot name="title" label-class="vup-label" :label-style="labelStyles" :label-title="title">
-          <label class="vup-label" :class="labelClass" :style="labelStyles" v-if="title" v-html="title"></label>
-        </slot>
-        <vup-inline-desc v-if="inlineDesc">{{ inlineDesc }}</vup-inline-desc>
+  <div class="lm-popup-picker-wrapper">
+    <lm-cell :borderIntent="getBorderIntent"
+             :label="title"
+             @on-cell-click="onClick"
+             :inlineDesc="inlineDesc" :content="value">
+      <div class="lm-popup-picker-select"
+           :style="{textAlign: valueTextAlign}">
+        <span class="lm-popup-picker-value lm-cell-value"
+              v-if="!displayFormat && !showName && value.length">{{value | array2string}}</span>
+        <span class="lm-popup-picker-value lm-cell-value"
+              v-if="!displayFormat && showName && value.length">{{value | value2name(data)}}</span>
+        <span class="lm-popup-picker-value lm-cell-value"
+              v-if="displayFormat && value.length">{{ displayFormat(value, value2name(value, data)) }}</span>
+        <span v-if="!value.length && placeholder"
+              v-text="placeholder"
+              class="lm-popup-picker-placeholder lm-cell-placeholder"></span>
       </div>
-      <div class="vup-cell-primary vup-popup-picker-select-box">
-        <div class="vup-popup-picker-select" :style="{textAlign: valueTextAlign}">
-          <span class="vup-popup-picker-value vup-cell-value" v-if="!displayFormat && !showName && value.length">{{value | array2string}}</span>
-          <span class="vup-popup-picker-value vup-cell-value" v-if="!displayFormat && showName && value.length">{{value | value2name(data)}}</span>
-          <span class="vup-popup-picker-value vup-cell-value" v-if="displayFormat && value.length">{{ displayFormat(value, value2name(value, data)) }}</span>
-          <span v-if="!value.length && placeholder" v-text="placeholder" class="vup-popup-picker-placeholder vup-cell-placeholder"></span>
-        </div>
-      </div>
-      <div class="vup-cell_content">
-      </div>
-    </div>
+    </lm-cell>
     <div v-transfer-dom="isTransferDom">
-      <vup-popup
-      v-model="showValue"
-      class="vup-popup-picker"
-      :id="`vup-popup-picker-${uuid}`"
-      @on-hide="onPopupHide"
-      @on-show="onPopupShow"
-      :popup-style="popupStyle">
-        <div class="vup-popup-picker-container">
-          <vup-popup-header
-          :left-text="cancelText || '取消'"
-          :right-text="confirmText || '完成'"
-          @on-click-left="onHide(false)"
-          @on-click-right="onHide(true)"
-          :title="popupTitle"></vup-popup-header>
-          <vup-picker
-          :data="data"
-          v-model="tempValue"
-          @on-change="onPickerChange"
-          :columns="columns"
-          :fixed-columns="fixedColumns"
-          :container="'#vup-popup-picker-'+uuid"
-          :column-width="columnWidth"></vup-picker>
+      <lm-popup v-model="showValue"
+                class="lm-popup-picker"
+                :id="`lm-popup-picker-${uuid}`"
+                @on-hide="onPopupHide"
+                @on-show="onPopupShow"
+                :popup-style="popupStyle">
+        <div class="lm-popup-picker-container">
+          <lm-popup-header :left-text="cancelText || '取消'"
+                           :right-text="confirmText || '完成'"
+                           @on-click-left="onHide(false)"
+                           @on-click-right="onHide(true)"
+                           :title="popupTitle"></lm-popup-header>
+          <lm-picker :data="data"
+                     v-model="tempValue"
+                     @on-change="onPickerChange"
+                     :columns="columns"
+                     :fixed-columns="fixedColumns"
+                     :container="'#lm-popup-picker-'+uuid"
+                     :column-width="columnWidth"></lm-picker>
         </div>
-      </vup-popup>
+      </lm-popup>
     </div>
-
   </div>
 </template>
 
@@ -53,14 +48,12 @@ import Picker from '../picker/picker'
 import Cell from '../cell/cell'
 import Popup from '../popup/popup'
 import PopupHeader from '../popup-header/popup-header'
-// import Flexbox from '../flexbox/flexbox'
-// import FlexboxItem from '../flexbox/flexbox-item'
 import InlineDesc from '../inline-desc/inline-desc'
-
 import array2string from '@/filters/array2String'
 import value2name from '@/filters/value2name'
 import { uuidMixin } from '@/mixins'
 import TransferDom from '@/directives/transfer-dom'
+import { getParentProp } from '@/utils'
 const getObject = function (obj) {
   return JSON.parse(JSON.stringify(obj))
 }
@@ -76,19 +69,22 @@ export default {
   },
   mixins: [uuidMixin],
   components: {
-    'vup-picker': Picker,
-    'vup-cell': Cell,
-    'vup-popup': Popup,
-    'vup-popup-header': PopupHeader,
-    // 'vup-flexbox': Flexbox,
-    // 'vup-flexbox-item': FlexboxItem,
-    'vup-inline-desc': InlineDesc
+    'lm-picker': Picker,
+    'lm-cell': Cell,
+    'lm-popup': Popup,
+    'lm-popup-header': PopupHeader,
+    'lm-inline-desc': InlineDesc
   },
   filters: {
     array2string,
     value2name
   },
   props: {
+    /**
+     * [label description]
+     * @type {[type]}
+     */
+    title: String,
     /**
      * [valueTextAlign description]
      * @type {Object}
@@ -97,11 +93,6 @@ export default {
       type: String,
       default: 'right'
     },
-    /**
-     * [title description]
-     * @type {[type]}
-     */
-    title: String,
     /**
      * [cancelText description]
      * @type {[type]}
@@ -162,7 +153,7 @@ export default {
      * [inlineDesc description]
      * @type {Array}
      */
-    inlineDesc: [String, Number, Array, Object, Boolean],
+    inlineDesc: [String, Number],
     /**
      * [showCell description]
      * @type {Object}
@@ -208,7 +199,12 @@ export default {
      * [disabled description]
      * @type {[type]}
      */
-    disabled: Boolean
+    disabled: Boolean,
+    /**
+     * [borderIntent description]
+     * @type {Boolean}
+     */
+    borderIntent: false
   },
   computed: {
     labelStyles () {
@@ -221,8 +217,11 @@ export default {
     },
     labelClass () {
       return {
-        'vup-cell-justify': this.$parent && (this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify')
+        'lm-cell-justify': this.$parent && (this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify')
       }
+    },
+    getBorderIntent () {
+      return getParentProp(this, 'borderIntent') || this.borderIntent;
     }
   },
   methods: {
@@ -306,29 +305,9 @@ export default {
   }
 }
 </script>
-
 <style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/1px.scss';
-@import '~@/theme/popup.scss';
-.#{$class-prefix} {
-  &-cell-primary {
-    flex: 1;
-  }
-  &-cell-box {
-    position: relative;
-  }
-  &-cell-box:not(:first-child):before {
-    content: " ";
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 1px;
-    border-top: 1px solid #D9D9D9;
-    color: #D9D9D9;
-    transform-origin: 0 0;
-    transform: scaleY(0.5);
-    left: pxTorem(viewTransform(15));
-  }
-}
+@import "~@/theme/index.scss";
+@import "~@/theme/cell.scss";
+@import "~@/theme/transition.scss";
+@import "~@/theme/popup.scss";
 </style>

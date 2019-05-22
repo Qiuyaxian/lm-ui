@@ -16,7 +16,7 @@ let loading = (function(){
       };
     }
     isVisibility = true;
-    Vue.$vup.loading.show(option);
+    Vue.$lm.loading.show(option);
   }
   /**
    * [hide 关闭loading]
@@ -24,7 +24,7 @@ let loading = (function(){
    */
   loading.hide = async function (callback) {
     isVisibility = false;
-    await Vue.$vup.loading.hide();
+    await Vue.$lm.loading.hide();
     callback && callback();
   }
   /**
@@ -32,7 +32,7 @@ let loading = (function(){
    * @return {Boolean} [description]
    */
   loading.isVisible = function(){
-    return Vue.$vup.loading.isVisible() ? Vue.$vup.loading.isVisible() : isVisibility;
+    return Vue.$lm.loading.isVisible() ? Vue.$lm.loading.isVisible() : isVisibility;
   }
   return loading;
 })();

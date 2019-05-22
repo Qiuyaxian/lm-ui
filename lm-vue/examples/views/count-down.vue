@@ -1,20 +1,20 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>CountDown</vup-navbar>
-    <vup-divider>自动倒计时</vup-divider>
-    <vup-group>
-      <vup-cell label="倒计时">
-        <vup-count-down v-model="time" @on-finish="finish" v-show="show"></vup-count-down>
-      </vup-cell>
-    </vup-group>
-    <vup-divider>手动倒计时</vup-divider>
-    <vup-group>
-      <vup-switch title="手动倒计时" v-model="start"></vup-switch>
-      <vup-cell label="倒计时">
-        <vup-count-down :start="start" v-model="time2" @on-finish="finish" v-show="show"></vup-count-down>
-      </vup-cell>
-    </vup-group>
-  </vup-wrapper>
+  <lm-template>
+    <lm-navbar>CountDown</lm-navbar>
+    <lm-divider>自动倒计时</lm-divider>
+    <lm-group>
+      <lm-cell label="倒计时">
+        <lm-count-down v-model="time" @on-finish="finish" v-show="show"></lm-count-down>
+      </lm-cell>
+    </lm-group>
+    <lm-divider>手动倒计时</lm-divider>
+    <lm-group>
+      <lm-switch title="手动倒计时" v-model="start"></lm-switch>
+      <lm-cell label="倒计时">
+        <lm-count-down :start="start" v-model="time2" @on-finish="finish" v-show="show"></lm-count-down>
+      </lm-cell>
+    </lm-group>
+  </lm-template>
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template>
-  <div class="vup-marquee" :style="{height: height + 'px'}">
-    <ul class="vup-marquee-box" ref="box" :style="{transform: `translate3d(0,${currenTranslateY}px,0)`, transition: `transform ${noAnimate ? 0 : duration}ms`}">
+  <div class="lm-marquee" :style="{height: height + 'px'}">
+    <ul class="lm-marquee-box" ref="box" :style="{transform: `translate3d(0,${currenTranslateY}px,0)`, transition: `transform ${noAnimate ? 0 : duration}ms`}">
       <slot></slot>
     </ul>
   </div>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'vup-marquee',
+  name: 'lm-marquee',
   props: {
     interval: {
       type: Number,
@@ -98,11 +98,11 @@ export default {
 }
 </script>
 <style lang="scss">
-.vup-marquee {
+.lm-marquee {
   width: 100%;
   overflow: hidden;
 }
-.vup-marquee-box {
+.lm-marquee-box {
   padding: 0;
   margin: 0;
   width: 100%;

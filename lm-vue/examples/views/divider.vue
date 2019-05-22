@@ -1,8 +1,8 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Divider</vup-navbar>
-    <vup-divider>分割线</vup-divider>
-  </vup-wrapper>
+  <lm-template>
+    <lm-navbar>Divider</lm-navbar>
+    <lm-divider>分割线</lm-divider>
+  </lm-template>
 </template>
 
 <script>

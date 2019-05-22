@@ -68,18 +68,18 @@ const plugin = {
       }
     }
 
-    // all Vux's plugins are included in this.$vup
-    if (!vue.$vup) {
-      vue.$vup = {
+    // all Vux's plugins are included in this.$lm
+    if (!vue.$lm) {
+      vue.$lm = {
         actionsheet
       }
     } else {
-      vue.$vup.actionsheet = actionsheet
+      vue.$lm.actionsheet = actionsheet
     }
 
     vue.mixin({
       created: function () {
-        this.$vup = vue.$vup
+        this.$lm = vue.$lm
       }
     })
   }

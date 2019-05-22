@@ -1,10 +1,10 @@
 <template>
-  <transition :name="`vup-popup-animate-${position}`">
+  <transition :name="`lm-popup-animate-${position}`">
     <div
       v-show="show && !initialShow"
       :style="styles"
-      class="vup-popup-dialog"
-      :class="[`vup-popup-${position}`, show ? 'vup-popup-show' : '']">
+      class="lm-popup-dialog"
+      :class="[`lm-popup-${position}`, show ? 'lm-popup-show' : '']">
         <slot v-if="shouldRenderBody"></slot>
     </div>
   </transition>
@@ -55,12 +55,12 @@ export default {
   },
   created () {
     // get global layout config
-    if (this.$vup && this.$vup.config && this.$vup.config.$layout === 'PAGE_VIEW') {
+    if (this.$lm && this.$lm.config && this.$lm.config.$layout === 'PAGE_VIEW') {
       this.layout = 'PAGE_VIEW'
     }
   },
   mounted () {
-    this.$overflowScrollingList = document.querySelectorAll('.vup-fix-safari-overflow-scrolling')
+    this.$overflowScrollingList = document.querySelectorAll('.lm-fix-safari-overflow-scrolling')
     this.$nextTick(() => {
       const _this = this;
       this.popup = new Popuper({
@@ -73,8 +73,8 @@ export default {
         },
         onClose () {
           _this.show = false
-          if (window.__$vupPopups && Object.keys(window.__$vupPopups).length > 1) return
-          if (document.querySelector('.vup-popup-dialog.vup-popup-mask-disabled')) return
+          if (window.__$lmPopups && Object.keys(window.__$lmPopups).length > 1) return
+          if (document.querySelector('.lm-popup-dialog.lm-popup-mask-disabled')) return
           setTimeout(() => {
             _this.fixSafariOverflowScrolling('touch')
           }, 300)
@@ -105,13 +105,13 @@ export default {
       }
     },
     removeModalClassName () {
-      this.layout === 'PAGE_VIEW' && removeClass(document.body, 'vup-modal-open')
+      this.layout === 'PAGE_VIEW' && removeClass(document.body, 'lm-modal-open')
     },
     doShow () {
       this.popup && this.popup.show()
       this.$emit('on-show')
       this.fixSafariOverflowScrolling('auto')
-      this.layout === 'PAGE_VIEW' && addClass(document.body, 'vup-modal-open')
+      this.layout === 'PAGE_VIEW' && addClass(document.body, 'lm-modal-open')
       if (!this.hasFirstShow) {
         this.$emit('on-first-show')
         this.hasFirstShow = true
@@ -120,7 +120,7 @@ export default {
     scrollTop () {
       this.$nextTick(() => {
         this.$el.scrollTop = 0
-        const box = this.$el.querySelectorAll('.vup-scrollable')
+        const box = this.$el.querySelectorAll('.lm-scrollable')
         if (box.length) {
           for (let i = 0; i < box.length; i++) {
             box[i].scrollTop = 0
@@ -184,7 +184,7 @@ export default {
         this.show = false
         this.popup.hide(false)
         setTimeout(() => {
-          if (!document.querySelector('.vup-popup-dialog.vup-popup-show')) {
+          if (!document.querySelector('.lm-popup-dialog.lm-popup-show')) {
             this.fixSafariOverflowScrolling('touch')
           }
           this.removeModalClassName()

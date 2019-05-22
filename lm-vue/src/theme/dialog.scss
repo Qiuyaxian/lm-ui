@@ -12,43 +12,43 @@
     margin: auto;
     background-color: $dialog-background-color;
     text-align: center;
-    border-radius: pxTorem(viewTransform(3));
+    border-radius: pxTorem(3, 2);
     overflow: hidden;
   }
-  &-dialog__hd {
+  &-dialog-header {
     padding: 1.3em $dialog-gap-width .5em;
     &.with-no-content {
       padding: 1.7em $dialog-gap-width;
     }
   }
-  &-dialog__title {
+  &-dialog-title {
     font-weight: 400;
-    font-size: pxTorem(viewTransform(18));
+    font-size: pxTorem(18, 2);
   }
-  &-dialog__bd {
+  &-dialog-body {
     padding: 0 $dialog-gap-width .8em;
-    min-height: pxTorem(viewTransform(40));
-    font-size: pxTorem(viewTransform(15));
+    min-height: pxTorem(40, 2);
+    font-size: pxTorem(15, 2);
     line-height: 1.3;
     word-wrap: break-word;
     word-break: break-all;
     color: $text-color-gray;
     &:first-child{
-      padding:2.7em pxTorem(viewTransform(20)) 1.7em;
+      padding: 2.7em pxTorem(20, 2) 1.7em;
       color:#353535;
     }
   }
-  &-dialog__ft {
+  &-dialog-footer {
     position: relative;
-    line-height: pxTorem(viewTransform(48));
-    font-size: pxTorem(viewTransform(18));
+    line-height: pxTorem(48, 2);
+    font-size: pxTorem(18, 2);
     display: flex;
     &:after {
       content: " ";
       @include borderStype(top, $dialog-line-color);  
     }
   }
-  &-dialog__btn {
+  &-dialog-btn {
     display: block;
     flex: 1;
     color: $dialog-link-color;
@@ -68,55 +68,54 @@
       }
     }
   }
-  &-dialog__btn_default {
+  &-dialog-btn-default {
     color: $dialog-button-text-default-color;
   }
-  &-dialog__btn_primary {
+  &-dialog-btn-primary {
     color: $dialog-button-text-primary-color;
   }
-  &-dialog__btn_warn {
+  &-dialog-btn-warn {
     color: $dialog-button-text-warn-color;
   }
 
-  &-skin_android{
+  &-skin-android{
     .#{ $class-prefix }-dialog {
       text-align: left;
-      box-shadow: 0 pxTorem(viewTransform(6)) pxTorem(viewTransform(30)) 0 rgba(0, 0, 0, .1);
+      box-shadow: 0 pxTorem(6, 2) pxTorem(30, 2) 0 rgba(0, 0, 0, .1);
     }
-    .#{ $class-prefix }-dialog__title{
-      font-size: pxTorem(viewTransform(21));
+    .#{ $class-prefix }-dialog-title{
+      font-size: pxTorem(21, 2);
     }
-    .#{ $class-prefix }-dialog__hd{
+    .#{ $class-prefix }-dialog-header{
       text-align: left;
     }
-    .#{ $class-prefix }-dialog__bd{
+    .#{ $class-prefix }-dialog-footer{
       color: $text-color-gray;
       padding:.25em $dialog-gap-width 2em;
-      font-size: pxTorem(viewTransform(17));
+      font-size: pxTorem(17, 2);
       text-align: left;
       &:first-child{
         padding:1.6em $dialog-gap-width 2em;
         color:#353535;
       }
     }
-    .#{ $class-prefix }-dialog__ft{
+    .#{ $class-prefix }-dialog-footer{
       display: block;
       text-align: right;
-      line-height: pxTorem(viewTransform(42));
-      font-size: pxTorem(viewTransform(16));
+      line-height: pxTorem(42, 2);
+      font-size: pxTorem(16, 2);
       padding:0 $dialog-gap-width .7em;
       &:after{
         display: none;
       }
     }
-    .#{ $class-prefix }-dialog__btn{
+    .#{ $class-prefix }-dialog-btn{
       display: inline-block;
       vertical-align: top;
       padding:0 .8em;
       &:after{
         display: none;
       }
-
       &:active{
         background-color: rgba(0,0,0,.06);
       }
@@ -127,19 +126,8 @@
         margin-right: -.8em;
       }
     }
-    .#{ $class-prefix }-dialog__btn_default {
+    .#{ $class-prefix }-dialog-btn-default {
       color: #808080;
     }
   }	
 }
-
-/*@media screen and (min-width: 1024px) {
-  .#{ $class-prefix }-dialog {
-    width: 35%;
-  }
-}
-@media screen and (max-width: 1024px) {
-  .#{ $class-prefix }-dialog {
-    width: 75%;
-  }
-}*/

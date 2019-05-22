@@ -1,196 +1,180 @@
 <template>
-  <vup-template>
-    <vup-navbar>demo</vup-navbar>
-    <vup-grid :cols="4">
-      <vup-grid-item
-        v-for="(grid, gridIndex) in grids"
-        :key="gridIndex"
-        :label="grid.label"
-        :icon="grid.icon"
-        :link="grid.link"
-      ></vup-grid-item>
-    </vup-grid>
-  </vup-template>
+  <lm-template>
+    <lm-navbar class="lm-header-fixed"
+               slot="header">demo</lm-navbar>
+    <lm-scroll>
+      <lm-group v-for="(group, index) in groups"
+                :key="index">
+        <lm-group-title slot="group-title"
+                        :header-label="group.title"></lm-group-title>
+        <lm-cell v-for="(component, cIndex) in group.components"
+                 :key="cIndex"
+                 :label="component.label"
+                 :link="component.link"></lm-cell>
+      </lm-group>
+    </lm-scroll>
+  </lm-template>
 </template>
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      grids: [
+      groups: [
         {
-          label: "Grid",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/grid"
+          title: '表单',
+          components: [
+            {
+              label: "switch",
+              link: "/switch"
+            },
+            {
+              label: "textarea",
+              link: "/textarea"
+            },
+            {
+              label: "cell-preview",
+              link: "/cell-preview"
+            },
+            {
+              label: "form-preview",
+              link: "/form-preview"
+            },
+            {
+              label: "rater",
+              link: "/rater"
+            },
+            {
+              label: "actionsheet",
+              link: "/actionsheet"
+            },
+            {
+              label: "picker",
+              link: "/picker"
+            },
+            {
+              label: "popup-picker",
+              link: "/popup-picker"
+            },
+            {
+              label: "address",
+              link: "/address"
+            },
+            {
+              label: "datetime",
+              link: "/datetime"
+            },
+            {
+              label: "datetime-range",
+              link: "/datetime-range"
+            }
+          ]
         },
         {
-          label: "Button",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/button"
+          title: '基础组件',
+          components: [
+            {
+              label: "grid",
+              link: "/grid"
+            },
+            {
+              label: "button",
+              link: "/button"
+            },
+            {
+              label: "bell",
+              link: "/cell"
+            },
+            {
+              label: "badge",
+              link: "/badge"
+            },
+            {
+              label: "flexbox",
+              link: "/flexbox"
+            },
+            {
+              label: "divider",
+              link: "/divider"
+            },
+            {
+              label: "panel",
+              link: "/panel"
+            },
+          ]
         },
         {
-          label: "Cell",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/cell"
+          title: '操作反馈',
+          components: [
+            {
+              label: "toast",
+              link: "/toast"
+            },
+            {
+              label: "dialog",
+              link: "/dialog"
+            },
+            {
+              label: "confirm",
+              link: "/confirm"
+            },
+            {
+              label: "alert",
+              link: "/alert"
+            },
+          ]
         },
         {
-          label: "Badge",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/badge"
+          title: '导航相关',
+          components: [
+            {
+              label: "tab",
+              link: "/tab"
+            },
+            {
+              label: "tabbar",
+              link: "/tabbar"
+            },
+          ]
         },
         {
-          label: "Tab",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/tab"
+          title: '展示相关',
+          components: [
+            {
+              label: "marquee",
+              link: "/marquee"
+            },
+            {
+              label: "count-up",
+              link: "/count-up"
+            },
+            {
+              label: "count-down",
+              link: "/count-down"
+            },
+            {
+              label: "spinner",
+              link: "/spinner"
+            },
+            {
+              label: "clock",
+              link: "/clock"
+            },
+
+            {
+              label: "icon",
+              link: "/icon"
+            },
+          ]
         },
         {
-          label: "switch",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/switch"
-        },
-        {
-          label: "toast",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/toast"
-        },
-        {
-          label: "flexbox",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/flexbox"
-        },
-        {
-          label: "divider",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/divider"
-        },
-        {
-          label: "marquee",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/marquee"
-        },
-        {
-          label: "count-up",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/count-up"
-        },
-        {
-          label: "count-down",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/count-down"
-        },
-        {
-          label: "panel",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/panel"
-        },
-        {
-          label: "textarea",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/textarea"
-        },
-        {
-          label: "cell-preview",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/cell-preview"
-        },
-        {
-          label: "form-preview",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/form-preview"
-        },
-        {
-          label: "rater",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/rater"
-        },
-        {
-          label: "search",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/search"
-        },
-        {
-          label: "spinner",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/spinner"
-        },
-        {
-          label: "tabbar",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/tabbar"
-        },
-        {
-          label: "clock",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/clock"
-        },
-        {
-          label: "dialog",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/dialog"
-        },
-        {
-          label: "icon",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/icon"
-        },
-        {
-          label: "confirm",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/confirm"
-        },
-        {
-          label: "alert",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/alert"
-        },
-        {
-          label: "actionsheet",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/actionsheet"
-        },
-        {
-          label: "picker",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/picker"
-        },
-        {
-          label: "popup-picker",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/popup-picker"
-        },
-        {
-          label: "address",
-          icon:
-            "https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg",
-          link: "/address"
+          title: '搜索相关',
+          components: [
+            {
+              label: "search",
+              link: "/search"
+            },
+          ]
         }
       ]
     };

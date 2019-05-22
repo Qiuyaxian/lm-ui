@@ -2,9 +2,14 @@ import objectAssign from 'object-assign'
 import pageToast from '@/components/toast/toast'
 import { mergeOptions } from '@/utils/plugin_helper'
 
-let $vm
-let watcher
-
+let $vm;
+let watcher;
+let opt = {
+  time: 2000,
+  width: 230,
+  isShowMask: false,
+  position: 'middle'
+};
 const plugin = {
   install (vue, pluginOptions = {}) {
     const Toast = vue.extend(pageToast)
@@ -26,12 +31,12 @@ const plugin = {
     const toast = {
       show (options = {}) {
         // destroy watcher
-        watcher && watcher()
+        watcher && watcher();
         if (typeof options === 'string') {
-          mergeOptions($vm, objectAssign({}, pluginOptions, {text: options}))
+          mergeOptions($vm, objectAssign({}, pluginOptions, { text: options }))
         } else if (typeof options === 'object') {
           mergeOptions($vm, objectAssign({}, pluginOptions, options))
-        } 
+        }
         if (typeof options === 'object' && options.onShow || options.onHide) {
           watcher = $vm.$watch('show', (val) => {
             val && options.onShow && options.onShow($vm)
@@ -40,8 +45,28 @@ const plugin = {
         }
         $vm.show = true
       },
+      success (option) {
+        opt = objectAssign(opt, option);
+        opt[`type`] = `success`;
+        toast.show(opt);
+      },
+      error (option) {
+        opt = objectAssign(opt, option);
+        opt[`type`] = `error`;
+        toast.show(opt);
+      },
+      cancel (option) {
+        opt = objectAssign(opt, option);
+        opt[`type`] = `cancel`;
+        toast.show(opt);
+      },
+      warn (option) {
+        opt = objectAssign(opt, option);
+        opt[`type`] = `warn`;
+        toast.show(opt);
+      },
       text (text, position = 'default') {
-        this.show({
+        toast.show({
           type: 'text',
           width: 'auto',
           position,
@@ -56,18 +81,18 @@ const plugin = {
       }
     }
 
-    // all Vux's plugins are included in this.$vup
-    if (!vue.$vup) {
-      vue.$vup = {
+    // all Vux's plugins are included in this.$lm
+    if (!vue.$lm) {
+      vue.$lm = {
         toast
       }
     } else {
-      vue.$vup.toast = toast
+      vue.$lm.toast = toast
     }
 
     vue.mixin({
       created: function () {
-        this.$vup = vue.$vup
+        this.$lm = vue.$lm
       }
     })
   }

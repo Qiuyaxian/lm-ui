@@ -1,12 +1,10 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Search</vup-navbar>
-    <vup-group>
-      <vup-cell  v-for="(type, index) in types" :label="type" :key="index">
-        <vup-spinner :type="type"></vup-spinner>
-      </vup-cell>
-    </vup-group>
-  </vup-wrapper>
+  <lm-template>
+    <lm-navbar>Search</lm-navbar>
+    <lm-group>
+      <lm-cell  v-for="(type, index) in types" :label="type" :key="index"><lm-spinner :type="type"></lm-spinner></lm-cell>
+    </lm-group>
+  </lm-template>
 </template>
 <script>
 export default {

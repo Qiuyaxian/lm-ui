@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <textarea
-      class="vup-textarea"
+      class="lm-textarea"
       :autocomplete="autocomplete"
       :autocapitalize="autocapitalize"
       :autocorrect="autocorrect"
@@ -18,7 +18,7 @@
       :style="textareaStyle"
       :maxlength="max"
       ref="textarea"></textarea>
-    <div class="vup-textarea-counter" v-show="showCounter && max" @click="focus">
+    <div class="lm-textarea-counter" v-show="showCounter && max" @click="focus">
       <span>{{count}}</span>/{{max}}
     </div>
   </div>
@@ -27,7 +27,7 @@
 import { addEventHandle } from '@/utils'
 import Debounce from 'lodash.debounce'
 export default {
-  name: 'vup-textarea',
+  name: 'lm-textarea',
   props: {
     /**
      * [id 绑定id]

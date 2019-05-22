@@ -40,7 +40,7 @@ import name2value from '@/filters/name2value'
 import value2name from '@/filters/value2name'
 import PopupPicker from '../popup-picker/popup-picker'
 export default {
-  name: 'vup-address',
+  name: 'lm-address',
   components: {
     PopupPicker
   },
@@ -113,7 +113,7 @@ export default {
     },
     labelClass () {
       return {
-        'vup-cell-justify': this.$parent && (this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify')
+        'lm-cell-justify': this.$parent && (this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify')
       }
     }
   },
@@ -140,3 +140,6 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+
+</style>

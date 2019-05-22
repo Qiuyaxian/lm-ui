@@ -1,5 +1,5 @@
 <template>
-  <span class="vup-spinner" :class="className" :style="styles"><slot></slot></span>
+  <span class="lm-spinner" :class="className" :style="styles"><slot></slot></span>
 </template>
 
 <script>
@@ -50,7 +50,7 @@ export default {
     className () {
       let rs = {}
       for (let i = 0; i < types.length; i++) {
-        rs[`vup-spinner-${types[i]}`] = this.type === types[i]
+        rs[`lm-spinner-${types[i]}`] = this.type === types[i]
       }
       return rs
     }
@@ -66,10 +66,10 @@ export default {
     fill: $spinner-color;
     vertical-align: middle;
     display: inline-block;
-    line-height: pxTorem($spinner-size);
-    @include setWidthHeight($spinner-size, $spinner-size);
+    line-height: pxTorem($spinner-size, 2);
+    @include setWidthHeight($spinner-size, $spinner-size, 2);
     & svg {
-      @include setWidthHeight($spinner-size, $spinner-size);
+      @include setWidthHeight($spinner-size, $spinner-size, 2);
     }
     &.#{ $class-prefix }-spinner-inverse {
       stroke: #fff;

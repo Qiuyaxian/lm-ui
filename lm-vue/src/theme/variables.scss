@@ -8,16 +8,17 @@ $dpr : 1 !default;
 $Layout : 75;
 
 //样式名前缀
-$class-prefix: vup;
+$class-prefix: lm;
 $theme-color: #fda31a;
 $opacity-disabled: 0.5;
- 
+
 //======== 【global】 ========
 $base-zindex: 1;
 $max-width: 750px;
 $min-width: 300px;
 $global-onepx: 1px;
-$global-iconsize: pxTorem(viewTransform(26));
+$onepx-border-color: #d9d9d9;
+$global-iconsize: pxTorem(26, 2);
 $default: #d0d0d0;
 $primary: #04be02;
 $danger: #ef4f4f;
@@ -26,11 +27,12 @@ $hollow: #000000;
 
 
 //======== 【color】 ========
+$color-default: #333333;
 $color-primary: #1AAD19;
 $color-warn: #E64340;
 
 //========【actionsheet】========
-$actionsheet-android-border-radius: pxTorem(viewTransform(2));
+$actionsheet-android-border-radius: pxTorem(2, 2);
 
 //========【datetime】========
 $datetime-header-item-font-color: $theme-color;
@@ -42,62 +44,39 @@ $datetime-header-item-confirm-font-color: $datetime-header-item-font-color;
 * en: text size of content
 * zh-CN: 内容文本大小
 */
-$toast-content-font-size: pxTorem(viewTransform(16));
+$toast-content-font-size: pxTorem(16, 2);
 /**
 * en: default top
 * zh-CN: 默认状态下距离顶部的高度
 */
-$toast-top: pxTorem(viewTransform(180));
+$toast-top: pxTorem(180, 2);
 /**
 * en: position top
 * zh-CN: 顶部显示的高度
 */
-$toast-position-top-offset: pxTorem(viewTransform(10));
+$toast-position-top-offset: pxTorem(10, 2);
 /**
 * en: position bottom
 * zh-CN: 底部显示的高度
 */
-$toast-position-bottom-offset: pxTorem(viewTransform(10));
+$toast-position-bottom-offset: pxTorem(10, 2);
 /**
 * en: z-index
 * zh-CN: z-index
 */
 $toast-z-index: 5001;
-
 /**
 * icon
 */
 $icon-success-color: #09BB07;
-
-
 /**
 * en: text size of content
 * zh-CN: 内容文本大小
 */
-$toast-content-font-size: pxTorem(viewTransform(16));
-/**
-* en: default top
-* zh-CN: 默认状态下距离顶部的高度
-*/
-$toast-top: pxTorem(viewTransform(180));
-/**
-* en: position top
-* zh-CN: 顶部显示的高度
-*/
-$toast-position-top-offset: pxTorem(viewTransform(10));
-/**
-* en: position bottom
-* zh-CN: 底部显示的高度
-*/
-$toast-position-bottom-offset: pxTorem(viewTransform(10));
-/**
-* en: z-index
-* zh-CN: z-index
-*/
-$toast-z-index: 5001;
+$toast-content-font-size: pxTorem(16, 2);
  
 //======== 【spinner】 ========
-$spinner-size: viewTransform(22);
+$spinner-size: 22;
 $spinner-color: $theme-color;
 $spinner-android-color: $theme-color;
 
@@ -129,7 +108,7 @@ $dialog-button-text-warn-color: #E64340;
 // also affects alert confirm
 $dialog-width: 80%; 
 // also affects alert confirm
-$dialog-max-width: pxTorem(viewTransform(300)); 
+$dialog-max-width: pxTorem(300, 2); 
 /**
 * en: title and content's padding-left and padding-right
 * zh-CN: 标题及内容区域的 padding-left 和 padding-right
@@ -139,7 +118,7 @@ $dialog-gap-width: 1.6em;
 //======== 【popup-picker】 ========
 $popup-picker-header-text-color: $theme-color;
 $popup-picker-header-bg-color: #fbf9fe;
-$popup-picker-header-font-size: pxTorem(viewTransform(16));
+$popup-picker-header-font-size: pxTorem(16, 2);
 $popup-picker-header-cancel-text-color: #828282;
 /**
 * popup
@@ -149,19 +128,19 @@ $popup-background-color: #eee;
 /**
 * popup-header
 */
-$popup-header-height: pxTorem(viewTransform(44));
+$popup-header-height: pxTorem(44, 2);
 $popup-header-bg-color: #fbf9fe;
-$popup-header-font-size: pxTorem(viewTransform(16));
+$popup-header-font-size: pxTorem(16, 2);
 $popup-header-left-text-color: #828282;
 $popup-header-right-text-color: $theme-color;
 $popup-header-title-text-color: #222;
-$popup-header-left-text-padding: pxTorem(viewTransform(15));
-$popup-header-right-text-padding: pxTorem(viewTransform(15));
+$popup-header-left-text-padding: pxTorem(15, 2);
+$popup-header-right-text-padding: pxTorem(15, 2);
 
 //======== 【header】 ========
 $header-background-color: #fda31a;
 $header-padding-horizontal: 0;
-$header-padding-vertical: pxTorem(viewTransform(3));
+$header-padding-vertical: pxTorem(3, 2);
 $header-title-color: #ffffff;
 $header-left-color: #ffffff;
 $header-arrow-color: #ffffff;
@@ -169,7 +148,6 @@ $header-right-color: #ffffff;
 
 //======== 【loading】 ========
 $loading-z-index: 5001;
-
 
 //======== 【number】 ========
 $number-input-color: #333;
@@ -186,8 +164,8 @@ $number-selector-disabled-color: #ccc;
 * en: border radius
 * zh-CN: 圆角边框
 */
-$button-global-border-radius: pxTorem(viewTransform(5));
-$button-border-radius: pxTorem(viewTransform(5 * 2));
+$button-global-border-radius: pxTorem(5, 2);
+$button-border-radius: pxTorem((5 * 2), 2);
 
 /**
 * en: font color
@@ -203,8 +181,8 @@ $button-global-margin-top: 15;
 * en: button height
 * zh-CN: 按钮高度
 */
-$button-global-height: viewTransform(42);
-$button-global-default-height: pxTorem($button-global-height);
+$button-global-height: 42;
+$button-global-default-height: pxTorem($button-global-height, 2);
 /**
 * en: the font color in disabled
 * zh-CN: disabled状态下的字体颜色
@@ -219,21 +197,21 @@ $button-global-active-font-color: rgba(255, 255, 255, .6);
 * en: font size
 * zh-CN: 字体大小
 */
-$button-global-font-size: viewTransform(18);
-$button-global-default-font-size: pxTorem($button-global-font-size);
+$button-global-font-size: 18;
+$button-global-default-font-size: pxTorem($button-global-font-size, 2);
 /**
 * en: the font size of the mini type
 * zh-CN: mini类型的字体大小
 */
-$button-mini-font-size: viewTransform(13);
-$button-mini-default-fontsize: pxTorem($button-mini-font-size);
+$button-mini-font-size: 13;
+$button-mini-default-fontsize: pxTorem($button-mini-font-size, 2);
 /**
 * en: the line height of the mini type
 * zh-CN: mini类型的行高
 */
 $button-mini-line-height: 2.3;
-$button-padding-left: pxTorem(viewTransform(14));
-$button-padding-right: pxTorem(viewTransform(14));
+$button-padding-left: pxTorem(14, 2);
+$button-padding-right: pxTorem(14, 2);
 /**
 * en: the background color of the warn type
 * zh-CN: warn类型的背景颜色
@@ -374,42 +352,42 @@ $swipeout-button-font-color: #FFF;
  * [height 默认cell 高度大小]
  * @type {[type]}
  */
-$cell-height: viewTransform(44);
+$cell-height: 44.5;
 /**
  * [fontsize 默认cell 字体大小]
  * @type {[type]}
  */
-$cell-fontsize: viewTransform(17);
+$cell-fontsize: 17;
 /**
  * [horizontal 默认cell 字体大小 rem]
  * @type {[type]}
  */
-$cell-default-fontsize: pxTorem($cell-fontsize);
+$cell-default-fontsize: pxTorem($cell-fontsize, 2);
 /**
  * [horizontal 默认cell 左右两边宽度]
  * @type {[type]}
  */
-$cell-padding-vertical: viewTransform(10);
+$cell-padding-vertical: 10;
 /**
  * [horizontal description]
  * @type {[type]}
  */
-$cell-padding-horizontal: viewTransform(15);
+$cell-padding-horizontal: 15;
 /**
  * [horizontal description]
  * @type {[type]}
  */
-$cell-default-padding-horizontal: pxTorem($cell-padding-horizontal);
+$cell-default-padding-horizontal: pxTorem($cell-padding-horizontal, 2);
 /**
  * [vertical description]
  * @type {[type]}
  */
-$cell-default-padding-vertical: pxTorem($cell-padding-vertical);
+$cell-default-padding-vertical: pxTorem($cell-padding-vertical, 2);
 /**
  * [height 高度为44px，减去上下padding的行高]
  * @type {[type]}
  */
-$cell-line-height: ( ( $cell-height - (2 * $cell-padding-vertical) ) / $cell-fontsize );
+$cell-line-height: (($cell-height - (2 * $cell-padding-vertical)) / $cell-fontsize);
 /**
  * [horizontal 默认cell 背景颜色]
  * @type {[type]}
@@ -419,7 +397,7 @@ $cell-background: #ffffff;
  * [fontsize cell-preview 字体大小]
  * @type {[type]}
  */
-$cell-default-preview-fontsize: pxTorem(($cell-fontsize * 0.9));
+$cell-default-preview-fontsize: pxTorem(($cell-fontsize * 0.9), 2);
 /**
  * [horizontal 默认cell 左边label 字体颜色]
  * @type {[type]}
@@ -429,12 +407,12 @@ $cell-left-color: #333333;
  * [horizontal 默认cell 左边label 字体大小]
  * @type {[type]}
  */
-$cell-left-fontsize: pxTorem($cell-fontsize);
+$cell-left-fontsize: pxTorem($cell-fontsize, 2);
 /**
  * [horizontal 默认cell 左边label 小行文字大小]
  * @type {[type]}
  */
-$cell-label-desc-fontsize: pxTorem( viewTransform(14) );
+$cell-label-desc-fontsize: pxTorem(14, 2);
 /**
  * [color description]
  * @type {[type]}
@@ -444,27 +422,27 @@ $cell-label-desc-color: #666666;
  * [color 右边内容]
  * @type {[type]}
  */
-$cell-right-color: #d9d9d9;
+$cell-right-color: #333333;
 /**
  * [fontsize description]
  * @type {[type]}
  */
-$cell-right-fontsize: pxTorem($cell-fontsize);
+$cell-right-fontsize: pxTorem($cell-fontsize, 2);
 /**
  * [horizontal 默认cell 右边content 距离右边大小]
  * @type {[type]}
  */
-$cell-content-padding-right: pxTorem( viewTransform(13) );
+$cell-content-padding-right: pxTorem(13, 2);
 /**
  * [fontsize 右边小箭头 大小 颜色 宽度]
  * @type {[type]}
  */
-$cell-arrow-size: pxTorem(viewTransform(6));
+$cell-arrow-size: pxTorem(6, 2);
 /**
  * [width description]
  * @type {[type]}
  */
-$cell-arrow-width: pxTorem(viewTransform(1));
+$cell-arrow-width: pxTorem(1, 2);
 /**
  * [color description]
  * @type {[type]}
@@ -475,10 +453,9 @@ $cell-arrow-color: #d9d9d9;
  * @type {[type]}
  */
 $cell-input-color: #d9d9d9;
-
-$cell-border-color:#D9D9D9;
-$cell-tips-font-size: pxTorem(viewTransform(14));
-$cell-inner-gap-height:.35em;
+$cell-border-color: #D9D9D9;
+$cell-tips-font-size: pxTorem(14, 2);
+$cell-inner-gap-height: .35em;
 /*@weuiCellInnerGapH:.35em;
 @weuiCellHeight: 44px;
 @weuiCellFontSize:@cell-font-size;
@@ -492,25 +469,25 @@ $cell-select-fontsize: $cell-left-fontsize;*/
 $cell-arrow-fontsize: .28rem;*/
 
 //========【switch】========
-$switch-width: viewTransform(42);
-$switch-height: viewTransform(22);
+$switch-width: 42;
+$switch-height: 22;
 $switch-checked-bg-color: $theme-color;
 $switch-checked-border-color: $theme-color;
 $switch-disabled-opacity: 0.6; 
-$switch-padding: viewTransform(20);
+$switch-padding: 20;
 $switch-scale: 42 / 52;
-
+ 
 //======== 【grids】 ========
-$grids-font-size: pxTorem(viewTransform(14));
+$grids-font-size: pxTorem(14, 2);
 $grids-line-height: 1.6;
-$grids-icon-size: pxTorem(viewTransform(28));
+$grids-icon-size: pxTorem(28, 2);
 $grids-column-count: 3; 
 $grids-label-color: #000000;
 $grids-label-active-color: #d9d9d9;
-$grids-label-margin-top: pxTorem(viewTransform(4));
+$grids-label-margin-top: pxTorem(4, 2);
 $grids-border-color: #D9D9D9; 
-$grids-padding-horizontal: pxTorem(viewTransform(10));
-$grids-padding-vertical: pxTorem(viewTransform(20));
+$grids-padding-horizontal: pxTorem(10, 2);
+$grids-padding-vertical: pxTorem(20, 2);
 
 //======== 【navbar】 ========
 /*$navbar-height: .9rem;
@@ -528,9 +505,9 @@ $tabbar-text-active-color: #fda31a;
 $tabbar-icon-color: gray;
 $tabbar-icon-active-color: #fda31a;
 $tabbar-label: #999999;
-$tabbar-simple-height: pxTorem(viewTransform(50));
-$tabbar-simple-fontsize: pxTorem(viewTransform(14));
-$tabbar-simple-line-height: pxTorem(viewTransform(50));
+$tabbar-simple-height: pxTorem(50, 2);
+$tabbar-simple-fontsize: pxTorem(14, 2);
+$tabbar-simple-line-height: pxTorem(50, 2);
 //======== 【actionsheet】 ========
 
 /**
@@ -568,12 +545,12 @@ $actionsheet-action-color: $actionsheet-item-color;
 $tab-bg: #FFF;
 $tab-height: .85rem;
 $tab-color: #fda31a;
-$tab-tabbar-item-padding-top: pxTorem(viewTransform(5));
-$tab-tabbar-icon: pxTorem(viewTransform(27));
-$tab-tabbar-label-fontsize: pxTorem(viewTransform(10));
-$tab-tabbar-label-lineheight: pxTorem(viewTransform(21));
+$tab-tabbar-item-padding-top: pxTorem(5, 2);
+$tab-tabbar-icon: pxTorem(27, 2);
+$tab-tabbar-label-fontsize: pxTorem(10, 2);
+$tab-tabbar-label-lineheight: pxTorem(21, 2);
 
-$tab-prefix: vup-tab;
+$tab-prefix: lm-tab;
 $tab-easing-in-out: cubic-bezier(0.35, 0, 0.25, 1);
 $tab-effect-duration: .3s;
 $tab-text-disabled-color: #ddd;
@@ -607,4 +584,4 @@ $rater-hover-color: #ffdd99;
  */
 $rater-disabled-color: #cccccc;
 
-$rater-padding-right: pxTorem(viewTransform(2));
+$rater-padding-right: pxTorem(2, 2);

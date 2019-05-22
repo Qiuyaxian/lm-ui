@@ -1,9 +1,9 @@
 <template>
-  <div class="vup-header">
-    <div class="vup-header-left">
+  <div class="lm-header">
+    <div class="lm-header-left">
       <slot name="overwrite-left">
         <transition :name="transition">
-          <a class="vup-header-back" v-show="_leftOptions.showBack" @click.prevent.self="onClickBack">{{ typeof _leftOptions.backText === 'undefined' ? '返回' : _leftOptions.backText}}</a>
+          <a class="lm-header-back" v-show="_leftOptions.showBack" @click.prevent.self="onClickBack">{{ typeof _leftOptions.backText === 'undefined' ? '返回' : _leftOptions.backText}}</a>
         </transition>
         <transition :name="transition">
           <div class="left-arrow" @click="onClickBack" v-show="_leftOptions.showBack"></div>
@@ -11,18 +11,18 @@
       </slot>
       <slot name="left"></slot>
     </div>
-    <h1 class="vup-header-title" @click="$emit('on-click-title')" v-if="!shouldOverWriteTitle">
+    <h1 class="lm-header-title" @click="$emit('on-click-title')" v-if="!shouldOverWriteTitle">
       <slot>
         <transition :name="transition">
           <span v-show="title">{{title}}</span>
         </transition>
       </slot>
     </h1>
-    <div class="vup-header-title-area" v-if="shouldOverWriteTitle">
+    <div class="lm-header-title-area" v-if="shouldOverWriteTitle">
       <slot name="overwrite-title"></slot>
     </div>
-    <div class="vup-header-right">
-      <a class="vup-header-more" @click.prevent.self="$emit('on-click-more')" v-if="rightOptions.showMore"></a>
+    <div class="lm-header-right">
+      <a class="lm-header-more" @click.prevent.self="$emit('on-click-more')" v-if="rightOptions.showMore"></a>
       <slot name="right"></slot>
     </div>
   </div>
@@ -59,6 +59,14 @@ export default {
           showMore: false
         }
       }
+    },
+    /**
+     * [position top|bottom|static]
+     * @type {Object}
+     */
+    position: {
+      type: String,
+      ddefault: 'static'
     }
   },
   beforeMount () {
@@ -67,13 +75,20 @@ export default {
     }
   },
   computed: {
+    getHeaderStyle () {
+      let style = {};
+      if (this.position !== 'static') {
+        style[this.position] = 0;
+      }
+      return style;
+    },
     /**
      * [_leftOptions 计算左侧按钮部分属性]
      * @return {[type]} [description]
      */
     _leftOptions () {
       return extend({
-        showBack: false,
+        showBack: true,
         preventGoBack: false,
         backText: ''
       }, this.leftOptions || {})

@@ -1,9 +1,9 @@
 <template>
   <div
-    class="vup-x-dialog"
-    :class="{'vup-dialog-absolute': layout === 'PAGE_VIEW'}">
+    class="lm-x-dialog"
+    :class="{'lm-dialog-absolute': layout === 'PAGE_VIEW'}">
     <transition :name="maskTransition">
-      <div class="vup-mask" @click="hide" v-show="show" :style="maskStyle"></div>
+      <div class="lm-mask" @click="hide" v-show="show" :style="maskStyle"></div>
     </transition>
     <transition :name="dialogTransition">
       <div :class="dialogClass" v-show="show" :style="dialogStyle">
@@ -16,7 +16,7 @@
 <script>
 import { preventBodyScrollMixin } from '@/mixins'
 export default {
-  name: 'vup-dialog',
+  name: 'lm-dialog',
   mixins: [preventBodyScrollMixin],
   model: {
     prop: 'show',
@@ -29,16 +29,16 @@ export default {
     },
     maskTransition: {
       type: String,
-      default: 'vup-mask'
+      default: 'lm-mask'
     },
     maskZIndex: [String, Number],
     dialogTransition: {
       type: String,
-      default: 'vup-dialog'
+      default: 'lm-dialog'
     },
     dialogClass: {
       type: String,
-      default: 'vup-dialog'
+      default: 'lm-dialog'
     },
     hideOnBlur: Boolean,
     dialogStyle: Object,
@@ -65,7 +65,7 @@ export default {
   },
   mounted () {
     if (typeof window !== 'undefined') {
-      if (window.VUP_CONFIG && window.VUP_CONFIG.$layout === 'PAGE_VIEW') {
+      if (window.LM_CONFIG && window.LM_CONFIG.$layout === 'PAGE_VIEW') {
         this.layout = 'PAGE_VIEW'
       }
     }

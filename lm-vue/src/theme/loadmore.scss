@@ -24,7 +24,7 @@
   }
   &-loadmore_dot{
     .#{ $class-prefix }-loadmore__tips{
-      padding:0 .16em;
+      padding: 0 .16em;
       &:before{
         content: " ";
         width:4px;

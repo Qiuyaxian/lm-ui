@@ -1,65 +1,66 @@
 .#{$class-prefix} {
-  &-cell_switch{
-    padding-top: pxTorem($switch-padding / 2);
-    padding-bottom: pxTorem($switch-padding / 2);
+  &-cell-switch{
+    padding-top: pxTorem($switch-padding / 2, 2);
+    padding-bottom: pxTorem($switch-padding / 2, 2);
   }
   &-switch{
     -webkit-appearance: none;
     appearance: none;
   }
   &-switch,
-  &-switch-cp__box{
+  &-switch-cp-box{
     position: relative;
-    width: pxTorem($switch-width);
-    height: pxTorem($switch-height);
-    border: pxTorem(viewTransform($switch-scale)) solid #DFDFDF;
+    width: pxTorem($switch-width, 2);
+    height: pxTorem($switch-height, 2);
+    border: pxTorem($switch-scale, 2) solid #DFDFDF;
     outline: 0;
-    border-radius: pxTorem(viewTransform(16));
+    border-radius: pxTorem(16, 2);
     box-sizing: border-box;
     background-color: #DFDFDF;
     transition: background-color .1s, border .1s;
     &:before,
     &:after {
       content: " ";
-      height: pxTorem($switch-height - viewTransform(2 * $switch-scale));
+      height: pxTorem($switch-height - (2 * $switch-scale), 2);
       position: absolute;
       top: 0;
       left: 0;
-      border-radius: pxTorem(viewTransform(15));
+      border-radius: pxTorem(15, 2);
     }
     &:before{ 
-      width: pxTorem($switch-width - viewTransform(2 * $switch-scale)); 
+      width: pxTorem($switch-width - (2 * $switch-scale), 2); 
       background-color: #FDFDFD;
       transition:transform .35s cubic-bezier(0.45, 1, 0.4, 1);
     }
     &:after{ 
-      width: pxTorem($switch-height - viewTransform(2)); 
+      width: pxTorem($switch-height - 2, 2); 
       background-color: #FFFFFF;
-      box-shadow: 0 pxTorem(viewTransform($switch-scale)) pxTorem(viewTransform(3)) rgba(0, 0, 0, 0.4);
+      box-shadow: 0 pxTorem($switch-scale, 2) pxTorem(3, 2) rgba(0, 0, 0, 0.4);
       transition:transform .35s cubic-bezier(0.4, 0.4, 0.25, 1.35);
     }
   }
   &-switch:checked,
-  &-switch-cp__input:checked ~ .#{$class-prefix}-switch-cp__box{ 
+  &-switch-cp-input:checked ~ .#{$class-prefix}-switch-cp-box{ 
     border-color: $switch-checked-border-color;
     background-color: $switch-checked-bg-color;
     &:before {
       transform: scale(0);
     }
     &:after {
-      transform: translateX(pxTorem(viewTransform(20)));
+      transform: translateX(pxTorem(20, 2));
     }
   }
   // 兼容IE Edge的版本
-  &-switch-cp__input{
+  &-switch-cp-input{
     position: absolute;
     left: -9999px;
   }
-  &-switch-cp__box{
+  &-switch-cp-box{
     display: block;
   }
-  &-cell_switch &-cell__ft {
+  &-cell-switch-body{
     font-size: 0;
+    line-height: 0;
     position: relative;
   }
   input.#{$class-prefix}-switch[disabled] {
@@ -70,8 +71,8 @@
     padding-bottom: pxTorem(viewTransform(6));
   }*/
   &-switch-overlay {
-    width: pxTorem(viewTransform(60));
-    height: pxTorem(viewTransform(50));
+    width: pxTorem(60, 2);
+    height: pxTorem(50, 2);
     position: absolute;
     right: 0;
     top: 0;

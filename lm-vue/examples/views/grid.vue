@@ -1,11 +1,11 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>九宫格</vup-navbar>
-    <vup-grid :cols="3">
-      <vup-grid-item v-for="(grid, gridIndex) in grids" :key="gridIndex" :label="grid.label" :icon="grid.icon">
-      </vup-grid-item>
-    </vup-grid>
-  </vup-wrapper>
+  <lm-template>
+    <lm-navbar>九宫格</lm-navbar>
+    <lm-grid :cols="3">
+      <lm-grid-item v-for="(grid, gridIndex) in grids" :key="gridIndex" :label="grid.label" :icon="grid.icon">
+      </lm-grid-item>
+    </lm-grid>
+  </lm-template>
 </template>
 
 <script>

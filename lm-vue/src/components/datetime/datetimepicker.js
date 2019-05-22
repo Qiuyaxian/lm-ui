@@ -24,9 +24,9 @@ const MASK_TEMPLATE = '<div class="dp-mask"></div>'
 
 const TEMPLATE = `<div class="dp-container">
   <div class="dp-header">
-    <div class="dp-item dp-left vup-datetime-cancel" data-role="cancel">cancel</div>
-    <div class="dp-item vup-datetime-clear" data-role="clear"></div>
-    <div class="dp-item dp-right vup-datetime-confirm" data-role="confirm">done</div>
+    <div class="dp-item dp-left lm-datetime-cancel" data-role="cancel">cancel</div>
+    <div class="dp-item lm-datetime-clear" data-role="clear"></div>
+    <div class="dp-item dp-right lm-datetime-confirm" data-role="confirm">done</div>
   </div>
   <div class="dp-content">
     <div class="dp-item" data-role="year"></div>
@@ -200,7 +200,7 @@ DatetimePicker.prototype = {
     self.container.style.display = 'block'
 
     if (this.renderInline) {
-      self.container.classList.add('vup-datetime-view')
+      self.container.classList.add('lm-datetime-view')
     }
 
     each(TYPE_MAP, function (type) {
@@ -220,7 +220,7 @@ DatetimePicker.prototype = {
     const self = this
     const config = self.config
     if (config.isOneInstance) {
-      if (document.querySelector('#vup-datetime-instance')) {
+      if (document.querySelector('#lm-datetime-instance')) {
         return
       }
       self.willShow = true
@@ -244,7 +244,7 @@ DatetimePicker.prototype = {
 
       const container = self.container = toElement(template)
       if (config.isOneInstance) {
-        container.id = 'vup-datetime-instance'
+        container.id = 'lm-datetime-instance'
       }
       if (!self.renderInline) {
         document.body.appendChild(container)

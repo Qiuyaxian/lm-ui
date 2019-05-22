@@ -1,58 +1,58 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>popup-picker</vup-navbar>
-    <vup-group title="single column" label-width="5em">
-      <vup-popup-picker :title="title1" :data="list1" v-model="value1" @on-show="onShow" @on-hide="onHide" @on-change="onChange" :placeholder="'请选择'"></vup-popup-picker>
-      <vup-popup-picker :popup-title="'请选择'" :title="title1" :data="list1" v-model="value1_1" @on-show="onShow" @on-hide="onHide" @on-change="onChange" :placeholder="'请选择'"></vup-popup-picker>
-      <vup-datetime title="datetime" v-model="date"></vup-datetime>
-    </vup-group>
+  <lm-template>
+    <lm-navbar>popup-picker</lm-navbar>
+    <lm-group title="single column" label-width="5em">
+      <lm-popup-picker :title="title1" :data="list1" v-model="value1" @on-show="onShow" @on-hide="onHide" @on-change="onChange" :placeholder="'请选择'"></lm-popup-picker>
+      <lm-popup-picker :popup-title="'请选择'" :title="title1" :data="list1" v-model="value1_1" @on-show="onShow" @on-hide="onHide" @on-change="onChange" :placeholder="'请选择'"></lm-popup-picker>
+      <lm-datetime label="datetime" v-model="date"></lm-datetime>
+    </lm-group>
     <br>
     <div class="picker-buttons">
-       <vup-button type="primary" @click.native="value1=[]">将值置为空</vup-button>
-       <vup-button type="primary" @click.native="changeList10">重新赋值列表</vup-button>
-       <vup-button type="primary" @click.native="changeList11">push方式更改列表</vup-button>
+       <lm-button type="primary" @click.native="value1=[]">将值置为空</lm-button>
+       <lm-button type="primary" @click.native="changeList10">重新赋值列表</lm-button>
+       <lm-button type="primary" @click.native="changeList11">push方式更改列表</lm-button>
      </div>
-     <vup-group title="double columns">
-       <vup-popup-picker :title="title2" :data="list2" v-model="value2"></vup-popup-picker>
-     </vup-group>
+     <lm-group title="double columns">
+       <lm-popup-picker :title="title2" :data="list2" v-model="value2"></lm-popup-picker>
+     </lm-group>
      <br>
 
-     <vup-group title="chained columns">
-       <vup-popup-picker :title="title3" :data="list3" :columns="3" v-model="value3" ref="picker3"></vup-popup-picker>
-       <vup-cell title="获取值对应的文字" :value="$refs.picker3 && $refs.picker3.getNameValues()"></vup-cell>
-       <vup-popup-picker :title="title4" :data="list3" :columns="3" v-model="value4" show-name></vup-popup-picker>
-     </vup-group>
+     <lm-group title="chained columns">
+       <lm-popup-picker :title="title3" :data="list3" :columns="3" v-model="value3" ref="picker3"></lm-popup-picker>
+       <lm-cell title="获取值对应的文字" :value="$refs.picker3 && $refs.picker3.getNameValues()"></lm-cell>
+       <lm-popup-picker :title="title4" :data="list3" :columns="3" v-model="value4" show-name></lm-popup-picker>
+     </lm-group>
 
      <br>
      <div class="picker-buttons">
-       <vup-button type="primary" @click.native="changeList21">push方式更改列表</vup-button>
+       <lm-button type="primary" @click.native="changeList21">push方式更改列表</lm-button>
      </div>
      <br>
-     <vup-divider>Control the visibility of vup-popup-picker</vup-divider>
+     <lm-divider>Control the visibility of lm-popup-picker</lm-divider>
      <div style="margin: 0 15px;">
-       <vup-button @click.native="showPopupPicker = true" type="primary">Show PopupPicker. value: {{value5 }}</vup-button>
+       <lm-button @click.native="showPopupPicker = true" type="primary">Show PopupPicker. value: {{value5 }}</lm-button>
      </div>
-     <vup-group>
-       <vup-popup-picker :show.sync="showPopupPicker" :show-cell="false" title="test" :data="[['1', '2', '3', '4', '5']]" v-model="value5"></vup-popup-picker>
-     </vup-group>
+     <lm-group>
+       <lm-popup-picker :show.sync="showPopupPicker" :show-cell="false" title="test" :data="[['1', '2', '3', '4', '5']]" v-model="value5"></lm-popup-picker>
+     </lm-group>
 
      <br>
-     <vup-group title="隐藏时不影响其他vup-popup-picker的mask">
-       <vup-switch title="ishide vup-popup-picker" v-model="switch6"></vup-switch>
-       <vup-popup-picker v-if="!switch6" title="显示值" :data="['我不会影响遮罩层'.split('')]" v-model="value6"></vup-popup-picker>
-     </vup-group>
+     <lm-group title="隐藏时不影响其他lm-popup-picker的mask">
+       <lm-switch title="ishide lm-popup-picker" v-model="switch6"></lm-switch>
+       <lm-popup-picker v-if="!switch6" title="显示值" :data="['我不会影响遮罩层'.split('')]" v-model="value6"></lm-popup-picker>
+     </lm-group>
 
      <br>
      <br>
 
-     <vup-group title="显示格式化">
-      <vup-popup-picker
+     <lm-group title="显示格式化">
+      <lm-popup-picker
       v-model="formatDemoValue"
       title="时间"
       :inline-desc="`当前值[${formatDemoValue}]`"
-      :data="[['01','02','03'],['11','12','13']]" :display-format="format"></vup-popup-picker>
-     </vup-group>
-  </vup-wrapper>
+      :data="[['01','02','03'],['11','12','13']]" :display-format="format"></lm-popup-picker>
+     </lm-group>
+  </lm-template>
 </template>
 <script>
 let years = []
@@ -97,7 +97,34 @@ export default {
       title2: '详细机型',
       title3: '联动显示值',
       title4: '联动显示文字',
-      list1: [['小米', 'iPhone', '华为', '情怀', '三星', '其他', '不告诉你']],
+      list1: [
+        [
+          {
+            name: '小米',
+            value: '小米'
+          },
+          {
+            name: 'iPhone',
+            value: 'iPhone'
+          },
+          {
+            name: '华为',
+            value: '华为'
+          },
+          {
+            name: '情怀',
+            value: '情怀'
+          },
+          {
+            name: '其他',
+            value: '其他'
+          },
+          {
+            name: '不告诉你',
+            value: '不告诉你'
+          }
+        ]
+      ],
       list2: [['小米', 'iPhone', '华为', '情怀', '三星', '其他', '不告诉你'], ['小米1', 'iPhone2', '华为3', '情怀4', '三星5', '其他6', '不告诉你7']],
       list3: [{
         name: '中国',

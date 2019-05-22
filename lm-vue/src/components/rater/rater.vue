@@ -1,8 +1,8 @@
 <template>
-  <div class="vup-rater">
+  <div class="lm-rater">
     <input v-model="currentValue" style="display:none">
     <a
-     class="vup-rater-box"
+     class="lm-rater-box"
      v-for="(i, index) in max"
      :key="index"
      @click="handleClick(i-1)"
@@ -14,10 +14,10 @@
        'height': pxTorem(fontSize),
        'padding-right': i == max ? pxTorem(margin) : 0
      }">
-     <span class="vup-rater-inner">
+     <span class="lm-rater-inner">
        <span :style="getRaterInnerStyle" v-html="star"></span>
        <span
-       class="vup-rater-outer"
+       class="lm-rater-outer"
        :style="getRaterOuterStyle"
        v-if="cutPercent > 0 && cutIndex === i-1"
        v-html="star"></span>

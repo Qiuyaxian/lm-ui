@@ -1,5 +1,5 @@
 <template>
-  <div class="vup-tabbar">
+  <div class="lm-tabbar">
      <slot></slot>
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
           return false;
         } else if (position === 'absolute') {
           if (document.documentElement.offsetHeight !== window.innerHeight) {
-            console.warn('[VUP warn] tabbar 定位默认为 absolute，如果你没有使用 100% 布局(view-box)，需要手动设置 style position 为 fixed')
+            console.warn('[lm warn] tabbar 定位默认为 absolute，如果你没有使用 100% 布局(view-box)，需要手动设置 style position 为 fixed')
           }
         }
       })

@@ -1,12 +1,12 @@
 <template>
-  <div class="vup-switch-wrapper vup-cell vup-cell_switch">
-    <div class="vup-cell__bd">
-      <label class="vup-label" :style="labelStyle" :class="labelClass" v-html="title"></label>
+  <div class="lm-switch-wrapper lm-cell lm-cell-switch">
+    <div class="lm-cell-bd">
+      <label class="lm-label" :style="labelStyle" :class="labelClass" v-html="title"></label>
       <inline-desc v-if="inlineDesc">{{ inlineDesc }}</inline-desc>
     </div>
-    <div class="vup-cell__ft">
-      <input class="vup-switch" type="checkbox" :disabled="disabled" v-model="currentValue" />
-      <div v-if="preventDefault" class="vup-switch-overlay" @click="onClick"></div>
+    <div class="lm-cell-switch-body">
+      <input class="lm-switch" type="checkbox" :disabled="disabled" v-model="currentValue" />
+      <div v-if="preventDefault" class="lm-switch-overlay" @click="onClick"></div>
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@
 import InlineDesc from '../inline-desc/inline-desc'
 import { cleanStyle } from '@/utils'
 export default {
-  name: 'vup-switch',
+  name: 'lm-switch',
   props: {
     title: {
       type: String,
@@ -49,7 +49,7 @@ export default {
     },
     labelClass () {
       return {
-        'vup-cell-justify': this.parent.labelAlign === 'justify'
+        'lm-cell-justify': this.parent.labelAlign === 'justify'
       }
     }
   },
@@ -120,5 +120,6 @@ export default {
 
 <style lang="scss">
 @import '~@/theme/index.scss';
+@import '~@/theme/cell.scss';
 @import '~@/theme/switch.scss';
 </style>

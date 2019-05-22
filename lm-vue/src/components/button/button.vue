@@ -1,19 +1,19 @@
 <template>
   <button
     :style="buttonStyle"
-    class="vup-btn"
+    class="lm-btn"
     :class="classes"
     :disabled="disabled"
     :type="actionType"
     @click="onClick">
-    <i class="vup-loading" v-if="showLoading"></i>
+    <i class="lm-loading" v-if="showLoading"></i>
     <slot>{{ text }}</slot>
   </button>
 </template>
 <script>
 import Router from '@/utils/router'
 export default {
-  name: 'vup-button',
+  name: 'lm-button',
   props: {
     type: {
       default: 'default'
@@ -52,14 +52,14 @@ export default {
     classes () {
       return [
         {
-          'vup-btn_disabled': !this.plain && this.disabled,
-          'vup-btn_plain-disabled': this.plain && this.disabled,
-          'vup-btn_mini': this.mini,
-          'vup-btn-no-border': this.noBorder
+          'lm-btn-disabled': !this.plain && this.disabled,
+          'lm-btn-plain-disabled': this.plain && this.disabled,
+          'lm-btn-mini': this.mini,
+          'lm-btn-no-border': this.noBorder
         },
-        !this.plain ? `vup-btn_${this.type}` : '',
-        this.plain ? `vup-btn_plain-${this.type}` : '',
-        this.showLoading ? `vup-btn_loading` : ''
+        !this.plain ? `lm-btn-${this.type}` : '',
+        this.plain ? `lm-btn-plain-${this.type}` : '',
+        this.showLoading ? `lm-btn-loading` : ''
       ]
     }
   }

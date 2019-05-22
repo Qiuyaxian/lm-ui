@@ -14,7 +14,7 @@
     z-index: 500;
     bottom: 0;
   }
-  &-tabbar__item {
+  &-tabbar-item {
     display: block; 
     flex: 1;
     padding: $tab-tabbar-item-padding-top 0 0;
@@ -24,18 +24,18 @@
     text-decoration: none;
     -webkit-tap-highlight-color: $tabbar-tap-highlight-color;
   }
-  &-tabbar__icon {
+  &-tabbar-icon {
     display: inline-block;
     width: $tab-tabbar-icon;
     height: $tab-tabbar-icon;
     position: relative;
     & > i {
-      font-size: pxTorem(viewTransform(24));
+      font-size: pxTorem(24, 2);
       color: $tabbar-icon-color;
     }
     & > sup {
       position: absolute;
-      top: pxTorem(viewTransform(-8));
+      top: pxTorem(-8, 2);
       left: 100%;
       transform: translateX(-50%);
       z-index: 101;
@@ -54,19 +54,19 @@
       color: $tabbar-icon-color;
     }
   }
-  &-tabbar__item {
-    &.#{$class-prefix}-bar__item_on{
-      & .#{$class-prefix}-tabbar__icon,
-      & .#{$class-prefix}-tabbar__icon > i,
-      & .#{$class-prefix}-tabbar__icon > span,
-      & .#{$class-prefix}-tabbar__label, 
+  &-tabbar-item {
+    &.#{$class-prefix}-bar-item-on{
+      & .#{$class-prefix}-tabbar-icon,
+      & .#{$class-prefix}-tabbar-icon > i,
+      & .#{$class-prefix}-tabbar-icon > span,
+      & .#{$class-prefix}-tabbar-label, 
       & .icon-svg {
         color: $tabbar-icon-active-color;
       }
     }
     
   }  
-  &-tabbar__label{
+  &-tabbar-label{
     text-align: center;
     color: $tabbar-label; 
     font-size: $tab-tabbar-label-fontsize;
@@ -74,7 +74,7 @@
     padding: 0;
     margin: 0;
   }
-  .#{$class-prefix}-tabbar__item {
+  .#{$class-prefix}-tabbar-item {
     &.#{$class-prefix}-tabbar-simple{
       padding: 0;
       height: $tabbar-simple-height;
@@ -82,7 +82,7 @@
     } 
   }
   .#{$class-prefix}-tabbar-simple  {
-    & .#{$class-prefix}-tabbar__label{
+    & .#{$class-prefix}-tabbar-label{
       font-size: $tabbar-simple-fontsize;
       line-height: $tabbar-simple-line-height;
     } 

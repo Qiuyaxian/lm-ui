@@ -5,17 +5,17 @@
     -webkit-user-select: none;
     user-select: none;
   }
-  &-cell_access {
+  &-cell-access {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     color: inherit;
   }
-  &-group { 
+  &-group-cells { 
     background-color: $cell-background;
     line-height: $cell-line-height;
     font-size: $cell-default-fontsize;  
     /*cell中间有效高度23px，跟客户端默认图标尺寸一致*/
     overflow: hidden; 
-    /*因为每个cell的border使用before元素left搞的，ie下伪元素的containing block估计跟标准不同，在cell上用oh不生效*/
+    /* 因为每个cell的border使用before元素left搞的，ie下伪元素的containing block估计跟标准不同，在cell上用oh不生效 */
     position: relative;
     &.#{$class-prefix}-group-border{
       /*onepx*/
@@ -35,7 +35,8 @@
    */
   &-cell { 
     padding: $cell-default-padding-vertical $cell-default-padding-horizontal;
-    position: relative; //这个是为了兼容cells容器onepx方案被before挡住而做的
+    // 这个是为了兼容cells容器onepx方案被before挡住而做的
+    position: relative;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -49,61 +50,70 @@
       }
     }
   }
-
+  &-popup-picker-wrapper{
+    .#{$class-prefix}-cell{
+      &:before {
+        display: block;
+      }
+    }
+  }
   &-label {
     display: inline-block;
     word-wrap: break-word;
     word-break: break-all;
   }
+
   &-cell_primary{
     align-items: flex-start;
   }
-  &-cell__bd{
+
+  &-cell-bd{
     flex: 1;
   }
-  &-cell_content {
+
+  &-cell-content {
     text-align: right; 
     color: $cell-right-color;
     &.#{$class-prefix}-cell-align-left {
       text-align: left;
     }
+    &.#{$class-prefix}-cell-placeholder {
+      color: #d9d9d9;
+    }
   }
+  &-cell-placeholder {
+    color: #d9d9d9;
+  }
+
   &-cell-disabled {
     .#{$class-prefix}-label {
       color: #b2b2b2;
     }
-    &.#{$class-prefix}-cell_access .#{$class-prefix}-cell_content:after {
-      /*border-color: @cell-disabled-arrow-color;*/
+    &.#{$class-prefix}-cell-access .#{$class-prefix}-cell-content:after {
     }
   }
+
   &-cell.#{$class-prefix}-cell-no-border-intent:before {
     left: 0;
-  }   
+  }
+
   &-cell-arrow-transition:after {
     transition: transform 300ms;
   }
-  &-cell_access {
-    /*.setTapColor();*/
+
+  &-cell-access {
     color: inherit;
     &:active {
       background-color: #ECECEC;
     }
-    .#{$class-prefix}-cell_content.#{$class-prefix}-cell-arrow-down:after {
+    .#{$class-prefix}-cell-content.#{$class-prefix}-cell-arrow-down:after {
       transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0) rotate(90deg);
     }
-    .#{$class-prefix}-cell_content.#{$class-prefix}-cell-arrow-up:after {
+    .#{$class-prefix}-cell-content.#{$class-prefix}-cell-arrow-up:after {
       transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0) rotate(-90deg);
     }
-    .#{$class-prefix}-cell_content { 
+    .#{$class-prefix}-cell-content { 
       @extend %arrow;
-      /*&:after {
-        content: " ";
-        @include setArrow(right, $cell-arrow-size, $cell-arrow-width, $cell-arrow-color);
-        position: absolute;
-        top: 50%;
-        margin-top: pxTorem(viewTransform(-5));
-        right: pxTorem(viewTransform(2));
-      }*/
     }
   }
 
@@ -119,25 +129,14 @@
       @include borderStype(bottom);
     }
   }
-  &-form-preview_hd{
+  &-form-preview-header{
     position: relative;
     padding: $cell-default-padding-vertical $cell-default-padding-horizontal;
     text-align: right;
     font-size: $cell-default-fontsize;
     line-height: $cell-line-height;
-    &:after{
-      @include borderStype(top);
-      left: $cell-default-padding-horizontal;
-    }
   }
-  &-form-preview_bd{
-    padding: $cell-default-padding-vertical $cell-default-padding-horizontal;
-    font-size: $cell-default-preview-fontsize;
-    line-height: 2;
-    text-align: right;
-    color: red;
-  }
-  &-form-preview_content{
+  &-form-preview-content{
     position: relative;
     line-height: $cell-line-height;;
     display: flex;
@@ -145,10 +144,16 @@
       @include borderStype(right);
     }
   }
-  &-form-preview_item{
+
+  &-form-preview-item{
+    padding: $cell-default-padding-vertical $cell-default-padding-horizontal;
+    font-size: $cell-default-preview-fontsize;
+    line-height: $cell-line-height;
+    text-align: right;
     overflow: hidden;
   }
-  &-form-preview_label{
+
+  &-form-preview-label{
     float: left;
     margin-right: 1em;
     min-width: 4em;
@@ -156,18 +161,12 @@
     text-align: justify;
     text-align-last: justify;
   }
-  &-form-preview_value{
+  &-form-preview-value{
     display: block;
+    flex-grow: 1;
+    color: #d9d9d9;
     overflow: hidden;
     word-break:normal;
     word-wrap: break-word;
   }
 }
-
-
-
-
-
-
-
-

@@ -1,8 +1,8 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Textarea</vup-navbar>
-     <vup-form-preview header-label="付款金额" header-value="¥2400.00" :preview-items="list"></vup-form-preview>
-  </vup-wrapper>
+  <lm-template>
+    <lm-navbar>Textarea</lm-navbar>
+    <lm-form-preview header-label="付款金额" header-value="¥2400.00" :preview-items="list"></lm-form-preview>
+  </lm-template>
 </template>
 <script>
 export default {
@@ -23,4 +23,7 @@ export default {
 }
 </script>
 <style lang="scss">
+@import "~@/theme/index.scss";
+@import "~@/theme/cell.scss";
+/*@import "~@/theme/form.scss";*/
 </style>

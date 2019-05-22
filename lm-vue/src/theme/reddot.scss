@@ -9,9 +9,9 @@
     display: block;
     @include setWidthHeight(8, 8);
     background-color: #f74c31;
-    border-radius: pxTorem(viewTransform(5));
-    right: pxTorem(viewTransform(-3));
-    top: pxTorem(viewTransform(-3));
+    border-radius: pxTorem(5, 2);
+    right: pxTorem(-3, 2);
+    top: pxTorem(-3, 2);
     background-clip: padding-box;
   }
   &-reddot-border:before {
@@ -20,15 +20,15 @@
     display: block;
     @include setWidthHeight(8, 8);
     background-color: #fff;
-    border-radius: pxTorem(viewTransform(5));
-    right: pxTorem(viewTransform(-4));
-    top: pxTorem(viewTransform(-4));
+    border-radius: pxTorem(5, 2);
+    right: pxTorem(-4, 2);
+    top: pxTorem(-4, 2);
     background-clip: padding-box;
-    padding: pxTorem(viewTransform(1));
+    padding: pxTorem(1, 2);
   }
   &-reddot-s:after {
     @include setWidthHeight(6, 6);
-    top: pxTorem(viewTransform(-5));
-    right: pxTorem(viewTransform(-5));
+    top: pxTorem(-5, 2);
+    right: pxTorem(-5, 2);
   }
 }

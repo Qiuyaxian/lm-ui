@@ -1,13 +1,13 @@
 <template>
-  <div class="vup-search-bar" :class="{ 'vup-search-bar_focusing':!isCancel || currentValue && currentValue.length != 0 }" :style="{ 'background' : searchBar }">
-     <div class="vup-search-url-bar" @click="searchRouteHandle" v-if="type == 'url'"></div>
-     <form action="." class="vup-search-bar__form" :class="radius?'vup-search-radius':''" :style="{ 'background' : searchForm }" @submit.prevent="$emit('on-submit', currentValue)">
-       <label :for="`vup-search_${ uuid }`" v-show="!isFocus && !currentValue" class="vup-search-mask" @click="touch"></label>
-       <div class="vup-search-bar__box">
-         <div class="vup-icon-search vup-icon-search-start"></div>
+  <div class="lm-search-bar" :class="{ 'lm-search-bar-focusing':!isCancel || currentValue && currentValue.length != 0 }" :style="{ 'background' : searchBar }">
+     <div class="lm-search-url-bar" @click="searchRouteHandle" v-if="type == 'url'"></div>
+     <form action="." class="lm-search-bar-form" :class="radius?'lm-search-radius':''" :style="{ 'background' : searchForm }" @submit.prevent="$emit('on-submit', currentValue)">
+       <label :for="`lm-search-${uuid}`" v-show="!isFocus && !currentValue" class="lm-search-mask" @click="touch"></label>
+       <div class="lm-search-bar-box">
+         <div class="lm-icon-search lm-icon-search-start"></div>
          <input v-model="currentValue"
-                :id="`vup-search_${uuid}`"
-                class="vup-search-bar__input"
+                :id="`lm-search-${uuid}`"
+                class="lm-search-bar-input"
                 type="text"
                 ref="search-input"
                 autocomplete="off"
@@ -18,14 +18,14 @@
                 @compositionend="onComposition($event, 'end')"
                 @input="onComposition($event, 'input')"
                 >
-         <a href="javascript:;" class="vup-icon-clear" @click="clear" v-show="currentValue"></a>
+         <a href="javascript:;" class="lm-icon-clear" @click="clear" v-show="currentValue"></a>
        </div>
-       <label v-show="!isFocus && !currentValue && isShowCancel" :for="`vup-search_${ uuid }`" class="vup-search-bar__label" :style="{ 'background' : searchForm }">
-         <div class="vup-icon-search">&nbsp;</div>
-         <span class="vup-search-placeholder">搜索</span>
+       <label v-show="!isFocus && !currentValue && isShowCancel" :for="`lm-search-${uuid}`" class="lm-search-bar-label" :style="{ 'background' : searchForm }">
+         <div class="lm-icon-search">&nbsp;</div>
+         <span class="lm-search-placeholder">搜索</span>
        </label>
      </form>
-     <a href="javascript:;" v-if="isShowCancel" @click="cancel" class="vup-search-bar__cancel-btn">取消</a>
+     <a href="javascript:;" v-if="isShowCancel" @click="cancel" class="lm-search-bar-cancel-btn">取消</a>
   </div>
 </template>
 
@@ -125,7 +125,8 @@ export default {
       this.currentValue = this.value
     }
     this.$nextTick(() => {
-      this.searchInput = this.$refs[`vup-search_${this.uuid}`]
+      this.searchInput = this.$refs[`lm-search-${this.uuid}`]
+      console.log(this.searchInput, `lm-search-${this.uuid}`, 'this.searchInput')
     })
   },
   computed: {
@@ -287,11 +288,11 @@ export default {
 <style lang="scss">
 @import '~@/theme/index.scss';
 @import '~@/theme/iconfont.scss';
-.vup-search-radius{
+.lm-search-radius{
   border-radius: pxTorem(viewTransform(15));
   overflow: hidden;
 }
-.vup-search-url-bar{
+.lm-search-url-bar{
   position: absolute;
   left: 0;
   right: 0;
@@ -299,7 +300,7 @@ export default {
   bottom: 0;
   z-index: 5;
 }
-.vup-icon-search, .vup-icon-clear{
+.lm-icon-search, .lm-icon-clear{
   display: inline-block;
   position: relative;
   color: #9B9B9B;
@@ -313,19 +314,19 @@ export default {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
 }
-.vup-icon-search{
+.lm-icon-search{
   line-height: pxTorem(62) !important;
   font-size: pxTorem(32) !important;
   &:before{
     content: "\EA0E";
   }
 }
-.vup-icon-clear{
+.lm-icon-clear{
   &:before{
     content: "\EA0F";
   }
 }
-.vup-search-bar{
+.lm-search-bar{
   position: relative;
   padding: pxTorem(viewTransform(8)) pxTorem(viewTransform(10));
   display: -webkit-box;
@@ -333,13 +334,13 @@ export default {
   display: flex;
   @include css3(box-sizing, border-box)
 }
-.vup-search-bar__form{
+.lm-search-bar-form{
   position: relative;
   z-index: 3;
   border-radius: pxTorem(viewTransform(4));
   @include css3(flex, auto);
 }
-.vup-search-mask{
+.lm-search-mask{
   position: absolute;
   left: 0;
   top: 0;
@@ -347,7 +348,7 @@ export default {
   height: 100%;
   z-index: 5;
 }
-.vup-search-bar__box{
+.lm-search-bar-box{
   position: relative;
   padding-left: pxTorem(60);
   padding-right: pxTorem(60);
@@ -356,12 +357,12 @@ export default {
   @include css3(box-sizing, border-box);
   z-index: 1;
 }
-.vup-icon-search-start{
+.lm-icon-search-start{
   position: absolute;
   left: pxTorem(15);
   top: 0;
 }
-.vup-search-bar__input{
+.lm-search-bar-input{
   padding: pxTorem(10) 0;
   width: 100%;
   height: pxTorem(42);
@@ -370,7 +371,7 @@ export default {
   line-height: pxTorem(42);
   background: transparent;
 }
-.vup-icon-clear{
+.lm-icon-clear{
   position: absolute;
   top: 0;
   right: 0;
@@ -379,7 +380,7 @@ export default {
   font-size: pxTorem(28) !important;
   line-height: pxTorem(62) !important;
 }
-.vup-search-bar__label{
+.lm-search-bar-label{
   position: absolute;
   top: 1px;
   right: 1px;
@@ -390,10 +391,10 @@ export default {
   text-align: center;
   color: #9B9B9B;
   text-align: center;
-  .vup-icon-search{
+  .lm-icon-search{
     vertical-align: middle;
   }
-  .vup-search-placeholder{
+  .lm-search-placeholder{
     font-size: pxTorem(28);
     height: pxTorem(62);
     line-height: pxTorem(62);
@@ -401,7 +402,7 @@ export default {
     vertical-align: middle;
   }
 }
-.vup-search-bar__cancel-btn{
+.lm-search-bar-cancel-btn{
   display: none;
   font-size: pxTorem(28);
   margin-left: pxTorem(20);
@@ -409,9 +410,9 @@ export default {
   color: #FF9900;
   white-space: nowrap;
 }
-.vup-search-bar{
-  &.vup-search-bar_focusing {
-    & .vup-search-bar__cancel-btn{
+.lm-search-bar{
+  &.lm-search-bar-focusing {
+    & .lm-search-bar-cancel-btn{
       display: block;
     }
   }

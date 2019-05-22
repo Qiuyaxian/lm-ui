@@ -1,7 +1,7 @@
 .#{ $tab-prefix } {
   display: flex;
   background-color: #fff;
-  height: pxTorem(viewTransform(44));
+  height: pxTorem(44, 2);
   position: relative;
   
   &-bar-top .#{ $tab-prefix } {
@@ -26,14 +26,14 @@
     box-sizing: border-box;
     background: linear-gradient(180deg, #e5e5e5, #e5e5e5, rgba(229, 229, 229, 0)) bottom left no-repeat;
     background-size: 100% 1px;
-    font-size: pxTorem(viewTransform(14));
+    font-size: pxTorem(14, 2);
     text-align: center;
-    line-height: pxTorem(viewTransform(44));
+    line-height: pxTorem(44, 2);
     color: $tab-text-default-color;
 
     &.#{ $tab-prefix }-selected {
       color: $tab-text-active-color;
-      border-bottom: pxTorem(viewTransform(3)) solid $tab-text-active-color;
+      border-bottom: pxTorem(3, 2) solid $tab-text-active-color;
     }
   }
   
@@ -44,7 +44,7 @@
       background-size: 100% 1px;
       &.#{ $tab-prefix }-selected {
         border-bottom: none;
-        border-top: pxTorem(viewTransform(3)) solid $tab-text-active-color;
+        border-top: pxTorem(3, 2) solid $tab-text-active-color;
       }
     }
   }
@@ -93,22 +93,22 @@
     bottom: 0;
     box-sizing: border-box;
     display: inline-block;
-    height: pxTorem(viewTransform(18));
-    min-width: pxTorem(viewTransform(18));
-    padding: 0 pxTorem(viewTransform(4));
-    border-radius: pxTorem(viewTransform(30));
-    margin: auto 0 auto pxTorem(viewTransform(4));
-    line-height: pxTorem(viewTransform(18));
-    font-size: pxTorem(viewTransform(11));
+    height: pxTorem(18, 2);
+    min-width: pxTorem(18, 2);
+    padding: 0 pxTorem(4, 2);
+    border-radius: pxTorem(30, 2);
+    margin: auto 0 auto pxTorem(4, 2);
+    line-height: pxTorem(18, 2);
+    font-size: pxTorem(11, 2);
     background-clip: padding-box;
     vertical-align: middle;
   }
   &-wrap {
     position: relative;
-    height: pxTorem(viewTransform(44));
+    height: pxTorem(44, 2);
   }
   &-container {
-    height: pxTorem(viewTransform(44));
+    height: pxTorem(44, 2);
     overflow: hidden;
   }
   &-container-absolute {  

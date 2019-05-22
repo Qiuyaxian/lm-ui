@@ -8,19 +8,19 @@
   }
   &-header{
     .#{$class-prefix}-header-title {
-      line-height: pxTorem(viewTransform(40));
+      line-height: pxTorem(40, 2);
       text-align: center;
-      font-size: pxTorem(viewTransform(18));
+      font-size: pxTorem(18, 2);
       font-weight: 400; 
       color: $header-title-color;
     }
     .#{$class-prefix}-header-left,
     .#{$class-prefix}-header-right {
       position: absolute;
-      top: pxTorem(viewTransform(14));
+      top: pxTorem(14, 2);
       display: block;
-      font-size: pxTorem(viewTransform(14));
-      line-height: pxTorem(viewTransform(21));
+      font-size: pxTorem(14, 2);
+      line-height: pxTorem(21, 2);
       color: white;
     }
 
@@ -29,7 +29,7 @@
     .#{$class-prefix}-header-right a,
     .#{$class-prefix}-header-right button {
       float: left;
-      margin-right: pxTorem(viewTransform(8));
+      margin-right: pxTorem(8, 2);
     }
 
     .#{$class-prefix}-header-title > span {
@@ -51,47 +51,47 @@
       opacity: .5
     }
     .#{$class-prefix}-header-left {
-      left: pxTorem(viewTransform(18))
+      left: pxTorem(18, 2)
     }
     .#{$class-prefix}-header-left .#{$class-prefix}-header-back {
-      padding-left: pxTorem(viewTransform(16))
+      padding-left: pxTorem(16, 2);
     }
     .#{$class-prefix}-header-left .left-arrow {
       position: absolute;
-      width: pxTorem(viewTransform(30));
-      height: pxTorem(viewTransform(30));
-      top: pxTorem(viewTransform(-5));
-      left: pxTorem(viewTransform(-5));
+      width: pxTorem(30, 2);
+      height: pxTorem(30, 2);
+      top: pxTorem(-5, 2);
+      left: pxTorem(-5, 2);
       &:before {
         content: "";
         position: absolute;
-        width: pxTorem(viewTransform(12));
-        height: pxTorem(viewTransform(12));
-        border: 1PX solid $header-arrow-color;
-        border-width: 1PX 0 0 1PX;
+        width: pxTorem(12, 2);
+        height: pxTorem(12, 2);
+        border: pxTorem(1, 2) solid $header-arrow-color;
+        border-width: pxTorem(1, 2) 0 0 pxTorem(1, 2);
         transform: rotate(315deg);
-        top: pxTorem(viewTransform(8));
-        left: pxTorem(viewTransform(7));
+        top: pxTorem(8, 2);
+        left: pxTorem(7, 2);
       }
     }
     .#{$class-prefix}-header-right {
-      right: pxTorem(viewTransform(15))
+      right: pxTorem(15, 2)
     }
     .#{$class-prefix}-header .#{$class-prefix}-header-right a,
     .#{$class-prefix}-header-right button {
-      margin-left: pxTorem(viewTransform(8));
+      margin-left: pxTorem(8, 2);
       margin-right: 0
     }
     .#{$class-prefix}-header-right .#{$class-prefix}-header-more:after {
       content: "\2022\0020\2022\0020\2022\0020";
-      font-size: pxTorem(viewTransform(16));
+      font-size: pxTorem(16, 2);
     }
   }
- 
+  
   &-header-title-area, 
   &-header .#{$class-prefix}-header-title {
-    margin: 0 pxTorem(viewTransform(88));
-    height: pxTorem(viewTransform(40));
+    margin: 0 pxTorem(88, 2);
+    height: pxTorem(40, 2);
     width: auto;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -104,11 +104,17 @@
   &-header-fade-in-left-enter-active {
     animation: fadeinL .5s;
   }
+  &-header-fixed {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 }
 @keyframes fadeinR {
   0% {
     opacity: 0;
-    transform: translateX(pxTorem(viewTransform(150)));
+    transform: translateX(pxTorem(150, 2));
   }
   100% {
     opacity:1;
@@ -118,7 +124,7 @@
 @keyframes fadeinL{
   0% {
     opacity: 0;
-    transform: translateX(pxTorem(viewTransform(-150)));
+    transform: translateX(pxTorem(-150, 2));
   }
   100% {
     opacity: 1;

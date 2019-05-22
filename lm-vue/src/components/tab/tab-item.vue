@@ -1,11 +1,11 @@
 <template>
   <div
-    class="vup-tab-item"
+    class="lm-tab-item"
     :class="[
       {
         'activeClass': currentSelected,
-        'vup-tab-selected': currentSelected,
-        'vup-tab-disabled': disabled
+        'lm-tab-selected': currentSelected,
+        'lm-tab-disabled': disabled
       }
     ]"
     :style="style"
@@ -17,7 +17,7 @@
         background: badgeBackground,
         color: badgeColor
       }"
-      class="vup-tab-item-badge">{{ badgeLabel }}</span>
+      class="lm-tab-item-badge">{{ badgeLabel }}</span>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
-  <div class="vup-grids" :class="{
-      'vup-grid-no-lr-borders': !showLrBorders,
-      'vup-grid-no-borders': !showBorders
+  <div class="lm-grids" :class="{
+      'lm-grid-no-lr-borders': !showLrBorders,
+      'lm-grid-no-borders': !showBorders
     }"
   >
     <slot></slot>

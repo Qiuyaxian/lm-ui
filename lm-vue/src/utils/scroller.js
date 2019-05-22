@@ -30,7 +30,7 @@ import passiveSupported from '@/utils/passive_supported'
 const getDpr = function () {
   let dpr = 1
   if (isBrowser) {
-    if (window.VUP_CONFIG && window.VUP_CONFIG.$picker && window.VUP_CONFIG.$picker.respectHtmlDataDpr) {
+    if (window.LM_CONFIG && window.LM_CONFIG.$picker && window.LM_CONFIG.$picker.respectHtmlDataDpr) {
       dpr = document.documentElement.getAttribute('data-dpr') || 1
     }
   }

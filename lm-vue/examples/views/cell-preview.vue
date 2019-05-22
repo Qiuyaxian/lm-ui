@@ -1,8 +1,9 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>cell-preview</vup-navbar>
-    <vup-cell-preview :list="list"></vup-cell-preview>
-  </vup-wrapper>
+  <lm-template>
+    <lm-navbar>cell-preview</lm-navbar>
+    <lm-group-title header-label="信息" :borderIntent="false"></lm-group-title>
+    <lm-cell-preview :list="list"></lm-cell-preview>
+  </lm-template>
 </template>
 <script>
 export default {

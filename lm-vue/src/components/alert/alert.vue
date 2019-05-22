@@ -1,6 +1,6 @@
 <template>
-  <div class="vup-alert">
-    <vup-dialog
+  <div class="lm-alert">
+    <lm-dialog
       v-model="showValue"
       :mask-transition="maskTransition"
       :dialog-transition="dialogTransition"
@@ -8,29 +8,28 @@
       :mask-z-index="maskZIndex"
       @on-hide="$emit('on-hide')"
       @on-show="$emit('on-show')">
-      <div class="vup-dialog__hd">
-        <strong class="vup-dialog__title">{{ title }}</strong>
+      <div class="lm-dialog-header">
+        <strong class="lm-dialog-title">{{ title }}</strong>
       </div>
-      <div class="vup-dialog__bd">
+      <div class="lm-dialog-body">
         <slot>
           <div v-html="content"></div>
         </slot>
       </div>
-      <div class="vup-dialog__ft">
+      <div class="lm-dialog-footer">
         <a href="javascript:;"
-          class="vup-dialog__btn vup-dialog__btn_primary"
+          class="lm-dialog-btn lm-dialog-btn-primary"
           @click="_onHide">{{ buttonText || '确定' }}</a>
       </div>
-    </vup-dialog>
+    </lm-dialog>
   </div>
 </template>
-
 <script>
 import Dialog from '../dialog/dialog'
 export default {
-  name: 'vup-alert',
+  name: 'lm-alert',
   components: {
-    'vup-dialog': Dialog
+    'lm-dialog': Dialog
   },
   created () {
     if (typeof this.value !== 'undefined') {
@@ -48,11 +47,11 @@ export default {
     },
     maskTransition: {
       type: String,
-      default: 'vup-mask'
+      default: 'lm-mask'
     },
     dialogTransition: {
       type: String,
-      default: 'vup-dialog'
+      default: 'lm-dialog'
     },
     maskZIndex: [Number, String]
   },

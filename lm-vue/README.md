@@ -90,6 +90,8 @@ react实现菜单权限控制 => https://segmentfault.com/a/1190000009509150
   |--icons => 存放iconfont 文件
   |--utils(或者改名为core) => 各种基础的js代码文件
   |  |-- index.js 
+typings => 支持typings 
+
 
 vue
 |--vuex => 状态管理

@@ -1,22 +1,22 @@
 <template>
-  <div class="vup-confirm">
-    <vup-dialog v-model="showValue"
-      :dialog-class="theme === 'android' ? 'vup-dialog vup-skin_android' : 'vup-dialog'"
+  <div class="lm-confirm">
+    <lm-dialog v-model="showValue"
+      :dialog-class="theme === 'android' ? 'lm-dialog lm-skin-android' : 'lm-dialog'"
       :mask-transition="maskTransition"
-      :dialog-transition="theme === 'android' ? 'vup-fade' : dialogTransition"
+      :dialog-transition="theme === 'android' ? 'lm-fade' : dialogTransition"
       :hide-on-blur="hideOnBlur"
       :mask-z-index="maskZIndex"
       @on-hide="$emit('on-hide')">
-      <div class="vup-dialog__hd" v-if="!!title" :class="{'with-no-content': !showContent}">
-        <strong class="vup-dialog__title">{{ title }}</strong>
+      <div class="lm-dialog-header" v-if="!!title" :class="{'with-no-content': !showContent}">
+        <strong class="lm-dialog-title">{{ title }}</strong>
       </div>
       <template v-if="showContent">
-        <div class="vup-dialog__bd" v-if="!showInput">
+        <div class="lm-dialog-body" v-if="!showInput">
           <slot><div v-html="content"></div></slot>
         </div>
-        <div v-else class="vup-prompt">
+        <div v-else class="lm-prompt">
           <input
-            class="vup-prompt-msgbox"
+            class="lm-prompt-msgbox"
             v-bind="getInputAttrs()"
             v-model="msg"
             :placeholder="placeholder"
@@ -24,20 +24,20 @@
             ref="input"/>
         </div>
       </template>
-      <div class="vup-dialog__ft">
-        <a v-if="showCancelButton" href="javascript:;" class="vup-dialog__btn vup-dialog__btn_default" @click="_onCancel">{{cancelText || '取消'}}</a>
-        <a v-if="showConfirmButton" href="javascript:;" class="vup-dialog__btn" :class="`vup-dialog__btn_${confirmType}`" @click="_onConfirm">{{confirmText || '确定'}}</a>
+      <div class="lm-dialog-footer">
+        <a v-if="showCancelButton" href="javascript:;" class="lm-dialog-btn lm-dialog-btn-default" @click="_onCancel">{{cancelText || '取消'}}</a>
+        <a v-if="showConfirmButton" href="javascript:;" class="lm-dialog-btn" :class="`lm-dialog-btn-${confirmType}`" @click="_onConfirm">{{confirmText || '确定'}}</a>
       </div>
-    </vup-dialog>
+    </lm-dialog>
   </div>
 </template>
 
 <script>
 import Dialog from '../dialog/dialog'
 export default {
-  name: 'vup-confirm',
+  name: 'lm-confirm',
   components: {
-    'vup-dialog': Dialog
+    'lm-dialog': Dialog
   },
   props: {
     value: {
@@ -65,12 +65,12 @@ export default {
     cancelText: String,
     maskTransition: {
       type: String,
-      default: 'vup-fade'
+      default: 'lm-fade'
     },
     maskZIndex: [Number, String],
     dialogTransition: {
       type: String,
-      default: 'vup-dialog'
+      default: 'lm-dialog'
     },
     content: String,
     closeOnConfirm: {
@@ -163,13 +163,10 @@ export default {
 
 <style lang="scss">
 @import '~@/theme/index.scss';
-@import '~@/theme/transition.scss';
-@import '~@/theme/mask.scss';
-@import '~@/theme/dialog';
-.vup-prompt {
+.lm-prompt {
   padding-bottom: 1.6em;
 }
-.vup-prompt-msgbox {
+.lm-prompt-msgbox {
   width: 80%;
   border: 1px solid #dedede;
   border-radius: pxTorem(viewTransform(5));

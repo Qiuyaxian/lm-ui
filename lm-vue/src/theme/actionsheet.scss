@@ -1,7 +1,4 @@
-
-
 .#{ $class-prefix } {
-  
   &-actionsheet {
     position: fixed;
     left: 0;
@@ -14,18 +11,18 @@
     //slide up animation
     transition: transform .3s;
   }
-  &-actionsheet__menu{
+  &-actionsheet-menu{
     background-color: #FFFFFF;
   }
-  &-actionsheet__action {
-    margin-top: pxTorem(viewTransform(6));
+  &-actionsheet-action {
+    margin-top: pxTorem(6, 2);
     background-color: #FFFFFF;
   }
-  &-actionsheet__cell {
+  &-actionsheet-cell {
     position: relative;
-    padding: pxTorem(viewTransform(10)) 0;
+    padding: pxTorem(10, 2) 0;
     text-align: center;
-    font-size: pxTorem(viewTransform(18));
+    font-size: pxTorem(18, 2);
     line-height: 1.6;
     &:before {
       @include borderStype(top, $cell-border-color); 
@@ -52,7 +49,7 @@
       bottom: auto;
       transform: translate(-50%, -50%);
       /*padding: 0 pxTorem(viewTransform(40));*/
-      width: pxTorem(viewTransform(274));
+      width: pxTorem(274, 2);
       box-sizing: border-box;
       backface-visibility: hidden;
       background: transparent;
@@ -61,16 +58,16 @@
        */
       transition: transform .3s;
     }
-    .#{ $class-prefix }-actionsheet__action{
+    .#{ $class-prefix }-actionsheet-action{
       display: none;
     }
-    .#{ $class-prefix }-actionsheet__menu {
+    .#{ $class-prefix }-actionsheet-menu {
       border-radius: $actionsheet-android-border-radius;
-      box-shadow: 0 pxTorem(viewTransform(6)) pxTorem(viewTransform(30)) 0 rgba(0,0,0,.1);
+      box-shadow: 0 pxTorem(6, 2) pxTorem(30, 2) 0 rgba(0,0,0,.1);
     }
-    .#{ $class-prefix }-actionsheet__cell {
-      padding: pxTorem(viewTransform(13)) pxTorem(viewTransform(24));
-      font-size: pxTorem(viewTransform(16));
+    .#{ $class-prefix }-actionsheet-cell {
+      padding: pxTorem(13, 2) pxTorem(24, 2);
+      font-size: pxTorem(16, 2);
       line-height: 1.4;
       text-align: left;
       &:first-child {

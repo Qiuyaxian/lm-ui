@@ -1,10 +1,8 @@
 <template>
-  <div class="vup-cell vup-form-preview" :class="{'vup-cell-no-border-intent': !borderIntent}">
-    <div class="vup-form-preview_bd">
-      <div class="vup-form-preview_item" v-for="(item, index) in list" :key="index">
-        <label class="vup-form-preview_label" v-html="item.label"></label>
-        <span class="vup-form-preview_value" v-html="item.value"></span>
-      </div>
+  <div class="lm-form-preview">
+    <div class="lm-form-preview-item" :class="{'lm-cell-no-border-intent': !borderIntent, 'lm-cell': showBorder}" v-for="(item, index) in list" :key="index">
+      <label class="lm-form-preview-label" v-html="item.label"></label>
+      <span class="lm-form-preview-value" v-html="item.value"></span>
     </div>
   </div>
 </template>
@@ -18,8 +16,17 @@ export default {
      * @type {[type]}
      */
     list: Array,
+
     /**
      * [borderIntent 是否开启边框]
+     * @type {Object}
+     */
+    showBorder: {
+      type: Boolean,
+      default: true
+    },
+    /**
+     * [borderIntent description]
      * @type {Object}
      */
     borderIntent: {
@@ -32,12 +39,4 @@ export default {
 <style lang="scss">
 @import '~@/theme/index.scss';
 @import '~@/theme/cell.scss';
-.#{ $class-prefix } {
-  &-form-preview{
-    & .#{ $class-prefix }-form-preview_bd{
-      width: 100%;
-      padding: 0;
-    }
-  }
-}
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <div class="vup-inline-block">
+  <div class="lm-inline-block">
     <span v-if="showTimeString">{{ timeString }}</span>
-    <div class="vup-clocker-tpl"><slot></slot></div>
+    <div class="lm-clocker-tpl"><slot></slot></div>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
   name: 'clock',
   mounted () {
     this.$nextTick(() => {
-      this.slot = this.$el.querySelector('.vup-clocker-tpl');
+      this.slot = this.$el.querySelector('.lm-clocker-tpl');
       this.slotString = this.slot.innerHTML;
       if (this.slotString !== '') {
         this.showTimeString = false;

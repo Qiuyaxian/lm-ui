@@ -1,20 +1,20 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>flexbox</vup-navbar>
-    <vup-flexbox>
-      <vup-flexbox-item><div class="flex-demo">1</div></vup-flexbox-item>
-      <vup-flexbox-item><div class="flex-demo">2</div></vup-flexbox-item>
-    </vup-flexbox>
+  <lm-template>
+    <lm-navbar>flexbox</lm-navbar>
+    <lm-flexbox>
+      <lm-flexbox-item><div class="flex-demo">1</div></lm-flexbox-item>
+      <lm-flexbox-item><div class="flex-demo">2</div></lm-flexbox-item>
+    </lm-flexbox>
 
-    <vup-flexbox :gutter="0">
-      <vup-flexbox-item><div class="flex-demo">1</div></vup-flexbox-item>
-      <vup-flexbox-item><div class="flex-demo">2</div></vup-flexbox-item>
-      <vup-flexbox-item><div class="flex-demo">3</div></vup-flexbox-item>
-      <vup-flexbox-item><div class="flex-demo">4</div></vup-flexbox-item>
-      <vup-flexbox-item><div class="flex-demo">5</div></vup-flexbox-item>
-      <vup-flexbox-item><div class="flex-demo">6</div></vup-flexbox-item>
-    </vup-flexbox>
-  </vup-wrapper>
+    <lm-flexbox :gutter="0">
+      <lm-flexbox-item><div class="flex-demo">1</div></lm-flexbox-item>
+      <lm-flexbox-item><div class="flex-demo">2</div></lm-flexbox-item>
+      <lm-flexbox-item><div class="flex-demo">3</div></lm-flexbox-item>
+      <lm-flexbox-item><div class="flex-demo">4</div></lm-flexbox-item>
+      <lm-flexbox-item><div class="flex-demo">5</div></lm-flexbox-item>
+      <lm-flexbox-item><div class="flex-demo">6</div></lm-flexbox-item>
+    </lm-flexbox>
+  </lm-template>
 </template>
 
 <script>

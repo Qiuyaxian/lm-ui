@@ -1,10 +1,10 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>switch</vup-navbar>
-    <vup-group>
-      <vup-switch title="switch" v-model="value"></vup-switch>
-    </vup-group>
-  </vup-wrapper>
+  <lm-template>
+    <lm-navbar>switch</lm-navbar>
+    <lm-group>
+      <lm-switch title="switch" v-model="value"></lm-switch>
+    </lm-group>
+  </lm-template>
 </template>
 
 <script>

@@ -1,12 +1,12 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Textarea</vup-navbar>
-    <vup-form >
-      <vup-form-item labelAlign="top" title="请输">
-        <vup-textarea :max="20" placeholder="请输入"></vup-textarea>
-      </vup-form-item>
-    </vup-form>
-  </vup-wrapper>
+  <lm-template>
+    <lm-navbar>Textarea</lm-navbar>
+    <lm-form >
+      <lm-form-item labelAlign="top" title="请输">
+        <lm-textarea :max="20" placeholder="请输入"></lm-textarea>
+      </lm-form-item>
+    </lm-form>
+  </lm-template>
 </template>
 <script>
 export default {

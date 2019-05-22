@@ -1,25 +1,25 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Divider</vup-navbar>
-    <vup-divider>默认</vup-divider>
-    <vup-marquee>
-      <vup-marquee-item v-for="i in 5" :key="i" class="align-middle">hello world {{i}}</vup-marquee-item>
-    </vup-marquee>
-    <vup-divider>在cell中使用</vup-divider>
-    <vup-group>
-      <vup-cell label="公共">
-        <vup-marquee>
-        <vup-marquee-item v-for="i in 5" :key="i">hello world {{i}}</vup-marquee-item>
-        </vup-marquee>
-      </vup-cell>
-      <vup-cell label="公共" content="App.vue"></vup-cell>
-    </vup-group>
+  <lm-template>
+    <lm-navbar>Divider</lm-navbar>
+    <lm-divider>默认</lm-divider>
+    <lm-marquee>
+      <lm-marquee-item v-for="i in 5" :key="i" class="align-middle">hello world {{i}}</lm-marquee-item>
+    </lm-marquee>
+    <lm-divider>在cell中使用</lm-divider>
+    <lm-group>
+      <lm-cell label="公共">
+        <lm-marquee>
+        <lm-marquee-item v-for="i in 5" :key="i">hello world {{i}}</lm-marquee-item>
+        </lm-marquee>
+      </lm-cell>
+      <lm-cell label="公共" content="App.vue"></lm-cell>
+    </lm-group>
 
-    <vup-divider>异步加载数据</vup-divider>
-    <vup-marquee>
-      <vup-marquee-item v-for="i in asyncCount" :key="i" class="align-middle">hello world {{i}}</vup-marquee-item>
-    </vup-marquee>
-  </vup-wrapper>
+    <lm-divider>异步加载数据</lm-divider>
+    <lm-marquee>
+      <lm-marquee-item v-for="i in asyncCount" :key="i" class="align-middle">hello world {{i}}</lm-marquee-item>
+    </lm-marquee>
+  </lm-template>
 </template>
 
 <script>

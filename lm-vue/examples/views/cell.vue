@@ -1,11 +1,11 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Cell</vup-navbar>
-    <vup-group>
-      <vup-cell label="左边" content="请选择"></vup-cell>
-      <vup-cell label="跳转" content="前往首页" link="/home"></vup-cell>
-    </vup-group>
-  </vup-wrapper>
+  <lm-template>
+    <lm-navbar>Cell</lm-navbar>
+    <lm-group>
+      <lm-cell label="左边" content="请选择"></lm-cell>
+      <lm-cell label="跳转" content="前往首页" link="/home"></lm-cell>
+    </lm-group>
+  </lm-template>
 </template>
 
 <script>

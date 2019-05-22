@@ -1,17 +1,17 @@
 <template>
-  <div class="vup-tab-container"
-    :class="[barPosition === 'top' ? 'vup-tab-bar-top' : '']"
+  <div class="lm-tab-container"
+    :class="[barPosition === 'top' ? 'lm-tab-bar-top' : '']"
     >
-    <div class="vup-tab" :class="[{ 'vup-tab-no-animate' : !animate},{ scrollable }]"
+    <div class="lm-tab" :class="[{ 'lm-tab-no-animate' : !animate},{ scrollable }]"
       ref="nav">
       <slot></slot>
       <div
         v-if="animate"
-        class="vup-tab-ink-bar"
+        class="lm-tab-ink-bar"
         :class="[barClass]"
         :style="barStyle">
         <span
-          class="vup-tab-bar-inner"
+          class="lm-tab-bar-inner"
           :style="innerBarStyle"
           v-if="customBarWidth"></span>
       </div>
@@ -152,8 +152,8 @@ export default {
      */
     barClass () {
       return {
-        'vup-tab-ink-bar-transition-forward': this.direction === 'forward',
-        'vup-tab-ink-bar-transition-backward': this.direction === 'backward'
+        'lm-tab-ink-bar-transition-forward': this.direction === 'forward',
+        'lm-tab-ink-bar-transition-backward': this.direction === 'backward'
       }
     },
     /**

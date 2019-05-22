@@ -1,21 +1,28 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Tab</vup-navbar>
-    <vup-group>
-      <vup-switch title="一般使用" v-model="show1"></vup-switch>
-      <vup-switch title="type为文字" v-model="show2"></vup-switch>
-      <vup-switch title="type为cancel" v-model="show3"></vup-switch>
-      <vup-switch title="type为warn" v-model="show4"></vup-switch>
-      <vup-switch title="时间为1s" v-model="show5"></vup-switch>
-      <vup-switch title="长文字" v-model="show6"></vup-switch>
-    </vup-group>
-    <vup-toast v-model="show1" @on-hide="onHide">一般使用</vup-toast>
-    <vup-toast v-model="show2" type="text">type为文字</vup-toast>
-    <vup-toast v-model="show3" type="cancel">type为cancel</vup-toast>
-    <vup-toast v-model="show4" type="warn">type为warn</vup-toast>
-    <vup-toast v-model="show5" :time="1000">时间为1s</vup-toast>
-    <vup-toast v-model="show6" type="text" width="30em">长文字长文字长文字长文字长文字</vup-toast>
-  </vup-wrapper>
+  <lm-template>
+    <lm-navbar>toast</lm-navbar>
+    <lm-group>
+      <lm-switch title="一般使用" v-model="show1"></lm-switch>
+      <lm-switch title="type为文字" v-model="show2"></lm-switch>
+      <lm-switch title="type为cancel" v-model="show3"></lm-switch>
+      <lm-switch title="type为warn" v-model="show4"></lm-switch>
+      <lm-switch title="时间为1s" v-model="show5"></lm-switch>
+      <lm-switch title="长文字" v-model="show6"></lm-switch>
+    </lm-group>
+    <lm-toast :visible="show1" @on-hide="onHide">一般使用</lm-toast>
+    <lm-toast :visible="show2" @on-hide="onHide" type="text">type为文字</lm-toast>
+    <lm-toast :visible="show3" @on-hide="onHide" type="cancel">type为cancel</lm-toast>
+    <lm-toast :visible="show4" @on-hide="onHide" type="warn">type为warn</lm-toast>
+    <lm-toast :visible="show5" @on-hide="onHide" :time="1000">时间为1s</lm-toast>
+    <lm-toast :visible="show6" @on-hide="onHide" type="text" width="30em">长文字长文字长文字长文字长文字</lm-toast>
+    <lm-divider>js调用</lm-divider>
+    <div style="padding: 0 32px;">
+      <lm-button @click.native="toastHandle('cancel', '取消操作')">type为cancel</lm-button>
+      <lm-button @click.native="toastHandle('warn', '警告操作')">type为warn</lm-button>
+      <lm-button @click.native="toastHandle('success', '成功操作')">type为success</lm-button>
+      <lm-button @click.native="toastHandle('error', '错误操作')">type为warn</lm-button>
+    </div>
+  </lm-template>
 </template>
 
 <script>
@@ -31,12 +38,18 @@ export default {
     }
   },
   methods: {
-    showPosition (position) {
-      this.position = position
-      this.showPositionValue = true
-    },
     onHide () {
-      console.log('on hide')
+      this.show1 = false;
+      this.show2 = false;
+      this.show3 = false;
+      this.show4 = false;
+      this.show5 = false;
+      this.show6 = false;
+    },
+    toastHandle (type = 'cancel', text = '取消操作') {
+      this.$lm.toast[type]({
+        text: text
+      })
     }
   }
 }

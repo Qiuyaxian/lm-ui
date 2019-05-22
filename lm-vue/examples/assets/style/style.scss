@@ -110,7 +110,7 @@ body {
   -webkit-text-size-adjust: none;
   user-select: none; 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  background-color: white;
+  background-color: #ededed;
 }
 .bscroll-vertical-scrollbar{
   right: -99rem !important;
@@ -119,9 +119,10 @@ body {
 ::-webkit-input-placeholder {
   font-family: -apple-system-font, "Helvetica Neue", sans-serif;
 }
-
 /** prevent default menu callout **/
 a {
   -webkit-touch-callout: none;
 }
-
+.lm-btn {
+  margin: 32px;
+}

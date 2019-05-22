@@ -3,7 +3,7 @@ import { mergeOptions } from '@/utils/plugin_helper'
 
 export function createVM (Vue) {
   if (typeof document === 'undefined') {
-    console.error('[VUP] Alert plugin cannot be used in ssr.')
+    console.error('[lm] Alert plugin cannot be used in ssr.')
     return
   } 
   const Alert = Vue.extend(pageAlert)

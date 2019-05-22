@@ -1,8 +1,8 @@
 <template>
-  <vup-wrapper>
-    <vup-navbar>Rater</vup-navbar>
-    <vup-rater v-model="data"></vup-rater>
-  </vup-wrapper>
+  <lm-template>
+    <lm-navbar>Rater</lm-navbar>
+    <lm-rater v-model="data"></lm-rater>
+  </lm-template>
 </template>
 <script>
 export default {

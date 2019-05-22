@@ -1,7 +1,7 @@
 <template>
-  <div class="vup-flexbox" :class="{
-    'vup-flex-col': orient === 'vertical',
-    'vup-flex-row': orient === 'horizontal'
+  <div class="lm-flexbox" :class="{
+    'lm-flex-col': orient === 'vertical',
+    'lm-flex-row': orient === 'horizontal'
   }"
   :style="styles">
     <slot></slot>
@@ -74,14 +74,14 @@ export default {
 <style lang="scss">
 @import '~@/theme/index.scss';
 @import '~@/theme/flex.scss';
-.vup-flexbox {
+.lm-flexbox {
   width: 100%;
   text-align: left;
   display: flex;
   display: -webkit-flex;
   box-align: center;
   align-items: center;
-  .vup-flexbox-item {
+  .lm-flexbox-item {
     flex: 1;
     -webkit-flex: 1;
     min-width: pxTorem(viewTransform(20));
@@ -92,15 +92,15 @@ export default {
     }
   }
 }
-.vup-flex-row {
+.lm-flex-row {
   box-direction: row;
   box-orient: horizontal;
   flex-direction: row;
 }
-.vup-flex-col {
+.lm-flex-col {
   box-orient: vertical;
   flex-direction: column;
-  > .vup-flexbox-item {
+  > .lm-flexbox-item {
     width: 100%;
   }
 }
