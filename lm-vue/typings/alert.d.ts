@@ -1,40 +1,35 @@
-// Type definitions for iview 3.3.1
-// Project: https://github.com/iview/iview
-// Definitions by: yangdan
-// Definitions: https://github.com/yangdan8/iview.git
 import Vue, { VNode } from 'vue';
-
 /**
  * 直接html调用
  */
 export declare class Alert extends Vue {
   // prop 数据
-  value?: Boolean;
+  value: Boolean;
 
-  title?: String;
+  title: String;
 
-  content?: String;
+  content: String;
 
-  buttonText?: String;
+  buttonText: String;
 
-  hideOnBlur?: Boolean;
+  hideOnBlur: Boolean;
   
-  maskTransition?: 'vup-mask';
+  maskTransition: 'lm-mask';
 
-  maskZIndex?: String | Number;
+  maskZIndex: String | Number;
   
-  dialogTransition?: 'vup-dialog';
+  dialogTransition: 'lm-dialog';
   
-  dialogClass?: 'vup-dialog';
+  dialogClass: 'lm-dialog';
   
-  hideOnBlur?: Boolean;
+  hideOnBlur: Boolean;
   
-  dialogStyle?: Object;
+  dialogStyle: Object;
   /**
    * 关闭时触发
    */
-  $emit(eventName: 'on-hide', event: HTMLElement): this;
-  $emit(eventName: 'on-show', event: HTMLElement): this;
+  $emit(eventName: 'on-hide'): this;
+  $emit(eventName: 'on-show'): this;
   /**
    * slot插槽对象
    */
@@ -47,12 +42,9 @@ export declare class Alert extends Vue {
  */
 export declare class AlertPluginComponent extends Vue {
   show (): void;
-
   hide (): void;
-
-  $emit(eventName: 'on-show', event: HTMLElement): void;
-
-  $emit(eventName: 'on-hide', event: HTMLElement): void;
+  $emit(eventName: 'on-show'): void;
+  $emit(eventName: 'on-hide'): void;
 }
 
 /**
@@ -60,51 +52,25 @@ export declare class AlertPluginComponent extends Vue {
  */
 export interface AlertPluginOptions {
   // prop 数据
-  value?: Boolean;
-
-  title?: String;
-
-  content?: String;
-
-  buttonText?: String;
-
-  hideOnBlur?: Boolean;
-  
-  maskTransition?: 'vup-mask';
-
-  maskZIndex?: String | Number;
-  
-  dialogTransition?: 'vup-dialog';
-  
-  dialogClass?: 'vup-dialog';
-  
-  hideOnBlur?: Boolean;
-  
-  dialogStyle?: Object;
-
-  onShow?: Function;
-
-  onHide?: Function;
+  value: Boolean;
+  title: String;
+  content: String;
+  buttonText: String;
+  hideOnBlur: Boolean;
+  maskTransition: 'lm-mask';
+  maskZIndex: String | Number;
+  dialogTransition: 'lm-dialog';
+  dialogClass: 'lm-dialog';
+  hideOnBlur: Boolean;
+  dialogStyle: Object;
+  onShow: Function;
+  onHide: Function;
 }
 /**
  * 导出插件
  */
 export interface AlertPlugin {
-
-  (options: AlertPluginOptions): AlertPluginOptions;
-
+  (options: AlertPluginOptions): void;
   show (options: AlertPluginOptions): void;
-
   hide (): void;
-}
-
-/**
- * 挂载全局
- */
-declare module 'vue/types/vue' {
-  interface Vue {
-    $vup: {
-      'alert': AlertPlugin
-    }
-  }
 }

@@ -1,85 +1,110 @@
 <template>
   <lm-template>
     <lm-navbar>Alert</lm-navbar>
-    <lm-group>
-      <lm-switch title="Show Me" v-model="show"></lm-switch>
-    </lm-group>
     <div v-transfer-dom>
       <lm-alert v-model="show" title="Congratulations" @on-show="onShow" @on-hide="onHide">Your Message is sent successfully~</lm-alert>
     </div>
-    <lm-group title="Prop: content">
-      <lm-switch title="Show Me" v-model="show2"></lm-switch>
-    </lm-group>
     <div v-transfer-dom>
       <lm-alert v-model="show2" title="Congratulations" content="Your Message is sent successfully~"></lm-alert>
     </div>
+    <lm-group>
+      <lm-switch title="Show Me" v-model="show"></lm-switch>
+    </lm-group>
+    <lm-group title="Prop: content">
+      <lm-switch title="Show Me" v-model="show2"></lm-switch>
+    </lm-group>
   </lm-template>
 </template>
-<script>
-import TransferDom from '@/directives/transfer-dom'
-export default {
+<script lang="ts">
+import {
+  Component,
+  Emit,
+  Inject,
+  Model,
+  Prop,
+  Provide,
+  Vue,
+  Watch
+} from "vue-property-decorator";
+
+import { TransferDom } from '../../src/directives/transfer-dom'
+@Component({
   directives: {
-    TransferDom
+    'transfer-dom': TransferDom
   },
-  created () {
+  created() {
     console.log(this.$lm, 'this.$lm');
-    this.$lm.alert.show({
-      title: 'Vux is Cool',
-      content: 'Do you agree?',
-      onShow () {
-        console.log('Plugin: I\'m showing')
-      },
-      onHide () {
-        console.log('Plugin: I\'m hiding')
-      }
-    })
+    // this.$lm.alert.show({
+    //   title: 'Vux is Cool',
+    //   content: 'Do you agree?',
+    //   onShow () {
+    //     console.log('Plugin: I\'m showing')
+    //   },
+    //   onHide () {
+    //     console.log('Plugin: I\'m hiding')
+    //   }
+    // })
   },
-  methods: {
-    onHide () {
-      console.log('on hide')
-    },
-    onShow () {
-      console.log('on show')
-    },
-    showPlugin () {
-      this.$lm.alert.show({
-        title: 'VUX is Cool',
-        content: 'Do you agree?',
-        onShow () {
-          console.log('Plugin: I\'m showing')
-        },
-        onHide () {
-          console.log('Plugin: I\'m hiding now')
-        }
-      })
-    },
-    showModule () {
-      this.$lm.alert.show({
-        title: 'VUX is Cool',
-        content: 'Do you agree?',
-        onShow () {
-          console.log('Module: I\'m showing')
-        },
-        onHide () {
-          console.log('Module: I\'m hiding now')
-        }
-      })
-    }
+  // 声明周期钩子
+  mounted() {},
+  beforeRouteEnter(to, from, next) {
+    // 在渲染该组件的对应路由被 confirm 前调用
+    // 不！能！获取组件实例 `this`
+    // 因为当守卫执行前，组件实例还没被创建
+    next();
   },
-  data () {
-    return {
-      show: false,
-      show1: false,
-      show2: false
-    }
+  beforeRouteUpdate(to, from, next) {
+    // 在当前路由改变，但是该组件被复用时调用
+    // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+    // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+    // 可以访问组件实例 `this`
+  },
+  beforeRouteLeave(to, from, next) {
+    // 导航离开该组件的对应路由时调用
+    // 可以访问组件实例 `this`
+  }
+})
+export default class Alert extends Vue {
+  show = false;
+  show1 = false;
+  show2 = false;
+  onHide() {
+    console.log("on hide");
+  }
+  onShow() {
+    console.log("on show");
+  }
+  showPlugin() {
+    // this.$lm.alert.show({
+    //   title: 'VUX is Cool',
+    //   content: 'Do you agree?',
+    //   onShow () {
+    //     console.log('Plugin: I\'m showing')
+    //   },
+    //   onHide () {
+    //     console.log('Plugin: I\'m hiding now')
+    //   }
+    // })
+  }
+  showModule() {
+    // this.$lm.alert.show({
+    //   title: 'VUX is Cool',
+    //   content: 'Do you agree?',
+    //   onShow () {
+    //     console.log('Module: I\'m showing')
+    //   },
+    //   onHide () {
+    //     console.log('Module: I\'m hiding now')
+    //   }
+    // })
   }
 }
 </script>
 <style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/close.scss';
+@import "~@/theme/index.scss";
+@import "~@/theme/close.scss";
 .dialog-demo {
-  .weui-dialog{
+  .weui-dialog {
     border-radius: pxTorem(8, 2);
     padding-bottom: pxTorem(8, 2);
   }

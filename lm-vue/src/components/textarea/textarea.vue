@@ -1,24 +1,25 @@
 <template>
-  <div class="">
-    <textarea
-      class="lm-textarea"
-      :autocomplete="autocomplete"
-      :autocapitalize="autocapitalize"
-      :autocorrect="autocorrect"
-      :spellcheck="spellcheck"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      :disabled="disabled"
-      :name="name"
-      v-model="currentValue"
-      @focus="focusHandler"
-      @blur="blurHander"
-      :rows="rows"
-      :cols="cols"
-      :style="textareaStyle"
-      :maxlength="max"
-      ref="textarea"></textarea>
-    <div class="lm-textarea-counter" v-show="showCounter && max" @click="focus">
+  <div class="lm-textarea-wrapper">
+    <textarea class="lm-textarea"
+              :autocomplete="autocomplete"
+              :autocapitalize="autocapitalize"
+              :autocorrect="autocorrect"
+              :spellcheck="spellcheck"
+              :placeholder="placeholder"
+              :readonly="readonly"
+              :disabled="disabled"
+              :name="name"
+              v-model="currentValue"
+              @focus="focusHandler"
+              @blur="blurHander"
+              :rows="rows"
+              :cols="cols"
+              :style="textareaStyle"
+              :maxlength="max"
+              ref="textarea"></textarea>
+    <div class="lm-textarea-counter"
+         v-show="showCounter && max"
+         @click="focus">
       <span>{{count}}</span>/{{max}}
     </div>
   </div>
@@ -189,8 +190,8 @@ export default {
      * @return {[type]}      [description]
      */
     scrollIntoView (time = 0) {
-      if (/iphone/i.test(navigator.userAgent)) {
-      }
+      // if (/iphone/i.test(navigator.userAgent)) {
+      // }
       // if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') {  }
       this.timer = setTimeout(() => {
         if (this.timer) clearTimeout(this.timer)

@@ -26,19 +26,19 @@
 <script>
 import Router from '@/utils/router'
 export default {
-  name: 'tabbar-item',
+  name: 'lm-tabbar-item',
   props: {
-    'showDot': {
-      'type': Boolean,
-      'default': false
+    showDot: {
+      type: Boolean,
+      default: false
     },
-    'selected': {
-      'type': Boolean,
-      'default': false
+    selected: {
+      type: Boolean,
+      default: false
     },
-    'badge': String,
-    'link': [String, Object],
-    'iconClass': String
+    badge: String,
+    link: [String, Object],
+    iconClass: String
   },
   computed: {
     /**

@@ -2,12 +2,12 @@
   <lm-template>
     <lm-navbar>toast</lm-navbar>
     <lm-group>
-      <lm-switch title="一般使用" v-model="show1"></lm-switch>
-      <lm-switch title="type为文字" v-model="show2"></lm-switch>
-      <lm-switch title="type为cancel" v-model="show3"></lm-switch>
-      <lm-switch title="type为warn" v-model="show4"></lm-switch>
-      <lm-switch title="时间为1s" v-model="show5"></lm-switch>
-      <lm-switch title="长文字" v-model="show6"></lm-switch>
+      <lm-switch label="一般使用" v-model="show1"></lm-switch>
+      <lm-switch label="type为文字" v-model="show2"></lm-switch>
+      <lm-switch label="type为cancel" v-model="show3"></lm-switch>
+      <lm-switch label="type为warn" v-model="show4"></lm-switch>
+      <lm-switch label="时间为1s" v-model="show5"></lm-switch>
+      <lm-switch label="长文字" v-model="show6"></lm-switch>
     </lm-group>
     <lm-toast :visible="show1" @on-hide="onHide">一般使用</lm-toast>
     <lm-toast :visible="show2" @on-hide="onHide" type="text">type为文字</lm-toast>
@@ -47,6 +47,7 @@ export default {
       this.show6 = false;
     },
     toastHandle (type = 'cancel', text = '取消操作') {
+      console.log(this.$lm, 'this.$lm')
       this.$lm.toast[type]({
         text: text
       })

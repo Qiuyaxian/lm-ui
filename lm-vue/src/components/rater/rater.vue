@@ -29,7 +29,7 @@
 <script>
 import { pxTorem } from '@/utils'
 export default {
-  name: 'rater',
+  name: 'lm-rater',
   created () {
     this.currentValue = parseInt(this.value)
   },

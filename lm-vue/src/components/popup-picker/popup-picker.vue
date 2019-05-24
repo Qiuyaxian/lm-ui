@@ -1,7 +1,7 @@
 <template>
   <div class="lm-popup-picker-wrapper">
     <lm-cell :borderIntent="getBorderIntent"
-             :label="title"
+             :label="label"
              @on-cell-click="onClick"
              :inlineDesc="inlineDesc" :content="value">
       <div class="lm-popup-picker-select"
@@ -52,13 +52,13 @@ import InlineDesc from '../inline-desc/inline-desc'
 import array2string from '@/filters/array2String'
 import value2name from '@/filters/value2name'
 import { uuidMixin } from '@/mixins'
-import TransferDom from '@/directives/transfer-dom'
+import { TransferDom } from '../../directives/transfer-dom'
 import { getParentProp } from '@/utils'
 const getObject = function (obj) {
   return JSON.parse(JSON.stringify(obj))
 }
 export default {
-  name: 'popup-picker',
+  name: 'lm-popup-picker',
   directives: {
     TransferDom
   },
@@ -84,7 +84,7 @@ export default {
      * [label description]
      * @type {[type]}
      */
-    title: String,
+    label: String,
     /**
      * [valueTextAlign description]
      * @type {Object}

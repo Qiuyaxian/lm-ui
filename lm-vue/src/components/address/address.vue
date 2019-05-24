@@ -3,7 +3,7 @@
     :fixed-columns="hideDistrict ? 2 : 0"
     :columns="3"
     :data="list"
-    :title="title"
+    :label="label"
     v-model="currentValue"
     show-name
     :inline-desc="inlineDesc"
@@ -45,7 +45,7 @@ export default {
     PopupPicker
   },
   props: {
-    title: {
+    label: {
       type: String,
       required: true
     },

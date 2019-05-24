@@ -1,7 +1,7 @@
 <template>
   <div class="lm-switch-wrapper lm-cell lm-cell-switch">
     <div class="lm-cell-bd">
-      <label class="lm-label" :style="labelStyle" :class="labelClass" v-html="title"></label>
+      <label class="lm-label" :style="labelStyle" :class="labelClass" v-html="label"></label>
       <inline-desc v-if="inlineDesc">{{ inlineDesc }}</inline-desc>
     </div>
     <div class="lm-cell-switch-body">
@@ -17,14 +17,15 @@ import { cleanStyle } from '@/utils'
 export default {
   name: 'lm-switch',
   props: {
-    title: {
+    label: {
       type: String,
       required: true
     },
     disabled: Boolean,
     value: {
       type: [Boolean, String, Number],
-      default: false
+      default: false,
+      required: true
     },
     inlineDesc: [String, Boolean, Number],
     preventDefault: Boolean,
@@ -39,8 +40,8 @@ export default {
       return $parent || {}
     },
     labelStyle () {
-      let isHTML = /<\/?[^>]*>/.test(this.title)
-      let width = Math.min(isHTML ? 5 : (this.title.length + 1), 14) + 'em'
+      let isHTML = /<\/?[^>]*>/.test(this.label)
+      let width = Math.min(isHTML ? 5 : (this.label.length + 1), 14) + 'em'
       return cleanStyle({
         display: 'block',
         width: this.parent.labelWidth || width,

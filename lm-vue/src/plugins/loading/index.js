@@ -1,4 +1,4 @@
-import pageLoading from '@/components/loading/loading'
+import { Loading } from '@/components/loading'
 import { mergeOptions } from '@/utils/plugin_helper'
 
 let $vm
@@ -7,10 +7,10 @@ let delayTime = null
 
 const plugin = {
   install (vue, options) {
-    const Loading = vue.extend(pageLoading)
+    const LoadingComponent = vue.extend(Loading)
 
     if (!$vm) {
-      $vm = new Loading({
+      $vm = new LoadingComponent({
         el: document.createElement('div')
       })
       document.body.appendChild($vm.$el)

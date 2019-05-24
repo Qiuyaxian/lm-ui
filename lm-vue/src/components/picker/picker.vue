@@ -16,7 +16,7 @@ import Manager from './chain'
 import value2name from '@/filters/value2name'
 import { isArray } from '@/utils'
 export default {
-  name: 'picker',
+  name: 'lm-picker',
   props: {
     data: Array,
     columns: {

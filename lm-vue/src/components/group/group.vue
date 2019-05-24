@@ -11,7 +11,7 @@
 </template>
 <script>
 export default {
-  name: 'group',
+  name: 'lm-group',
   props: {
     /**
      * [cellWidth cell 的宽度]

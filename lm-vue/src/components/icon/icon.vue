@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'icon',
+  name: 'lm-icon',
   props: {
     type: String,
     isMsg: Boolean

@@ -1,14 +1,13 @@
-import pageConfirm from '@/components/confirm/confirm'
+import { Confirm } from '@/components/confirm'
 import { mergeOptions } from '@/utils/plugin_helper'
 
 let $vm
 
 const plugin = {
   install (vue, options = {}) {
-    const Confirm = vue.extend(pageConfirm)
-
+    const ConfirmComponent = vue.extend(Confirm);
     if (!$vm) {
-      $vm = new Confirm({
+      $vm = new ConfirmComponent({
         el: document.createElement('div'),
         propsData: {
           title: ''

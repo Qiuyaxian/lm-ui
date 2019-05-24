@@ -43,8 +43,12 @@
     "isolatedModules": true,
     // 指定特殊模块的路径
     "paths": {
-      "@/*": ["src/*"],
-      "@examples/": ["examples/*"]
+      "@/*": [
+        "src/*"
+      ],
+      "@examples/": [
+        "examples/*"
+      ]
     },
     // "typeRoots": [
     //   "./types",
@@ -52,17 +56,19 @@
     // ],
     // 编译过程中需要引入的库文件的列表
     "lib": [
-      "esnext", 
-      "dom", 
-      "dom.iterable", 
+      "esnext",
+      "dom",
+      "dom.iterable",
       "scripthost",
       "es5",
       "es2015.promise"
     ]
   },
   "include": [
-    "types/*.ts",
+    "typings/*.ts",
     "examples/**/*"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

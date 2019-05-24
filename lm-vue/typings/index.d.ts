@@ -1,3 +1,3 @@
-export * from './vup-ui'
-import * as Vup from './vup-ui'
-export default Vup
+export * from './lm-ui'
+import * as lm from './lm-ui'
+export default lm

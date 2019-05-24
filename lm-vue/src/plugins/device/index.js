@@ -1,14 +1,13 @@
-import { 
-  isAndroid, 
-  isIpad, 
-  isIpod, 
-  isIphone, 
-  isWechat, 
-  isAlipay 
-} from '@/utils/device'
-
+import {
+  isAndroid,
+  isIpad,
+  isIpod,
+  isIphone,
+  isWechat,
+  isAlipay
+} from '@/utils/device';
 const plugin = {
-  install (Vue) { 
+  install (Vue) {
     const device = {
       isAndroid,
       isIpad,
@@ -17,18 +16,19 @@ const plugin = {
       isWechat,
       isAlipay
     }
-    if (!Vue.$device) {
-      Vue.$device = device
+    if (!Vue.$lm) {
+      Vue.$lm = {
+        device
+      }
     } else {
-      Vue.device = device
+      Vue.$lm.device = device
     }
     Vue.mixin({
       created: function () {
-        this.$device = Vue.$device
+        this.$lm = Vue.$lm
       }
     })
   }
 }
-
 export default plugin
 export const install = plugin.install

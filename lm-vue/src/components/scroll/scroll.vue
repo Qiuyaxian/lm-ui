@@ -71,7 +71,7 @@ const DIRECTION_H = "horizontal"; // 水平的
 const DIRECTION_V = "vertical"; // 垂直的
 const pullDownStyle = "";
 export default {
-  name: "scroll",
+  name: "lm-scroll",
   props: {
     /**
      * [wrapper 包裹名字]

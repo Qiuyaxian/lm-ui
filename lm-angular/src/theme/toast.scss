@@ -1,0 +1,34 @@
+.#{ $class-prefix } {
+  &-toast {
+    position: fixed;
+    z-index: $toast-z-index;
+    width: pxTorem(230);
+    min-height: pxTorem(230);
+    top: $toast-top;
+    left: 50%;
+    margin-left: pxTorem(-115);
+    background: rgba(17,17,17,0.7);
+    text-align: center;
+    border-radius: pxTorem(5, 2);
+    color: #FFFFFF;
+  }
+  &-toast-icon {
+    margin: pxTorem(15, 2) 0 0;
+    display: block;
+    &.weui-icon-success-no-circle{
+      &:before {
+        color: #FFFFFF;
+        font-size: pxTorem(55, 2);
+      }
+    }
+    &.weui-loading{
+      margin: pxTorem(30, 2) 0 0; 
+      @include setWidthHeight(38, 38);
+      vertical-align: baseline;
+    }
+  }
+  &-toast-content {
+    line-height: 1.6; 
+    margin: 0 0 pxTorem(15, 2);
+  }
+}

@@ -120,7 +120,20 @@ https://blog.csdn.net/qq_34551390/article/details/78270869
 |--plugins => 基于Serviceser实现 依赖注入解决(全局注册) => https://blog.csdn.net/sinat_17775997/article/details/81462750
 |
 |
+|开发方式
+| 在module.ts 中定义 组件名称,对外名称, 注册依赖(imports)=>在compents文件到constructor方法便可以直接注册使用, 组件入口(entryComponents), 最后到处整个模块
 |
+|@Injectable => 表面是一个服务，需要依赖注入 => @Injectable('参数') 代表注册到那里
+
+在整个模块里面可以添加是否自动添加全局注入 如=> https://github.com/ElemeFE/element-angular/blob/master/src/message/module.ts 
+|
+|element 框架中 server => 是作为js(类似vue的plugins)方法的调用 => 引入html 模块 => server 类对外提供插件方法调用 => 也可以继续引入其他server(类似vue的utils)
+|
+|              module => html 节点调用
+| 
+|
+|
+|resolveComponentFactory => 相当于vue.extend() => 产生html => 后续调用appendChild => 插入到body中
 |
 |
 |

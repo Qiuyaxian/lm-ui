@@ -34,10 +34,21 @@ import { PopupPicker } from './components/popup-picker'
 import { Address } from './components/address'
 import { Datetime } from './components/datetime'
 import { DatetimeRange } from './components/datetime-range'
-//指令
-import { DatetimeRange } from './components/datetime-range'
+import { Loading } from './components/loading'
+// 指令
 import { TransferDom } from './directives/transfer-dom'
-const components = [
+// 插件
+import ActionsheetPlugin from './plugins/actionsheet'
+import AddressPlugin from './plugins/address'
+import AlertPlugin from './plugins/alert'
+import DatetimePlugin from './plugins/datetime'
+import ConfirmPlugin from './plugins/confirm'
+import ConfigPlugin from './plugins/config'
+import ToastPlugin from './plugins/toast'
+import LoadingPlugin from './plugins/loading'
+import DevicePlugin from './plugins/device'
+
+const components = {
   Template,
   Navbar,
   Grid,
@@ -84,32 +95,88 @@ const components = [
   Address,
   Datetime,
   DatetimeRange
-];
-// 注册组件
-const install = function (Vue, opts = {}) {
-  components.map(component => {
-    let componentName
-    if (/template|button|switch|marquee|textarea|form|dialog|confirm|alert|address/i.test(component.name)) {
-      componentName = component.name
-    } else {
-      componentName = `lm-${component.name}`
-    }
-    Vue.component(componentName, component);
-  });
-  // Vue.directive('transfer-dom', TransferDom);
-  // 注册组件
-  // Vue.prototype.$vup = {
-  //   'alert': AlertPlugin
-  // };
 };
-
+// 全局注册组件
+const install = function (Vue, opts = {}) {
+  Object.values(components).map(component => {
+    Vue.component(component.name, component);
+  });
+  // 注册指令
+  Vue.directive('transfer-dom', TransferDom);
+  // 注册组件
+  Vue.prototype.$lm = {
+    'actionsheet': ActionsheetPlugin,
+    'address': AddressPlugin,
+    'alert': AlertPlugin,
+    'datetime': DatetimePlugin,
+    'confirm': ConfirmPlugin,
+    'config': ConfigPlugin,
+    'toast': ToastPlugin,
+    'loading': LoadingPlugin,
+    'device': DevicePlugin
+  };
+};
 // auto install
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
-
 export {
-  ...components,
+  install,
+  Template,
+  Navbar,
+  Grid,
+  GridItem,
+  Button,
+  Group,
+  GroupTitle,
+  Cell,
+  CellPreview,
+  Badge,
+  Tab,
+  TabItem,
+  Toast,
+  Switch,
+  Flexbox,
+  FlexboxItem,
+  Divider,
+  Marquee,
+  MarqueeItem,
+  CountUp,
+  CountDown,
+  Panel,
+  PanelItem,
+  Textarea,
+  Form,
+  FormItem,
+  FormPreview,
+  Rater,
+  Search,
+  Spinner,
+  Tabbar,
+  TabbarItem,
+  Clock,
+  Dialog,
+  Confirm,
+  Alert,
+  Actionsheet,
+  Icon,
+  Scroll,
+  Picker,
+  Popup,
+  PopupHeader,
+  PopupPicker,
+  Address,
+  Datetime,
+  DatetimeRange,
   TransferDom,
-  install
+  ActionsheetPlugin,
+  AddressPlugin,
+  AlertPlugin,
+  DatetimePlugin,
+  ConfirmPlugin,
+  ConfigPlugin,
+  ToastPlugin,
+  LoadingPlugin,
+  DevicePlugin
 }
+export default install;

@@ -9,7 +9,7 @@
 <script>
 import { cleanStyle, getParentProp } from '@/utils'
 export default {
-  name: 'cell-preview',
+  name: 'lm-cell-preview',
   props: {
     /**
      * [list 列表]

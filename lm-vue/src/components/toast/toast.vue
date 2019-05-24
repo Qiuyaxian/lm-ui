@@ -16,7 +16,7 @@
 import { safariFixMixin } from '@/mixins'
 import { pxTorem } from '@/utils'
 export default {
-  name: 'toast',
+  name: 'lm-toast',
   mixins: [ safariFixMixin ],
   props: {
     visible: Boolean,

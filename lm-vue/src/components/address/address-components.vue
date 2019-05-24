@@ -46,7 +46,7 @@ const getObject = function (obj) {
   return JSON.parse(JSON.stringify(obj))
 }
 export default {
-  name: 'address-components',
+  name: 'lm-address-components',
   directives: {
     TransferDom
   },

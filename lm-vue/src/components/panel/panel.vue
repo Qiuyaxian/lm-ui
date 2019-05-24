@@ -25,7 +25,7 @@
 <script>
 import Router from '@/utils/router'
 export default {
-  name: 'panel',
+  name: 'lm-panel',
   props: {
     header: String,
     footer: Object,

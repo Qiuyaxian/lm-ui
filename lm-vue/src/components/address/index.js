@@ -1,2 +1,3 @@
 import Address from './address'
-export { Address }
+import AddressComponent from './address-components'
+export { Address, AddressComponent }

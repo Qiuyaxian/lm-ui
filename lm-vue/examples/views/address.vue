@@ -5,7 +5,7 @@
       <lm-address
         @on-hide="logHide"
         @on-show="logShow"
-        title="App.vue"
+        label="App.vue"
         v-model="value"
         :list="addressData"
         :show.sync="showAddress"
@@ -13,11 +13,13 @@
         placeholder="请选择地址">
       </lm-address>
     </lm-group>
+    <lm-button type="primary">js 调用</lm-button>
   </lm-template>
 </template>
 <script>
 import ChinaAddressV4Data from '@/components/address/china_address_v4.json'
 export default {
+
   methods: {
     logHide (str) {
       console.log('on-hide', str)

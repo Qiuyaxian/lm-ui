@@ -22,7 +22,7 @@
 <script>
 import Router from '@/utils/router'
 export default {
-  name: 'grid-item',
+  name: 'lm-grid-item',
   props: {
     /**
      * [icon 图标]

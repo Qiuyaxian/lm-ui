@@ -12,11 +12,10 @@
 </template>
 <script>
 export default {
-  name: 'group-title',
+  name: 'lm-group-title',
   props: {
     headerLabel: String,
-    headerValue: String,
-    previewItems: Array
+    headerValue: String
   }
 };
 </script>

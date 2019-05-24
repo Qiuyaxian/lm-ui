@@ -1,14 +1,19 @@
 <template>
-  <span class="lm-spinner" :class="className" :style="styles"><slot></slot></span>
+  <span class="lm-spinner"
+        :class="className"
+        :style="styles">
+    <slot></slot>
+  </span>
 </template>
-
 <script>
 import Spinner from '@/utils/spinner';
 const types = ['android', 'ios', 'ios-small', 'bubbles', 'circles', 'crescent', 'dots', 'lines', 'ripple', 'spiral']
 export default {
-  name: 'spinner',
+  name: 'lm-spinner',
   mounted () {
     this.$nextTick(() => {
+      let parentNode = this.$el.parentNode;
+      if (parentNode) parentNode.style.lineHeight = 0;
       /**
        * 实例化Spinner对象
        */
@@ -59,7 +64,7 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-@import '~@/theme/index.scss';
+@import "~@/theme/index.scss";
 .#{ $class-prefix } {
   &-spinner {
     stroke: $spinner-color;

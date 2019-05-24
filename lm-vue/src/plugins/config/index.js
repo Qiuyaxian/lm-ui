@@ -3,18 +3,16 @@
  */
 export default {
   install (Vue, config = {}) {
-    if (!Vue.lm) {
-      Vue.lm = {
+    if (!Vue.$lm) {
+      Vue.$lm = {
         config
       }
     } else {
-      Vue.lm.config = config
+      Vue.$lm.config = config
     }
-
     if (typeof window !== 'undefined') {
-      window.lm_CONFIG = config
+      window.LM_CONFIG = config
     }
-
     Vue.mixin({
       created: function () {
         if (this.$lm) {

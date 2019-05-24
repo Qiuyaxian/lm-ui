@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'divider'
+  name: 'lm-divider'
 }
 </script>
 

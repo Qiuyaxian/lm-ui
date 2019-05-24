@@ -9,7 +9,7 @@
     </lm-group>
     <lm-divider>手动倒计时</lm-divider>
     <lm-group>
-      <lm-switch title="手动倒计时" v-model="start"></lm-switch>
+      <lm-switch label="手动倒计时" v-model="start"></lm-switch>
       <lm-cell label="倒计时">
         <lm-count-down :start="start" v-model="time2" @on-finish="finish" v-show="show"></lm-count-down>
       </lm-cell>

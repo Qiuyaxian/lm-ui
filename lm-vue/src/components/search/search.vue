@@ -33,7 +33,7 @@
 import { resetScrollIntoView } from '@/utils'
 import { uuidMixin } from '@/mixins'
 export default {
-  name: 'search',
+  name: 'lm-search',
   mixins: [ uuidMixin ],
   props: {
     /**
@@ -201,7 +201,7 @@ export default {
       this.$emit('on-cancel');
     },
     /**
-     * [handleResultClick 注册完成事件]
+     * [handleResultClick 注册完成事件搜索框返回结果绑定点击]
      * @param  {[type]} item [description]
      * @return {[type]}      [description]
      */

@@ -24,7 +24,7 @@
 <script>
 import { childMixin } from '@/mixins';
 export default {
-  name: 'tab-item',
+  name: 'lm-tab-item',
   mixins: [childMixin],
   props: {
     /**

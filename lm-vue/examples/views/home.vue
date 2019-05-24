@@ -15,7 +15,6 @@
     </lm-scroll>
   </lm-template>
 </template>
-
 <script>
 export default {
   data () {
@@ -47,6 +46,10 @@ export default {
             {
               label: "actionsheet",
               link: "/actionsheet"
+            },
+            {
+              label: "popup",
+              link: "/popup"
             },
             {
               label: "picker",
@@ -82,7 +85,7 @@ export default {
               link: "/button"
             },
             {
-              label: "bell",
+              label: "cell",
               link: "/cell"
             },
             {

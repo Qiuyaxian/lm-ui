@@ -2,7 +2,7 @@
 import { CountUp } from 'countup.js'
 import { extend } from '@/utils'
 export default {
-  name: 'count-up',
+  name: 'lm-count-up',
   created () {
     this.$nextTick(() => {
       let options = extend({
@@ -71,11 +71,7 @@ export default {
      */
     options: {
       type: Object,
-      default () {
-        return {
-
-        }
-      }
+      default: () => {}
     }
   },
   render (h) {

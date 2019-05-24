@@ -4,6 +4,7 @@
   "description": "A Vue.js project",
   "author": "Qiuyaxian <1776296049@qq.com>",
   "private": true,
+  "typings": "typings/index.d.ts",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",

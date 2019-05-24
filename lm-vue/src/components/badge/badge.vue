@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'badge',
+  name: 'lm-badge',
   props: {
     text: [String, Number],
     type: {

@@ -20,7 +20,7 @@ let format = '%D 天 %H 小时 %M 分 %S 秒';
 //   }
 // }
 export default {
-  name: 'clock',
+  name: 'lm-clock',
   mounted () {
     this.$nextTick(() => {
       this.slot = this.$el.querySelector('.lm-clocker-tpl');

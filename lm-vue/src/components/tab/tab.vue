@@ -22,7 +22,7 @@
 <script>
 import { parentMixin } from '@/mixins'
 export default {
-  name: 'tab',
+  name: 'lm-tab',
   mixins: [ parentMixin ],
   mounted () {
     // stop bar anmination on first loading

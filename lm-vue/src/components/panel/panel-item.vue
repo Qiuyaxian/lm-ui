@@ -29,7 +29,7 @@ import Router from '@/utils/router'
 import { hasClass, getParentNode } from '@/utils/dom'
 import { getParentProp } from '@/utils'
 export default {
-  name: 'panel-item',
+  name: 'lm-panel-item',
   props: {
     type: {
       type: String,

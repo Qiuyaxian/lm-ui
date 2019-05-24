@@ -39,7 +39,7 @@
 import inlineDesc from '../inline-desc/inline-desc'
 import { cleanStyle, getParentProp, Router } from '@/utils'
 export default {
-  name: 'cell',
+  name: 'lm-cell',
   props: {
     /**
      * [label 左侧文字内容]
@@ -70,7 +70,7 @@ export default {
      * [valueAlign 左边对齐方式]
      * @type {Array}
      */
-    valueAlign: [String, Boolean, Number],
+    valueAlign: String,
     /**
      * [borderIntent 是否开启边框]
      * @type {Object}

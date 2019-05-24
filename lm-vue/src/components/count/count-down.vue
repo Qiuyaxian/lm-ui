@@ -1,10 +1,12 @@
 <template>
-  <span><slot>{{ message }}</slot>{{currentTime}}</span>
+  <span>
+    <slot v-if="message">{{ message }}</slot>{{currentTime}}
+  </span>
 </template>
 
 <script>
 export default {
-  name: 'count-down',
+  name: 'lm-count-down',
   props: {
     /**
      * [value 绑定值]

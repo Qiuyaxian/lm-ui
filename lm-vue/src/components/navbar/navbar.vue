@@ -31,7 +31,7 @@
 <script>
 import { extend } from '@/utils/tools'
 export default {
-  name: 'navbar',
+  name: 'lm-navbar',
   props: {
     /**
      * [leftOptions 左侧返回按钮]

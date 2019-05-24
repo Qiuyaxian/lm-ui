@@ -1,0 +1,92 @@
+.#{$class-prefix} {
+  &-tabbar {
+    display: flex;
+    width: 100%;
+    position: relative;
+    background-color: $tabbar-background-color;
+    overflow: hidden;
+    &:before {
+      @include borderStype(top);
+    }
+  }
+  &-tabbar-absolute{
+    position: absolute;
+    z-index: 500;
+    bottom: 0;
+  }
+  &-tabbar-item {
+    display: block; 
+    flex: 1;
+    padding: $tab-tabbar-item-padding-top 0 0;
+    font-size: 0;
+    color: $tabbar-text-color;
+    text-align: center;
+    text-decoration: none;
+    -webkit-tap-highlight-color: $tabbar-tap-highlight-color;
+  }
+  &-tabbar-icon {
+    display: inline-block;
+    width: $tab-tabbar-icon;
+    height: $tab-tabbar-icon;
+    position: relative;
+    & > i {
+      font-size: pxTorem(24, 2);
+      color: $tabbar-icon-color;
+    }
+    & > sup {
+      position: absolute;
+      top: pxTorem(-8, 2);
+      left: 100%;
+      transform: translateX(-50%);
+      z-index: 101;
+    }
+    & > img {
+      width: 100%;
+      height: 100%;
+    }
+    & .icon-svg {
+      width: 1em !important;
+      height: 1em !important;
+      fill: currentColor;
+      overflow: hidden;
+      line-height: 1;
+      font-size: $global-iconsize;
+      color: $tabbar-icon-color;
+    }
+  }
+  &-tabbar-item {
+    &.#{$class-prefix}-bar-item-on{
+      & .#{$class-prefix}-tabbar-icon,
+      & .#{$class-prefix}-tabbar-icon > i,
+      & .#{$class-prefix}-tabbar-icon > span,
+      & .#{$class-prefix}-tabbar-label, 
+      & .icon-svg {
+        color: $tabbar-icon-active-color;
+      }
+    }
+    
+  }  
+  &-tabbar-label{
+    text-align: center;
+    color: $tabbar-label; 
+    font-size: $tab-tabbar-label-fontsize;
+    line-height: $tab-tabbar-label-lineheight; 
+    padding: 0;
+    margin: 0;
+  }
+  .#{$class-prefix}-tabbar-item {
+    &.#{$class-prefix}-tabbar-simple{
+      padding: 0;
+      height: $tabbar-simple-height;
+      line-height: $tabbar-simple-line-height;
+    } 
+  }
+  .#{$class-prefix}-tabbar-simple  {
+    & .#{$class-prefix}-tabbar-label{
+      font-size: $tabbar-simple-fontsize;
+      line-height: $tabbar-simple-line-height;
+    } 
+  }
+}
+
+

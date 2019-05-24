@@ -14,7 +14,7 @@
 import Popuper from './popuper'
 import { addClass, removeClass } from '@/utils'
 export default {
-  name: 'popup',
+  name: 'lm-popup',
   props: {
     value: Boolean,
     height: {

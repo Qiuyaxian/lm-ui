@@ -35,7 +35,7 @@ import { uuidMixin } from '@/mixins'
 import { format } from '@/utils';
 
 export default {
-  name: 'datetime',
+  name: 'lm-datetime',
   mixins: [uuidMixin],
   components: {
     Group,

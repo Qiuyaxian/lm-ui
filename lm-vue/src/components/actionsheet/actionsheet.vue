@@ -56,7 +56,7 @@
 </template>
 <script>
 export default {
-  name: 'actionsheet',
+  name: 'lm-actionsheet',
   mounted () {
     this.hasHeaderSlot = !!this.$slots.header
     this.$nextTick(() => {

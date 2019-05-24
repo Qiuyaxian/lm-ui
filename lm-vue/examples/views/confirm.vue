@@ -2,26 +2,26 @@
   <lm-template>
     <lm-navbar>confirm</lm-navbar>
     <lm-group>
-      <lm-switch title="Toggle" v-model="show"></lm-switch>
+      <lm-switch label="Toggle" v-model="show"></lm-switch>
     </lm-group>
     <lm-group>
-      <lm-switch title="Toggle show-input" v-model="show3"></lm-switch>
+      <lm-switch label="Toggle show-input" v-model="show3"></lm-switch>
     </lm-group>
     <lm-group>
-      <lm-switch title="Set default input value" v-model="show5"></lm-switch>
+      <lm-switch label="Set default input value" v-model="show5"></lm-switch>
     </lm-group>
     <lm-group>
-      <lm-switch title="Toggle_android" v-model="show2"></lm-switch>
+      <lm-switch label="Toggle_android" v-model="show2"></lm-switch>
     </lm-group>
     <lm-group>
-      <lm-switch :title="'closeOnConfirm=false'" v-model="show4"></lm-switch>
+      <lm-switch :label="'closeOnConfirm=false'" v-model="show4"></lm-switch>
     </lm-group>
     <lm-group>
-      <lm-switch :title="'showCancelButton=false'" v-model="show6"></lm-switch>
+      <lm-switch :label="'showCancelButton=false'" v-model="show6"></lm-switch>
     </lm-group>
     <div v-transfer-dom>
       <lm-confirm v-model="show"
-      title="Confirm deleting the item"
+      label="Confirm deleting the item"
       @on-cancel="onCancel"
       @on-confirm="onConfirm"
       @on-show="onShow"
@@ -33,7 +33,7 @@
     <div v-transfer-dom>
       <lm-confirm v-model="show3"
       show-input
-      :title="'Confirm deleting the item'"
+      :label="'Confirm deleting the item'"
       :input-attrs="{type: 'number'}"
       @on-cancel="onCancel"
       @on-confirm="onConfirm"
@@ -46,7 +46,7 @@
       <lm-confirm v-model="show5"
       show-input
       ref="confirm5"
-      title="Confirm deleting the item"
+      label="Confirm deleting the item"
       @on-cancel="onCancel"
       @on-confirm="onConfirm5"
       @on-show="onShow5"
@@ -56,7 +56,7 @@
     <br>
     <div v-transfer-dom>
       <lm-confirm v-model="show2"
-      :title="'Confirm deleting the item'"
+      :label="'Confirm deleting the item'"
       theme="android"
       @on-cancel="onCancel"
       @on-confirm="onConfirm"
@@ -70,7 +70,7 @@
       <lm-confirm
       v-model="show4"
       :close-on-confirm="false"
-      :title="'Confirm deleting the item'"
+      :label="'Confirm deleting the item'"
       @on-confirm="onConfirm4">
         <p style="text-align:center;">Are you sure?</p>
       </lm-confirm>
@@ -80,7 +80,7 @@
       <lm-confirm
       v-model="show6"
       :show-cancel-button="false"
-      :title="'Confirm deleting the item'"
+      :label="'Confirm deleting the item'"
       @on-confirm="onConfirm">
         <p style="text-align:center;">Are you sure</p>
       </lm-confirm>

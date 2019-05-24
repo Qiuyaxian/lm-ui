@@ -1,7 +1,6 @@
 import objectAssign from 'object-assign'
-import pageToast from '@/components/toast/toast'
+import { Toast } from '../../components/toast'
 import { mergeOptions } from '@/utils/plugin_helper'
-
 let $vm;
 let watcher;
 let opt = {
@@ -12,10 +11,10 @@ let opt = {
 };
 const plugin = {
   install (vue, pluginOptions = {}) {
-    const Toast = vue.extend(pageToast)
+    const ToastComponent = vue.extend(Toast)
 
     if (!$vm) {
-      $vm = new Toast({
+      $vm = new ToastComponent({
         el: document.createElement('div')
       })
       document.body.appendChild($vm.$el)

@@ -2,7 +2,7 @@
   <lm-template>
     <lm-navbar>switch</lm-navbar>
     <lm-group>
-      <lm-switch title="switch" v-model="value"></lm-switch>
+      <lm-switch label="switch" v-model="value"></lm-switch>
     </lm-group>
   </lm-template>
 </template>

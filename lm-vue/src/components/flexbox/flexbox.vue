@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'flexbox',
+  name: 'lm-flexbox',
   props: {
     /**
      * [gutter 间距]

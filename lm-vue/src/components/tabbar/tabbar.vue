@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-  name: 'tabbar',
+  name: 'lm-tabbar',
   props: {
     iconClass: String,
     value: Number

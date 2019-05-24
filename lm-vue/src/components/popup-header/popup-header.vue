@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'popup-header',
+  name: 'lm-popup-header',
   props: {
     leftText: String,
     rightText: String,

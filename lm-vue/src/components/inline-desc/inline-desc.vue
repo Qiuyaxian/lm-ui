@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'inline-desc'
+  name: 'lm-inline-desc'
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <popup-picker :data="list" :title="title" :display-format="cellFormat" v-model="currentValue" :inline-desc="inlineDesc" :placeholder="placeholder" @on-hide="emitHide" @on-show="$emit('on-show')" :value-text-align="valueTextAlign" :column-width="[1/2, 1/6]"></popup-picker>
+  <popup-picker :data="list" :label="label" :display-format="cellFormat" v-model="currentValue" :inline-desc="inlineDesc" :placeholder="placeholder" @on-hide="emitHide" @on-show="$emit('on-show')" :value-text-align="valueTextAlign" :column-width="[1/2, 1/6]"></popup-picker>
 </template>
 
 <script>
@@ -8,12 +8,12 @@ import PopupPicker from '../popup-picker/popup-picker'
 import { formatRange } from '@/utils'
 import { numberRange } from '@/utils/number'
 export default {
-  name: 'datetime-range',
+  name: 'lm-datetime-range',
   components: {
     PopupPicker
   },
   props: {
-    title: {
+    label: {
       type: String,
       required: true
     },

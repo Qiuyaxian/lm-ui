@@ -1,4 +1,4 @@
-import pageAlert from '@/components/page-components/page-alert/page-alert'
+import { Alert } from '../../components/alert'
 import { mergeOptions } from '@/utils/plugin_helper'
 
 export function createVM (Vue) {
@@ -6,8 +6,8 @@ export function createVM (Vue) {
     console.error('[lm] Alert plugin cannot be used in ssr.')
     return
   } 
-  const Alert = Vue.extend(pageAlert)
-  const $vm = new Alert({
+  const AlertComponent = Vue.extend(Alert)
+  const $vm = new AlertComponent({
     el: document.createElement('div')
   })
   document.body.appendChild($vm.$el)

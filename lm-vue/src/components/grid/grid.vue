@@ -9,7 +9,7 @@
 </template>
 <script>
 export default {
-  name: 'grid',
+  name: 'lm-grid',
   data () {
     return {
       childrenSize: 3

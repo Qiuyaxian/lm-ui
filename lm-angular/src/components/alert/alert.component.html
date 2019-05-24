@@ -1,0 +1,18 @@
+<div class="vup-alert">
+  <vup-dialog
+    [show]="show"
+    (emitHide)="emitHide"
+    (emitShow)="emitShow"
+    ><div class="vup-dialog__hd">
+      <strong class="vup-dialog__title">提示</strong>
+    </div><div class="vup-dialog__bd">
+      消息发送成功
+      <!-- <ng-content v-html="content">
+      </ng-content> -->
+    </div><div class="vup-dialog__ft">
+      <a href="javascript:;"
+        class="vup-dialog__btn vup-dialog__btn_primary"
+        (click)="hideHandle()">{{ buttonText || '确定' }}</a>
+    </div>
+  </vup-dialog>
+</div>

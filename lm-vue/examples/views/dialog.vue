@@ -2,11 +2,11 @@
   <lm-template>
     <lm-navbar>Dialog</lm-navbar>
     <lm-group>
-      <lm-switch v-model="show" title="Toggle"></lm-switch>
-      <lm-switch v-model="show2" title="use .sync"></lm-switch>
-      <lm-switch v-model="showToast" title="show toast"></lm-switch>
-      <lm-switch v-model="showHideOnBlur" title="hide on clicking mask"></lm-switch>
-      <lm-switch v-model="showDialogStyle" title="Toggle" inline-desc="custom dialog style"></lm-switch>
+      <lm-switch v-model="show" label="Toggle"></lm-switch>
+      <lm-switch v-model="show2" label="use .sync"></lm-switch>
+      <lm-switch v-model="showToast" label="show toast"></lm-switch>
+      <lm-switch v-model="showHideOnBlur" label="hide on clicking mask"></lm-switch>
+      <lm-switch v-model="showDialogStyle" label="Toggle" inline-desc="custom dialog style"></lm-switch>
     </lm-group>
 
     <div v-transfer-dom>

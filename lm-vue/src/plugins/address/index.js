@@ -1,5 +1,5 @@
 import objectAssign from 'object-assign'
-import AddressComponents from '@/components/address/address-components'
+import { AddressComponent } from '@/components/address'
 import { mergeOptions } from '@/utils/plugin_helper'
 
 let $vm
@@ -7,7 +7,7 @@ let watcher
 
 const plugin = {
   install (vue, pluginOptions = {}) {
-    const Address = vue.extend(AddressComponents);
+    const Address = vue.extend(AddressComponent);
     if (!$vm) {
       $vm = new Address({
         el: document.createElement('div')

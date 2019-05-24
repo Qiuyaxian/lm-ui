@@ -1,0 +1,16 @@
+<div class="vup-x-dialog vup-dialog-absolute">
+  <div 
+    [@MaskAnimation]="show" 
+    class="vup-mask" 
+    (click)="hide()" 
+    [style]="maskStyle()">
+  </div>
+
+  <div 
+   [@DialogAnimation]="show" 
+   [ngClass]="dialogClass"  
+   [style]="dialogStyle"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>

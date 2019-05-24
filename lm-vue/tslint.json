@@ -26,6 +26,7 @@
     "no-trailing-whitespace": true,
     "no-unused-variable": [true],
     "no-var-keyword": true,
+    "no-import-side-effect": 0,
     "one-variable-per-declaration": [false, "ignore-for-loop"],
     "triple-equals": [false, "allow-null-check"],
     "use-isnan": false,
