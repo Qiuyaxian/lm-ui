@@ -332,9 +332,3 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-@import "~@/theme/index.scss";
-@import "~@/theme/cell.scss";
-@import "~@/theme/scroller.scss";
-@import "~@/theme/datetime.scss";
-</style>

@@ -40,6 +40,7 @@
         <div class="lm-actionsheet-cell"
           v-for="(text, key) in menus"
           :key="key"
+          :data-key="key"
           @click="onMenuClick(text, key)"
           v-html="text.label || text"
           :class="`lm-actionsheet-menu-${text.type || 'default'}`">
@@ -96,6 +97,7 @@ export default {
       this.$emit(this.show ? 'on-after-show' : 'on-after-hide')
     },
     onMenuClick (text, key) {
+      console.log(text, '---', key, this.menus, 'text, key')
       if (typeof text === 'string') {
         this.emitEvent('on-click-menu', key, text)
       } else {
@@ -157,35 +159,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/mask.scss';
-@import '~@/theme/actionsheet.scss';
-.#{$class-prefix} {
-  &-actionsheet-menu-primary {
-    color: $actionsheet-label-primary-color;
-  }
-  &-actionsheet-menu-warn {
-    color: $actionsheet-label-warn-color;
-  }
-  &-actionsheet-menu-default {
-    color: $actionsheet-label-default-color;
-  }
-  &-actionsheet-menu-disabled {
-    color: $actionsheet-label-disabled-color;
-  }
-  &-actionsheet-mask-enter,
-  &-actionsheet-mask-leave-active,
-  &-android-actionsheet-enter,
-  &-android-actionsheet-leave-active {
-    opacity: 0;
-  }
-  &-actionsheet-mask-leave-active,
-  &-actionsheet-mask-enter-active,
-  &-android-actionsheet-leave-active,
-  &-android-actionsheet-enter-active {
-    transition: opacity 300ms!important;
-  }
-}
-</style>

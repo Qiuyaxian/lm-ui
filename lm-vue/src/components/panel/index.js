@@ -1,7 +1,5 @@
 import Panel from './panel'
-import PanelItem from './panel-item'
-
-export {
-  Panel,
-  PanelItem
-}
+Panel.install = function(Vue) {
+  Vue.component(Panel.name, Panel);
+};
+export default Panel

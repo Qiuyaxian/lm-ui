@@ -73,6 +73,7 @@ export default {
         },
         onClose () {
           _this.show = false
+
           if (window.__$lmPopups && Object.keys(window.__$lmPopups).length > 1) return
           if (document.querySelector('.lm-popup-dialog.lm-popup-mask-disabled')) return
           setTimeout(() => {
@@ -199,82 +200,3 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-/*@import '~@/styles/index.scss';*/
-@import '~@/theme/function.scss';
-@import '~@/theme/variables.scss';
-@import '~@/theme/modal.scss';
-.#{ $class-prefix } {
-  &-popup-dialog {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background: $popup-background-color;
-    z-index: 501;
-    transition-property: transform;
-    transition-duration: 300ms;
-    max-height: 100%;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  /*&-popup-dialog.#{ $class-prefix }-popup-show {
-    transform: translate(0, 100%);
-  }*/
-  &-popup-dialog.#{ $class-prefix }-popup-left {
-    width: auto;
-    height: 100%;
-    top: 0;
-    right: auto;
-    bottom: auto;
-    left: 0;
-  }
-  &-popup-dialog.#{ $class-prefix }-popup-right {
-    width: auto;
-    height: 100%;
-    top: 0;
-    right: 0;
-    bottom: auto;
-    left: auto;
-  }
-  &-popup-dialog.#{ $class-prefix }-popup-top {
-    width: 100%;
-    top: 0;
-    right: auto;
-    bottom: auto;
-    left: 0;
-  }
-  &-popup-mask {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    tap-highlight-color: rgba(0,0,0,0);
-    z-index: -1;
-    transition: opacity 400ms;
-  }
-  &-popup-mask.#{ $class-prefix }-popup-show {
-    opacity: 1;
-  }
-  &-popup-animate-bottom-enter,
-  &-popup-animate-bottom-leave-active {
-    transform: translate3d(0, 100%, 0);
-  }
-  &-popup-animate-left-enter,
-  &-popup-animate-left-leave-active {
-    transform: translate3d(-100%, 0, 0);
-  }
-  &-popup-animate-right-enter,
-  &-popup-animate-right-leave-active {
-    transform: translate3d(100%, 0, 0);
-  }
-  &-popup-animate-top-enter,
-  &-popup-animate-top-leave-active {
-    transform: translate3d(0, -100%, 0);
-  }
-}
-</style>

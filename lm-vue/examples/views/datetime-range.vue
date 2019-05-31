@@ -1,12 +1,12 @@
 <template>
-  <lm-template>
-    <lm-navbar>datetime</lm-navbar>
+  <lm-page>
+    <lm-header>datetime</lm-header>
     <lm-group>
       <lm-cell label="左边" placeholder="请选择"></lm-cell>
       <lm-cell label="左边" placeholder="请选择"></lm-cell>
       <lm-datetime-range label="请选择" start-date="2017-01-01" end-date="2017-02-02" :format="'YYYY年MM月DD日'" v-model="valueRange" @on-change="change"></lm-datetime-range>
       </lm-group>
-  </lm-template>
+  </lm-page>
 </template>
 
 <script>

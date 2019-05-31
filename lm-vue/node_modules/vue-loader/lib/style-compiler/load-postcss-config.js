@@ -7,13 +7,6 @@ function isObject (val) {
 }
 
 module.exports = function loadPostcssConfig (loaderContext, inlineConfig = {}) {
-  if (inlineConfig.useConfigFile === false) {
-    return Promise.resolve({
-      plugins: inlineConfig.plugins || [],
-      options: inlineConfig.options || {}
-    })
-  }
-
   if (process.env.VUE_LOADER_TEST || !loaded) {
     const config = inlineConfig.config || {}
     const ctx = { webpack: loaderContext }
@@ -23,12 +16,9 @@ module.exports = function loadPostcssConfig (loaderContext, inlineConfig = {}) {
     loaded = load(ctx, config.path, { argv: false }).catch(err => {
       // postcss-load-config throws error when no config file is found,
       // but for us it's optional. only emit other errors
-      if (err.message.indexOf('No PostCSS Config found') >= 0) {
-        return
+      if (err.message.indexOf('No PostCSS Config found') < 0) {
+        loaderContext.emitError(err)
       }
-      const friendlyErr = new Error(`Error loading PostCSS config: ${err.message}`)
-      Error.captureStackTrace(friendlyErr, err)
-      loaderContext.emitError(friendlyErr)
     })
   }
 

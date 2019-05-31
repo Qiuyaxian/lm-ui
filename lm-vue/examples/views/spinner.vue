@@ -1,10 +1,10 @@
 <template>
-  <lm-template>
-    <lm-navbar>Spinner</lm-navbar>
+  <lm-page>
+    <lm-header>Spinner</lm-header>
     <lm-group>
       <lm-cell  v-for="(type, index) in types" :label="type" :key="index"><lm-spinner :type="type"></lm-spinner></lm-cell>
     </lm-group>
-  </lm-template>
+  </lm-page>
 </template>
 <script>
 export default {

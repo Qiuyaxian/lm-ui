@@ -16,14 +16,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/iconfont.scss';
-/**
-following styles will be removed after v3.0.0
-*/
-.icon-big:before {
-  font-size: 93px;
-}
-</style>

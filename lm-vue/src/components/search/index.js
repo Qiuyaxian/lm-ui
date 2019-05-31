@@ -1,2 +1,5 @@
 import Search from './search'
-export { Search }
+Search.install = function(Vue) {
+  Vue.component(Search.name, Search);
+};
+export default Search

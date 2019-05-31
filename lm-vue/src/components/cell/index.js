@@ -1,7 +1,5 @@
 import Cell from './cell'
-import CellPreview from './cell-preview'
-
-export {
-  Cell,
-  CellPreview
-}
+Cell.install = function(Vue) {
+  Vue.component(Cell.name, Cell);
+};
+export default Cell

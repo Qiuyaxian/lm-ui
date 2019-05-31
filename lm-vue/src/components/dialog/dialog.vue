@@ -1,6 +1,6 @@
 <template>
   <div
-    class="lm-x-dialog"
+    class="lm-dialog-wrapper"
     :class="{'lm-dialog-absolute': layout === 'PAGE_VIEW'}">
     <transition :name="maskTransition">
       <div class="lm-mask" @click="hide" v-show="show" :style="maskStyle"></div>
@@ -105,20 +105,3 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/modal.scss';
-@import '~@/theme/transition.scss';
-@import '~@/theme/mask.scss';
-@import '~@/theme/dialog.scss';
-
-.#{ $class-prefix } {
-  &-dialog-absolute {
-    .#{ $class-prefix }-dialog {
-      position: absolute
-    }
-  }
-}
-</style>

@@ -1,6 +1,6 @@
 <template>
-  <lm-template>
-    <lm-navbar>Icon</lm-navbar>
+  <lm-page>
+    <lm-header>Icon</lm-header>
     <lm-icon type="success"></lm-icon>
     <lm-icon type="info"></lm-icon>
     <lm-icon type="info-circle"></lm-icon>
@@ -23,7 +23,7 @@
     <lm-icon type="waiting" is-msg></lm-icon>
     <lm-icon type="safe_success" is-msg></lm-icon>
     <lm-icon type="safe_warn" is-msg></lm-icon>
-  </lm-template>
+  </lm-page>
 </template>
 <script>
 import TransferDom from '@/directives/transfer-dom'
@@ -50,25 +50,3 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/close.scss';
-.dialog-demo {
-  .weui-dialog{
-    border-radius: pxTorem(viewTransform(8));
-    padding-bottom: pxTorem(viewTransform(8));
-  }
-  .dialog-title {
-    line-height: pxTorem(viewTransform(30));
-    color: #666;
-  }
-  .img-box {
-    height: pxTorem(viewTransform(350));
-    overflow: hidden;
-  }
-  .lm-close {
-    margin-top: pxTorem(viewTransform(8));
-    margin-bottom: pxTorem(viewTransform(8));
-  }
-}
-</style>

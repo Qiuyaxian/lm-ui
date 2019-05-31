@@ -1,0 +1,13 @@
+@import './commom.scss';
+.lm-prompt {
+  padding-bottom: 1.6em;
+}
+.lm-prompt-msgbox {
+  width: 80%;
+  border: 1px solid #dedede;
+  border-radius: pxTorem(5, 2);
+  padding: pxTorem(4, 2) pxTorem(5, 2);
+  appearance: none;
+  outline: none;
+  font-size: pxTorem(16, 2);
+}

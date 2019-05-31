@@ -459,7 +459,8 @@ var members = {
         }
       }
     }
-
+    console.log(self.__isDecelerating, 'self.__isDecelerating')
+    
     if (!self.__isDecelerating) {
       self.scrollTo(self.__scrollTop)
     }

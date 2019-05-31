@@ -1,5 +1,5 @@
 import objectAssign from 'object-assign';
-import { Actionsheet } from '../../components/actionsheet';
+import Actionsheet from '../../components/actionsheet/index.js';
 import { mergeOptions } from '@/utils/plugin_helper';
 let $vm
 let watcher

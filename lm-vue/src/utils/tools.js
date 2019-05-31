@@ -1,7 +1,5 @@
 import objectAssign from 'object-assign'
 import Store from '@/vuex'
-import loading from './loading';
-import toast from './toast';
 import { getByTagName, querySelector } from './dom'
 /**
  * [noop 通用默认方法]

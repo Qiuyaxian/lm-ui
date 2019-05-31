@@ -1,2 +1,5 @@
 import Clock from './clock'
-export { Clock }
+Clock.install = function(Vue) {
+  Vue.component(Clock.name, Clock);
+};
+export default Clock

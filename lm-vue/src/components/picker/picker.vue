@@ -11,7 +11,7 @@
 <script>
 import Scroller from '@/utils/scroller'
 import Flexbox from '../flexbox/flexbox'
-import FlexboxItem from '../flexbox/flexbox-item'
+import FlexboxItem from '../flexbox-item/flexbox-item'
 import Manager from './chain'
 import value2name from '@/filters/value2name'
 import { isArray } from '@/utils'
@@ -261,9 +261,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '~@/theme/function.scss';
-@import '~@/theme/variables.scss';
-@import '~@/theme/scroller.scss';
-</style>

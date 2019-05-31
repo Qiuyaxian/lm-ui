@@ -1,8 +1,12 @@
 'use strict'
 const path = require('path')
+const cssnano = require('cssnano')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+// const VueLoaderPlugin = require('vue-loader/lib/plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)

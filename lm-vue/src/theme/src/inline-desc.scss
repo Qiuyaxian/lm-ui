@@ -1,0 +1,7 @@
+@import './commom.scss';
+.#{$class-prefix} {
+  &-label-desc{
+    font-size: $cell-label-desc-fontsize;
+    color: $cell-label-desc-color;
+  }
+}

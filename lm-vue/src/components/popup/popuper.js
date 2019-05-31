@@ -91,6 +91,7 @@ popupDialog.prototype.hide = function (shouldCallback = true) {
       this.mask && !/show/.test(this.mask.className) && (this.mask.style['zIndex'] = -1)
     }, 400)
   }
+  console.log(shouldCallback, this.params.hideOnBlur, 'index.js')
   shouldCallback === false && this.params.onClose && this.params.hideOnBlur && this.params.onClose(this)
   this.isShow = false
   if (isBrowser) {

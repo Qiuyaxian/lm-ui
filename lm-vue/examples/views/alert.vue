@@ -1,19 +1,19 @@
 <template>
-  <lm-template>
-    <lm-navbar>Alert</lm-navbar>
+  <lm-page>
+    <lm-header>Alert</lm-header>
     <div v-transfer-dom>
-      <lm-alert v-model="show" title="Congratulations" @on-show="onShow" @on-hide="onHide">Your Message is sent successfully~</lm-alert>
+      <lm-alert v-model="show" title="消息" @on-show="onShow" @on-hide="onHide">Your Message is sent successfully~</lm-alert>
     </div>
     <div v-transfer-dom>
-      <lm-alert v-model="show2" title="Congratulations" content="Your Message is sent successfully~"></lm-alert>
+      <lm-alert v-model="show2" title="消息" content="Your Message is sent successfully~"></lm-alert>
     </div>
     <lm-group>
-      <lm-switch title="Show Me" v-model="show"></lm-switch>
+      <lm-switch label="Show Me" v-model="show"></lm-switch>
     </lm-group>
-    <lm-group title="Prop: content">
-      <lm-switch title="Show Me" v-model="show2"></lm-switch>
+    <lm-group label="Prop: content">
+      <lm-switch label="Show Me" v-model="show2"></lm-switch>
     </lm-group>
-  </lm-template>
+  </lm-page>
 </template>
 <script lang="ts">
 import {
@@ -27,7 +27,7 @@ import {
   Watch
 } from "vue-property-decorator";
 
-import { TransferDom } from '../../src/directives/transfer-dom'
+import TransferDom from '../../src/directives/transfer-dom'
 @Component({
   directives: {
     'transfer-dom': TransferDom
@@ -101,8 +101,6 @@ export default class Alert extends Vue {
 }
 </script>
 <style lang="scss">
-@import "~@/theme/index.scss";
-@import "~@/theme/close.scss";
 .dialog-demo {
   .weui-dialog {
     border-radius: pxTorem(8, 2);

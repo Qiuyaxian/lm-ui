@@ -1,7 +1,5 @@
 import Tab from './tab'
-import TabItem from './tab-item'
-
-export {
-  Tab,
-  TabItem
-}
+Tab.install = function(Vue) {
+  Vue.component(Tab.name, Tab);
+};
+export default Tab

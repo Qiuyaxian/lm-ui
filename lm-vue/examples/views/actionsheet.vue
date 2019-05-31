@@ -1,24 +1,24 @@
 <template>
-  <lm-template>
-    <lm-navbar>Actionsheet</lm-navbar>
+  <lm-page>
+    <lm-header>Actionsheet</lm-header>
     <lm-group>
-      <lm-switch :title="'Basic Usage'" v-model="show1"></lm-switch>
-      <lm-switch :title="'Android Theme'" v-model="show7"></lm-switch>
-      <lm-switch :title="'Show cancel menu'" v-model="show2"></lm-switch>
-      <lm-switch :title="'Array menu'" v-model="show5"></lm-switch>
+      <lm-switch :label="'Basic Usage'" v-model="show1"></lm-switch>
+      <lm-switch :label="'Android Theme'" v-model="show7"></lm-switch>
+      <lm-switch :label="'Show cancel menu'" v-model="show2"></lm-switch>
+      <lm-switch :label="'Array menu'" v-model="show5"></lm-switch>
     </lm-group>
 
-    <lm-group :title="'Prevent closing when clicking mask'">
-      <lm-switch :title="'Basic Usage'" v-model="show4"></lm-switch>
+    <lm-group :label="'Prevent closing when clicking mask'">
+      <lm-switch :label="'Basic Usage'" v-model="show4"></lm-switch>
     </lm-group>
 
     <lm-group>
-      <lm-switch :title="'Menu as tips'" v-model="show3"></lm-switch>
-      <lm-switch :title="'Slot: header'" v-model="show6"></lm-switch>
-      <lm-switch :title="'Prevent auto closing'" v-model="show8"></lm-switch>
+      <lm-switch :label="'Menu as tips'" v-model="show3"></lm-switch>
+      <lm-switch :label="'Slot: header'" v-model="show6"></lm-switch>
+      <lm-switch :label="'Prevent auto closing'" v-model="show8"></lm-switch>
     </lm-group>
 
-    <lm-actionsheet v-model="show4" :menus="menus1" :close-on-clicking-mask="false" show-cancel @on-click-mask="console('on click mask')"></lm-actionsheet>
+    <lm-actionsheet @on-after-show="onAfterShow" v-model="show4" :menus="menus1" :close-on-clicking-mask="false" show-cancel @on-click-mask="console('on click mask')"></lm-actionsheet>
 
     <lm-actionsheet
       v-model="show1"
@@ -52,7 +52,7 @@
       <lm-actionsheet v-model="show8" :menus="menus8" @on-click-menu="demo8doClose" :close-on-clicking-mask="false" :close-on-clicking-menu="false">
       </lm-actionsheet>
     </div>
-  </lm-template>
+  </lm-page>
 </template>
 <script>
 import TransferDom from '@/directives/transfer-dom'
@@ -115,15 +115,11 @@ export default {
     log (str) {
       console.log(str)
     },
+    onAfterShow() {
+      console.log('onAfterShow-------');
+    },
     demo8doClose () {
       this.show8 = false;
-      // this.$vux.loading.show({
-      //   text: 'processing'
-      // })
-      // setTimeout(() => {
-      //   this.$vux.loading.hide()
-      //   this.show8 = false
-      // }, 1000)
     },
     console (msg) {
       console.log(msg)
@@ -134,6 +130,9 @@ export default {
     click5 (key, item) {
       console.log(key, item)
     },
+    clickHandle() {
+      console.log('clickHandle')
+    },
     onDelete () {
       this.showSuccess = true
     }
@@ -141,24 +140,5 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/close.scss';
-.dialog-demo {
-  .weui-dialog{
-    border-radius: pxTorem(viewTransform(8));
-    padding-bottom: pxTorem(viewTransform(8));
-  }
-  .dialog-title {
-    line-height: pxTorem(viewTransform(30));
-    color: #666;
-  }
-  .img-box {
-    height: pxTorem(viewTransform(350));
-    overflow: hidden;
-  }
-  .lm-close {
-    margin-top: pxTorem(viewTransform(8));
-    margin-bottom: pxTorem(viewTransform(8));
-  }
-}
+
 </style>

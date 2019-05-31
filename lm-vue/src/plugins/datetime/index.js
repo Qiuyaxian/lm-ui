@@ -1,7 +1,7 @@
 import DatetimePicker from '@/components/datetime/datetimepicker'
 import ObjectAssign from 'object-assign'
 /* just for importing style and avoid less-loader issue */
-import { Datetime } from '@/components/datetime' // eslint-disable-line
+import Datetime from '../../components/datetime/index' // eslint-disable-line
 
 const libs = {
   show: function (options = {}) {

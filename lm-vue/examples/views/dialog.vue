@@ -1,6 +1,6 @@
 <template>
-  <lm-template>
-    <lm-navbar>Dialog</lm-navbar>
+  <lm-page>
+    <lm-header>Dialog</lm-header>
     <lm-group>
       <lm-switch v-model="show" label="Toggle"></lm-switch>
       <lm-switch v-model="show2" label="use .sync"></lm-switch>
@@ -67,7 +67,7 @@
         </p>
       </lm-dialog>
     </div>
-  </lm-template>
+  </lm-page>
 </template>
 <script>
 import TransferDom from '@/directives/transfer-dom'
@@ -95,24 +95,5 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/close.scss';
-.dialog-demo {
-  .weui-dialog{
-    border-radius: pxTorem(viewTransform(8));
-    padding-bottom: pxTorem(viewTransform(8));
-  }
-  .dialog-title {
-    line-height: pxTorem(viewTransform(30));
-    color: #666;
-  }
-  .img-box {
-    height: pxTorem(viewTransform(350));
-    overflow: hidden;
-  }
-  .lm-close {
-    margin-top: pxTorem(viewTransform(8));
-    margin-bottom: pxTorem(viewTransform(8));
-  }
-}
+
 </style>

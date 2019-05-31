@@ -1,9 +1,5 @@
 import Form from './form'
-import FormItem from './form-item'
-import FormPreview from './form-preview'
-
-export {
-  Form,
-  FormItem,
-  FormPreview
-}
+Form.install = function(Vue) {
+  Vue.component(Form.name, Form);
+};
+export default Form

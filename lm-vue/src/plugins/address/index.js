@@ -1,5 +1,5 @@
 import objectAssign from 'object-assign'
-import { AddressComponent } from '@/components/address'
+import AddressComponent from '../../components/address/address-components.vue'
 import { mergeOptions } from '@/utils/plugin_helper'
 
 let $vm

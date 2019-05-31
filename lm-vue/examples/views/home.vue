@@ -1,7 +1,7 @@
 <template>
-  <lm-template>
-    <lm-navbar class="lm-header-fixed"
-               slot="header">demo</lm-navbar>
+  <lm-page>
+    <lm-header class="lm-header-fixed"
+               slot="header">demo</lm-header>
     <lm-scroll>
       <lm-group v-for="(group, index) in groups"
                 :key="index">
@@ -13,7 +13,7 @@
                  :link="component.link"></lm-cell>
       </lm-group>
     </lm-scroll>
-  </lm-template>
+  </lm-page>
 </template>
 <script>
 export default {

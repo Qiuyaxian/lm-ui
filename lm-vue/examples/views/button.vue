@@ -1,6 +1,6 @@
 <template>
-  <lm-template>
-    <lm-navbar>Button</lm-navbar>
+  <lm-page>
+    <lm-header>Button</lm-header>
     <div class="" style="padding: 15px;">
       <lm-button>内容</lm-button>
     </div>
@@ -12,7 +12,7 @@
       <lm-button mini>mini</lm-button>
     </div>
     <lm-button type="warn" plain>warn</lm-button>
-  </lm-template>
+  </lm-page>
 </template>
 
 <script>

@@ -1,11 +1,11 @@
 <template>
-  <lm-template>
-    <lm-navbar>九宫格</lm-navbar>
+  <lm-page>
+    <lm-header>九宫格</lm-header>
     <lm-grid :cols="3">
       <lm-grid-item v-for="(grid, gridIndex) in grids" :key="gridIndex" :label="grid.label" :icon="grid.icon">
       </lm-grid-item>
     </lm-grid>
-  </lm-template>
+  </lm-page>
 </template>
 
 <script>

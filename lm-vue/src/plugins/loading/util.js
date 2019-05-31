@@ -1,4 +1,4 @@
-import { Alert } from '../../components/alert'
+import Alert from '../../components/alert/index'
 import { mergeOptions } from '@/utils/plugin_helper'
 
 export function createVM (Vue) {

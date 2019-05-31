@@ -160,19 +160,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '~@/theme/index.scss';
-.lm-prompt {
-  padding-bottom: 1.6em;
-}
-.lm-prompt-msgbox {
-  width: 80%;
-  border: 1px solid #dedede;
-  border-radius: pxTorem(viewTransform(5));
-  padding: pxTorem(viewTransform(4)) pxTorem(viewTransform(5));
-  appearance: none;
-  outline: none;
-  font-size: pxTorem(viewTransform(16));
-}
-</style>

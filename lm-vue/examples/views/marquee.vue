@@ -1,6 +1,6 @@
 <template>
-  <lm-template>
-    <lm-navbar>Divider</lm-navbar>
+  <lm-page>
+    <lm-header>Divider</lm-header>
     <lm-divider>默认</lm-divider>
     <lm-marquee>
       <lm-marquee-item v-for="i in 5" :key="i" class="align-middle">hello world {{i}}</lm-marquee-item>
@@ -19,7 +19,7 @@
     <lm-marquee>
       <lm-marquee-item v-for="i in asyncCount" :key="i" class="align-middle">hello world {{i}}</lm-marquee-item>
     </lm-marquee>
-  </lm-template>
+  </lm-page>
 </template>
 
 <script>
@@ -37,12 +37,3 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-@import '~@/theme/index.scss';
-.align-middle{
-  font-size: pxTorem(32);
-  line-height: 1.2;
-  text-align: center;
-  color: #000;
-}
-</style>

@@ -1,3 +1,5 @@
 import Group from './group'
-import GroupTitle from './group-title'
-export { Group, GroupTitle }
+Group.install = function(Vue) {
+  Vue.component(Group.name, Group);
+};
+export default Group

@@ -1,2 +1,5 @@
 import DatetimeRange from './datetime-range'
-export { DatetimeRange }
+DatetimeRange.install = function(Vue) {
+  Vue.component(DatetimeRange.name, DatetimeRange);
+};
+export default DatetimeRange

@@ -1,4 +1,4 @@
-import { Confirm } from '@/components/confirm'
+import Confirm from '../../components/confirm/index'
 import { mergeOptions } from '@/utils/plugin_helper'
 
 let $vm

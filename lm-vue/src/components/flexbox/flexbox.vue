@@ -70,38 +70,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/flex.scss';
-.lm-flexbox {
-  width: 100%;
-  text-align: left;
-  display: flex;
-  display: -webkit-flex;
-  box-align: center;
-  align-items: center;
-  .lm-flexbox-item {
-    flex: 1;
-    -webkit-flex: 1;
-    min-width: pxTorem(viewTransform(20));
-    width: 0%;
-    &:first-child {
-      margin-left: 0!important;
-      margin-top: 0!important;
-    }
-  }
-}
-.lm-flex-row {
-  box-direction: row;
-  box-orient: horizontal;
-  flex-direction: row;
-}
-.lm-flex-col {
-  box-orient: vertical;
-  flex-direction: column;
-  > .lm-flexbox-item {
-    width: 100%;
-  }
-}
-</style>

@@ -1,10 +1,11 @@
 <template>
-  <lm-template>
-    <lm-navbar>switch</lm-navbar>
+  <lm-page>
+    <lm-header>switch</lm-header>
     <lm-group>
       <lm-switch label="switch" v-model="value"></lm-switch>
+      <lm-switch label="switch" v-model="value"></lm-switch>
     </lm-group>
-  </lm-template>
+  </lm-page>
 </template>
 
 <script>

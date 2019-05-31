@@ -8,8 +8,9 @@ import router from './router';
 // import lm from '../src';
 // Vue.use(lm);
 // 按需引入组件
-import { Template,
-  Navbar,
+import {
+  Page,
+  Header,
   Grid,
   GridItem,
   Button,
@@ -63,9 +64,10 @@ import { Template,
   ConfigPlugin,
   ToastPlugin,
   LoadingPlugin,
-  DevicePlugin } from '../src/index'
-Vue.component('lm-template', Template);
-Vue.component('lm-navbar', Navbar);
+  DevicePlugin
+} from '../src/index'
+Vue.component('lm-page', Page);
+Vue.component('lm-header', Header);
 Vue.component('lm-grid', Grid);
 Vue.component('lm-grid-item', GridItem);
 Vue.component('lm-button', Button);
@@ -111,6 +113,7 @@ Vue.component('lm-address', Address);
 Vue.component('lm-datetime', Datetime);
 Vue.component('lm-datetime-range', DatetimeRange);
 // 使用指令
+console.log(TransferDom, 'TransferDom')
 Vue.directive('transfer-dom', TransferDom);
 // 使用插件
 Vue.use(ActionsheetPlugin);

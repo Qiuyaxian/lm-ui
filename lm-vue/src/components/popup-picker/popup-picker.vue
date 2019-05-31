@@ -52,7 +52,7 @@ import InlineDesc from '../inline-desc/inline-desc'
 import array2string from '@/filters/array2String'
 import value2name from '@/filters/value2name'
 import { uuidMixin } from '@/mixins'
-import { TransferDom } from '../../directives/transfer-dom'
+import TransferDom from '../../directives/transfer-dom'
 import { getParentProp } from '@/utils'
 const getObject = function (obj) {
   return JSON.parse(JSON.stringify(obj))
@@ -305,9 +305,3 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-@import "~@/theme/index.scss";
-@import "~@/theme/cell.scss";
-@import "~@/theme/transition.scss";
-@import "~@/theme/popup.scss";
-</style>

@@ -1,6 +1,6 @@
 <template>
-  <lm-template>
-    <lm-navbar>datetime</lm-navbar>
+  <lm-page>
+    <lm-header>datetime</lm-header>
     <lm-group>
       <lm-cell label="左边" content="请选择"></lm-cell>
       <lm-datetime
@@ -12,7 +12,7 @@
         @on-confirm="onConfirm"
         @on-hide="log('hide', $event)"></lm-datetime>
       </lm-group>
-  </lm-template>
+  </lm-page>
 </template>
 
 <script>

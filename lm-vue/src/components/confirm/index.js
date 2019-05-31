@@ -1,2 +1,5 @@
 import Confirm from './confirm'
-export { Confirm }
+Confirm.install = function(Vue) {
+  Vue.component(Confirm.name, Confirm);
+};
+export default Confirm

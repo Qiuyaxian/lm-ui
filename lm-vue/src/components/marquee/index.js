@@ -1,7 +1,5 @@
 import Marquee from './marquee'
-import MarqueeItem from './marquee-item'
-
-export {
-  Marquee,
-  MarqueeItem
-}
+Marquee.install = function(Vue) {
+  Vue.component(Marquee.name, Marquee);
+};
+export default Marquee

@@ -1,6 +1,6 @@
 <template>
-  <lm-template>
-    <lm-navbar>CountDown</lm-navbar>
+  <lm-page>
+    <lm-header>CountDown</lm-header>
     <lm-divider>自动倒计时</lm-divider>
     <lm-group>
       <lm-cell label="倒计时">
@@ -14,7 +14,7 @@
         <lm-count-down :start="start" v-model="time2" @on-finish="finish" v-show="show"></lm-count-down>
       </lm-cell>
     </lm-group>
-  </lm-template>
+  </lm-page>
 </template>
 
 <script>

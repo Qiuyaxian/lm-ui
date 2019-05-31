@@ -1,7 +1,5 @@
 import Tabbar from './tabbar'
-import TabbarItem from './tabbar-item'
-
-export {
-  Tabbar,
-  TabbarItem
-}
+Tabbar.install = function(Vue) {
+  Vue.component(Tabbar.name, Tabbar);
+};
+export default Tabbar

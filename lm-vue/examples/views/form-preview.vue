@@ -1,8 +1,8 @@
 <template>
-  <lm-template>
-    <lm-navbar>Textarea</lm-navbar>
+  <lm-page>
+    <lm-header>Textarea</lm-header>
     <lm-form-preview header-label="付款金额" header-value="¥2400.00" :preview-items="list"></lm-form-preview>
-  </lm-template>
+  </lm-page>
 </template>
 <script>
 export default {
@@ -23,7 +23,4 @@ export default {
 }
 </script>
 <style lang="scss">
-@import "~@/theme/index.scss";
-@import "~@/theme/cell.scss";
-/*@import "~@/theme/form.scss";*/
 </style>

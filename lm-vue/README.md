@@ -100,6 +100,55 @@ vue
 |--plugins
 |--mixins
 |
+
+import Actionsheet from './components/actionsheet/index.js'
+import Address from './components/address/index.js'
+import Alert from './components/alert/index.js'
+import Button from './components/button/index.js'
+import Button from './components/badge/index.js'
+import Confirm from './components/confirm/index.js'
+import Cell from './components/cell/index.js'
+import Clock from './components/clock/index.js'
+import CountUp from './components/count-up/index.js'
+import CountDown from './components/count-down/index.js'
+import CellPreview from './components/cell-preview/index.js'
+import DatetimeRange from './components/datetime-range/index.js'
+import Datetime from './components/datetime/index.js'
+import Dialog from './components/dialog/index.js'
+import Divider from './components/divider/index.js'
+import Form from './components/form/index.js'
+import FormItem from './components/form-item/index.js'
+import Flexbox from './components/flexbox/index.js'
+import FlexboxItem from './components/flexbox-item/index.js'
+import FormPreview from './components/form-preview/index.js'
+import Grid from './components/grid/index.js'
+import GridItem from './components/grid-item/index.js'
+import Group from './components/group/index.js'
+import GroupTitle from './components/group-title/index.js'
+import Header from './components/header/index.js'
+import Icon from './components/icon/index.js'
+import InlineDesc from './components/inline-desc/index.js'
+import Loading from './components/loading/index.js'
+import Marquee from './components/marquee/index.js'
+import MarqueeItem from './components/marquee-item/index.js'
+import Page from './components/page/index.js'
+import Popup from './components/popup/index.js'
+import PopupHeader from './components/popup-header/index.js'
+import PopupPicker from './components/popup-picker/index.js'
+import Picker from './components/picker/index.js'
+import Panel from './components/panel/index.js'
+import PanelItem from './components/panel-item/index.js'
+import Rater from './components/rater/index.js'
+import Scroll from './components/scroll/index.js'
+import Spinner from './components/spinner/index.js'
+import Search from './components/search/index.js'
+import Switch from './components/switch/index.js'
+import Textarea from './components/textarea/index.js'
+import Toast from './components/toast/index.js'
+import Tab from './components/tab/index.js'
+import TabItem from './components/tab-item/index.js'
+import Tabbar from './components/tabbar/index.js'
+import TabbarItem from './components/tabbar-item/index.js'
 |
 |
 |  
@@ -112,10 +161,10 @@ Angular 中的服务 => 定义公共的方法，使得方法在组件之间共�
 better-scroll => http://blog.sina.com.cn/s/blog_14b2f3e150102ycrv.html
 
 https://blog.csdn.net/qq_34551390/article/details/78270869
-
+angular使用class-interface获取父组件和祖先组件 => https://blog.csdn.net/zgrbsbf/article/details/81911917
 |--NgRx => 状态管理
 |--directives => 对应 vue 的directives => https://www.cnblogs.com/zzy-run-92/p/9400308.html
-|--管道(pip)  => 对应 vue的filters (管道(pipe)是用来对输入的数据进行处理，如大小写转换、数值和日期格式化等)
+|--管道(pip)  => pipe，以前叫filter 对应 vue的filters (管道(pipe)是用来对输入的数据进行处理，如大小写转换、数值和日期格式化等)
 |--mixins => 基于Serviceser实现 依赖注入解决(局部注册)
 |--plugins => 基于Serviceser实现 依赖注入解决(全局注册) => https://blog.csdn.net/sinat_17775997/article/details/81462750
 |
@@ -135,8 +184,20 @@ https://blog.csdn.net/qq_34551390/article/details/78270869
 |
 |resolveComponentFactory => 相当于vue.extend() => 产生html => 后续调用appendChild => 插入到body中
 |
-|
-|
+|elememt => components => shared 文件夹作用 => 相当于utils 
+|在 element-angular.module.ts => 注入ElSharedModule |提供给外部使用该方法
+|提供的模块使用的是 ant-design 的做法，对外不提供for方法
+|同时提供对外按需注册组件的方法，包括一些插件 => https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/alert/nz-alert.module.ts
+| ng-zorro-antd => addon => 存放的是指令
+| nzStringTemplateOutlet => 使用类似include template 模版技术 
+  ng-zorro-antd => update-host-class.service.ts服务 => 提供dom操作(作用是vue的utils)
+  update-host-class.service.ts
+
+双响绑定 ngx => rating组件
+
+使用 ng-container 与 ng-template 实现vue 的slot 
+浏览器typesctipt @angular/platform-browser  => SafeStyle 
+利用K extends keyof WindowEventMap将参数type:K限制在WindowEventMap的键值列表，listener中的参数ev限定为WindowEventMap对应K相应的值
 
 
 
@@ -162,3 +223,6 @@ https://www.jianshu.com/p/4780d82e874a
 |
 |
 |
+
+
+

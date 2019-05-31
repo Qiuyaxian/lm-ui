@@ -1,13 +1,13 @@
 <template>
-  <lm-template>
-    <lm-navbar>Search</lm-navbar>
+  <lm-page>
+    <lm-header>Search</lm-header>
     <lm-search v-model="search" @on-change="getResult"
                @on-cancel="onCancel"
                @on-submit="onSubmit"></lm-search>
     <lm-form-preview header-label="付款金额"
                      header-value="¥2400.00"
                      :preview-items="list"></lm-form-preview>
-  </lm-template>
+  </lm-page>
 </template>
 <script>
 export default {

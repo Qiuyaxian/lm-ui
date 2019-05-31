@@ -1,12 +1,12 @@
 // vue compiler module for transforming `img:srcset` to a number of `require`s
 
-const urlToRequire = require('../url-to-require')
-
-module.exports = () => ({
-  postTransformNode: node => {
-    transform(node)
+module.exports = function () {
+  return {
+    postTransformNode: node => {
+      transform(node)
+    }
   }
-})
+}
 
 function transform (node) {
   const tags = ['img', 'source']
@@ -15,8 +15,8 @@ function transform (node) {
     node.attrs.forEach(attr => {
       if (attr.name === 'srcset') {
         // same logic as in transform-require.js
-        const value = attr.value
-        const isStatic = value.charAt(0) === '"' && value.charAt(value.length - 1) === '"'
+        var value = attr.value
+        var isStatic = value.charAt(0) === '"' && value.charAt(value.length - 1) === '"'
         if (!isStatic) {
           return
         }
@@ -30,18 +30,25 @@ function transform (node) {
           return { require: urlToRequire(url), descriptor: descriptor }
         })
 
-        // "require(url1)"
-        // "require(url1) 1x"
-        // "require(url1), require(url2)"
-        // "require(url1), require(url2) 2x"
-        // "require(url1) 1x, require(url2)"
-        // "require(url1) 1x, require(url2) 2x"
-        const code = imageCandidates.map(
-          ({ require, descriptor }) => `${require} + "${descriptor ? ' ' + descriptor : ''}, " + `
-        ).join('').slice(0, -6).concat('"').replace(/ \+ ""$/, '')
+        let code = ''
+        imageCandidates.forEach((o, i, a) => {
+          code += o.require + ' + " ' + o.descriptor + (i < a.length - 1 ? ', " + ' : '"')
+        })
 
         attr.value = code
       }
     })
+  }
+}
+
+function urlToRequire (url) {
+  // same logic as in transform-require.js
+  var firstChar = url.charAt(0)
+  if (firstChar === '.' || firstChar === '~') {
+    if (firstChar === '~') {
+      var secondChar = url.charAt(1)
+      url = '"' + url.slice(secondChar === '/' ? 2 : 1)
+    }
+    return `require("${url}")`
   }
 }

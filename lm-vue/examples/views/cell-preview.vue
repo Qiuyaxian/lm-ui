@@ -1,9 +1,9 @@
 <template>
-  <lm-template>
-    <lm-navbar>cell-preview</lm-navbar>
+  <lm-page>
+    <lm-header>cell-preview</lm-header>
     <lm-group-title header-label="信息" :borderIntent="false"></lm-group-title>
     <lm-cell-preview :list="list"></lm-cell-preview>
-  </lm-template>
+  </lm-page>
 </template>
 <script>
 export default {

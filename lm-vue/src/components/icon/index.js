@@ -1,2 +1,5 @@
 import Icon from './icon'
-export { Icon }
+Icon.install = function(Vue) {
+  Vue.component(Icon.name, Icon);
+};
+export default Icon

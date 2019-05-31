@@ -29,9 +29,9 @@ module.exports = postcss.plugin('add-id', ({ id }) => root => {
           }
           // /deep/ alias for >>>, since >>> doesn't work in SASS
           if (n.type === 'tag' && n.value === '/deep/') {
-            const prev = n.prev()
-            if (prev && prev.type === 'combinator' && prev.value === ' ') {
-              prev.remove()
+            const next = n.next()
+            if (next.type === 'combinator' && next.value === ' ') {
+              next.remove()
             }
             n.remove()
             return false
@@ -63,11 +63,10 @@ module.exports = postcss.plugin('add-id', ({ id }) => root => {
       if (/-?animation$/.test(decl.prop)) {
         decl.value = decl.value.split(',')
           .map(v => {
-            const vals = v.trim().split(/\s+/)
-            const i = vals.findIndex(val => keyframes[val])
-            if (i !== -1) {
-              vals.splice(i, 1, keyframes[vals[i]])
-              return vals.join(' ')
+            const vals = v.split(/\s+/)
+            const name = vals[0]
+            if (keyframes[name]) {
+              return [keyframes[name]].concat(vals.slice(1)).join(' ')
             } else {
               return v
             }

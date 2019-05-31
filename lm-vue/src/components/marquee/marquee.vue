@@ -97,19 +97,3 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-.lm-marquee {
-  width: 100%;
-  overflow: hidden;
-}
-.lm-marquee-box {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: auto;
-  li {
-    margin: 0;
-    width: 100%;
-  }
-}
-</style>

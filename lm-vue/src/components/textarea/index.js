@@ -1,2 +1,5 @@
 import Textarea from './textarea'
-export { Textarea }
+Textarea.install = function(Vue) {
+  Vue.component(Textarea.name, Textarea);
+};
+export default Textarea

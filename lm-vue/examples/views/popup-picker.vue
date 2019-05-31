@@ -1,6 +1,6 @@
 <template>
-  <lm-template>
-    <lm-navbar>popup-picker</lm-navbar>
+  <lm-page>
+    <lm-header>popup-picker</lm-header>
     <lm-group title="single column" label-width="5em">
       <lm-popup-picker :label="title1" :data="list1" v-model="value1" @on-show="onShow" @on-hide="onHide" @on-change="onChange" :placeholder="'请选择'"></lm-popup-picker>
       <lm-popup-picker :popup-title="'请选择'" :label="title1" :data="list1" v-model="value1_1" @on-show="onShow" @on-hide="onHide" @on-change="onChange" :placeholder="'请选择'"></lm-popup-picker>
@@ -52,7 +52,7 @@
       :inline-desc="`当前值[${formatDemoValue}]`"
       :data="[['01','02','03'],['11','12','13']]" :display-format="format"></lm-popup-picker>
      </lm-group>
-  </lm-template>
+  </lm-page>
 </template>
 <script>
 let years = []

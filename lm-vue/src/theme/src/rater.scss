@@ -1,0 +1,38 @@
+@import './commom.scss';
+.#{ $class-prefix } {
+  &-rater {
+    text-align: left;
+    display: inline-block;
+    line-height: normal;
+  }
+  &-rater-box {
+    display: inline-block;
+    position: relative;
+    font-size: 0;
+    line-height: 0;
+    text-align: center;
+    cursor: pointer;
+    color: $rater-color;
+    &:last-child {
+      margin-right: 0px!important;
+    }
+    &:hover {
+      color: $rater-hover-color;
+    }
+    &.is-disabled {
+      color: $rater-disabled-color !important;
+      cursor: not-allowed;
+    }
+  }
+  &-rater-inner {
+    position: relative;
+    display: inline-block;
+  }
+  &-rater-outer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-block;
+    overflow: hidden;
+  }
+}

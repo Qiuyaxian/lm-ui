@@ -1,6 +1,6 @@
 <template>
-  <lm-template>
-    <lm-navbar>toast</lm-navbar>
+  <lm-page>
+    <lm-header>toast</lm-header>
     <lm-group>
       <lm-switch label="一般使用" v-model="show1"></lm-switch>
       <lm-switch label="type为文字" v-model="show2"></lm-switch>
@@ -22,7 +22,7 @@
       <lm-button @click.native="toastHandle('success', '成功操作')">type为success</lm-button>
       <lm-button @click.native="toastHandle('error', '错误操作')">type为warn</lm-button>
     </div>
-  </lm-template>
+  </lm-page>
 </template>
 
 <script>

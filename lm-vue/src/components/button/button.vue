@@ -65,7 +65,3 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/button.scss';
-</style>

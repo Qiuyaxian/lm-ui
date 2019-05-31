@@ -1,12 +1,12 @@
 <template>
-  <lm-template>
-    <lm-navbar>Picker</lm-navbar>
+  <lm-page>
+    <lm-header>Picker</lm-header>
     <div style="overflow: hidden;">
       <div style="overflow: auto;-webkit-overflow-scrolling: touch;">
         <lm-divider>默认，不设置默认值时选中第一个 {{year1}}</lm-divider>
         <lm-picker :data='years' v-model='year1' @on-change='change'></lm-picker>
         <br>
-        <div> 异步加载及动态改变数据 </div>
+        <!-- <div> 异步加载及动态改变数据 </div>
         <lm-picker :data='years001' v-model='year001' @on-change='change'></lm-picker>
         <br>
         <lm-group>
@@ -38,10 +38,10 @@
         <lm-button @click.native="setList" type="primary">Set List</lm-button>
         <br>
         <div> 3列的数据，只显示两列 </div>
-        <lm-picker :data='year7' :fixed-columns="2" :columns=3 v-model='year8Value' @on-change='change'></lm-picker>
+        <lm-picker :data='year7' :fixed-columns="2" :columns=3 v-model='year8Value' @on-change='change'></lm-picker> -->
       </div>
     </div>
-  </lm-template>
+  </lm-page>
 </template>
 <script>
 let years = []

@@ -75,11 +75,3 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/transition.scss';
-@import '~@/theme/mask.scss';
-@import '~@/theme/dialog.scss';
-</style>

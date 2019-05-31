@@ -1,2 +1,5 @@
 import InlineDesc from './inline-desc'
-export { InlineDesc }
+InlineDesc.install = function(Vue) {
+  Vue.component(InlineDesc.name, InlineDesc);
+};
+export default InlineDesc

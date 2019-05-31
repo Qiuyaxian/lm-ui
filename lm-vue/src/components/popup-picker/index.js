@@ -1,2 +1,5 @@
 import PopupPicker from './popup-picker'
-export { PopupPicker }
+PopupPicker.install = function(Vue) {
+  Vue.component(PopupPicker.name, PopupPicker);
+};
+export default PopupPicker

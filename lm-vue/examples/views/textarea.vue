@@ -1,12 +1,12 @@
 <template>
-  <lm-template>
-    <lm-navbar>Textarea</lm-navbar>
+  <lm-page>
+    <lm-header>Textarea</lm-header>
     <lm-form class="lm-form-wrapper">
       <lm-form-item labelAlign="top" title="请输">
         <lm-textarea @on-blur="blurHandle" @on-change="changeHandle" :max="20" placeholder="请输入"></lm-textarea>
       </lm-form-item>
     </lm-form>
-  </lm-template>
+  </lm-page>
 </template>
 <script>
 export default {

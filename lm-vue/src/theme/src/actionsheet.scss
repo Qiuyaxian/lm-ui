@@ -1,0 +1,116 @@
+@import './commom.scss';
+@import './mask.scss';
+.#{ $class-prefix } {
+  &-actionsheet {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    transform: translate(0, 100%);
+    backface-visibility: hidden;
+    z-index: 5000;
+    width: 100%;
+    background-color: $bg-color-default;
+    //slide up animation
+    transition: transform .3s;
+  }
+  &-actionsheet-menu{
+    background-color: #FFFFFF;
+  }
+  &-actionsheet-action {
+    margin-top: pxTorem(6, 2);
+    background-color: #FFFFFF;
+  }
+  &-actionsheet-cell {
+    position: relative;
+    padding: pxTorem(10, 2) 0;
+    text-align: center;
+    font-size: pxTorem(18, 2);
+    line-height: 1.6;
+    &:before {
+      @include borderStype(top, $cell-border-color); 
+    }
+    &:active{
+      background-color: $bg-color-active;
+    }
+    &:first-child{
+      &:before{
+          display: none;
+      }
+    }
+  }
+
+
+  /**
+   * android actionSheet
+   */
+  &-skin_android{
+    .#{ $class-prefix }-actionsheet {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      bottom: auto;
+      transform: translate(-50%, -50%);
+      /*padding: 0 pxTorem(viewTransform(40));*/
+      width: pxTorem(274, 2);
+      box-sizing: border-box;
+      backface-visibility: hidden;
+      background: transparent;
+      /**
+        slide up animation
+       */
+      transition: transform .3s;
+    }
+    .#{ $class-prefix }-actionsheet-action{
+      display: none;
+    }
+    .#{ $class-prefix }-actionsheet-menu {
+      border-radius: $actionsheet-android-border-radius;
+      box-shadow: 0 pxTorem(6, 2) pxTorem(30, 2) 0 rgba(0,0,0,.1);
+    }
+    .#{ $class-prefix }-actionsheet-cell {
+      padding: pxTorem(13, 2) pxTorem(24, 2);
+      font-size: pxTorem(16, 2);
+      line-height: 1.4;
+      text-align: left;
+      &:first-child {
+          border-top-left-radius: $actionsheet-android-border-radius;
+          border-top-right-radius: $actionsheet-android-border-radius;
+      }
+      &:last-child {
+          border-bottom-left-radius: $actionsheet-android-border-radius;
+          border-bottom-right-radius: $actionsheet-android-border-radius;
+      }
+    }
+  }
+
+  //actionSheet aniamtion
+  &-actionsheet_toggle{
+      transform: translate(0, 0);
+  }
+}
+.#{$class-prefix} {
+  &-actionsheet-menu-primary {
+    color: $actionsheet-label-primary-color;
+  }
+  &-actionsheet-menu-warn {
+    color: $actionsheet-label-warn-color;
+  }
+  &-actionsheet-menu-default {
+    color: $actionsheet-label-default-color;
+  }
+  &-actionsheet-menu-disabled {
+    color: $actionsheet-label-disabled-color;
+  }
+  &-actionsheet-mask-enter,
+  &-actionsheet-mask-leave-active,
+  &-android-actionsheet-enter,
+  &-android-actionsheet-leave-active {
+    opacity: 0;
+  }
+  &-actionsheet-mask-leave-active,
+  &-actionsheet-mask-enter-active,
+  &-android-actionsheet-leave-active,
+  &-android-actionsheet-enter-active {
+    transition: opacity 300ms!important;
+  }
+}

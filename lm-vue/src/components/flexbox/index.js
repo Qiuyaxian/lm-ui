@@ -1,7 +1,5 @@
 import Flexbox from './flexbox'
-import FlexboxItem from './flexbox-item'
-
-export {
-  Flexbox,
-  FlexboxItem
-}
+Flexbox.install = function(Vue) {
+  Vue.component(Flexbox.name, Flexbox);
+};
+export default Flexbox

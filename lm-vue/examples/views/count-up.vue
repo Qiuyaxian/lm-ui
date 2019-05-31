@@ -1,6 +1,6 @@
 <template>
-  <lm-template>
-    <lm-navbar>CountUp</lm-navbar>
+  <lm-page>
+    <lm-header>CountUp</lm-header>
     <lm-divider>默认</lm-divider>
     <lm-count-up :start-val="1" :end-val="1388" :duration="2" class="demo1"></lm-count-up>
     <br />
@@ -10,7 +10,7 @@
     <div class="">
       <lm-button @click.native="doStart=true" type="primary">开始</lm-button>
     </div>
-  </lm-template>
+  </lm-page>
 </template>
 
 <script>

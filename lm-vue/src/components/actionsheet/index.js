@@ -1,2 +1,5 @@
 import Actionsheet from './actionsheet'
-export { Actionsheet }
+Actionsheet.install = function(Vue) {
+  Vue.component(Actionsheet.name, Actionsheet);
+};
+export default Actionsheet

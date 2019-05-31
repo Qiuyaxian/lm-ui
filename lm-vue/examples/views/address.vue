@@ -1,6 +1,6 @@
 <template>
-  <lm-template>
-    <lm-navbar>Address</lm-navbar>
+  <lm-page>
+    <lm-header>Address</lm-header>
     <lm-group>
       <lm-address
         @on-hide="logHide"
@@ -14,7 +14,7 @@
       </lm-address>
     </lm-group>
     <lm-button type="primary">js 调用</lm-button>
-  </lm-template>
+  </lm-page>
 </template>
 <script>
 import ChinaAddressV4Data from '@/components/address/china_address_v4.json'

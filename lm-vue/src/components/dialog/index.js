@@ -1,2 +1,5 @@
 import Dialog from './dialog'
-export { Dialog }
+Dialog.install = function(Vue) {
+  Vue.component(Dialog.name, Dialog);
+};
+export default Dialog

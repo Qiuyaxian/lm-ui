@@ -1,0 +1,39 @@
+@import './commom.scss';
+.#{$class-prefix} {
+  &-textarea {
+    display: block;
+    border: 0;
+    resize: none;
+    width: 100%;
+    color: #333333;
+    font-size: $cell-default-fontsize;
+    line-height: $cell-line-height;
+    outline: 0;
+    padding: 0;
+  }
+
+  &-textarea-counter{
+    color: #B2B2B2;
+    text-align: right;
+    font-size: $cell-default-fontsize;
+    line-height: $cell-line-height;
+    .#{$class-prefix}-cell_warn &{
+      color: red;
+    }
+  }
+  &-flex-grow {
+    .#{$class-prefix}-textarea-wrapper {
+      padding-left: pxTorem(32);
+    }
+  }
+  &-page-textarea.#{$class-prefix}-form-row,
+  &-page-textarea.#{$class-prefix}-cell  {
+    align-items: flex-start;
+    .#{$class-prefix}-flex-grow{
+      font-size: 0;
+      line-height: 0;
+    }
+  }
+}
+
+

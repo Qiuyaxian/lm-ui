@@ -87,21 +87,20 @@ export default {
       }
       running = newRunning
     }
-
+     
     // This is the internal step method which is called every few milliseconds
     var step = function (virtual) {
       // Normalize virtual value
       var render = virtual !== true
       // Get current time
       var now = time()
-
       // Verification is executed before next animation step
       if (!running[id] || (verifyCallback && !verifyCallback(id))) {
         running[id] = null
         completedCallback && completedCallback(desiredFrames - (dropCounter / ((now - start) / millisecondsPerSecond)), id, false)
         return
       }
-
+      
       // For the current rendering to apply let's update omitted steps in memory.
       // This is important to bring internal state variables up-to-date with progress in time.
       if (render) {

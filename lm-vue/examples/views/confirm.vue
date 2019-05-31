@@ -1,6 +1,6 @@
 <template>
-  <lm-template>
-    <lm-navbar>confirm</lm-navbar>
+  <lm-page>
+    <lm-header>confirm</lm-header>
     <lm-group>
       <lm-switch label="Toggle" v-model="show"></lm-switch>
     </lm-group>
@@ -95,7 +95,7 @@
     <div style="padding:15px;">
       <lm-button @click.native="showPlugin3" type="primary">Call prompt by using plugin</lm-button>
     </div>
-  </lm-template>
+  </lm-page>
 </template>
 <script>
 import TransferDom from '@/directives/transfer-dom'
@@ -190,25 +190,3 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/close.scss';
-.dialog-demo {
-  .weui-dialog{
-    border-radius: pxTorem(viewTransform(8));
-    padding-bottom: pxTorem(viewTransform(8));
-  }
-  .dialog-title {
-    line-height: pxTorem(viewTransform(30));
-    color: #666;
-  }
-  .img-box {
-    height: pxTorem(viewTransform(350));
-    overflow: hidden;
-  }
-  .lm-close {
-    margin-top: pxTorem(viewTransform(8));
-    margin-bottom: pxTorem(viewTransform(8));
-  }
-}
-</style>

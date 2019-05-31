@@ -1,8 +1,8 @@
 <template>
-  <lm-template>
-    <lm-navbar>Divider</lm-navbar>
+  <lm-page>
+    <lm-header>Divider</lm-header>
     <lm-divider>分割线</lm-divider>
-  </lm-template>
+  </lm-page>
 </template>
 
 <script>

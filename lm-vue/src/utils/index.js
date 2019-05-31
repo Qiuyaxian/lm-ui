@@ -3,11 +3,6 @@ import RouterClass from './router'
 import * as Dom from './dom'
 import * as Event  from './event'
 
-import Alert from './alert' 
-import Toast from './toast'
-import Loading from './loading' 
-import Message from './message'
-import Confirm from './confirm' 
 import LocalStorage from './localStorage'
 import SessionStorage from './sessionStorage'
 import * as DateTime from './date'
@@ -123,16 +118,6 @@ export const registerEventHandle = Event.registerEventHandle;
 
 export const triggerEventHandle = Event.triggerEventHandle;
 /* ------- event start -------- */
-
-export const loading = Loading;
-
-export const toast = Toast;
-
-export const message = Message;
-
-export const alert = Alert;
-
-export const confirm = Confirm;
 
 export const _localStorage = LocalStorage;
 

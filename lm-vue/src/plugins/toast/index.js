@@ -1,5 +1,5 @@
 import objectAssign from 'object-assign'
-import { Toast } from '../../components/toast'
+import Toast from '../../components/toast/index'
 import { mergeOptions } from '@/utils/plugin_helper'
 let $vm;
 let watcher;

@@ -1,0 +1,98 @@
+@import './commom.scss';
+.#{ $tab-prefix } {
+  display: flex;
+  background-color: #fff;
+  height: pxTorem(44, 2);
+  position: relative;
+  
+  &-bar-top .#{ $tab-prefix } {
+    &-ink-bar {
+      top: 0;
+    }
+  }
+   
+  & button {
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: 0 0;
+    appearance: none;
+  }
+
+  &-bar-top {
+    .#{ $tab-prefix } .#{ $tab-prefix }-item {
+      background: linear-gradient(180deg, #e5e5e5, #e5e5e5, rgba(229, 229, 229, 0)) top left no-repeat;
+      background-size: 100% 1px;
+      &.#{ $tab-prefix }-selected {
+        border-bottom: none;
+        border-top: pxTorem(3, 2) solid $tab-text-active-color;
+      }
+    }
+  }
+  
+  &.#{ $tab-prefix }-no-animate{
+    .#{ $tab-prefix }-item{
+      &.#{ $tab-prefix }-selected {
+        background: 0 0;
+      }
+    }
+  }
+  &-ink-bar {
+    position: absolute;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: $tab-bar-active-color;
+    text-align: center;
+    &-transition-forward {
+      transition: right $tab-effect-duration $tab-easing-in-out,
+      left $tab-effect-duration $tab-easing-in-out $tab-effect-duration * 0.3;
+    }
+    &-transition-backward {
+      transition: right $tab-effect-duration $tab-easing-in-out $tab-effect-duration * 0.3,
+      left $tab-effect-duration $tab-easing-in-out;
+    }
+  }
+  /** when=prop:custom-bar-width **/
+  &-bar-inner {
+    display: block;
+    background-color: $tab-text-active-color;
+    margin: auto;
+    height: 100%;
+    transition: width 0.3s $tab-easing-in-out;
+  }
+
+  &-wrap {
+    position: relative;
+    height: pxTorem(44, 2);
+  }
+  &-container {
+    height: pxTorem(44, 2);
+    overflow: hidden;
+  }
+  &-container-absolute {  
+    top: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    z-index: 99;
+  }
+}
+.scrollable {
+  overflow-y: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; 
+  overflow-scrolling: touch;
+  box-sizing: content-box;
+}
+.scrollable::-webkit-scrollbar {
+  display: none;
+}
+.scrollable .#{ $tab-prefix }-ink-bar {
+  bottom: 0;
+  position: absolute;
+}
+.scrollable .#{ $tab-prefix }-item {
+  flex: 0 0 22%;
+}
+

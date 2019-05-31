@@ -1,10 +1,6 @@
 // vue compiler module for transforming `<tag>:<attribute>` to `require`
 
-const urlToRequire = require('../url-to-require')
-
 const defaultOptions = {
-  video: ['src', 'poster'],
-  source: 'src',
   img: 'src',
   image: 'xlink:href'
 }
@@ -23,7 +19,7 @@ module.exports = userOptions => {
 
 function transform (node, options) {
   for (const tag in options) {
-    if ((tag === '*' || node.tag === tag) && node.attrs) {
+    if (node.tag === tag && node.attrs) {
       const attributes = options[tag]
       if (typeof attributes === 'string') {
         node.attrs.some(attr => rewrite(attr, attributes))
@@ -36,11 +32,19 @@ function transform (node, options) {
 
 function rewrite (attr, name) {
   if (attr.name === name) {
-    const value = attr.value
-    // only transform static URLs
-    if (value.charAt(0) === '"' && value.charAt(value.length - 1) === '"') {
-      attr.value = urlToRequire(value.slice(1, -1))
-      return true
+    let value = attr.value
+    const isStatic = value.charAt(0) === '"' && value.charAt(value.length - 1) === '"'
+    if (!isStatic) {
+      return
     }
+    const firstChar = value.charAt(1)
+    if (firstChar === '.' || firstChar === '~') {
+      if (firstChar === '~') {
+        const secondChar = value.charAt(2)
+        value = '"' + value.slice(secondChar === '/' ? 3 : 2)
+      }
+      attr.value = `require(${value})`
+    }
+    return true
   }
 }

@@ -93,17 +93,22 @@ const ToastModule: ToastPlugin = ToastPlugin;
 const DialogModule: DialogPlugin = DialogPlugin;
 const ConfirmModule: ConfirmPlugin = ConfirmPlugin;
 
+
 /**
  * 注册全局插件
  */
 declare module 'vue/types/vue' {
   interface Vue {
     $lm: {
+      'address': AddressPlugin,
+      'alert': AlertPlugin,
       'toast': ToastPlugin,
-      'alert': AlertPlugin
+      'confirm': ConfirmPlugin,
+      'dialog': DialogPlugin
     }
   }
 }
+
 /**
  * 挂载配置
  */

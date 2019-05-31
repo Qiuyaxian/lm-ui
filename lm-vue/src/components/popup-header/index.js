@@ -1,2 +1,5 @@
 import PopupHeader from './popup-header'
-export { PopupHeader }
+PopupHeader.install = function(Vue) {
+  Vue.component(PopupHeader.name, PopupHeader);
+};
+export default PopupHeader

@@ -1,8 +1,8 @@
 <template>
-  <lm-template>
-    <lm-navbar>Clock</lm-navbar>
+  <lm-page>
+    <lm-header>Clock</lm-header>
     <lm-clock :time="time"></lm-clock>
-  </lm-template>
+  </lm-page>
 </template>
 <script>
 export default {

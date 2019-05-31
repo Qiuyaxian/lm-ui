@@ -2,7 +2,7 @@
 /config/
 /dist/
 /*.js
-/src/packages/*/*.js
+/src/index.js
 /src/utils/*.js
 /src/plugins/*.js
-/test/unit/coverage/
+/src/examples/main.ts

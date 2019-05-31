@@ -4,7 +4,7 @@
   </form>
 </template>
 <script>
-import WxValidate from './validate'
+import WxValidate from '@/utils/WxValidate'
 import { isObject, isFunction, isArray, isString } from '@/utils'
 import addMethodMap from '@/utils/validate'
 export default {
@@ -187,8 +187,3 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-@import '~@/theme/index.scss';
-@import '~@/theme/flex.scss';
-@import '~@/theme/form.scss';
-</style>
