@@ -1,0 +1,22 @@
+<lm-template>
+  <ng-template #header>
+  	<lm-header class="lm-header-fixed" [left-options]="{ showBack: false }" [right-options]="{ showMore: false }">
+  	  <ng-template #navbarTitle>{{ title }}</ng-template>
+  	  <ng-template #navbarRight>
+  	  	<div (click)="onClickMoreHandle()">right</div>
+  	  </ng-template>	
+  	</lm-header>
+  </ng-template>
+  <lm-scroll #scroll>
+    <lm-group>
+      <ng-template #groupTitle>
+        <lm-group-title>
+          <ng-template #header>
+            <div class="">Home{{ items.length }}</div>
+          </ng-template>
+        </lm-group-title>
+      </ng-template>
+      <lm-cell *ngFor="let item of items" [label]="item.label" [placeholder]="'前往'" [link]="item.link"></lm-cell>
+    </lm-group>
+   </lm-scroll>
+</lm-template>

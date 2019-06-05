@@ -1,3 +1,5 @@
+@import './commom.scss';
+@import './mask.scss';
 .#{ $class-prefix } {
   &-actionsheet {
     position: fixed;
@@ -84,5 +86,31 @@
   //actionSheet aniamtion
   &-actionsheet_toggle{
       transform: translate(0, 0);
+  }
+}
+.#{$class-prefix} {
+  &-actionsheet-menu-primary {
+    color: $actionsheet-label-primary-color;
+  }
+  &-actionsheet-menu-warn {
+    color: $actionsheet-label-warn-color;
+  }
+  &-actionsheet-menu-default {
+    color: $actionsheet-label-default-color;
+  }
+  &-actionsheet-menu-disabled {
+    color: $actionsheet-label-disabled-color;
+  }
+  &-actionsheet-mask-enter,
+  &-actionsheet-mask-leave-active,
+  &-android-actionsheet-enter,
+  &-android-actionsheet-leave-active {
+    opacity: 0;
+  }
+  &-actionsheet-mask-leave-active,
+  &-actionsheet-mask-enter-active,
+  &-android-actionsheet-leave-active,
+  &-android-actionsheet-enter-active {
+    transition: opacity 300ms!important;
   }
 }

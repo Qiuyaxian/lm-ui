@@ -1,0 +1,50 @@
+<lm-template>
+  <ng-template #header>
+  	<lm-header  class="lm-header-fixed" [left-options]="{ showBack: false }" [right-options]="{ showMore: false }">
+  	  <ng-template #navbarTitle>{{ title }}</ng-template>
+  	  <ng-template #navbarRight>
+  	  	<div (click)="onClickMoreHandle()">right</div>
+  	  </ng-template>	
+  	</lm-header>
+  </ng-template>
+ 
+  <lm-group [showBorders]="true">
+    <ng-template #groupTitle>
+      <lm-group-title [headerLabel]="'默认'"></lm-group-title>
+    </ng-template>
+    <lm-switch [label]="'switch'" [(ngModel)]="switchState"></lm-switch>
+    <lm-switch [label]="'switch'" [(ngModel)]="switchState2"></lm-switch>
+  </lm-group>
+
+  <div *transfer-dom="true">
+    <lm-popup (on-show)="showHandle()" (on-hide)="hideHandle()" [(ngModel)]="switchState" [maxHeight]="'50%'">
+      <div style="background-color: white;">
+        <lm-group>
+          <lm-cell 
+            *ngFor="let item of items" 
+            [label]="item.label">
+          </lm-cell>
+        </lm-group>
+      </div>
+    </lm-popup>
+    <lm-popup [(ngModel)]="switchState2" >
+      <div style="background-color: white;">
+        <lm-group>
+          <lm-cell [label]="'测试2'"></lm-cell>
+          <lm-cell [label]="'测试2'"></lm-cell>
+          <lm-cell [label]="'测试2'"></lm-cell>
+          <lm-cell [label]="'测试2'"></lm-cell>
+          <lm-cell [label]="'测试2'"></lm-cell>
+          <lm-cell [label]="'测试2'"></lm-cell>
+          <lm-cell [label]="'测试2'"></lm-cell>
+          <lm-cell [label]="'测试2'"></lm-cell>
+          <lm-cell [label]="'测试2'"></lm-cell>
+          <lm-cell [label]="'测试2'"></lm-cell>
+          <lm-cell [label]="'测试'"></lm-cell>
+          <lm-cell [label]="'测试'"></lm-cell>
+        </lm-group>
+        
+      </div>
+    </lm-popup>
+  </div>
+</lm-template>

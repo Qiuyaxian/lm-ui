@@ -1,0 +1,9 @@
+<div 
+  class="lm-grids" 
+  [ngClass]="{
+    'lm-grid-no-lr-borders': !showLrBorders,
+    'lm-grid-no-borders': !showBorders,
+    'lm-grid-no-tb-borders': !showVerticalDividers
+  }">
+  <ng-content></ng-content>
+</div>

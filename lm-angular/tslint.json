@@ -57,6 +57,7 @@
     "rxjs-collapse-imports": true,
     "rxjs-pipeable-operators-only": true,
     "rxjs-no-static-observable-methods": true,
-    "rxjs-proper-imports": true
+    "rxjs-proper-imports": true,
+    "typedef": [true, "call-signature", "parameter", "member-variable-declaration"],
   }
 }  

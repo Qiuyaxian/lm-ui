@@ -1,0 +1,7 @@
+<ng-container *ngIf="name">
+  <ng-template [ngTemplateOutlet]="name" [ngTemplateOutletContext]="scope">
+  </ng-template>
+</ng-container>
+<ng-container *ngIf="!name">
+  <ng-content></ng-content>
+</ng-container>

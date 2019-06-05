@@ -1,0 +1,43 @@
+@import "./commom.scss";
+.#{ $class-prefix } {
+  &-spinner {
+    stroke: $spinner-color;
+    fill: $spinner-color;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: pxTorem($spinner-size, 2);
+    @include setWidthHeight($spinner-size, $spinner-size, 2);
+    & svg {
+      @include setWidthHeight($spinner-size, $spinner-size, 2);
+    }
+    &.#{ $class-prefix }-spinner-inverse {
+      stroke: #fff;
+      fill: #fff;
+    }
+  }
+  &-spinner-android {
+    stroke: $spinner-android-color;
+  }
+  &-spinner-ios,
+  &-spinner-ios-small {
+    stroke: $spinner-color;
+  }
+  &-spinner-spiral {
+    & .stop1 {
+      stop-color: #fff;
+      stop-opacity: 0;
+    }
+    & .stop2 {
+      stop-color: $spinner-color;
+      stop-opacity: 1;
+    }
+    &.#{ $class-prefix }-spinner-inverse {
+      & .stop1 {
+        stop-color: #000;
+      }
+      & .stop2 {
+        stop-color: #fff;
+      }
+    }
+  }
+}

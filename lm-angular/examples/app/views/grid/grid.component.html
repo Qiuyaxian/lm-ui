@@ -1,0 +1,22 @@
+<lm-template>
+  <ng-template #header>
+  	<lm-header  class="lm-header-fixed" [left-options]="{ showBack: false }" [right-options]="{ showMore: false }">
+  	  <ng-template #navbarTitle>{{ title }}</ng-template>
+  	  <ng-template #navbarRight>
+  	  	<div (click)="onClickMoreHandle()">right</div>
+  	  </ng-template>	
+  	</lm-header>
+  </ng-template>
+  <br />
+  <lm-grid [cols]="4" [showLrBorders]="false" [showVerticalDividers]="false">
+    <lm-grid-item [icon]="'https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg'" [link]="['home', item]" [param]="{ queryParams: { id:  item  } }" *ngFor="let item of items"  [label]="item"></lm-grid-item>
+  </lm-grid>
+  <br />
+  <lm-grid [cols]="4">
+    <lm-grid-item [link]="['home', item]" [param]="{ queryParams: { id:  item  } }" *ngFor="let item of items"  [label]="item">
+      <ng-template #gridIcon>
+        <img src="https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg" />
+      </ng-template>
+    </lm-grid-item>
+  </lm-grid>
+</lm-template>

@@ -1,5 +1,6 @@
-
-.#{$class-prefix} {
+@import './mixins.scss';
+@import './variables.scss';
+.#{ $class-prefix } {
   &-border-top,
   &-border-bottom,
   &-border-right,

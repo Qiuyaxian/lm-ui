@@ -1,0 +1,20 @@
+<div
+  #zmask
+  [@PopupMaskAnimation]="currentValue" 
+  class="lm-popup-mask"
+  (click)="maskHandle($event)"
+  (touchmove)="touchmoveHandle($event)"
+  [ngClass]="{ 'lm-popup-show' : currentValue }"
+></div>
+<div
+  #wrapper
+  (@PopupAnimation.start)="onAnimationHandle($event)"
+  (@PopupAnimation.done)="onAnimationHandle($event)" 
+  [@PopupAnimation]="currentValue"
+  [ngStyle]="styles()"
+  class="lm-popup-dialog {{ 'lm-popup-' + (position) }}"
+  [ngClass]="{ 'lm-popup-show': currentValue }"
+  >
+  <ng-content></ng-content>
+  <!-- <lm-slot *ngIf="shouldRenderBody"></lm-slot> -->
+</div> 

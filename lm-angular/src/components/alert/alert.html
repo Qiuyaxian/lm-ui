@@ -1,0 +1,24 @@
+<div class="lm-alert">
+  <lm-dialog
+    [model]="currentValue"
+    [mask-transition]="maskTransition"
+    [dialog-transition]="dialogTransition"
+    [hide-on-blur]="hideOnBlur"
+    [mask-z-index]="maskZIndex"
+    (on-hide)="changeHandle(false)"
+    (on-show)="changeHandle(true)">
+    <div class="lm-dialog-header">
+      <strong class="lm-dialog-title">{{ title }}</strong>
+    </div>
+    <div class="lm-dialog-body">
+      <lm-slot [name]="body">
+        <div [innerHTML]="content"></div>
+      </lm-slot>
+    </div>
+    <div class="lm-dialog-footer">
+      <a href="javascript:;"
+        class="lm-dialog-btn lm-dialog-btn-primary"
+        (click)="hideHandle()">{{ buttonText || '确定' }}</a>
+    </div>
+  </lm-dialog>
+</div>

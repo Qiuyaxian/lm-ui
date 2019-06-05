@@ -1,0 +1,10 @@
+<div class="lm-form-preview-header">
+  <lm-slot [name]="header">
+  	<lm-slot [name]="headerLeft">
+  	  <label class="lm-form-preview-label" [innerHTML]="headerLabel"></label>
+    </lm-slot>
+    <lm-slot [name]="headerRight">
+  	  <span class="lm-form-preview-value" [innerHTML]="headerValue || '&nbsp;'"></span>
+    </lm-slot>
+  </lm-slot>
+</div>

@@ -1,0 +1,19 @@
+<a 
+  href="javascript:;"
+  class="lm-grid"
+  (click)="onClick()"
+  [ngStyle]="getStyle()">
+  <div class="lm-grid-icon-wrapper">
+    <img class="lm-grid-icon" *ngIf="icon" [src]="icon" alt="" />
+    <ng-container *ngIf="!icon">
+      <lm-slot [name]="gridIcon"></lm-slot>
+    </ng-container>
+  </div>
+  <p class="lm-grid-label">
+    <span *ngIf="label">{{ label }}</span>
+    <ng-template *ngIf="!label">
+      <lm-slot [name]="gridLabel"></lm-slot>
+    </ng-template>
+  </p>
+  <ng-content></ng-content>
+</a>

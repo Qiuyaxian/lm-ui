@@ -1,0 +1,32 @@
+<lm-template>
+  <ng-template #header>
+  	<lm-header  class="lm-header-fixed" [left-options]="{ showBack: false }" [right-options]="{ showMore: false }">
+  	  <ng-template #navbarTitle>{{ title }}</ng-template>
+  	  <ng-template #navbarRight>
+  	  	<div (click)="onClickMoreHandle()">right</div>
+  	  </ng-template>	
+  	</lm-header>
+  </ng-template>
+  <!-- <lm-grid [cols]="3">
+    <lm-grid-item [link]="[item.link]" *ngFor="let item of items"  [label]="item.label"></lm-grid-item>
+  </lm-grid> -->
+  <lm-group [showBorders]="false">
+    <ng-template #groupTitle>
+      <lm-group-title [headerLabel]="'默认'"></lm-group-title>
+    </ng-template>
+    <lm-cell [label]="'测试'"></lm-cell>
+    <lm-cell [label]="'测试'"></lm-cell>
+    <lm-switch [label]="'switch'" [(ngModel)]="switchState"></lm-switch>
+    <lm-switch [label]="'switch'" [(ngModel)]="switchState"></lm-switch>
+  </lm-group>
+  <div (click)="clickHandle()" style="width: 1rem;height: 1rem;background: yellow;">点击{{ switchState }}</div>
+    <!-- (scrollStart)="scrollStart()" 
+    (scrolling)="scrollHandle()" 
+    (scrollEnd)="scrollEndHandle()"  -->
+  <!-- <lm-scroll
+    [listenScrollStart]="true" 
+    [pullUpLoad]="true"
+    [listenScrollEnd]="true" 
+    [data]="fours"
+   >电商时代footer</lm-scroll> -->
+</lm-template>

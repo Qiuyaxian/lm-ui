@@ -1,0 +1,15 @@
+<div
+  class="lm-dialog-wrapper"
+  [ngClass]="{'lm-dialog-absolute': layout === 'PAGE_VIEW'}">
+  <div 
+    [@MaskAnimation]="currentValue" 
+    class="lm-mask" 
+    (click)="hideHandle()"
+    [ngStyle]="maskStyle()"></div>
+  <div 
+    [ngClass]="dialogClass"
+    [@DialogAnimation]="currentValue"
+    [ngStyle]="dialogStyle">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div 
+  ref="view" 
+  class="lm-view lm-fix-safari-overflow-scrolling"
+  [ngStyle]="styles"> 
+  <!-- header start  -->
+  <!-- <ng-container *ngIf="header">
+    <ng-template [ngTemplateOutlet]="header">
+    </ng-template>
+  </ng-container> -->
+  <lm-slot [name]="header"></lm-slot>
+  <!-- header end -->
+  <!-- body start -->
+  <ng-content></ng-content>
+  <!-- body end -->
+  <!-- tabbar start -->
+  <lm-slot [name]="footer"></lm-slot>
+  <!-- <ng-container *ngIf="footer">
+    <ng-template [ngTemplateOutlet]="footer">
+    </ng-template>
+  </ng-container> -->
+  <!-- tabbar end -->
+</div>

@@ -1,0 +1,16 @@
+<lm-template>
+  <ng-template #header>
+  	<lm-header  class="lm-header-fixed" [left-options]="{ showBack: false }" [right-options]="{ showMore: false }">
+  	  <ng-template #navbarTitle>{{ title }}</ng-template>
+  	  <ng-template #navbarRight>
+  	  	<div (click)="onClickMoreHandle()">right</div>
+  	  </ng-template>	
+  	</lm-header>
+  </ng-template>
+  <lm-flexbox>
+    <lm-flexbox-item><div class="flex-demo">内容</div></lm-flexbox-item>
+    <lm-flexbox-item><div class="flex-demo">内容</div></lm-flexbox-item>
+    <lm-flexbox-item><div class="flex-demo">内容</div></lm-flexbox-item>
+    <lm-flexbox-item><div class="flex-demo">内容</div></lm-flexbox-item>
+  </lm-flexbox> 
+</lm-template>

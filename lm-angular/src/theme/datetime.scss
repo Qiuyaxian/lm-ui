@@ -1,6 +1,6 @@
-/**
- * 时间选择
- */
+@import "./commom.scss";
+@import "./cell.scss";
+@import "./scroller.scss";
 .#{$class-prefix} {
   &-datetime-clear {
     text-align: center;
@@ -24,4 +24,12 @@
     flex: 1;
   }
 }
-
+.dp-container {
+  &.#{$class-prefix}-datetime-view {
+    position: static;
+    transition: none;
+    & .dp-header {
+      display: none;
+    }
+  }
+}

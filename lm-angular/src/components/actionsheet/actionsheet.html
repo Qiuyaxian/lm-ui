@@ -1,0 +1,96 @@
+<div class="lm-actionsheet-wrapper" #actionsheet>
+  <div
+      [@ActionsheetMaskAnimation]="currentValue"
+      class="lm-mask lm-mask-transparent"
+      (click)="onClickingMask()"></div>
+  <!-- 安卓风格 start -->
+  <div
+    class="lm-skin_android"
+    *ngIf="theme === 'android'">
+    <!-- <transition
+      name="lm-android-actionsheet"
+      @after-enter="$emit('on-after-show')"
+      @after-leave="$emit('on-after-hide')">
+      <div
+        class="lm-actionsheet"
+        [hidden]="!currentValue">
+        <div class="lm-actionsheet-menu">
+          <ng-template *ngIf="isArray(menus)">
+            <div
+              *ngFor="let menu of menus;let key = index;"
+              class="lm-actionsheet-cell"
+              (click)="onMenuClick(menu, key)"
+              [innerHTML]="menu.label || menu">
+            </div>
+          </ng-template>
+          <ng-template *ngIf="!isArray(menus)">
+            <div
+              *ngFor="let key of getKeys(menus)"
+              class="lm-actionsheet-cell"
+              (click)="onMenuClick(menus[key], key)"
+              [innerHTML]="menus[key].label || menus[key]">
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </transition> -->
+    <div class="lm-actionsheet">
+      <div class="lm-actionsheet-menu">
+        <ng-template *ngIf="isArray(menus)">
+          <div
+            *ngFor="let menu of menus;let key = index;"
+            class="lm-actionsheet-cell"
+            (click.stop)="onMenuClick(menu, key)"
+            [innerHTML]="menu.label || menu">
+          </div>
+        </ng-template>
+        <ng-template *ngIf="isObject(menus)">
+          <div
+            *ngFor="let key of getKeys(menus)"
+            class="lm-actionsheet-cell"
+            (click)="onMenuClick(menus[key], key)"
+            [innerHTML]="menus[key].label || menus[key]">
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <!-- 安卓风格 end -->
+  <!-- ios风格 start -->
+  <div
+    class="lm-actionsheet"
+    [@ActionsheetAnimation]="currentValue"
+    [ngClass]="{'lm-actionsheet_toggle': show}"
+    *ngIf="theme !== 'android'"
+    #iOSMenu>
+    <div class="lm-actionsheet-menu">
+      <div class="lm-actionsheet-cell" *ngIf="hasHeaderSlot">
+        <lm-slot [name]="menuHeader">{{ slotHeader }}</lm-slot>
+      </div>
+      <!-- Array start -->
+      <ng-container *ngIf="isArray(menus)">
+        <div class="lm-actionsheet-cell {{ 'lm-actionsheet-menu-'+ (menus[key].type || 'default') }}" *ngFor="let menu of menus;let key = index;"
+        (click)="onMenuClick(menu, key)"
+          [innerHTML]="menu.label || menu">
+        </div>
+      </ng-container>
+      <!-- Array end -->
+      <!-- Object start -->
+      <ng-container *ngIf="isObject(menus)">
+        <div class="lm-actionsheet-cell {{ 'lm-actionsheet-menu-'+ (menus[key].type || 'default') }}" 
+          *ngFor="let key of getKeys(menus)"
+          (click)="onMenuClick(menus[key], key)"
+          [innerHTML]="menus[key].label || menus[key]">
+        </div>
+      </ng-container>
+      <!-- Object start -->
+    </div>
+    <div
+      class="lm-actionsheet-action"
+      (click)="emitEvent('on-click-menu', 'cancel')"
+      *ngIf="showCancel">
+      <div class="lm-actionsheet-cell">{{ cancelText || '取消' }}</div>
+    </div>
+  </div>
+  <!-- ios风格 end -->
+</div>

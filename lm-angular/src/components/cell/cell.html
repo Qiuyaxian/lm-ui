@@ -1,0 +1,47 @@
+<div 
+  class="lm-cell" 
+  [ngClass]="{
+    'lm-tap-active': isLink || !!link,
+    'lm-cell-access': isLink || !!link,
+    'lm-cell-no-border-intent': !getBorderIntent,
+    'lm-cell-disabled': disabled
+  }"
+  [ngStyle]="styles"
+  (click.prevent)="onClick()"
+  >
+  <!-- icon start -->
+  <div class="lm-cell-icon">
+    <lm-slot [name]="icon"></lm-slot>
+  </div>
+  <!-- icon end -->
+  <!-- 左侧文字 start -->
+  <div class="lm-cell-label" 
+  [ngStyle]="cellStyles" 
+  [ngClass]="{
+  'lm-cell-primary': primary === 'title' && valueAlign !== 'left'
+   }">
+    <p class="">
+      <label *ngIf="label" class="" [ngStyle]="labelStyles" [ngClass]="labelClass">{{ label }}</label>
+      <ng-template *ngIf="!label">
+        <lm-slot [name]="labelView"></lm-slot>
+      </ng-template>
+    </p>
+    <!-- 小文字 start -->
+    <lm-inline-desc *ngIf="inlineDescView">
+      <lm-slot [name]="inlineDescView">{{ inlineDesc }}</lm-slot>
+    </lm-inline-desc>
+    <!-- 小文字 end -->
+  </div>
+  <!-- 左侧文字 end -->
+
+  <!-- 右侧文字 start -->
+  <div 
+    class="lm-cell-content" 
+    [ngClass]="{ 'lm-cell-placeholder': !content || (content && content.length === 0) }">
+     <label *ngIf="(content || placeholder)" class="" [ngStyle]="labelStyles" [ngClass]="labelClass">{{ content || placeholder }}</label>
+     <ng-container *ngIf="!content">
+       <ng-content></ng-content>
+     </ng-container>
+  </div>
+  <!-- 右侧文字 end -->
+</div>

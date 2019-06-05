@@ -1,3 +1,5 @@
+@import './commom.scss';
+@import './cell.scss';
 .#{$class-prefix} {
   &-cell-switch{
     padding-top: pxTorem($switch-padding / 2, 2);

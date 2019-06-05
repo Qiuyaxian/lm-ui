@@ -1,5 +1,2 @@
-import { TransferDomDirective } from './transfer-dom'
-
-export {
-  TransferDomDirective
-}
+export * from './transfer-dom'
+export * from './module'

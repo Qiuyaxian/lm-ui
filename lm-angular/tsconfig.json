@@ -9,6 +9,7 @@
     "sourceMap": true,
     "noEmitHelpers": true,
     "importHelpers": true,
+    "stripInternal": true,
     "strictNullChecks": false,
     "lib": [
       "dom",
@@ -27,6 +28,12 @@
       "uglify-js",
       "webpack"
     ]
+  },
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true,
+    "annotateForClosureCompiler": true,
+    "flatModuleId": "element-angular",
+    "skipTemplateCodegen": true
   },
   "files": [
     "src/components/vup-angular.module.ts"

@@ -1,4 +1,4 @@
-/* cell  */
+@import './commom.scss';
 .#{$class-prefix} { 
   &-tap-active {
     tap-highlight-color: rgba(0, 0, 0, 0);
@@ -17,6 +17,9 @@
     overflow: hidden; 
     /* 因为每个cell的border使用before元素left搞的，ie下伪元素的containing block估计跟标准不同，在cell上用oh不生效 */
     position: relative;
+    .#{$class-prefix}-cell:before {
+      display: none;
+    }
     &.#{$class-prefix}-group-border{
       /*onepx*/
       &:before { 
@@ -24,6 +27,9 @@
       }
       &:after {
         @include borderStype(bottom); 
+      }
+      .#{$class-prefix}-cell:before {
+        display: block;
       }
     }
   }
@@ -132,7 +138,6 @@
   &-form-preview-header{
     position: relative;
     padding: $cell-default-padding-vertical $cell-default-padding-horizontal;
-    text-align: right;
     font-size: $cell-default-fontsize;
     line-height: $cell-line-height;
   }

@@ -1,21 +1,12 @@
+import { ApplicationRef, ComponentRef, ComponentFactoryResolver, Inject, Injectable, Injector } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { 
-  ApplicationRef, 
-  ComponentFactoryResolver, 
-  Inject, 
-  Injectable, 
-  Injector 
-} from '@angular/core';
 import { Observable } from 'rxjs';
-// 公用函数
-import { BaseService } from '../../core/base.service';
-
-// 组件
-import { AlertComponent } from './alert.component'
-import { AlertProps } from './alert.props.ts';
-
+import { ComponentService } from '../../core';
+import { LmAlert } from './alert'
+// 配置项约束
+import { LmAlertProps } from './alert.props'
 @Injectable({ providedIn: 'root' })
-export class AlertService extends BaseService {
+export class LmAlertService extends ComponentService {
   constructor(
     resolver: ComponentFactoryResolver,
     applicationRef: ApplicationRef,
@@ -24,28 +15,33 @@ export class AlertService extends BaseService {
   ) {
     super(resolver, applicationRef, injector, doc);
   }
-  /**
-   * 创建一个对话框并显示
-   *
-   * @param data 对话框配置项
-   * @returns 可订阅来获取结果
-   */
-  show(data: AlertProps): Observable<any> {
-    const componentRef = this.build(AlertComponent);
-    // 设置输入值
-    componentRef.instance.config = data;
-    // 调用外部关闭方法
-    componentRef.instance.emitHide.subscribe(() => {
+
+  private component: ComponentRef<any>
+
+  // 外部调用方法 => show
+  public show(data: LmAlertProps): Observable<any> {
+    const componentRef = this.build(LmAlert);
+    // 配置数据
+    // componentRef.instance.config = data;
+    // 注册onHide事件
+    componentRef.instance.onHide.subscribe(() => {
       setTimeout(() => this.destroy(componentRef), 300);
     });
-    // 调用组件内部show方法
-    return componentRef.instance.showHandle();
+    // 调用内部show 方法
+    return componentRef.instance.showHandle(data);
   }
 
-  /**
-   * 关闭最新toast
-   */
-  hide() {
-    this.destroy();
+  // 同步 Sync
+  public showSync(data: LmAlertProps): void{
+    let component = this.build(LmAlert);
+    this.component = component;
+    component.instance.onShow.subscribe(() => {
+      data.onShow && data.onShow();
+    });
+    component.instance.onHide.subscribe(() => {
+      data.onHide && data.onHide();
+      setTimeout(() => this.destroy(component), 300);
+    });
+    component.instance.showSync(data);
   }
 }

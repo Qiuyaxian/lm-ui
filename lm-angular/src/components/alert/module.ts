@@ -1,25 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core'
-import { CommonModule } from '@angular/common'
-import { AlertComponent } from './alert.component'
-import { AlertProps } from './alert.props'
-import { VupSharedModule } from '../shared/module'
-export function getDocument(): any { return document }
-export function getWindow(): any { return window }
-import { DialogModule } from '../dialog/module'
-
+import { FormsModule } from '@angular/forms';
+import { cleanStyle } from '../../utils';
+import { LmSlotModule } from '../slot';
+import { LmDialogModule } from '../dialog'
+// 注册组件
+import { LmAlert } from './alert'
 @NgModule({
-  declarations: [AlertComponent],
-  exports: [AlertComponent],
-  imports: [CommonModule, VupSharedModule, DialogModule],
-  entryComponents: [AlertComponent],
+  declarations: [LmAlert],
+  exports: [LmAlert],
+  providers: [],
+  imports: [CommonModule, FormsModule, LmSlotModule, LmDialogModule],
+  entryComponents: [LmAlert]
 })
-export class AlertModule {
-  static forRoot(): ModuleWithProviders {
-    return { 
-      ngModule: AlertModule, 
-      providers: [
-	      AlertProps
-	    ]
-    }
-  }
-}
+export class LmAlertModule {}

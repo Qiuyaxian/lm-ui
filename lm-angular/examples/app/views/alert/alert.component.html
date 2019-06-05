@@ -1,0 +1,20 @@
+<lm-template>
+  <ng-template #header>
+  	<lm-header  class="lm-header-fixed" [left-options]="{ showBack: false }" [right-options]="{ showMore: false }">
+  	  <ng-template #navbarTitle>{{ title }}</ng-template>
+  	  <ng-template #navbarRight>
+  	  	<div (click)="onClickMoreHandle()">right</div>
+  	  </ng-template>	
+  	</lm-header>
+  </ng-template>
+  
+  <lm-group>
+    <lm-cell (on-cell-click)="showSyncHandle()" [label]="'同步调用'"></lm-cell>
+    <lm-cell (on-cell-click)="showHandle()" [label]="'Observable调用'"></lm-cell>
+
+    <!-- <div *transfer-dom="true">
+      <lm-alert [(ngModel)]="switchState" [title]="'提示'" [content]="'消息发送成功'">
+      </lm-alert>
+    </div> -->
+  </lm-group>
+</lm-template>

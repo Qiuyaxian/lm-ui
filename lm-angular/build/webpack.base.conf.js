@@ -40,7 +40,10 @@ module.exports = {
     chunkFilename: '[name].chunk.js' // 输出分片文件规则
   },
   resolve: {
-    extensions: ['.js', '.ts', '.json']
+    extensions: ['.js', '.ts', '.tsx', '.json'],
+    alias: {
+      '@': resolve('src')
+    }
   },
   module: {
     rules: [

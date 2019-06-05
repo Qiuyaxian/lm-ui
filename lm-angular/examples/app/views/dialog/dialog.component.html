@@ -1,0 +1,27 @@
+<lm-template>
+  <ng-template #header>
+  	<lm-header  class="lm-header-fixed" [left-options]="{ showBack: false }" [right-options]="{ showMore: false }">
+  	  <ng-template #navbarTitle>{{ title }}</ng-template>
+  	  <ng-template #navbarRight>
+  	  	<div (click)="onClickMoreHandle()">right</div>
+  	  </ng-template>	
+  	</lm-header>
+  </ng-template>
+  
+  <lm-group>
+    <lm-switch [label]="'switch'" [(ngModel)]="switchState"></lm-switch>
+    <lm-switch [label]="'switch'" [(ngModel)]="switchState"></lm-switch>
+
+    <div *transfer-dom="true">
+      <lm-dialog [(ngModel)]="switchState" class="dialog-demo">
+        <div class="img-box">
+          <img src="https://ws1.sinaimg.cn/large/663d3650gy1fq6824ur1dj20ia0pydlm.jpg" style="max-width:100%">
+        </div>
+        <div (click)="closeHandle()">
+          <span class="lm-close"></span>
+        </div>
+      </lm-dialog>
+    </div>
+  </lm-group>
+
+</lm-template>

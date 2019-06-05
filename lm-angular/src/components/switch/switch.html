@@ -1,0 +1,15 @@
+  <div 
+  class="lm-switch-wrapper lm-cell lm-cell-switch" [ngClass]="{
+    'lm-cell-no-border-intent': !getBorderIntent
+  }">
+    <div class="lm-cell-bd">
+      <label class="lm-label" [ngStyle]="labelStyle" [class]="labelClass" [innerHTML]="label"></label>
+      <lm-inline-desc>
+        <lm-slot [name]="inlineDesc">{{ inlineDesc }}</lm-slot>
+      </lm-inline-desc>
+    </div>
+    <div class="lm-cell-switch-body">
+      <input [name]="name" class="lm-switch" type="checkbox" [disabled]="disabled" [(ngModel)]="currentValue" (ngModelChange)="changeHandle($event)"/>
+      <div *ngIf="preventDefault" class="lm-switch-overlay" (click)="onClick()"></div>
+    </div>
+  </div>

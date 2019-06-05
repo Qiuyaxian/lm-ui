@@ -1,6 +1,4 @@
-/**
- * 微信图标
- */
+@import './commom.scss';
 @font-face {
   font-weight: normal;
   font-style: normal;
@@ -164,4 +162,8 @@
   &.weui-icon-warn {
 	  color: #FFBE00;
   }
+}
+
+.icon-big:before {
+  font-size: pxTorem(93, 2);
 }

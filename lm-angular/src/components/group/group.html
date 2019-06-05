@@ -1,0 +1,11 @@
+<div class="lm-group">
+  <lm-slot [name]="groupTitle"></lm-slot>
+  <div 
+    class="lm-group-cells" 
+    [ngClass]="{
+      'lm-group-border': showBorders
+    }">
+    <ng-content></ng-content>
+  </div>
+</div>
+<!--  -->

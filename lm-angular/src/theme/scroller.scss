@@ -1,13 +1,5 @@
-.dp-container {
-  &.#{$class-prefix}-datetime-view {
-    position: static;
-    transition: none;
-    & .dp-header {
-      display: none;
-    }
-  }
-}
-
+@import './function.scss';
+@import './variables.scss';
 .scroller-component {
   display: block;
   position: relative;

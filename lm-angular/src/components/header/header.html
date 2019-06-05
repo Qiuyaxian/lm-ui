@@ -1,0 +1,66 @@
+<div class="lm-header">
+  <div class="lm-header-left">
+    <!-- overwriteLeft start -->
+    <lm-slot [name]="overwriteLeft">
+      <a class="lm-header-back" [hidden]="_leftOptions.showBack"
+        (click.prevent)="goBack()">
+        <ng-template *ngIf="!_leftOptions.backText;else elseBlock">返回</ng-template>
+        <ng-template #elseBlock>{{ _leftOptions.backText }}</ng-template>
+      </a>
+      <div class="left-arrow" (click.stop)="goBack()" [hidden]="_leftOptions.showBack"></div>
+    </lm-slot>
+    <!-- <ng-container *ngIf="overwriteLeft">
+      <ng-template [ngTemplateOutlet]="overwriteLeft">
+      </ng-template>
+    </ng-container>
+    <ng-container *ngIf="!overwriteLeft">
+      <a class="lm-header-back" [hidden]="_leftOptions.showBack"
+        (click.prevent)="goBack()">
+        <ng-template *ngIf="!_leftOptions.backText;else elseBlock">返回</ng-template>
+        <ng-template #elseBlock>{{ _leftOptions.backText }}</ng-template>
+      </a>
+      <div class="left-arrow" (click.stop)="goBack()" [hidden]="_leftOptions.showBack"></div>
+    </ng-container> -->
+    <!-- overwriteLeft end -->
+    <!-- left start -->
+    <lm-slot [name]="navbarLeft"></lm-slot>
+    <!-- <ng-container *ngIf="navbarLeft">
+      <ng-template [ngTemplateOutlet]="navbarLeft">
+      </ng-template>
+    </ng-container> -->
+    <!-- left end -->
+  </div>
+  <h1 class="lm-header-title" (click.stop)="onClickTitle.emit()" *ngIf="!shouldOverWriteTitle">
+    <!-- title start -->
+    <lm-slot [name]="navbarTitle">
+      <span>{{ title }}</span>
+    </lm-slot>
+    <!-- <ng-container *ngIf="navbarTitle">
+      <ng-template [ngTemplateOutlet]="navbarTitle">
+      </ng-template>
+    </ng-container>
+    <ng-container *ngIf="!navbarTitle">
+       <span>{{ title }}</span>
+    </ng-container> -->
+    <!-- title end -->
+  </h1>
+  <div class="lm-header-title-area" *ngIf="shouldOverWriteTitle">
+    <!-- overwrite-title start -->
+    <!-- <ng-container *ngIf="overwriteTitle">
+      <ng-template [ngTemplateOutlet]="overwriteTitle">
+      </ng-template>
+    </ng-container> -->
+    <lm-slot [name]="overwriteTitle"></lm-slot>
+    <!-- overwrite-title end -->
+  </div>
+  <div class="lm-header-right">
+    <a class="lm-header-more" (click.prevent)="onClickMore.emit()" *ngIf="_rightOptions.showMore"></a>
+    <!-- right start -->
+    <lm-slot [name]="navbarRight"></lm-slot>
+    <!-- <ng-container *ngIf="navbarRight">
+      <ng-template [ngTemplateOutlet]="navbarRight">
+      </ng-template>
+    </ng-container> -->
+    <!-- right start -->
+  </div>
+</div>

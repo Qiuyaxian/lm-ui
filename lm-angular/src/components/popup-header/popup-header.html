@@ -1,0 +1,13 @@
+<div 
+  class="lm-popup-header" 
+  [ngClass]="{ 'lm-border-bottom' : showBottomBorder }">
+    <div class="lm-popup-header-left" (click)="onClickLeft.emit()">
+      <slot name="left-text">{{ leftText }}</slot>
+    </div>
+    <div class="lm-popup-header-title">
+      <slot name="title">{{ title }}</slot>
+    </div>
+    <div class="lm-popup-header-right" (click)="onClickRight.emit()">
+      <slot name="right-text">{{ rightText }}</slot>
+    </div>
+</div>

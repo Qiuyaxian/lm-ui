@@ -1,0 +1,9 @@
+<div 
+  class="lm-flexbox" 
+  [ngClass]="{
+	'lm-flex-col': orient === 'vertical',
+	'lm-flex-row': orient === 'horizontal'
+  }"
+  [style]="styles()">
+  <ng-content></ng-content>
+</div>

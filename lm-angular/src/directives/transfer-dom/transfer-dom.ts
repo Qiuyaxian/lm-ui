@@ -40,14 +40,6 @@ function getShouldUpdate (node) {
   return false;
 }
 
-/**
- *  在 Angular 中有三种类型的指令：
-
-    组件 — 拥有模板的指令
-    结构型指令 — 通过添加和移除 DOM 元素改变 DOM 布局的指令 
-    属性型指令 — 改变元素、组件或其它指令的外观和行为的指令 => TransferDomDirective
- */
-
 import { 
   Directive, 
   ElementRef, 
@@ -60,7 +52,6 @@ import {
   ChangeDetectorRef,
 } from '@angular/core'
 import { DOCUMENT } from '@angular/common';
-// import { VupDialog } from '../../components/dialog/dialog'
 @Directive({
   selector: '[transfer-dom]'
 })
@@ -81,12 +72,12 @@ export class TransferDomDirective {
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef,
   ) {
-
+    
   }
 
   // 会在Angular设置数据绑定输入属性时作出响应。
   ngOnChanges(): void {
-    console.log('ngOnChanges');
+    
   }
   // 在Angular首次显示数据绑定属性及设置输入
   // 属性时初始化指令或组件，
@@ -118,7 +109,6 @@ export class TransferDomDirective {
   // 检测Angular本身无法捕获的变化并执行操作。
   ngDoCheck(): void {
     // 顺序 2 => 触发1
-    console.log('ngDoCheck');
   }
   
   // 在Angular投射外部内容进入组件的视图或
@@ -126,15 +116,13 @@ export class TransferDomDirective {
   // 只会在首次ngDoCheck后被调用。
   // 对应vue 的 inserted
   ngAfterContentInit(): void {
-    // 顺序 3 => 
-    console.log('ngAfterContentInit');
+    // 顺序 3 =>
     
   }
   
   // 在Angular检查被投射到指令或组件的内容后响应。
   // 对应vue 的 componentUpdated
   ngAfterContentChecked(): void {
-    console.log('ngAfterContentChecked');
     // 顺序 4 => 触发2
     const shouldUpdate = getShouldUpdate(this.state)
     if (!shouldUpdate) {
@@ -168,23 +156,20 @@ export class TransferDomDirective {
   // 只会在首次ngAfterContentChecked后被调用。
   // 
   ngAfterViewInit(): void {
-    // 顺序 5 => 
-    console.log('ngAfterViewInit');
+    // 顺序 5 =>
   }
 
   // 在Angular检查视图及子视图或指令所在的视图后响应。
   // 对应vue 的 updated
   ngAfterViewChecked(): void {
     // 顺序 6 => => 触发3
-    console.log('ngAfterViewChecked');
   }
   
   // 在Angular销毁指令或组件前进行清除工作，
   // 取消订阅和解除事件处理以避免内存泄漏。
   // 对应 vue 的 unbind
   ngOnDestroy(): void {
-    // 销毁 
-    console.log('ngOnDestroy');
+    // 销毁
     let el = this.elem;
     el.className = el.className.replace('v-transfer-dom', '')
     if (el.__transferDomData && el.__transferDomData.hasMovedOut === true) {

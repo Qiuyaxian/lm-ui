@@ -1,3 +1,6 @@
+@import './function.scss';
+@import './mixins.scss';
+@import './variables.scss';
 /**
  * extend 继承部分
  */
@@ -106,8 +109,8 @@
     @include setArrow(right, $cell-arrow-size, $cell-arrow-width, $cell-arrow-color);
     position: absolute; 
     top: 50%;
-    margin-top: pxTorem(viewTransform(-3));
-    right: pxTorem(viewTransform(2));
+    margin-top: pxTorem(-3, 2);
+    right: pxTorem(2, 2);
   }
 }
 /**

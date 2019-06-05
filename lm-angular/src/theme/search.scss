@@ -1,0 +1,134 @@
+@import './commom.scss';
+@import './iconfont.scss';
+.#{$class-prefix} {
+  &-search-radius{
+    border-radius: pxTorem(15, 2);
+    overflow: hidden;
+  }
+  &-search-url-bar{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 5;
+  }
+  &-icon-search,
+  &-icon-clear{
+    display: inline-block;
+    position: relative;
+    color: #9B9B9B;
+    vertical-align: middle;
+    font-style: normal !important;
+    font-variant: normal !important;
+    font-weight: normal !important;
+    font-stretch: normal !important;
+    line-height: 1;
+    font-family: weui !important;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+  &-icon-search{
+    line-height: pxTorem(62) !important;
+    font-size: pxTorem(32) !important;
+    &:before{
+      content: "\EA0E";
+    }
+  }
+  &-icon-clear{
+    &:before{
+      content: "\EA0F";
+    }
+  }
+  &-search-bar{
+    position: relative;
+    padding: pxTorem(8, 2) pxTorem(10, 2);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    @include css3(box-sizing, border-box)
+  }
+  &-search-bar-form{
+    position: relative;
+    z-index: 3;
+    border-radius: pxTorem(4, 2);
+    @include css3(flex, auto);
+  }
+  &-search-mask{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 90%;
+    height: 100%;
+    z-index: 5;
+  }
+  &-search-bar-box{
+    position: relative;
+    padding-left: pxTorem(60);
+    padding-right: pxTorem(60);
+    height: 100%;
+    width: 100%;
+    @include css3(box-sizing, border-box);
+    z-index: 1;
+  }
+  &-icon-search-start{
+    position: absolute;
+    left: pxTorem(15);
+    top: 0;
+  }
+  &-search-bar-input{
+    padding: pxTorem(10) 0;
+    width: 100%;
+    height: pxTorem(42);
+    border: 0;
+    font-size: pxTorem(28);
+    line-height: pxTorem(42);
+    background: transparent;
+  }
+  &-icon-clear{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 pxTorem(20);
+    color: #B2B2B2 !important;
+    font-size: pxTorem(28) !important;
+    line-height: pxTorem(62) !important;
+  }
+  &-search-bar-label{
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+    z-index: 8;
+    border-radius: pxTorem(6);
+    text-align: center;
+    color: #9B9B9B;
+    text-align: center;
+    .#{$class-prefix}-icon-search{
+      vertical-align: middle;
+    }
+    .#{$class-prefix}-search-placeholder{
+      font-size: pxTorem(28);
+      height: pxTorem(62);
+      line-height: pxTorem(62);
+      @include css3(box-sizing, border-box);
+      vertical-align: middle;
+    }
+  }
+  &-search-bar-cancel-btn{
+    display: none;
+    font-size: pxTorem(28);
+    margin-left: pxTorem(20);
+    line-height: pxTorem(62);
+    color: #FF9900;
+    white-space: nowrap;
+  }
+  &-search-bar{
+    &.#{$class-prefix}-search-bar-focusing {
+      & .#{$class-prefix}-search-bar-cancel-btn{
+        display: block;
+      }
+    }
+  }
+}

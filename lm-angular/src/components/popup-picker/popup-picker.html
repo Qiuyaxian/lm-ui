@@ -1,0 +1,58 @@
+  <!-- [content]="model" -->
+<lm-cell
+  [borderIntent]="getBorderIntent"
+  [label]="label"
+  [inline-desc]="inlineDesc" 
+
+  (on-cell-click)="clickHandle($event)"
+>
+    
+    <div class="lm-popup-picker-select"
+         [ngStyle]="{textAlign: valueTextAlign}">
+       <span 
+          class="lm-popup-picker-value lm-cell-value"
+          *ngIf="!displayFormat && !showName && model.length">
+          {{ model }}
+       </span>
+       <span 
+         class="lm-popup-picker-value lm-cell-value"
+         *ngIf="!displayFormat && showName && model.length">
+         {{model | value2name:model:data }}
+       </span>
+      <span 
+        class="lm-popup-picker-value lm-cell-value"
+        *ngIf="displayFormat && model.length">
+        {{ displayFormat(model, value2name(model, data)) }}
+      </span>
+      <span 
+        *ngIf="!model.length && placeholder"
+        class="lm-popup-picker-placeholder lm-cell-placeholder">
+        {{ placeholder }}
+      </span>
+    </div>
+</lm-cell>
+
+<div *transfer-dom="true">
+  <lm-popup 
+      [(ngModel)]="showValue"
+      class="lm-popup-picker">
+    <div class="lm-popup-picker-container">
+      <lm-popup-header
+        [left-text]="cancelText"
+        [right-text]="confirmText"
+        (on-click-left)="onHide(false)"
+        (on-click-right)="onHide(true)"
+        [title]="popupTitle">
+      </lm-popup-header>	
+      <lm-picker 
+       [data]="data"
+       [model]="tempValue"
+       (on-change)="onPickerChange($event)"
+       [columns]="columns"
+       [fixed-columns]="fixedColumns"
+       [column-width]="columnWidth">	
+      </lm-picker>
+    </div>
+  </lm-popup>	
+  
+</div>

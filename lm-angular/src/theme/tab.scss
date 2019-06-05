@@ -1,3 +1,4 @@
+@import './commom.scss';
 .#{ $tab-prefix } {
   display: flex;
   background-color: #fff;
@@ -17,26 +18,6 @@
     background: 0 0;
     appearance: none;
   }
-  & .#{ $tab-prefix }-item {
-    display: block;
-    flex: 1;
-    width: 100%;
-    height: 100%;
-    flex-shrink: 0;
-    box-sizing: border-box;
-    background: linear-gradient(180deg, #e5e5e5, #e5e5e5, rgba(229, 229, 229, 0)) bottom left no-repeat;
-    background-size: 100% 1px;
-    font-size: pxTorem(14, 2);
-    text-align: center;
-    line-height: pxTorem(44, 2);
-    color: $tab-text-default-color;
-
-    &.#{ $tab-prefix }-selected {
-      color: $tab-text-active-color;
-      border-bottom: pxTorem(3, 2) solid $tab-text-active-color;
-    }
-  }
-  
 
   &-bar-top {
     .#{ $tab-prefix } .#{ $tab-prefix }-item {
@@ -48,12 +29,7 @@
       }
     }
   }
-
-  & .#{ $tab-prefix }-item{
-    &.#{ $tab-prefix }-disabled {
-      color: $tab-text-disabled-color;
-    }
-  }
+  
   &.#{ $tab-prefix }-no-animate{
     .#{ $tab-prefix }-item{
       &.#{ $tab-prefix }-selected {
@@ -61,7 +37,6 @@
       }
     }
   }
-
   &-ink-bar {
     position: absolute;
     height: 2px;
@@ -78,7 +53,6 @@
       left $tab-effect-duration $tab-easing-in-out;
     }
   }
-
   /** when=prop:custom-bar-width **/
   &-bar-inner {
     display: block;
@@ -87,22 +61,7 @@
     height: 100%;
     transition: width 0.3s $tab-easing-in-out;
   }
-  &-item-badge {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    box-sizing: border-box;
-    display: inline-block;
-    height: pxTorem(18, 2);
-    min-width: pxTorem(18, 2);
-    padding: 0 pxTorem(4, 2);
-    border-radius: pxTorem(30, 2);
-    margin: auto 0 auto pxTorem(4, 2);
-    line-height: pxTorem(18, 2);
-    font-size: pxTorem(11, 2);
-    background-clip: padding-box;
-    vertical-align: middle;
-  }
+
   &-wrap {
     position: relative;
     height: pxTorem(44, 2);

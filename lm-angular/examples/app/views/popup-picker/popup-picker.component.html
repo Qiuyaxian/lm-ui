@@ -1,0 +1,16 @@
+<lm-template>
+  <ng-template #header>
+  	<lm-header  class="lm-header-fixed" [left-options]="{ showBack: false }" [right-options]="{ showMore: false }">
+  	  <ng-template #navbarTitle>{{ title }}</ng-template>
+  	  <ng-template #navbarRight>
+  	  	<div (click)="onClickMoreHandle()">right</div>
+  	  </ng-template>	
+  	</lm-header>
+  </ng-template>
+  
+  <lm-group>
+    <lm-popup-picker [label]="title1" [data]="list1" [(ngModel)]="value1" [placeholder]="'请选择'"></lm-popup-picker>
+  </lm-group>
+ <!--  <div style="font-size: 1rem;">默认，不设置默认值时选中第一个 {{year2}}</div>
+  <lm-picker [data]="years" [(ngModel)]="year2"></lm-picker> -->
+</lm-template>

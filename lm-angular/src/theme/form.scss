@@ -1,69 +1,9 @@
-/* form 表单 form 表单 preview 展示 */
+@import './commom.scss';
+@import './flex.scss';
 .#{$class-prefix} {
   &-form{
     display: block; 
     font-size: 0; 
-  }
-  &-form-row{
-    font-size: $cell-default-fontsize;
-    line-height: $cell-line-height;
-    padding: $cell-default-padding-vertical $cell-default-padding-horizontal;
-    overflow: hidden; 
-  }
-  &-form-label{ 
-
-  }
-  &-form-input{
-    width: 100%;
-    display: block;
-    height: pxTorem($cell-height - ( 2 * $cell-padding-vertical ));
-    font-size: $cell-default-fontsize;
-    line-height: pxTorem($cell-height - ( 2 * $cell-padding-vertical ));  
-    border: 0;
-    outline: 0;
-    -webkit-appearance: none;
-    background-color: transparent; 
-    &::-webkit-input-placeholder,
-    &:-moz-placeholder,
-    &::-moz-placeholder,
-    &:-ms-input-placeholder{  
-      line-height: pxTorem($cell-height - ( 2 * $cell-padding-vertical ));  
-    }            
-    /*transparent; */
-  }
-  &-textarea {
-    display: block;
-    border: 0;
-    resize: none;
-    width: 100%;
-    color: #333333;
-    font-size: $cell-default-fontsize;
-    line-height: $cell-line-height;
-    outline: 0;
-    padding: 0;
-  }
-
-  &-textarea-counter{
-    color: #B2B2B2;
-    text-align: right;
-    font-size: $cell-default-fontsize;
-    line-height: $cell-line-height;
-    .#{$class-prefix}-cell_warn &{
-      color: red;
-    }
-  }
-  .#{$class-prefix}-form-row,
-  .#{$class-prefix}-cell{
-    align-items: flex-start;
-    .#{$class-prefix}-flex-grow{
-      font-size: 0;
-      line-height: 0;
-    }
-  }
-  &-flex-grow {
-    .#{$class-prefix}-textarea-wrapper {
-      padding-left: pxTorem(32);
-    }
   }
   /*&-toptips {
     display:none;

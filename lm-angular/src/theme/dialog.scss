@@ -1,3 +1,8 @@
+@import './commom.scss';
+@import './modal.scss';
+@import './transition.scss';
+@import './mask.scss';
+
 .#{ $class-prefix } {
   &-dialog {
     position: fixed;
@@ -130,4 +135,11 @@
       color: #808080;
     }
   }	
+}
+.#{ $class-prefix } {
+  &-dialog-absolute {
+    .#{ $class-prefix }-dialog {
+      position: absolute
+    }
+  }
 }

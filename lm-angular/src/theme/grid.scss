@@ -1,4 +1,4 @@
-/* form 表单 form 表单 preview 展示 */
+@import './commom.scss';
 .#{$class-prefix} {
   &-grids {
     position: relative;
@@ -11,55 +11,18 @@
       @include borderStype(bottom);
     }
   }
-  &-grid {
-    position: relative;
-    float: left;
-    padding: $grids-padding-vertical $grids-padding-horizontal;
-    width: (100 / $grids-column-count) * 1%;
-    box-sizing: border-box;
-    &:before {
-      @include borderStype(right);
-    }
-    &:after {
-      @include borderStype(bottom);
-    }
-    &:active {
-      background-color: $grids-label-active-color;
-    }
-  }
-  &-grid-icon {
-    width: $grids-icon-size;
-    height: $grids-icon-size;
-    margin: 0 auto;
-    & img {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-    & + .#{$class-prefix}-grid-label{
-      margin-top: $grids-label-margin-top;
-    }
-  }
-  &-grid-label {
-    display: block;
-    text-align: center;
-    color: $grids-label-color;
-    font-size: $grids-font-size;
-    line-height: $grids-line-height;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-  }
   &-grids.#{$class-prefix}-grid-no-lr-borders {
-    &:after {
-      display: none;
+    .#{$class-prefix}-grid {
+      &:before {
+        display: none;
+      }
     }
   }
-  &-grid.#{$class-prefix}-grid-item-no-border {
-    &:before {
-      display: none;
+  &-grids.#{$class-prefix}-grid-no-tb-borders {
+    .#{$class-prefix}-grid {
+      &:after {
+        display: none;
+      }
     }
   }
   &-grids.#{$class-prefix}-grid-no-borders {

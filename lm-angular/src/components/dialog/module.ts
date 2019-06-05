@@ -1,27 +1,16 @@
-import { NgModule, ModuleWithProviders } from '@angular/core'
-import { CommonModule } from '@angular/common'
-import { DialogComponent } from './dialog.component'
-import { DialogService } from './dialog.service'
-import { DialogProps } from './dialog.props'
-import { VupSharedModule } from '../shared/module'
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { cleanStyle } from '../../utils';
+import { LmSlotModule } from '../slot';
 
-export function getDocument(): any { return document }
-export function getWindow(): any { return window }
-
+// 注册组件
+import { LmDialog } from './dialog'
 @NgModule({
-  declarations: [DialogComponent],
-  exports: [DialogComponent],
-  imports: [CommonModule, VupSharedModule],
-  entryComponents: [DialogComponent],
+  declarations: [LmDialog],
+  exports: [LmDialog],
+  providers: [],
+  imports: [CommonModule, FormsModule, LmSlotModule],
+  entryComponents: [LmDialog]
 })
-export class DialogModule {
-  static forRoot(): ModuleWithProviders {
-    return { 
-      ngModule: DialogModule, 
-      providers: [
-	      DialogService,
-        DialogProps
-	    ]
-    }
-  }
-}
+export class LmDialogModule {}
