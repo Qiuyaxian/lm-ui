@@ -43,6 +43,10 @@ export default {
     // Icon
   },
   props: {
+    /**
+     * [format 格式]
+     * @type {Object}
+     */
     format: {
       type: String,
       default: 'YYYY-MM-DD',
@@ -54,64 +58,144 @@ export default {
         return true
       }
     },
+    /**
+     * [label 左侧文字]
+     * @type {[type]}
+     */
     label: String,
+    /**
+     * [value 绑定值]
+     * @type {Object}
+     */
     value: {
       type: String,
       default: ''
     },
+    /**
+     * [inlineDesc 小文字]
+     * @type {[type]}
+     */
     inlineDesc: String,
+    /**
+     * [placeholder 默认显示文字]
+     * @type {[type]}
+     */
     placeholder: String,
+    /**
+     * [minYear 最小年份]
+     * @type {[type]}
+     */
     minYear: Number,
+    /**
+     * [minYear 最大年份]
+     * @type {[type]}
+     */
     maxYear: Number,
+    /**
+     * [confirmText 确认文字]
+     * @type {[type]}
+     */
     confirmText: String,
+    /**
+     * [confirmText 取消文字]
+     * @type {[type]}
+     */
     cancelText: String,
+    /**
+     * [confirmText 清除文字]
+     * @type {[type]}
+     */
     clearText: String,
+    /**
+     * [yearRow 自定义展示年份]
+     * @type {Object}
+     */
     yearRow: {
       type: String,
       default: '{value}'
     },
+    /**
+     * [monthRow 自定义展示月份]
+     * @type {Object}
+     */
     monthRow: {
       type: String,
       default: '{value}'
     },
+    /**
+     * [dayRow 自定义展示天数]
+     * @type {Object}
+     */
     dayRow: {
       type: String,
       default: '{value}'
     },
+    /**
+     * [hourRow 自定义展示小时]
+     * @type {Object}
+     */
     hourRow: {
       type: String,
       default: '{value}'
     },
+    /**
+     * [minuteRow 自定义展示分钟]
+     * @type {Object}
+     */
     minuteRow: {
       type: String,
       default: '{value}'
     },
+    /**
+     * [secondRow 自定义展示秒]
+     * @type {Object}
+     */
     secondRow: {
       type: String,
       default: '{value}'
     },
+    /**
+     * [required 是否必填]
+     * @type {Object}
+     */
     required: {
       type: Boolean,
       default: false
     },
+    /**
+     * [minHour 最小小时]
+     * @type {Object}
+     */
     minHour: {
       type: Number,
       default: 0
     },
+    /**
+     * [maxHour 最大小时]
+     * @type {Object}
+     */
     maxHour: {
       type: Number,
       default: 23
     },
+    /**
+     * [startDate 开始时间]
+     * @type {Object}
+     */
     startDate: {
       type: String,
       validator (val) {
         /* istanbul ignore if */
         if (process.env.NODE_ENV === 'development' && val && val.length !== 10) {
-          console.error('[VUX] Datetime prop:start-date 必须为 YYYY-MM-DD 格式')
+          console.error('Datetime prop:start-date 必须为 YYYY-MM-DD 格式')
         }
         return val ? val.length === 10 : true
       }
     },
+    /**
+     * [endDate 结束时间]
+     * @type {Object}
+     */
     endDate: {
       type: String,
       validator (val) {
@@ -122,14 +206,50 @@ export default {
         return val ? val.length === 10 : true
       }
     },
+    /**
+     * [valueTextAlign 文字方法]
+     * @type {[type]}
+     */
     valueTextAlign: String,
+    /**
+     * [displayFormat 显示文字格式]
+     * @type {[type]}
+     */
     displayFormat: Function,
+    /**
+     * [readonly 是否自读]
+     * @type {[type]}
+     */
     readonly: Boolean,
+    /**
+     * [hourList 小时列表]
+     * @type {[type]}
+     */
     hourList: Array,
+    /**
+     * [minuteList 分钟列表]
+     * @type {[type]}
+     */
     minuteList: Array,
+    /**
+     * [show 是否显示]
+     * @type {[type]}
+     */
     show: Boolean,
+    /**
+     * [defaultSelectedValue 默认选择值]
+     * @type {[type]}
+     */
     defaultSelectedValue: String,
+    /**
+     * [computeHoursFunction 外部计算处理小时函数]
+     * @type {[type]}
+     */
     computeHoursFunction: Function,
+    /**
+     * [computeHoursFunction 外部计算处理天数函数]
+     * @type {[type]}
+     */
     computeDaysFunction: Function,
     orderMap: Object
   },
@@ -252,6 +372,11 @@ export default {
     }
   },
   methods: {
+    /**
+     * [getButtonText 按钮文字]
+     * @param  {[type]} type [description]
+     * @return {[type]}      [description]
+     */
     getButtonText (type) {
       if (type === 'cancel' && this.cancelText) {
         return this.cancelText
@@ -260,12 +385,20 @@ export default {
       }
       return this.$el.getAttribute(`data-${type}-text`)
     },
+    /**
+     * [render 渲染函数]
+     * @return {[type]} [description]
+     */
     render () {
       this.$nextTick(() => {
         this.picker && this.picker.destroy()
         this.picker = new Picker(this.pickerOptions)
       })
     },
+    /**
+     * [validate 校验]
+     * @return {[type]} [description]
+     */
     validate () {
       if (!this.currentValue && this.required) {
         this.valid = false

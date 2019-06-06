@@ -25,13 +25,33 @@ export default {
     event: 'change'
   },
   props: {
+    /**
+     * [show 是否显示]
+     * @type {[type]}
+     */
     show: Boolean,
+    /**
+     * [text 加载文字]
+     * @type {[type]}
+     */
     text: String,
+    /**
+     * [position 显示位置]
+     * @type {[type]}
+     */
     position: String,
+    /**
+     * [transition 动画]
+     * @type {Object}
+     */
     transition: {
       type: String,
       default: 'blc-mask'
     },
+    /**
+     * [align 对齐方式]
+     * @type {Object}
+     */
     align: {
       type: String,
       default: 'middle'

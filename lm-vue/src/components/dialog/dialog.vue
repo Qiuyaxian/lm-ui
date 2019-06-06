@@ -23,35 +23,60 @@ export default {
     event: 'change'
   },
   props: {
+    /**
+     * [show 是否显示]
+     * @type {Object}
+     */
     show: {
       type: Boolean,
       default: false
     },
+    /**
+     * [maskTransition 遮罩层动画]
+     * @type {Object}
+     */
     maskTransition: {
       type: String,
       default: 'lm-mask'
     },
+    /**
+     * [maskTransition 遮罩层层级]
+     * @type {Object}
+     */
     maskZIndex: [String, Number],
+    /**
+     * [dialogTransition dialog动画]
+     * @type {Object}
+     */
     dialogTransition: {
       type: String,
       default: 'lm-dialog'
     },
+    /**
+     * [dialogClass dialog样式]
+     * @type {Object}
+     */
     dialogClass: {
       type: String,
       default: 'lm-dialog'
     },
+    /**
+     * [hideOnBlur 是否失去光标后隐藏]
+     * @type {[type]}
+     */
     hideOnBlur: Boolean,
+    /**
+     * [dialogStyle dialog行内样式]
+     * @type {[type]}
+     */
     dialogStyle: Object,
+    /**
+     * [scroll 是否允许滚动]
+     * @type {Object}
+     */
     scroll: {
       type: Boolean,
-      default: true,
-      validator (val) {
-        /* istanbul ignore if */
-        if (process.env.NODE_ENV === 'development' && val === false) {
-          console.warn('[VUX warn] x-dialog:scroll 已经废弃。如果你是 100% 布局，请参照文档配置 $layout 以实现阻止滚动')
-        }
-        return true
-      }
+      default: true
     }
   },
   computed: {
@@ -82,13 +107,14 @@ export default {
     }
   },
   methods: {
+    /**
+     * [shouldPreventScroll 是否阻止滚动]
+     * @return {[type]} [description]
+     */
     shouldPreventScroll () {
-      // hard to get focus on iOS device with fixed position, so just ignore it
       const iOS = /iPad|iPhone|iPod/i.test(window.navigator.userAgent)
       const hasInput = this.$el.querySelector('input') || this.$el.querySelector('textarea')
-      if (iOS && hasInput) {
-        return true
-      }
+      if (iOS && hasInput) return true;
     },
     hide () {
       if (this.hideOnBlur) {

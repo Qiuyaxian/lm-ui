@@ -13,7 +13,7 @@ export default {
   mounted () {
     this.$nextTick(() => {
       let parentNode = this.$el.parentNode;
-      if (parentNode) parentNode.style.lineHeight = 0;
+      if (parentNode && /cell/i.test(parentNode.className)) parentNode.style.lineHeight = 0;
       /**
        * 实例化Spinner对象
        */

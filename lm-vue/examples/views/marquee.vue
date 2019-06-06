@@ -1,20 +1,18 @@
 <template>
   <lm-page>
-    <lm-header>Divider</lm-header>
+    <lm-header>Marquee</lm-header>
     <lm-divider>默认</lm-divider>
     <lm-marquee>
       <lm-marquee-item v-for="i in 5" :key="i" class="align-middle">hello world {{i}}</lm-marquee-item>
     </lm-marquee>
     <lm-divider>在cell中使用</lm-divider>
     <lm-group>
-      <lm-cell label="公共">
-        <lm-marquee>
-        <lm-marquee-item v-for="i in 5" :key="i">hello world {{i}}</lm-marquee-item>
+      <lm-cell label="滚动播放">
+        <lm-marquee direction="left">
+          <lm-marquee-item v-for="i in 5" :key="i">hello world {{ i }}</lm-marquee-item>
         </lm-marquee>
       </lm-cell>
-      <lm-cell label="公共" content="App.vue"></lm-cell>
     </lm-group>
-
     <lm-divider>异步加载数据</lm-divider>
     <lm-marquee>
       <lm-marquee-item v-for="i in asyncCount" :key="i" class="align-middle">hello world {{i}}</lm-marquee-item>

@@ -16,9 +16,25 @@
 export default {
   name: 'lm-popup-header',
   props: {
+    /**
+     * [leftText 左侧文字]
+     * @type {[type]}
+     */
     leftText: String,
+    /**
+     * [rightText 右侧文字]
+     * @type {[type]}
+     */
     rightText: String,
+    /**
+     * [title 标题]
+     * @type {[type]}
+     */
     title: String,
+    /**
+     * [showBottomBorder 是否显示底部边框]
+     * @type {Object}
+     */
     showBottomBorder: {
       type: Boolean,
       default: true

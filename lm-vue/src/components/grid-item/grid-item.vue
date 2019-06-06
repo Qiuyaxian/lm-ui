@@ -6,9 +6,9 @@
     }"
     @click="onClick"
     :style="style">
-    <div class="lm-grid-icon">
+    <div class="lm-grid-icon-wrapper">
       <slot name="icon">
-        <img v-if="icon" :src="icon" alt="" />
+        <img class="lm-grid-icon" v-if="icon" :src="icon" alt="" />
       </slot>
     </div>
     <p class="lm-grid-label">

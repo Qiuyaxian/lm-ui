@@ -9,12 +9,12 @@
       <lm-switch label="时间为1s" v-model="show5"></lm-switch>
       <lm-switch label="长文字" v-model="show6"></lm-switch>
     </lm-group>
-    <lm-toast :visible="show1" @on-hide="onHide">一般使用</lm-toast>
-    <lm-toast :visible="show2" @on-hide="onHide" type="text">type为文字</lm-toast>
-    <lm-toast :visible="show3" @on-hide="onHide" type="cancel">type为cancel</lm-toast>
-    <lm-toast :visible="show4" @on-hide="onHide" type="warn">type为warn</lm-toast>
-    <lm-toast :visible="show5" @on-hide="onHide" :time="1000">时间为1s</lm-toast>
-    <lm-toast :visible="show6" @on-hide="onHide" type="text" width="30em">长文字长文字长文字长文字长文字</lm-toast>
+    <lm-toast v-model="show1" @on-hide="onHide">一般使用</lm-toast>
+    <lm-toast v-model="show2" @on-hide="onHide" type="text">type为文字</lm-toast>
+    <lm-toast v-model="show3" @on-hide="onHide" type="cancel">type为cancel</lm-toast>
+    <lm-toast v-model="show4" @on-hide="onHide" type="warn">type为warn</lm-toast>
+    <lm-toast v-model="show5" @on-hide="onHide" :time="1000">时间为1s</lm-toast>
+    <lm-toast v-model="show6" @on-hide="onHide" type="text" width="30em">长文字长文字长文字长文字长文字</lm-toast>
     <lm-divider>js调用</lm-divider>
     <div style="padding: 0 32px;">
       <lm-button @click.native="toastHandle('cancel', '取消操作')">type为cancel</lm-button>

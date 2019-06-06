@@ -100,56 +100,6 @@ vue
 |--plugins
 |--mixins
 |
-
-import Actionsheet from './components/actionsheet/index.js'
-import Address from './components/address/index.js'
-import Alert from './components/alert/index.js'
-import Button from './components/button/index.js'
-import Button from './components/badge/index.js'
-import Confirm from './components/confirm/index.js'
-import Cell from './components/cell/index.js'
-import Clock from './components/clock/index.js'
-import CountUp from './components/count-up/index.js'
-import CountDown from './components/count-down/index.js'
-import CellPreview from './components/cell-preview/index.js'
-import DatetimeRange from './components/datetime-range/index.js'
-import Datetime from './components/datetime/index.js'
-import Dialog from './components/dialog/index.js'
-import Divider from './components/divider/index.js'
-import Form from './components/form/index.js'
-import FormItem from './components/form-item/index.js'
-import Flexbox from './components/flexbox/index.js'
-import FlexboxItem from './components/flexbox-item/index.js'
-import FormPreview from './components/form-preview/index.js'
-import Grid from './components/grid/index.js'
-import GridItem from './components/grid-item/index.js'
-import Group from './components/group/index.js'
-import GroupTitle from './components/group-title/index.js'
-import Header from './components/header/index.js'
-import Icon from './components/icon/index.js'
-import InlineDesc from './components/inline-desc/index.js'
-import Loading from './components/loading/index.js'
-import Marquee from './components/marquee/index.js'
-import MarqueeItem from './components/marquee-item/index.js'
-import Page from './components/page/index.js'
-import Popup from './components/popup/index.js'
-import PopupHeader from './components/popup-header/index.js'
-import PopupPicker from './components/popup-picker/index.js'
-import Picker from './components/picker/index.js'
-import Panel from './components/panel/index.js'
-import PanelItem from './components/panel-item/index.js'
-import Rater from './components/rater/index.js'
-import Scroll from './components/scroll/index.js'
-import Spinner from './components/spinner/index.js'
-import Search from './components/search/index.js'
-import Switch from './components/switch/index.js'
-import Textarea from './components/textarea/index.js'
-import Toast from './components/toast/index.js'
-import Tab from './components/tab/index.js'
-import TabItem from './components/tab-item/index.js'
-import Tabbar from './components/tabbar/index.js'
-import TabbarItem from './components/tabbar-item/index.js'
-|
 |
 |  
 
@@ -193,13 +143,32 @@ angular使用class-interface获取父组件和祖先组件 => https://blog.csdn.
   ng-zorro-antd => update-host-class.service.ts服务 => 提供dom操作(作用是vue的utils)
   update-host-class.service.ts
 
-双响绑定 ngx => rating组件
+双响绑定 ngx => rating组件（ok）
 
 使用 ng-container 与 ng-template 实现vue 的slot 
 浏览器typesctipt @angular/platform-browser  => SafeStyle 
 利用K extends keyof WindowEventMap将参数type:K限制在WindowEventMap的键值列表，listener中的参数ev限定为WindowEventMap对应K相应的值
+utils 目录 改名为 => core目录
+servers => 通用js组件 插件机制
+utils => 散形函数 => 一个功能一个函数 （避免过多注入）
+animation => 动画机制
 
 
+组件内部建立 props 文件 => 正对外部传入函数(回调方法除外)
+
+组件内部建立 server 文件 => 正对插件调用
+
+全局插件用法
+方案一、在plugins 单独定义lm模块，将组件全部挂在到这个对象模块上
+       然后每个插件又单独注册一个模块，用于单独注册依赖 (参考指令部分)
+       demo https://github.com/ElemeFE/element-angular/blob/master/src/shared/services/dynamic.service.ts
+       ionic 部分
+
+1. 双向数据绑定触发数据顺序 ngOnchange(underfined) => ngOninit(underfined) =>  writeValue => set model => writeValue => set model
+2. 非双向绑定数据触发顺序(不经过writeValue) => set model => ngOnchange钩子函数 => ngOninit
+
+ngModel => 内部变量
+model => 内部变量
 
 不存在指令，过滤器，minixs
 https://www.cnblogs.com/usebtf/p/10176719.html

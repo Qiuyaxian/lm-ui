@@ -9,13 +9,13 @@
       @on-hide="onPopupHide"
       @on-show="onPopupShow"
       :popup-style="popupStyle">
-        <div class="lm-popup-picker-container">
+        <div v-bind="$attrs" v-on="$listeners" class="lm-popup-picker-container">
           <popup-header
           v-bind="$attrs" v-on="$listeners"
           :left-text="cancelText || '取消'"
           :right-text="confirmText || '完成'"
-          @on-click-left="onHide(false)"
-          @on-click-right="onHide(true)"
+          @on-click-left="onClickLeft"
+          @on-click-right="onClickRight"
           :title="popupTitle"></popup-header>
           <picker
           v-bind="$attrs" v-on="$listeners"
@@ -103,6 +103,12 @@ export default {
   },
   methods: {
     value2name,
+    onClickLeft () {
+      this.onPopupHeaderChange(false);
+    },
+    onClickRight () {
+      this.onPopupHeaderChange(true);
+    },
     getNameValues () {
       return value2name(this.currentValue, this.data)
     },
@@ -111,8 +117,8 @@ export default {
         this.showValue = true
       }
     },
-    onHide (type) {
-      this.showValue = false
+    onPopupHeaderChange (type) {
+      this.showValue = false;
       if (type) {
         this.closeType = true
         this.currentValue = getObject(this.tempValue)

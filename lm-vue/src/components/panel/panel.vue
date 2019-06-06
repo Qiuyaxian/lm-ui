@@ -1,5 +1,5 @@
 <template>
-  <div class="lm-panel">
+  <div class="lm-panel" :class="{ 'lm-panel-border-not': !borderIntent }">
     <div class="lm-panel-header"
          v-if="header"
          @click="onClickHeader"
@@ -27,7 +27,15 @@ import Router from '@/utils/router'
 export default {
   name: 'lm-panel',
   props: {
+    /**
+     * [header panel头部]
+     * @type {[type]}
+     */
     header: String,
+    /**
+     * [footer panel底部]
+     * @type {[type]}
+     */
     footer: Object,
     /**
      * [borderIntent 是否开启边框]
@@ -36,7 +44,17 @@ export default {
     borderIntent: {
       type: Boolean,
       default: true
-    }
+    },
+    /**
+     * [gutter 间距]
+     * @type {[type]}
+     */
+    gutter: Array,
+    /**
+     * [cols 子项列数]
+     * @type {[type]}
+     */
+    cols: Number
   },
   data () {
     return {}

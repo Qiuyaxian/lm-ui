@@ -37,22 +37,54 @@ export default {
     }
   },
   props: {
+    /**
+     * [value 绑定值,实现双向绑定]
+     * @type {[type]}
+     */
     value: Boolean,
+    /**
+     * [title 头部文字]
+     * @type {[type]}
+     */
     title: String,
+    /**
+     * [content 内容]
+     * @type {[type]}
+     */
     content: String,
+    /**
+     * [buttonText 按钮文字]
+     * @type {[type]}
+     */
     buttonText: String,
+    /**
+     * [hideOnBlur 是否失去光标就隐藏]
+     * @type {Object}
+     */
     hideOnBlur: {
       type: Boolean,
       default: false
     },
+    /**
+     * [maskTransition 遮罩层动画]
+     * @type {Object}
+     */
     maskTransition: {
       type: String,
       default: 'lm-mask'
     },
+    /**
+     * [dialogTransition dialog动画]
+     * @type {Object}
+     */
     dialogTransition: {
       type: String,
       default: 'lm-dialog'
     },
+    /**
+     * [maskZIndex dialog 层级]
+     * @type {Array}
+     */
     maskZIndex: [Number, String]
   },
   data () {
@@ -61,6 +93,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * [_onHide 内部隐藏函数]
+     * @return {[type]} [description]
+     */
     _onHide () {
       this.showValue = false
     }

@@ -2,7 +2,7 @@
   <popup-picker
     :fixed-columns="hideDistrict ? 2 : 0"
     :columns="3"
-    :data="list"
+    :data="data"
     :label="label"
     v-model="currentValue"
     show-name
@@ -17,8 +17,8 @@
     :show.sync="showValue"
     :disabled="disabled"
     @on-shadow-change="onShadowChange"
-    @on-hide="emitHide"
-    @on-show="$emit('on-show')">
+    @on-hide="_onHide"
+    @on-show="_onShow">
     <template slot="title" slot-scope="props">
       <slot
         name="title"
@@ -45,42 +45,106 @@ export default {
     PopupPicker
   },
   props: {
+    /**
+     * [label 左侧文字项]
+     * @type {Object}
+     */
     label: {
       type: String,
       required: true
     },
+    /**
+     * [value 绑定值]
+     * @type {Object}
+     */
     value: {
       type: Array,
       default () {
         return []
       }
     },
+    /**
+     * [rawValue 指定初始化时绑定的数据是否为文本]
+     * @type {[type]}
+     */
     rawValue: Boolean,
-    list: {
+    /**
+     * [data ]
+     * @type {Object}
+     */
+    data: {
       type: Array,
       required: true
     },
+    /**
+     * [labelWidth 设置侧边宽度]
+     * @type {[type]}
+     */
     labelWidth: String,
+    /**
+     * [inlineDesc 设置小文字]
+     * @type {[type]}
+     */
     inlineDesc: String,
+    /**
+     * [placeholder 当值为空的时候显示的值]
+     * @type {[type]}
+     */
     placeholder: String,
+    /**
+     * [hideDistrict 是否隐藏区，即只显示省份和城市]
+     * @type {[type]}
+     */
     hideDistrict: Boolean,
+    /**
+     * [valueTextAlign 文字方向]
+     * @type {[type]}
+     */
     valueTextAlign: String,
+    /**
+     * [confirmText 头部右侧文字]
+     * @type {[type]}
+     */
     confirmText: String,
+    /**
+     * [cancelText 头部左边侧文字]
+     * @type {[type]}
+     */
     cancelText: String,
+    /**
+     * [displayFormat 展示的文字格式]
+     * @type {Object}
+     */
     displayFormat: {
       type: Function,
       default: (val, names) => names
     },
+    /**
+     * [popupStyle popup样式]
+     * @type {[type]}
+     */
     popupStyle: Object,
+    /**
+     * [popupTitle popup 头部中间title文字]
+     * @type {[type]}
+     */
     popupTitle: String,
+    /**
+     * [show 控制是否显示与否]
+     * @type {[type]}
+     */
     show: Boolean,
+    /**
+     * [disabled 是否禁用]
+     * @type {[type]}
+     */
     disabled: Boolean
   },
   created () {
     if (this.currentValue.length && this.rawValue) {
-      const parsedVal = name2value(this.currentValue, this.list)
+      const parsedVal = name2value(this.currentValue, this.data)
       if (/__/.test(parsedVal)) {
-        console.error('[VUX] Wrong address value', this.currentValue)
+        console.error('[Wrong address value', this.currentValue)
         this.currentValue = [];
       } else {
         this.currentValue = parsedVal.split(' ')
@@ -91,12 +155,35 @@ export default {
     }
   },
   methods: {
-    emitHide (val) {
+    /**
+     * [_onHide 触发外部隐藏函数]
+     * @param  {[type]} val [description]
+     * @return {[type]}     [description]
+     */
+    _onHide (val) {
       this.$emit('on-hide', val)
     },
-    getAddressName () {
-      return value2name(this.value, this.list)
+    /**
+     * [_onShow 触发外部显示函数]
+     * @param  {[type]} val [description]
+     * @return {[type]}     [description]
+     */
+    _onShow (val) {
+      this.$emit('on-show', val)
     },
+    /**
+     * [getAddressName 获取地址名字]
+     * @return {[type]} [description]
+     */
+    getAddressName () {
+      return value2name(this.value, this.data)
+    },
+    /**
+     * [onShadowChange 当选择改变的时候]
+     * @param  {[type]} ids   [description]
+     * @param  {[type]} names [description]
+     * @return {[type]}       [description]
+     */
     onShadowChange (ids, names) {
       this.$emit('on-shadow-change', ids, names)
     }
@@ -109,7 +196,7 @@ export default {
   },
   computed: {
     nameValue () {
-      return value2name(this.currentValue, this.list)
+      return value2name(this.currentValue, this.data)
     },
     labelClass () {
       return {
@@ -123,7 +210,7 @@ export default {
     },
     value (val) {
       if (val.length && !/\d+/.test(val[0])) {
-        const id = name2value(val, this.list).split(' ')
+        const id = name2value(val, this.data).split(' ')
         if (id[0] !== '__' && id[1] !== '__') {
           this.currentValue = id
           return

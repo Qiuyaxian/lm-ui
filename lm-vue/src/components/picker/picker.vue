@@ -18,20 +18,44 @@ import { isArray } from '@/utils'
 export default {
   name: 'lm-picker',
   props: {
+    /**
+     * [value 绑定数据值]
+     * @type {[type]}
+     */
+    value: Array,
+    /**
+     * [data 滚动选择数据]
+     * @type {[type]}
+     */
     data: Array,
+    /**
+     * [columns 列数]
+     * @type {Object}
+     */
     columns: {
       type: Number,
       default: 0
     },
+    /**
+     * [fixedColumns 指定显示多少列，隐藏多余的]
+     * @type {Object}
+     */
     fixedColumns: {
       type: Number,
       default: 0
     },
-    value: Array,
+    /**
+     * [itemClass 滚动项样式]
+     * @type {Object}
+     */
     itemClass: {
       type: String,
       default: 'scroller-item'
     },
+    /**
+     * [columnWidth 列宽度]
+     * @type {[type]}
+     */
     columnWidth: Array
   },
   components: {
@@ -74,12 +98,12 @@ export default {
      * @return {[type]}       [description]
      */
     render (data, value) {
-      this.count = this.currentData.length
-      const _this = this
+      let count = this.currentData.length
+      this.count = count;
+      const _this = this;
       if (!data || !data.length) {
         return
       }
-      let count = this.currentData.length
       // set first item as value
       if (value.length < count) {
         for (let i = 0; i < count; i++) {
@@ -144,6 +168,7 @@ export default {
           _this.$nextTick(() => {
             _this.$emit('on-change', _this.getValue())
           })
+          // 链式
           _this.renderChain(i + 1)
         }
       })
@@ -203,7 +228,7 @@ export default {
         if (val.length > 0) {
           if (JSON.stringify(val) !== JSON.stringify(oldVal)) {
             this.currentData = this.store.getColumns(val)
-            this.$nextTick(function () {
+            this.$nextTick(() => {
               this.render(this.currentData, val)
             })
           }

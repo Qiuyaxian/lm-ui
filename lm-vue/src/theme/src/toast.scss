@@ -80,7 +80,7 @@
     min-height: 0;
   }
   &-toast_text {
-    #{ $class-prefix }-toast-content {
+    .#{ $class-prefix }-toast-content {
       margin: 0;
       padding-top: pxTorem(10, 2);
       padding-bottom: pxTorem(10, 2);
@@ -90,31 +90,31 @@
   &-toast-content {
     font-size: $toast-content-font-size;
   }
-  .weui-loading-toast {
-    #{ $class-prefix }-toast-content {
-      margin-top: 0;
-    }
+}
+.weui-loading-toast {
+  .#{ $class-prefix }-toast-content {
+    margin-top: 0;
   }
-  .weui-toast_success {
-    #{ $class-prefix }-toast-icon:before {
-      content: "\EA08";
-    }
+}
+.weui-toast_success {
+  .#{ $class-prefix }-toast-icon:before {
+    content: "\EA08";
   }
-  .weui-toast_cancel {
-    #{ $class-prefix }-toast-icon:before {
-      content: "\EA0D";
-    }
+}
+.weui-toast_cancel {
+  .#{ $class-prefix }-toast-icon:before {
+    content: "\EA0D";
   }
-  .weui-toast_warn {
-    #{ $class-prefix }-toast-icon.weui-icon-success-no-circle:before {
-      content: "\EA05";
-      color: #ecad4d;
-    }
+}
+.weui-toast_warn {
+  .#{ $class-prefix }-toast-icon.weui-icon-success-no-circle:before {
+    content: "\EA05";
+    color: #ecad4d;
   }
-  .weui-toast_error {
-    #{ $class-prefix }-toast-icon.weui-icon-success-no-circle:before {
-      content: "\EA0B";
-      color: #F76260;
-    }
+}
+.weui-toast_error {
+  .#{ $class-prefix }-toast-icon.weui-icon-success-no-circle:before {
+    content: "\EA0B";
+    color: #F76260;
   }
 }

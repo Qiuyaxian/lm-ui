@@ -24,4 +24,12 @@
     flex: 1;
   }
 }
-
+.dp-container {
+  &.#{$class-prefix}-datetime-view {
+    position: static;
+    transition: none;
+    & .dp-header {
+      display: none;
+    }
+  }
+}

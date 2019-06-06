@@ -36,7 +36,7 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json','ts'],
+    extensions: ['.js', '.vue', '.json', '.ts'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
@@ -94,7 +94,7 @@ module.exports = {
         options: {
           appendTsSuffixTo: [/\.vue$/],
         }
-      },
+      }
       // 添加ts文件解析规则 end
     ]
   },

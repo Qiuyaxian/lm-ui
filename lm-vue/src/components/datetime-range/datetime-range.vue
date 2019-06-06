@@ -1,5 +1,5 @@
 <template>
-  <popup-picker :data="list" :label="label" :display-format="cellFormat" v-model="currentValue" :inline-desc="inlineDesc" :placeholder="placeholder" @on-hide="emitHide" @on-show="$emit('on-show')" :value-text-align="valueTextAlign" :column-width="[1/2, 1/6]"></popup-picker>
+  <popup-picker :data="list" :label="label" :display-format="cellFormat" v-model="currentValue" :inline-desc="inlineDesc" :placeholder="placeholder" @on-hide="_onHide" @on-show="$emit('on-show')" :value-text-align="valueTextAlign" :column-width="[1/2, 1/6]"></popup-picker>
 </template>
 
 <script>
@@ -13,34 +13,61 @@ export default {
     PopupPicker
   },
   props: {
+    /**
+     * [label 左边文字值]
+     * @type {Object}
+     */
     label: {
       type: String,
       required: true
     },
+    /**
+     * [value 绑定值]
+     * @type {Object}
+     */
     value: {
       type: Array,
       default () {
         return []
       }
     },
+    /**
+     * [startDate 开始时间]
+     * @type {[type]}
+     */
     startDate: String,
+    /**
+     * [endDate 结束时间]
+     * @type {[type]}
+     */
     endDate: String,
+    /**
+     * [format 格式]
+     * @type {Object}
+     */
     format: {
       type: String,
       default: 'YYYY-MM-DD'
     },
-    rawValue: Boolean,
+    /**
+     * [inlineDesc 小型文字]
+     * @type {[type]}
+     */
     inlineDesc: String,
-    placeholder: String,
-    hideDistrict: Boolean,
-    valueTextAlign: String
+    /**
+     * [placeholder 文字默认显示值]
+     * @type {[type]}
+     */
+    placeholder: String
   },
   methods: {
-    emitHide (val) {
+    /**
+     * [_onHide 触发外部隐藏函数]
+     * @param  {[type]} val [description]
+     * @return {[type]}     [description]
+     */
+    _onHide (val) {
       this.$emit('on-hide', val)
-    },
-    getAddressName () {
-      return value2name(this.value, this.list)
     }
   },
   data () {

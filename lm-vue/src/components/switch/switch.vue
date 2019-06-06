@@ -17,18 +17,42 @@ import { cleanStyle } from '@/utils'
 export default {
   name: 'lm-switch',
   props: {
+    /**
+     * [label 左侧文字]
+     * @type {Object}
+     */
     label: {
       type: String,
       required: true
     },
+    /**
+     * [disabled 是否禁用]
+     * @type {[type]}
+     */
     disabled: Boolean,
+    /**
+     * [value 绑定值]
+     * @type {Object}
+     */
     value: {
       type: [Boolean, String, Number],
       default: false,
       required: true
     },
+    /**
+     * [inlineDesc 小文字提示]
+     * @type {Array}
+     */
     inlineDesc: [String, Boolean, Number],
+    /**
+     * [preventDefault 是否阻止默认事件]
+     * @type {[type]}
+     */
     preventDefault: Boolean,
+    /**
+     * [valueMap 遍历值(枚举类)]
+     * @type {Object}
+     */
     valueMap: {
       type: Array,
       default: () => ([false, true])

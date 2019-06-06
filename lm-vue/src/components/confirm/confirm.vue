@@ -40,66 +40,132 @@ export default {
     'lm-dialog': Dialog
   },
   props: {
+    /**
+     * [value 是否显示,使用双向绑定]
+     * @type {Object}
+     */
     value: {
       type: Boolean,
       default: false
     },
+    /**
+     * [showInput 是否显示文字输入框]
+     * @type {Object}
+     */
     showInput: {
       type: Boolean,
       default: false
     },
+    /**
+     * [placeholder 默认提示]
+     * @type {Object}
+     */
     placeholder: {
       type: String,
       default: ''
     },
+    /**
+     * [theme 风格主题]
+     * @type {Object}
+     */
     theme: {
       type: String,
       default: 'ios'
     },
+    /**
+     * [hideOnBlur 是否失去焦点后隐藏]
+     * @type {Object}
+     */
     hideOnBlur: {
       type: Boolean,
       default: false
     },
+    /**
+     * [title 标题]
+     * @type {[type]}
+     */
     title: String,
+    /**
+     * [confirmText 确认文字]
+     * @type {[type]}
+     */
     confirmText: String,
     cancelText: String,
+    /**
+     * [maskTransition 取消文字]
+     * @type {Object}
+     */
     maskTransition: {
       type: String,
       default: 'lm-fade'
     },
+    /**
+     * [maskZIndex 遮罩层层级]
+     * @type {Array}
+     */
     maskZIndex: [Number, String],
+    /**
+     * [dialogTransition dialog 动画]
+     * @type {Object}
+     */
     dialogTransition: {
       type: String,
       default: 'lm-dialog'
     },
+    /**
+     * [content 内容]
+     * @type {[type]}
+     */
     content: String,
+    /**
+     * [closeOnConfirm 是否开启点击取消关闭弹窗]
+     * @type {Object}
+     */
     closeOnConfirm: {
       type: Boolean,
       default: true
     },
+    /**
+     * [inputAttrs input 附加属性]
+     * @type {[type]}
+     */
     inputAttrs: Object,
+    /**
+     * [showContent 是否显示content 内容]
+     * @type {Object}
+     */
     showContent: {
       type: Boolean,
       default: true
     },
+    /**
+     * [confirmType 确认框样式]
+     * @type {Object}
+     */
     confirmType: {
       type: String,
       default: 'primary'
     },
+    /**
+     * [showCancelButton 是否显示取消按钮]
+     * @type {Object}
+     */
     showCancelButton: {
       type: Boolean,
       default: true
     },
+    /**
+     * [showConfirmButton 是否显示确定按钮]
+     * @type {Object}
+     */
     showConfirmButton: {
       type: Boolean,
       default: true
     }
   },
   created () {
-    this.showValue = this.show
-    if (this.value) {
-      this.showValue = this.value
-    }
+    this.showValue = this.show;
+    if (this.value) this.showValue = this.value;
   },
   watch: {
     value (val) {
@@ -109,11 +175,12 @@ export default {
       this.$emit('input', val)
       if (val) {
         if (this.showInput) {
-          this.msg = ''
-          setTimeout(() => {
+          this.msg = '';
+          let timer = setTimeout(() => {
             if (this.$refs.input) {
               this.setInputFocus()
             }
+            clearTimeout(timer);
           }, 300)
         }
         this.$emit('on-show') // emit just after msg is cleared
@@ -127,33 +194,45 @@ export default {
     }
   },
   methods: {
+    /**
+     * [getInputAttrs 设置输入框属性]
+     * @return {[type]} [description]
+     */
     getInputAttrs () {
       return this.inputAttrs || {
         type: 'text'
       }
     },
+    /**
+     * [setInputValue 设置input值]
+     * @param {[type]} val [description]
+     */
     setInputValue (val) {
       this.msg = val
     },
+    /**
+     * [setInputFocus input是否获取光标]
+     * @param {[type]} evt [description]
+     */
     setInputFocus (evt) {
-      if (evt) {
-        evt.preventDefault()
-      }
+      if (evt) evt.preventDefault();
       this.$refs.input.focus()
     },
+    /**
+     * [_onConfirm 绑定确定按钮事件]
+     * @return {[type]} [description]
+     */
     _onConfirm () {
-      if (!this.showValue) {
-        return
-      }
-      if (this.closeOnConfirm) {
-        this.showValue = false
-      }
+      if (!this.showValue) return;
+      if (this.closeOnConfirm) this.showValue = false;
       this.$emit('on-confirm', this.msg)
     },
+    /**
+     * [_onCancel 绑定取消按钮事件]
+     * @return {[type]} [description]
+     */
     _onCancel () {
-      if (!this.showValue) {
-        return
-      }
+      if (!this.showValue) return;
       this.showValue = false
       this.$emit('on-cancel')
     }

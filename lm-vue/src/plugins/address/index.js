@@ -43,9 +43,9 @@ const plugin = {
           });
           $vm.$off('on-hide')
           $vm.$on('on-hide', (type) => {
+            $vm.show = false;
             options && options.onHide && options.onHide(type);
           });
-
           $vm.$off('on-shadow-change')
           $vm.$on('on-shadow-change', (val1, val2) => {
             options && options.onShadowChange && options.onShadowChange(val1, val2);
@@ -53,9 +53,8 @@ const plugin = {
 
           $vm.$off('on-change');
           $vm.$on('on-change', (val) => {
-            options && options.onShadowChange && options.onShadowChange(val);
+            options && options.onChange && options.onChange(val);
           });
-
           $vm.$off('input');
           $vm.$on('input', (val) => {
             options && options.input && options.input(val);

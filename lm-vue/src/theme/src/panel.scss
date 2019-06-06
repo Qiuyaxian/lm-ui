@@ -10,6 +10,14 @@
       @include borderStype(top, $onepx-border-color); 
     }
   }
+  &-panel-border-not {
+    &:after {
+      display: none;  
+    }
+    &:before {
+      display: none;  
+    }
+  }
   &-panel-header {
     padding: pxTorem(28) pxTorem(32);
     color: $color-default;

@@ -9,7 +9,15 @@ const prefixList = ['-moz-box-', '-webkit-box-', '']
 export default {
   name: 'lm-flexbox-item',
   props: {
+    /**
+     * [span 占比]
+     * @type {Array}
+     */
     span: [Number, String],
+    /**
+     * [order description]
+     * @type {Array}
+     */
     order: [Number, String]
   },
   beforeMount () {

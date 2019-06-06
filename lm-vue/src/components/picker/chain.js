@@ -8,7 +8,7 @@ const Manager = class {
         return (item.parent && item.parent !== 0 && item.parent !== '0') && (typeof item.parent === 'number' || typeof item.value === 'number')
       })
       if (notStringList.length) {
-        console.warn(`[VUX] picker data's value and parent should be string:\n${JSON.stringify(notStringList, null, 2)}`)
+        console.warn(`picker data's value and parent should be string:\n${JSON.stringify(notStringList, null, 2)}`)
       }
     }
     this.data = data

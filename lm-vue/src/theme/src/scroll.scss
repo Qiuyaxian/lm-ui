@@ -9,7 +9,7 @@
 .scroll-content {
   position: relative;
   z-index: 1;
-}
+} 
 .pullingDown-trigger,
 .pull-down-wrapper {
   position: absolute;
@@ -30,4 +30,14 @@
   -webkit-transition: all;
   transition: all;
   z-index: 999;
+}
+.pull-message {
+  font-size: pxTorem(26);
+  line-height: pxTorem(44);
+  margin: 0 auto;
+  text-align: center;
+  padding: pxTorem(16) 0;
+  span {
+    vertical-align: middle;
+  }
 }

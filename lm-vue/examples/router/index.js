@@ -42,7 +42,8 @@ const LazyRoutes = [
   { url: '/address', name: 'address', title: 'address', keepAlive: false, path: 'address' },
   { url: '/datetime', name: 'datetime', title: 'datetime', keepAlive: false, path: 'datetime' },
   { url: '/datetime-range', name: 'datetime-range', title: 'datetime-range', keepAlive: false, path: 'datetime-range' },
-  { url: '/popup', name: 'popup', title: 'popup', keepAlive: false, path: 'popup' }
+  { url: '/popup', name: 'popup', title: 'popup', keepAlive: false, path: 'popup' },
+  { url: '/scroll', name: 'scroll', title: 'scroll', keepAlive: false, path: 'scroll' }
 ]
 /**
  * [mainRoutes 路由主入口]

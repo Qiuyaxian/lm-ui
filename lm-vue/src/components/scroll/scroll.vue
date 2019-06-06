@@ -28,28 +28,29 @@
       <!-- 下拉动画 end -->
       <div class="scroll-body" ref="scroll-body">
         <slot></slot>
-      </div>
-      <!-- 自定义上拉样式 start -->
-      <div id="pullUp">
-        <slot name="pull-up-wrapper" :pullUpLoad="pullUpLoad" :isPullUpLoad="isPullUpLoad">
-          <div v-if="pullUpLoad" class="blc-width blc-pd-b-16px before-trigger">
-            <div slot="inline-desc" class>
-              <!-- 三种状态 上拉，开始加载，加载完成，判断是否已经到最后 二种状态 上拉开始加载，加载完成，判断是否已经到最后 -->
-              <div class v-if="!isPullUpLoad">
-                <slot name="before-trigger">
-                  <p>加载完成,没有更多数据</p>
-                </slot>
-              </div>
-              <div class="after-trigger" v-else>
-                <slot name="after-trigger">
-                  <p>加载中...</p>
-                </slot>
+        <!-- 自定义上拉样式 start -->
+        <div id="pullUp">
+          <slot name="pull-up-wrapper" :pullUpLoad="pullUpLoad" :isPullUpLoad="isPullUpLoad">
+            <div v-if="pullUpLoad" class="blc-width blc-pd-b-16px before-trigger">
+              <div slot="inline-desc" class>
+                <!-- 三种状态 上拉，开始加载，加载完成，判断是否已经到最后 二种状态 上拉开始加载，加载完成，判断是否已经到最后 -->
+                <div class="pull-message" v-if="!isPullUpLoad">
+                  <slot name="before-trigger">
+                    <span>加载完成,没有更多数据</span>
+                  </slot>
+                </div>
+                <div class="pull-message" v-else>
+                  <slot name="after-trigger">
+                    <lm-spinner></lm-spinner>
+                    <span class="">加载中...</span>
+                  </slot>
+                </div>
               </div>
             </div>
-          </div>
-        </slot>
+          </slot>
+        </div>
+        <!-- 自定义上拉样式 end -->
       </div>
-      <!-- 自定义上拉样式 end -->
     </div>
   </div>
 </template>
@@ -65,6 +66,7 @@ import {
   getById
 } from "@/utils";
 import BScroll from "better-scroll";
+import Spinner from '../spinner'
 function noop() {}
 const COMPONENT_NAME = "scroll";
 const DIRECTION_H = "horizontal"; // 水平的
@@ -356,6 +358,9 @@ export default {
       default: 50
     }
   },
+  components: {
+    'lm-spinner': Spinner
+  },
   data() {
     return {
       pullDownStyle: "", // 下拉样式设置
@@ -583,8 +588,10 @@ export default {
      */
     pullingUpHandle() {
       this.scroll.on("pullingUp", () => {
-        this.isPullUpLoad = true;
-        this.$emit("pullingUp");
+        if (!this.isPullUpLoad) {
+          this.isPullUpLoad = true;
+          this.$emit("pullingUp");
+        }
       });
       // 监听手指是否离开屏幕
       // this.scroll.on('touchEnd',(pos)=>{
@@ -761,9 +768,10 @@ export default {
     data: {
       handler() {
         // 监听数据刷新后更新状态
-        setTimeout(() => {
+        let timer = setTimeout(() => {
           this.isTouchEnd = false;
-          this.forceUpdate(true);
+          if (!this.isPullUpLoad) this.forceUpdate(true);
+          clearTimeout(timer);
         }, this.refreshDelay);
       },
       deep: true

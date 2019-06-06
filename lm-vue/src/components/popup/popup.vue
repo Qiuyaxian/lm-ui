@@ -16,38 +16,82 @@ import { addClass, removeClass } from '@/utils'
 export default {
   name: 'lm-popup',
   props: {
+    /**
+     * [value 是否显示]
+     * @type {[type]}
+     */
     value: Boolean,
+    /**
+     * [height 设置popup高度]
+     * @type {Object}
+     */
     height: {
       type: String,
       default: 'auto'
     },
+    /**
+     * [width 宽度]
+     * @type {Object}
+     */
     width: {
       type: String,
       default: 'auto'
     },
+    /**
+     * [showMask 是否显示遮罩层]
+     * @type {Object}
+     */
     showMask: {
       type: Boolean,
       default: true
     },
+    /**
+     * [isTransparent 是否背景透明]
+     * @type {Boolean}
+     */
     isTransparent: Boolean,
+    /**
+     * [hideOnBlur 是否失去光标隐藏]
+     * @type {Object}
+     */
     hideOnBlur: {
       type: Boolean,
       default: true
     },
+    /**
+     * [position 弹出位置]
+     * @type {Object}
+     */
     position: {
       type: String,
       default: 'bottom'
     },
+    /**
+     * [maxHeight 最大高度]
+     * @type {[type]}
+     */
     maxHeight: String,
+    /**
+     * [popupStyle popup行内样式]
+     * @type {[type]}
+     */
     popupStyle: Object,
     hideOnDeactivated: {
       type: Boolean,
       default: true
     },
+    /**
+     * [shouldRerenderOnShow 是否在显示时重新渲染内容区域(以及滚动到顶部)，适用于每次显示弹窗需要重新获取数据初始化的场景]
+     * @type {Object}
+     */
     shouldRerenderOnShow: {
       type: Boolean,
       default: false
     },
+    /**
+     * [shouldScrollTopOnShow 是否在显示时自动滚动到顶部]
+     * @type {Object}
+     */
     shouldScrollTopOnShow: {
       type: Boolean,
       default: false
@@ -105,9 +149,17 @@ export default {
         this.$overflowScrollingList[i].style.webkitOverflowScrolling = type
       }
     },
+    /**
+     * [removeModalClassName 移除样式]
+     * @return {[type]} [description]
+     */
     removeModalClassName () {
       this.layout === 'PAGE_VIEW' && removeClass(document.body, 'lm-modal-open')
     },
+    /**
+     * [doShow 显示]
+     * @return {[type]} [description]
+     */
     doShow () {
       this.popup && this.popup.show()
       this.$emit('on-show')
@@ -118,6 +170,10 @@ export default {
         this.hasFirstShow = true
       }
     },
+    /**
+     * [scrollTop 滚动到顶部]
+     * @return {[type]} [description]
+     */
     scrollTop () {
       this.$nextTick(() => {
         this.$el.scrollTop = 0

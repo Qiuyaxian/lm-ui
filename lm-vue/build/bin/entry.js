@@ -35,18 +35,15 @@ const install = function(Vue, opts = {}) {
   // 注册指令
   Vue.directive('transfer-dom', TransferDom);
   // 注册组件
-  Vue.prototype.$lm = {
-    'actionsheet': ActionsheetPlugin,
-    'address': AddressPlugin,
-    'alert': AlertPlugin,
-    'datetime': DatetimePlugin,
-    'confirm': ConfirmPlugin,
-    'config': ConfigPlugin,
-    'toast': ToastPlugin,
-    'loading': LoadingPlugin,
-    'device': DevicePlugin
-  };
-
+  Vue.use(ActionsheetPlugin)
+  Vue.use(AddressPlugin)
+  Vue.use(AlertPlugin)
+  Vue.use(DatetimePlugin)
+  Vue.use(ConfirmPlugin)
+  Vue.use(ConfigPlugin)
+  Vue.use(ToastPlugin)
+  Vue.use(LoadingPlugin)
+  Vue.use(DevicePlugin)
 };
 /* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {

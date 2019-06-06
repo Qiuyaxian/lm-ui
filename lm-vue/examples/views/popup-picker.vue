@@ -1,57 +1,60 @@
 <template>
   <lm-page>
-    <lm-header>popup-picker</lm-header>
-    <lm-group title="single column" label-width="5em">
-      <lm-popup-picker :label="title1" :data="list1" v-model="value1" @on-show="onShow" @on-hide="onHide" @on-change="onChange" :placeholder="'请选择'"></lm-popup-picker>
-      <lm-popup-picker :popup-title="'请选择'" :label="title1" :data="list1" v-model="value1_1" @on-show="onShow" @on-hide="onHide" @on-change="onChange" :placeholder="'请选择'"></lm-popup-picker>
-      <lm-datetime label="datetime" v-model="date"></lm-datetime>
-    </lm-group>
-    <br>
-    <div class="picker-buttons">
-       <lm-button type="primary" @click.native="value1=[]">将值置为空</lm-button>
-       <lm-button type="primary" @click.native="changeList10">重新赋值列表</lm-button>
-       <lm-button type="primary" @click.native="changeList11">push方式更改列表</lm-button>
-     </div>
-     <lm-group title="double columns">
-       <lm-popup-picker :label="title2" :data="list2" v-model="value2"></lm-popup-picker>
-     </lm-group>
-     <br>
+    <lm-header class="lm-header-fixed"
+               slot="header">popup-picker</lm-header>
+    <lm-scroll>
+      <lm-group title="single column" label-width="5em">
+        <lm-popup-picker :label="title1" :data="list1" v-model="value1" @on-show="onShow" @on-hide="onHide" @on-shadow-change="shadowChange" @on-change="onChange" :placeholder="'请选择'"></lm-popup-picker>
+        <lm-popup-picker :popup-title="'请选择'" :label="title1" :data="list1" v-model="value1_1" @on-show="onShow" @on-hide="onHide" @on-change="onChange" :placeholder="'请选择'"></lm-popup-picker>
+        <lm-datetime label="datetime" v-model="date"></lm-datetime>
+      </lm-group>
+      <br>
+      <div class="picker-buttons">
+         <lm-button type="primary" @click.native="value1=[]">将值置为空</lm-button>
+         <lm-button type="primary" @click.native="changeList10">重新赋值列表</lm-button>
+         <lm-button type="primary" @click.native="changeList11">push方式更改列表</lm-button>
+       </div>
+       <lm-group title="double columns">
+         <lm-popup-picker :label="title2" :data="list2" v-model="value2"></lm-popup-picker>
+       </lm-group>
+       <br>
 
-     <lm-group title="chained columns">
-       <lm-popup-picker :label="title3" :data="list3" :columns="3" v-model="value3" ref="picker3"></lm-popup-picker>
-       <lm-cell label="获取值对应的文字" :content="$refs.picker3 && $refs.picker3.getNameValues()"></lm-cell>
-       <lm-popup-picker :label="title4" :data="list3" :columns="3" v-model="value4" show-name></lm-popup-picker>
-     </lm-group>
+       <lm-group title="chained columns">
+         <lm-popup-picker :label="title3" :data="list3" :columns="3" v-model="value3" ref="picker3"></lm-popup-picker>
+         <lm-cell label="获取值对应的文字" :content="$refs.picker3 && $refs.picker3.getNameValues()"></lm-cell>
+         <lm-popup-picker :label="title4" :data="list3" :columns="3" v-model="value4" show-name></lm-popup-picker>
+       </lm-group>
 
-     <br>
-     <div class="picker-buttons">
-       <lm-button type="primary" @click.native="changeList21">push方式更改列表</lm-button>
-     </div>
-     <br>
-     <lm-divider>Control the visibility of lm-popup-picker</lm-divider>
-     <div style="margin: 0 15px;">
-       <lm-button @click.native="showPopupPicker = true" type="primary">Show PopupPicker. value: {{value5 }}</lm-button>
-     </div>
-     <lm-group>
-       <lm-popup-picker :show.sync="showPopupPicker" :show-cell="false" label="test" :data="[['1', '2', '3', '4', '5']]" v-model="value5"></lm-popup-picker>
-     </lm-group>
+       <br>
+       <div class="picker-buttons">
+         <lm-button type="primary" @click.native="changeList21">push方式更改列表</lm-button>
+       </div>
+       <br>
+       <lm-divider>Control the visibility of lm-popup-picker</lm-divider>
+       <div style="margin: 0 15px;">
+         <lm-button @click.native="showPopupPicker = true" type="primary">Show PopupPicker. value: {{value5 }}</lm-button>
+       </div>
+       <lm-group>
+         <lm-popup-picker :show.sync="showPopupPicker" :show-cell="false" label="test" :data="[['1', '2', '3', '4', '5']]" v-model="value5"></lm-popup-picker>
+       </lm-group>
 
-     <br>
-     <lm-group title="隐藏时不影响其他lm-popup-picker的mask">
-       <lm-switch label="ishide lm-popup-picker" v-model="switch6"></lm-switch>
-       <lm-popup-picker v-if="!switch6" label="显示值" :data="['我不会影响遮罩层'.split('')]" v-model="value6"></lm-popup-picker>
-     </lm-group>
+       <br>
+       <lm-group title="隐藏时不影响其他lm-popup-picker的mask">
+         <lm-switch label="ishide lm-popup-picker" v-model="switch6"></lm-switch>
+         <lm-popup-picker v-if="!switch6" label="显示值" :data="['我不会影响遮罩层'.split('')]" v-model="value6"></lm-popup-picker>
+       </lm-group>
 
-     <br>
-     <br>
+       <br>
+       <br>
 
-     <lm-group title="显示格式化">
-      <lm-popup-picker
-      v-model="formatDemoValue"
-      label="时间"
-      :inline-desc="`当前值[${formatDemoValue}]`"
-      :data="[['01','02','03'],['11','12','13']]" :display-format="format"></lm-popup-picker>
-     </lm-group>
+       <lm-group title="显示格式化">
+        <lm-popup-picker
+        v-model="formatDemoValue"
+        label="时间"
+        :inline-desc="`当前值[${formatDemoValue}]`"
+        :data="[['01','02','03'],['11','12','13']]" :display-format="format"></lm-popup-picker>
+       </lm-group>
+     </lm-scroll>
   </lm-page>
 </template>
 <script>
@@ -88,6 +91,9 @@ export default {
     },
     onHide (type) {
       console.log('on hide', type)
+    },
+    shadowChange(ids, names) {
+      console.log(ids, names, 'App.vue')
     }
   },
   data () {

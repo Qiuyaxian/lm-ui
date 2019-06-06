@@ -144,6 +144,10 @@ export default {
           title: '展示相关',
           components: [
             {
+              label: "scroll",
+              link: "/scroll"
+            },
+            {
               label: "marquee",
               link: "/marquee"
             },

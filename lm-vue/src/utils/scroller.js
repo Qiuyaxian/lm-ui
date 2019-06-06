@@ -30,7 +30,7 @@ import passiveSupported from '@/utils/passive_supported'
 const getDpr = function () {
   let dpr = 1
   if (isBrowser) {
-    if (window.LM_CONFIG && window.LM_CONFIG.$picker && window.LM_CONFIG.$picker.respectHtmlDataDpr) {
+    if (window.VUP_CONFIG && window.VUP_CONFIG.$picker && window.VUP_CONFIG.$picker.respectHtmlDataDpr) {
       dpr = document.documentElement.getAttribute('data-dpr') || 1
     }
   }
@@ -94,7 +94,7 @@ const Scroller = function (container, options) {
     content.style.webkitTransform = 'translate3d(0, ' + distance + 'px, 0)'
     content.style.transform = 'translate3d(0, ' + distance + 'px, 0)'
   }
-
+  
   var rect = component.getBoundingClientRect()
 
   self.__clientTop = (rect.top + component.clientTop) || 0
@@ -459,8 +459,7 @@ var members = {
         }
       }
     }
-    console.log(self.__isDecelerating, 'self.__isDecelerating')
-    
+
     if (!self.__isDecelerating) {
       self.scrollTo(self.__scrollTop)
     }

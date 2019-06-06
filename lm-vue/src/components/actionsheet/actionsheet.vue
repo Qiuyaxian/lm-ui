@@ -93,9 +93,19 @@ export default {
     }
   },
   methods: {
+    /**
+     * [onTransitionEnd 是否完成显示隐藏，触发回调函数]
+     * @return {[type]} [description]
+     */
     onTransitionEnd () {
       this.$emit(this.show ? 'on-after-show' : 'on-after-hide')
     },
+    /**
+     * [onMenuClick 点击菜单项]
+     * @param  {[type]} text [description]
+     * @param  {[type]} key  [description]
+     * @return {[type]}      [description]
+     */
     onMenuClick (text, key) {
       console.log(text, '---', key, this.menus, 'text, key')
       if (typeof text === 'string') {
@@ -111,10 +121,21 @@ export default {
         }
       }
     },
+    /**
+     * [onClickingMask 点击遮罩层]
+     * @return {[type]} [description]
+     */
     onClickingMask () {
       this.$emit('on-click-mask')
       this.closeOnClickingMask && (this.show = false)
     },
+    /**
+     * [emitEvent 绑定菜单子项事件]
+     * @param  {[type]} event [description]
+     * @param  {[type]} menu  [description]
+     * @param  {[type]} item  [description]
+     * @return {[type]}       [description]
+     */
     emitEvent (event, menu, item) {
       if (event === 'on-click-menu' && !/.noop/.test(menu)) {
         let _item = item
@@ -126,6 +147,11 @@ export default {
         this.closeOnClickingMenu && (this.show = false)
       }
     },
+    /**
+     * [fixIos 当底部存在tabbar时设置z-index]
+     * @param  {[type]} zIndex [description]
+     * @return {[type]}        [description]
+     */
     fixIos (zIndex) {
       if (this.$el.parentNode && this.$el.parentNode.className.indexOf('v-transfer-dom') !== -1) {
         return

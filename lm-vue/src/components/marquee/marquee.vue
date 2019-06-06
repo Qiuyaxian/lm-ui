@@ -10,18 +10,34 @@
 export default {
   name: 'lm-marquee',
   props: {
+    /**
+     * [interval 方法滚动时间]
+     * @type {Object}
+     */
     interval: {
       type: Number,
       default: 2000
     },
+    /**
+     * [duration 滚动时间间距]
+     * @type {Object}
+     */
     duration: {
       type: Number,
       default: 300
     },
+    /**
+     * [direction 滚动方向['up', 'down']]
+     * @type {Object}
+     */
     direction: {
       type: String,
       default: 'up'
     },
+    /**
+     * [itemHeight 滚动项高度]
+     * @type {[type]}
+     */
     itemHeight: Number
   },
   beforeDestroy () {
@@ -37,9 +53,17 @@ export default {
     }
   },
   methods: {
+    /**
+     * [destroy 销毁]
+     * @return {[type]} [description]
+     */
     destroy () {
       this.timer && clearInterval(this.timer)
     },
+    /**
+     * [init 初始化]
+     * @return {[type]} [description]
+     */
     init () {
       this.destroy()
       if (this.cloneNode) {
@@ -61,6 +85,10 @@ export default {
       }
       return true
     },
+    /**
+     * [start 开始播放]
+     * @return {[type]} [description]
+     */
     start () {
       if (this.direction === 'down') this.go(false)
       this.timer = setInterval(() => {
@@ -84,6 +112,11 @@ export default {
         }
       }, this.interval + this.duration)
     },
+    /**
+     * [go 滚动]
+     * @param  {[type]} toFirst [description]
+     * @return {[type]}         [description]
+     */
     go (toFirst) {
       this.noAnimate = true
       if (toFirst) {

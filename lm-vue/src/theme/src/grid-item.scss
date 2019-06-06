@@ -16,10 +16,13 @@
       background-color: $grids-label-active-color;
     }
   }
-  &-grid-icon {
-    width: $grids-icon-size;
-    height: $grids-icon-size;
+  &-grid-icon-wrapper {
     margin: 0 auto;
+    .#{$class-prefix}-grid-icon {
+      width: $grids-icon-size;
+      height: $grids-icon-size;
+      margin: 0 auto;
+    }
     & img {
       display: block;
       width: 100%;

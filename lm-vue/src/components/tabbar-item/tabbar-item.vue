@@ -28,16 +28,36 @@ import Router from '@/utils/router'
 export default {
   name: 'lm-tabbar-item',
   props: {
+    /**
+     * [showDot 是否显示小红点]
+     * @type {Object}
+     */
     showDot: {
       type: Boolean,
       default: false
     },
+    /**
+     * [selected 是否选中]
+     * @type {Object}
+     */
     selected: {
       type: Boolean,
       default: false
     },
+    /**
+     * [badge badge图标提示]
+     * @type {[type]}
+     */
     badge: String,
+    /**
+     * [link 跳转链接]
+     * @type {Array}
+     */
     link: [String, Object],
+    /**
+     * [iconClass icon图标样式]
+     * @type {[type]}
+     */
     iconClass: String
   },
   computed: {

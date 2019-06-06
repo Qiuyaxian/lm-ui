@@ -17,8 +17,20 @@ export default {
     GroupTitle
   },
   props: {
+    /**
+     * [headerLabel 头部左侧文字]
+     * @type {[type]}
+     */
     headerLabel: String,
+    /**
+     * [headerValue 头部右侧]
+     * @type {[type]}
+     */
     headerValue: String,
+    /**
+     * [previewItems 展示数据列表]
+     * @type {[type]}
+     */
     previewItems: Array
   },
   data () {

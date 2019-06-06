@@ -6,7 +6,15 @@
 export default {
   name: 'lm-icon',
   props: {
+    /**
+     * [type 按钮类型]
+     * @type {[type]}
+     */
     type: String,
+    /**
+     * [type 是否是消息类型]
+     * @type {[type]}
+     */
     isMsg: Boolean
   },
   computed: {

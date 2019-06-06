@@ -19,7 +19,7 @@ export default {
   name: 'lm-toast',
   mixins: [ safariFixMixin ],
   props: {
-    visible: Boolean,
+    value: Boolean,
     time: {
       type: Number,
       default: 2000
@@ -49,7 +49,7 @@ export default {
     }
   },
   created () {
-    if (this.visible) {
+    if (this.value) {
       this.show = true;
     }
   },
@@ -102,7 +102,7 @@ export default {
         }, this.time);
       }
     },
-    visible (val) {
+    value (val) {
       if (typeof (val) !== 'undefined') {
         this.show = val;
       }

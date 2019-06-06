@@ -21,7 +21,8 @@ import { LmFlexboxModule } from './components/flexbox';
 import { LmPickerModule } from './components/picker';
 import { LmPopupPickerModule } from './components/popup-picker';
 import { LmPopupHeaderModule } from './components/popup-header';
-
+import { LmAddressModule } from './components/address';
+import { LmDemoModule } from './components/demo'
 
 // 按需导出,方便按需导入
 export * from './directives';
@@ -42,7 +43,8 @@ export * from './components/flexbox';
 export * from './components/picker';
 export * from './components/popup-picker';
 export * from './components/popup-header';
-
+export * from './components/address';
+export * from './components/demo';
 // 注册模块
 @NgModule({
   imports: [CommonModule, FormsModule],
@@ -64,8 +66,9 @@ export * from './components/popup-header';
     LmFlexboxModule,
     LmPickerModule,
     LmPopupHeaderModule,
-    LmPopupPickerModule
-    
+    LmPopupPickerModule,
+    LmAddressModule,
+    LmDemoModule
   ]
 })
 /**

@@ -1,11 +1,15 @@
 const path = require('path');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const VueLoaderPlugin = require('vue-loader/lib/plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const Components = require('../../components.json');
 const config = require('./config');
-
+function resolve (dir) {
+  return path.join(process.cwd(), dir)
+}
 const webpackConfig = {
   mode: 'production',
   entry: Components,
@@ -34,16 +38,14 @@ const webpackConfig = {
       {
         test: /\.js$/,
         exclude: config.jsexclude,
-        include: process.cwd(),
+        include: [resolve('examples'), resolve('typings'), resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')],
         loader: 'babel-loader'
       },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          compilerOptions: {
-            preserveWhitespace: false
-          }
+          preserveWhitespace: false
         }
         // options: { 
         //   loaders: { 
@@ -65,6 +67,22 @@ const webpackConfig = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       },
+      // 添加ts文件解析规则 start
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        loader: 'tslint-loader'
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        }
+      }
+      // 添加ts文件解析规则 end
       // {
       //   test: /\.scss$/,
       //   use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
@@ -82,7 +100,10 @@ const webpackConfig = {
   },
   plugins: [
     new ProgressBarPlugin(),
-    new VueLoaderPlugin()
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    })
+    // new VueLoaderPlugin()
   ]
 };
 

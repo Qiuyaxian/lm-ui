@@ -8,8 +8,9 @@
   	</lm-header>
   </ng-template>
   <div style="font-size: 1rem;">默认，不设置默认 {{ year1 }}</div>
-  <lm-picker [data]="years" [model]="year1" (on-change)="onChange($event)"></lm-picker>
-  <lm-picker (on-change)="onChange($event)" [columns]="2" [data]="year7" [model]="year7Value"></lm-picker>
+  <lm-picker [data]="years" [(ngModel)]="year1" (on-change)="onChange($event)"></lm-picker>
+  {{ year7Value }}
+  <lm-picker (on-change)="onChange($event)" [columns]="2" [data]="year7" [(ngModel)]="year7Value"></lm-picker>
  <!--  <div style="font-size: 1rem;">默认，不设置默认值时选中第一个 {{year2}}</div>
   <lm-picker [data]="years" [(ngModel)]="year2"></lm-picker> -->
 </lm-template>

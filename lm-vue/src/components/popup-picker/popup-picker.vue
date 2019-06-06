@@ -55,7 +55,7 @@ import { uuidMixin } from '@/mixins'
 import TransferDom from '../../directives/transfer-dom'
 import { getParentProp } from '@/utils'
 const getObject = function (obj) {
-  return JSON.parse(JSON.stringify(obj))
+  return JSON.parse(JSON.stringify(obj));
 }
 export default {
   name: 'lm-popup-picker',
@@ -81,61 +81,7 @@ export default {
   },
   props: {
     /**
-     * [label description]
-     * @type {[type]}
-     */
-    label: String,
-    /**
-     * [valueTextAlign description]
-     * @type {Object}
-     */
-    valueTextAlign: {
-      type: String,
-      default: 'right'
-    },
-    /**
-     * [cancelText description]
-     * @type {[type]}
-     */
-    cancelText: String,
-    /**
-     * [confirmText description]
-     * @type {[type]}
-     */
-    confirmText: String,
-    /**
-     * [data description]
-     * @type {Object}
-     */
-    data: {
-      type: Array,
-      default () {
-        return []
-      }
-    },
-    /**
-     * [placeholder description]
-     * @type {[type]}
-     */
-    placeholder: String,
-    /**
-     * [columns description]
-     * @type {Object}
-     */
-    columns: {
-      type: Number,
-      default: 0
-    },
-    /**
-     * [fixedColumns description]
-     * @type {Object}
-     */
-    fixedColumns: {
-      type: Number,
-      default: 0
-    },
-    /**
-     * [value description]
+     * [value 绑定值]
      * @type {Object}
      */
     value: {
@@ -145,17 +91,71 @@ export default {
       }
     },
     /**
-     * [showName description]
+     * [label 左侧文字说明]
+     * @type {[type]}
+     */
+    label: String,
+    /**
+     * [valueTextAlign 文字对齐方式]
+     * @type {Object}
+     */
+    valueTextAlign: {
+      type: String,
+      default: 'right'
+    },
+    /**
+     * [cancelText 弹出层左侧取消文字]
+     * @type {[type]}
+     */
+    cancelText: String,
+    /**
+     * [confirmText 弹出层右侧取消文字]
+     * @type {[type]}
+     */
+    confirmText: String,
+    /**
+     * [data 绑定数据]
+     * @type {Object}
+     */
+    data: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    /**
+     * [placeholder 默认提示语]
+     * @type {[type]}
+     */
+    placeholder: String,
+    /**
+     * [columns 列数]
+     * @type {Object}
+     */
+    columns: {
+      type: Number,
+      default: 0
+    },
+    /**
+     * [fixedColumns 指定显示列数]
+     * @type {Object}
+     */
+    fixedColumns: {
+      type: Number,
+      default: 0
+    },
+    /**
+     * [showName 是否显示名字]
      * @type {[type]}
      */
     showName: Boolean,
     /**
-     * [inlineDesc description]
+     * [inlineDesc 小文字说明]
      * @type {Array}
      */
     inlineDesc: [String, Number],
     /**
-     * [showCell description]
+     * [showCell 是否显示cell]
      * @type {Object}
      */
     showCell: {
@@ -163,17 +163,17 @@ export default {
       default: true
     },
     /**
-     * [show description]
+     * [show 是否显示]
      * @type {[type]}
      */
     show: Boolean,
     /**
-     * [displayFormat description]
+     * [displayFormat 展示格式]
      * @type {[type]}
      */
     displayFormat: Function,
     /**
-     * [isTransferDom description]
+     * [isTransferDom 是否删除当前位置，插入到底部]
      * @type {Object}
      */
     isTransferDom: {
@@ -181,27 +181,27 @@ export default {
       default: true
     },
     /**
-     * [columnWidth description]
+     * [columnWidth 列宽度]
      * @type {[type]}
      */
     columnWidth: Array,
     /**
-     * [popupStyle description]
+     * [popupStyle 弹出层行内样式]
      * @type {[type]}
      */
     popupStyle: Object,
     /**
-     * [popupTitle description]
+     * [popupTitle 弹出层标题]
      * @type {[type]}
      */
     popupTitle: String,
     /**
-     * [disabled description]
+     * [disabled 是否禁用]
      * @type {[type]}
      */
     disabled: Boolean,
     /**
-     * [borderIntent description]
+     * [borderIntent 边框左侧是否存在距离]
      * @type {Boolean}
      */
     borderIntent: false
@@ -226,14 +226,27 @@ export default {
   },
   methods: {
     value2name,
+    /**
+     * [getNameValues 获取当前值]
+     * @return {[type]} [description]
+     */
     getNameValues () {
       return value2name(this.currentValue, this.data)
     },
+    /**
+     * [onClick 点击打开弹出层]
+     * @return {[type]} [description]
+     */
     onClick () {
       if (!this.disabled) {
         this.showValue = true
       }
     },
+    /**
+     * [onHide 弹出层关闭]
+     * @param  {[type]} type [description]
+     * @return {[type]}      [description]
+     */
     onHide (type) {
       this.showValue = false
       if (type) {
@@ -247,17 +260,31 @@ export default {
         }
       }
     },
+    /**
+     * [onPopupShow 弹出层显示]
+     * @return {[type]} [description]
+     */
     onPopupShow () {
       // reset close type to false
       this.closeType = false
       this.$emit('on-show')
     },
+    /**
+     * [onPopupHide 弹出层隐藏]
+     * @param  {[type]} val [description]
+     * @return {[type]}     [description]
+     */
     onPopupHide (val) {
       if (this.value.length > 0) {
         this.tempValue = getObject(this.currentValue)
       }
       this.$emit('on-hide', this.closeType)
     },
+    /**
+     * [onPickerChange 滚动选择时触发]
+     * @param  {[type]} val [description]
+     * @return {[type]}     [description]
+     */
     onPickerChange (val) {
       if (JSON.stringify(this.currentValue) !== JSON.stringify(val)) {
         // if has value, replace it

@@ -7,7 +7,15 @@
 export default {
   name: 'lm-tabbar',
   props: {
+    /**
+     * [iconClass icon图标样式类]
+     * @type {[type]}
+     */
     iconClass: String,
+    /**
+     * [value 当前索引]
+     * @type {[type]}
+     */
     value: Number
   },
   data () {

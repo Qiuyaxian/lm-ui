@@ -14,7 +14,15 @@
 export default {
   name: 'lm-group-title',
   props: {
+    /**
+     * [headerLabel 头部左侧文字]
+     * @type {[type]}
+     */
     headerLabel: String,
+    /**
+     * [headerLabel 头部右侧文字]
+     * @type {[type]}
+     */
     headerValue: String
   }
 };

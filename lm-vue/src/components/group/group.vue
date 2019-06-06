@@ -41,6 +41,10 @@ export default {
      * @type {Array}
      */
     gutter: [String, Number],
+    /**
+     * [showBorders 是否显示边框]
+     * @type {Object}
+     */
     showBorders: {
       type: Boolean,
       default: true

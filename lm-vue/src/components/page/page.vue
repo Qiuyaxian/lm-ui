@@ -99,11 +99,7 @@ export default {
      */
     scrollTo (top) {
       this.$nextTick(() => {
-        if (this.$refs['view']) {
-          this.$refs['view'].scrollTop = top
-        } else {
-
-        }
+        if (this.$refs['view']) this.$refs['view'].scrollTop = top;
       });
     }
   },

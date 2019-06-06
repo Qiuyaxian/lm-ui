@@ -124,10 +124,10 @@ body {
 a {
   -webkit-touch-callout: none;
 }
-.lm-btn {
-  margin: 32px;
+/*.lm-btn {
+  margin: pxTorem(32) 0;
 }
-
+*/
 .dialog-demo {
   .weui-dialog{
     border-radius: pxTorem(8, 2);

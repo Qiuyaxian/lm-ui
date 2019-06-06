@@ -1,10 +1,18 @@
 <template>
   <lm-page>
-    <lm-header>九宫格</lm-header>
-    <lm-grid :cols="3">
-      <lm-grid-item v-for="(grid, gridIndex) in grids" :key="gridIndex" :label="grid.label" :icon="grid.icon">
-      </lm-grid-item>
-    </lm-grid>
+    <lm-header slot="header" class="lm-header-fixed">九宫格</lm-header>
+    <lm-scroll>
+      <lm-grid :cols="3">
+        <lm-grid-item v-for="(grid, gridIndex) in grids" :key="gridIndex" :label="grid.label" :icon="grid.icon">
+        </lm-grid-item>
+      </lm-grid>
+      <lm-divider>自定义icon</lm-divider>
+      <lm-grid :cols="3">
+        <lm-grid-item v-for="(grid, gridIndex) in grids" :key="gridIndex" :label="grid.label">
+          <img slot="icon" :src="grid.icon" alt="" />
+        </lm-grid-item>
+      </lm-grid>
+    </lm-scroll>
   </lm-page>
 </template>
 
