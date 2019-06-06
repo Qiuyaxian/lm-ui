@@ -1,2 +1,3 @@
-export * from './array2String'
+export * from './array2string'
+export * from './array2string-pipe'
 export * from './module'

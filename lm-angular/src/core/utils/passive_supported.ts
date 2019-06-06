@@ -1,9 +1,9 @@
 /**
  * vue 
  */
-var passiveSupported = false
+let passiveSupported: boolean = false
 try {
-  var options = Object.defineProperty({}, 'passive', {
+  let options = Object.defineProperty({}, 'passive', {
     get: function () {
       passiveSupported = true
     }

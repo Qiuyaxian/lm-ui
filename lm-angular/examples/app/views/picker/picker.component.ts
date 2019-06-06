@@ -44,6 +44,10 @@ export class PickerComponent {
       name: '美国002',
       value: 'usa002',
       parent: 'USA'
+    },{
+      name: '美国003',
+      value: 'usa003',
+      parent: 'USA'
     }, {
       name: '广州',
       value: 'gz',
@@ -76,6 +80,11 @@ export class PickerComponent {
       name: '美国002_002',
       value: '0006',
       parent: 'usa002'
+    },
+    {
+      name: '美国003_001',
+      value: '0007',
+      parent: 'usa003'
     }
   ]
   onChange(value) {

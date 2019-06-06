@@ -13,7 +13,11 @@ import {
   SimpleChange,
   SimpleChanges,
   ViewEncapsulation,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ViewChild,
+  AfterViewInit,
+  ViewContainerRef,
+  ViewRef
 } from '@angular/core';
 // 双向绑定
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -32,10 +36,29 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     },
   ],
 })
-export class LmDemo implements ControlValueAccessor, OnInit, OnChanges{
+export class LmDemo implements ControlValueAccessor, AfterViewInit, OnInit, OnChanges{
   // slot
   @ContentChild('body') body: TemplateRef<any>
+  @ViewChild('vc', {read: ViewContainerRef}) vc: ViewContainerRef;
+  @ViewChild('tpl') tpl: TemplateRef<any>;
 
+
+
+
+  ngAfterViewInit() {
+    
+    
+  }
+  clickHandle() {
+    this.vc.clear()
+  }
+  createHandle() {
+    // 创建一个插入式视图， 一般插入式视图都对应的是模版视图
+    const tplView: ViewRef = this.tpl.createEmbeddedView(null);
+
+    // 插入到容器当中 使用视图容器操作视图的方法insert
+    this.vc.insert(tplView);
+  }
   // props
   @Input('model') set model(value: any[]) {
     console.log(value, 'set model')

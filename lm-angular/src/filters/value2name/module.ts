@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core'
-import { Value2namePipe } from './value2name'
+import { Value2namePipe } from './value2name-pipe'
 @NgModule({
   entryComponents: [],
   imports: [CommonModule],

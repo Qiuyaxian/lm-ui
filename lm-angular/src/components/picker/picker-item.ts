@@ -34,10 +34,10 @@ import {
   isObject, 
   isArray,
   isEqual,
-  replaceVNodeHTMLElement 
+  Scroller,
+  replaceVNodeHTMLElement
 } from '../../core'
 
-import Scroller from './scroller'
 
 interface dataProps {
   name: string,
@@ -61,10 +61,6 @@ export class LmPickerItem extends Scroller implements OnInit, OnDestroy {
   @Input('data') set data(value: any[]) {
     if (value && !isEqual(this._data, value)) {
       this._data = value;
-      this.refresh({
-        data: this._data,
-        defaultValue: this._defaultValue
-      })
     }
   }
   get data (): any[] {
@@ -74,10 +70,6 @@ export class LmPickerItem extends Scroller implements OnInit, OnDestroy {
   @Input('defaultValue') set defaultValue(value: any) {
     if (value && !isEqual(this._defaultValue, value)) {
       this._defaultValue = value;
-      this.refresh({
-        data: this._data,
-        defaultValue: this._defaultValue
-      })
     }
   }
   get defaultValue(): any {
@@ -110,16 +102,9 @@ export class LmPickerItem extends Scroller implements OnInit, OnDestroy {
   private stringify(str): string {
     return JSON.stringify({ 'value': encodeURI(str) })
   }
-
-  constructor(
-    public el: ElementRef,
-    private cdr: ChangeDetectorRef) {
-    super();
-  }
   
-  ngOnInit() {
+  protected created(): void {
     let self = this;
-    console.log(self, 'self')
     this.build(querySelector('.lm-picker-item', this.el.nativeElement), {
       data: self._data,
       defaultValue: self._defaultValue,
@@ -134,8 +119,17 @@ export class LmPickerItem extends Scroller implements OnInit, OnDestroy {
       callback: null
     })
   }
+  constructor(
+    public el: ElementRef,
+    private cdr: ChangeDetectorRef) {
+    super();
+  }
+  
+  ngOnInit() {
+    
+  }
   ngOnDestroy() {
-
+    // this.destroy();
   }
    
 

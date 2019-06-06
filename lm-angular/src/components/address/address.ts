@@ -20,7 +20,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable, Observer, Subscription } from 'rxjs';
 import { SafeStyle } from '@angular/platform-browser';
 import { extend, isEqual } from '../../core'
-import { name2value, value2name } from './filters'
+import { name2value, value2name } from '../../filters'
 import { LmGroupService } from '../group'
 @Component({
   selector: 'lm-address',
@@ -38,7 +38,6 @@ import { LmGroupService } from '../group'
 })
 export class LmAddress implements ControlValueAccessor, OnInit, OnChanges {
   // slot 插槽视图
-  
   @Input('label') label: string
   
   @Input('model') set model(value: any[]) {

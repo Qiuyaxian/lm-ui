@@ -8,11 +8,12 @@
 
 declare var window: any
 
-import AnimationFrameService from './requestAnimationFrame'
-import { easeOutCubic, easeInOutCubic, querySelector, getStyle } from './utils'
-import { passiveSupported } from './passive_supported'
+import AnimationFrameService from './requestAnimationFrame';
+import { easeOutCubic, easeInOutCubic } from './tools';
+import { querySelector, getStyle } from './dom';
+import { passiveSupported } from './passive_supported';
 
-export default class ScrollerServer extends AnimationFrameService {
+export class Scroller extends AnimationFrameService {
   public value: any = null
   private __prevValue: any = null
   private __isSingleTouch: boolean = false
@@ -72,42 +73,31 @@ export default class ScrollerServer extends AnimationFrameService {
     options = options || {}
     self.__container = querySelector(container)
     let component = self.__component = self.__container.querySelector('[data-role=component]')
+    let content = self.__content = component.querySelector('[data-role=content]')
+    let indicator = component.querySelector('[data-role=indicator]')
+    
     self.options = {
       itemClass: 'scroller-item',
       onSelect () {},
       defaultValue: 0,
       data: []
     }
+
     for (var key in options) {
       if (options[key] !== undefined) {
         self.options[key] = options[key]
       }
     }
-    this.refresh(options);
-  }
-  /**
-   * [refresh 刷新dom]
-   * @param  {object} options [description]
-   * @return {any}            [description]
-   */
-  protected refresh(options?: object): any {
-    const self = this;
-
-    if (!self.__component) return;
-
-    let component = self.__component;
+     
     let rect = component.getBoundingClientRect();
     
-    if (options && (options as any).data) {
-      self.options.data = (options as any).data
-    }
+    // if (options && (options as any).data) {
+    //   self.options.data = (options as any).data
+    // }
 
-    if (options && (options as any).defaultValue) {
-      self.options.defaultValue = (options as any).defaultValue
-    }
-
-    let content = self.__content = component.querySelector('[data-role=content]')
-    let indicator = component.querySelector('[data-role=indicator]')
+    // if (options && (options as any).defaultValue) {
+    //   self.options.defaultValue = (options as any).defaultValue
+    // }
     
     self.__itemHeight = parseFloat(getStyle(indicator, 'height'))
 
@@ -126,6 +116,14 @@ export default class ScrollerServer extends AnimationFrameService {
     }
     
     self.select(self.options.defaultValue, false, true)
+  }
+  /**
+   * [refresh 刷新dom]
+   * @param  {object} options [description]
+   * @return {any}            [description]
+   */
+  protected refresh(options?: object): any {
+    
   }
   /**
    * [touchStartHandler 鼠标按下]

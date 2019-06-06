@@ -4,6 +4,27 @@
     *ngFor="let item of _data;let key = index"
     [span]="columnWidth && columnWidth[key]" 
     style="margin-left: 0;">
+
+     <ng-container #temp></ng-container>
+     <!-- <lm-picker-item
+       [data]="item"
+       [defaultValue]="_model[key]"
+       [index]="key"
+       [id]="'lm-picker-'+ uuid +'-'+ key"
+       (on-select)="onSelectHandle($event)">
+      </lm-picker-item> -->
+    </lm-flexbox-item>
+  </lm-flexbox>
+</div>
+
+
+
+<!-- <div class="lm-picker">
+  <lm-flexbox [gutter]="0">
+    <lm-flexbox-item 
+    *ngFor="let item of _data;let key = index"
+    [span]="columnWidth && columnWidth[key]" 
+    style="margin-left: 0;">
      <lm-picker-item
        [data]="item"
        [defaultValue]="_model[key]"
@@ -14,3 +35,4 @@
     </lm-flexbox-item>
   </lm-flexbox>
 </div>
+ -->

@@ -16,13 +16,13 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy
 } from '@angular/core';
-// 双向绑定
+
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable, Observer, Subscription } from 'rxjs';
 import { SafeStyle } from '@angular/platform-browser';
-import { extend, copy, isEqual, isArray } from '../../../src/core'
-import { LmGroupService } from '../group'
-import { value2name, array2string, name2value } from './filters'
+import { extend, copy, isEqual, isArray } from '../../../src/core';
+import { value2name, array2string, name2value } from '../../filters';
+import { LmGroupService } from '../group';
 
 @Component({
   selector: 'lm-popup-picker',
@@ -108,27 +108,28 @@ export class LmPopupPicker implements ControlValueAccessor, OnInit, DoCheck, OnD
   private showValue: boolean = false
 
   // computed 
-  private labelStyles () {
+  private labelStyles(): any {
     return {
       display: 'block',
       width: (this.parent && (this.parent.labelWidth)) || 'auto',
       textAlign: this.parent && (this.parent.labelAlign)
     }
   }
-  private labelClass () {
+  private labelClass(): any {
     return {
       'lm-cell-justify': this.parent && (this.parent.labelAlign === 'justify')
     }
   }
-  private getBorderIntent () {
+  private getBorderIntent(): any {
     return (this.parent && this.parent.borderIntent) || this.borderIntent;
   } 
 
   // methods 
-  privategetNameValues () {
+  private privategetNameValues(): void {
     return value2name(this.currentValue, this.data)
   }
-  private clickHandle(event) {
+
+  private clickHandle(event): void {
     if (!this.disabled) {
       this.showValue = true
     }
@@ -137,7 +138,8 @@ export class LmPopupPicker implements ControlValueAccessor, OnInit, DoCheck, OnD
   private value2name(value: any[], data: any[]): any[] {
     return value2name(value, data);
   }
-  private onHideHandle (type) {
+
+  private onHideHandle(type): void {
     this.showValue = false
     if (type) {
       this.closeType = true
@@ -153,7 +155,7 @@ export class LmPopupPicker implements ControlValueAccessor, OnInit, DoCheck, OnD
     }
   }
   
-  private onPopupShow () {
+  private onPopupShow(): void {
     // reset close type to false
     this.closeType = false
 
@@ -164,14 +166,14 @@ export class LmPopupPicker implements ControlValueAccessor, OnInit, DoCheck, OnD
    * @param  {[type]} val [description]
    * @return {[type]}     [description]
    */
-  private onPopupHide (val) {
+  private onPopupHide(val): void {
     if (this.currentData.length > 0) {
       this.tempValue = copy(this.currentValue)
     }
     this.onHide.emit(this.closeType)
   }
   
-  onPickerChange (val) {
+  private onPickerChange(val): void {
     if (!isEqual(val, this.currentValue)) {
       // if has value, replace it
       if (this.currentData.length) {

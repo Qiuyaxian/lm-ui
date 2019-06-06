@@ -47,7 +47,7 @@ export default abstract class AnimationFrameService {
     return false;
   }
 
-  public createTime(): Number {
+  public createTime(): number {
     if (Date.now) return Date.now();
     else +new Date();
   }
@@ -79,8 +79,8 @@ export default abstract class AnimationFrameService {
   // Start the animation.
   public start (stepCallback?: Function, verifyCallback?: Function, completedCallback?: Function, duration?: Number, easingMethod?: Function, root?: any): any {
     let _this = this;
-    let start = this.createTime();
-    let lastFrame = start;
+    let start: number = this.createTime();
+    let lastFrame: number = start;
     let percent: number = 0;
     let dropCounter: number = 0;
     let id = this.counter++;
