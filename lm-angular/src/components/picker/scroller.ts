@@ -70,35 +70,52 @@ export default class ScrollerServer extends AnimationFrameService {
     self.dpr = this.getDpr()
 
     options = options || {}
-
+    self.__container = querySelector(container)
+    let component = self.__component = self.__container.querySelector('[data-role=component]')
     self.options = {
       itemClass: 'scroller-item',
       onSelect () {},
       defaultValue: 0,
       data: []
     }
-
     for (var key in options) {
       if (options[key] !== undefined) {
         self.options[key] = options[key]
       }
     }
+    this.refresh(options);
+  }
+  /**
+   * [refresh 刷新dom]
+   * @param  {object} options [description]
+   * @return {any}            [description]
+   */
+  protected refresh(options?: object): any {
+    const self = this;
 
-    self.__container = querySelector(container)
+    if (!self.__component) return;
 
-    var component = self.__component = self.__container.querySelector('[data-role=component]')
-    var content = self.__content = component.querySelector('[data-role=content]')
-    var indicator = component.querySelector('[data-role=indicator]')
+    let component = self.__component;
+    let rect = component.getBoundingClientRect();
+    
+    if (options && (options as any).data) {
+      self.options.data = (options as any).data
+    }
+
+    if (options && (options as any).defaultValue) {
+      self.options.defaultValue = (options as any).defaultValue
+    }
+
+    let content = self.__content = component.querySelector('[data-role=content]')
+    let indicator = component.querySelector('[data-role=indicator]')
     
     self.__itemHeight = parseFloat(getStyle(indicator, 'height'))
 
-    self.__callback = options.callback || function (top) {
+    self.__callback = (options && (options as any).callback) || function (top) {
       const distance = -top * self.dpr
       content.style.webkitTransform = 'translate3d(0, ' + distance + 'px, 0)'
       content.style.transform = 'translate3d(0, ' + distance + 'px, 0)'
     }
-
-    var rect = component.getBoundingClientRect()
 
     self.__clientTop = (rect.top + component.clientTop) || 0
 
@@ -107,6 +124,7 @@ export default class ScrollerServer extends AnimationFrameService {
     if (component.clientHeight === 0) {
       self.__setDimensions(parseFloat(getStyle(component, 'height')), 204)
     }
+    
     self.select(self.options.defaultValue, false, true)
   }
   /**
@@ -214,6 +232,7 @@ export default class ScrollerServer extends AnimationFrameService {
       // self.__scrollingComplete()
       return
     }
+    // self.__publish(top, 250)
     self.__publish(top, typeof init === 'undefined' ? 250 : 0)
   }
   /**

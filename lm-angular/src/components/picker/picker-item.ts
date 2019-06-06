@@ -29,7 +29,13 @@ import { SafeStyle } from '@angular/platform-browser';
 
 declare var window: any;
 
-import { querySelector, isObject, isArray, replaceVNodeHTMLElement } from '../../utils'
+import { 
+  querySelector, 
+  isObject, 
+  isArray,
+  isEqual,
+  replaceVNodeHTMLElement 
+} from '../../core'
 
 import Scroller from './scroller'
 
@@ -45,7 +51,7 @@ interface dataProps {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class LmPickerItem extends Scroller implements OnInit {
+export class LmPickerItem extends Scroller implements OnInit, OnDestroy {
   // props
   @Input('index') set index(value: number) {
     this._index = value;
@@ -53,16 +59,28 @@ export class LmPickerItem extends Scroller implements OnInit {
   @Input('id') id: string
   
   @Input('data') set data(value: any[]) {
-    this._data = value;
+    if (value && !isEqual(this._data, value)) {
+      this._data = value;
+      this.refresh({
+        data: this._data,
+        defaultValue: this._defaultValue
+      })
+    }
   }
   get data (): any[] {
     return this._data;
   }
 
-  @Input('defaultValue') set defaultValue(value: any[]) {
-    this._defaultValue = value;
+  @Input('defaultValue') set defaultValue(value: any) {
+    if (value && !isEqual(this._defaultValue, value)) {
+      this._defaultValue = value;
+      this.refresh({
+        data: this._data,
+        defaultValue: this._defaultValue
+      })
+    }
   }
-  get defaultValue(): any[] {
+  get defaultValue(): any {
     return this._defaultValue;
   }
 
@@ -93,15 +111,18 @@ export class LmPickerItem extends Scroller implements OnInit {
     return JSON.stringify({ 'value': encodeURI(str) })
   }
 
-  constructor(public el: ElementRef) {
+  constructor(
+    public el: ElementRef,
+    private cdr: ChangeDetectorRef) {
     super();
   }
   
   ngOnInit() {
     let self = this;
+    console.log(self, 'self')
     this.build(querySelector('.lm-picker-item', this.el.nativeElement), {
-      data: self.data,
-      defaultValue: self.defaultValue,
+      data: self._data,
+      defaultValue: self._defaultValue,
       onSelect(value, index) {
         let item = {
           'value': value,
@@ -112,6 +133,9 @@ export class LmPickerItem extends Scroller implements OnInit {
       },
       callback: null
     })
+  }
+  ngOnDestroy() {
+
   }
    
 

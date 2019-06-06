@@ -1,0 +1,36 @@
+{{ currentValue }}
+<lm-popup-picker
+  [fixed-columns]="hideDistrict ? 2 : 0"
+  [columns]="3"
+  [data]="data"
+  [label]="label"
+  [(ngModel)]="currentValue"
+  [show-name]="true"
+  [inline-desc]="inlineDesc"
+  [placeholder]="placeholder"
+  [value-text-align]="valueTextAlign"
+  [confirm-text]="confirmText"
+  [cancel-text]="cancelText"
+  [popup-style]="popupStyle"
+  [popup-title]="popupTitle"
+  [show]="showValue"
+  [disabled]="disabled"
+  (on-shadow-change)="onShadowChangeHandle($event)"
+  (on-hide)="_onHide($event)"
+  (on-show)="_onShow($event)">
+  <!-- <template slot="title" slot-scope="props">
+    
+
+    <slot
+      [name]="title"
+      [label-class]="props.labelClass"
+      [label-style]="props.labelStyles"
+      [label-title]="props.title">
+      <label
+        [class]="[props.labelClass,labelClass]"
+        [style]="props.labelStyle"
+        v-if="props.labelTitle"
+        v-html="props.labelTitle"></label>
+    </slot>
+  </template> -->
+</lm-popup-picker>

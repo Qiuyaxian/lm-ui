@@ -4,19 +4,19 @@
    <div class="scroller-indicator" data-role="indicator"></div>
    <div class="scroller-content" data-role="content">
      <ng-container *ngIf="isObject(data[0]);else elseBlock">
-       <div 
-         *ngFor="let key of getKeys(data)" 
+       <div *ngFor="let key of getKeys(data)" 
          class="scroller-item" 
          [attr.data-value]="stringify(data[key].value)">
           {{ data[key].name }}
        </div>
      </ng-container>
-     <ng-container *ngIf="isArray(data[0])">
+     <ng-template #elseBlock>
+      c
        <div 
          *ngFor="let item of data;let key = index" 
          class="scroller-item" 
          [attr.data-value]="stringify(item)">{{ item }}</div>
-     </ng-container>
+     </ng-template>
    </div>
   </div>
 </div>

@@ -3,7 +3,6 @@
   [borderIntent]="getBorderIntent"
   [label]="label"
   [inline-desc]="inlineDesc" 
-
   (on-cell-click)="clickHandle($event)"
 >
     
@@ -11,21 +10,21 @@
          [ngStyle]="{textAlign: valueTextAlign}">
        <span 
           class="lm-popup-picker-value lm-cell-value"
-          *ngIf="!displayFormat && !showName && model.length">
-          {{ model }}
+          *ngIf="!displayFormat && !showName && currentValue && currentValue.length">
+          {{ currentValue }}
        </span>
        <span 
          class="lm-popup-picker-value lm-cell-value"
-         *ngIf="!displayFormat && showName && model.length">
-         {{model | value2name:model:data }}
+         *ngIf="!displayFormat && showName && currentValue && currentValue.length">
+         {{ currentValue | value2name:data }}
        </span>
       <span 
         class="lm-popup-picker-value lm-cell-value"
-        *ngIf="displayFormat && model.length">
-        {{ displayFormat(model, value2name(model, data)) }}
+        *ngIf="displayFormat && currentValue && currentValue.length">
+        {{ displayFormat(currentValue, value2name(currentValue, data)) }}
       </span>
       <span 
-        *ngIf="!model.length && placeholder"
+        *ngIf="currentValue && !currentValue.length && placeholder"
         class="lm-popup-picker-placeholder lm-cell-placeholder">
         {{ placeholder }}
       </span>
@@ -35,18 +34,20 @@
 <div *transfer-dom="true">
   <lm-popup 
       [(ngModel)]="showValue"
+      (on-show)="onPopupShow($event)"
+      (on-hide)="onPopupHide($event)"
       class="lm-popup-picker">
     <div class="lm-popup-picker-container">
       <lm-popup-header
         [left-text]="cancelText"
         [right-text]="confirmText"
-        (on-click-left)="onHide(false)"
-        (on-click-right)="onHide(true)"
+        (on-click-left)="onHideHandle(false)"
+        (on-click-right)="onHideHandle(true)"
         [title]="popupTitle">
       </lm-popup-header>	
       <lm-picker 
        [data]="data"
-       [model]="tempValue"
+       [(ngModel)]="tempValue"
        (on-change)="onPickerChange($event)"
        [columns]="columns"
        [fixed-columns]="fixedColumns"

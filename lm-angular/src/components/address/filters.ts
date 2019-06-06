@@ -23,6 +23,7 @@ export function value2name (value: any, list: any, delimiter?: any): any {
   rs = rs.filter(one => {
     return typeof one !== 'undefined'
   })
+    console.log(name ,list, rs)
   return map(rs, one => {
     return one.name
   }).join(delimiter).replace('--', '')
@@ -32,22 +33,23 @@ export function array2string(array: any): any {
   return array.length === 1 ? array[0] : array.join(' ')
 }
 
-
 const specialMap = {
   '北京市': '110100',
   '天津市': '120100',
   '上海市': '310100',
   '重庆市': '500100'
 }
+interface parent {
 
-export function name2value(name: any, list: any[]): any {
+}
+export function name2value(name: any[], list: any[]): any {
   let rs = map(name, (one, index) => {
     let parent: any = ''
     if (index === 2) {
       // 可能存在区名一样的情况，比如南山区
       parent = find(list, item => {
         return item.name === name[1]
-      }) || { value: '__' } 
+      }) || { value: '__' }
 
       if (specialMap[name[0]]) {
         parent = {
@@ -68,7 +70,6 @@ export function name2value(name: any, list: any[]): any {
       })
     }
   })
-
   return map(rs, one => {
     return one ? one.value : '__'
   }).join(' ')

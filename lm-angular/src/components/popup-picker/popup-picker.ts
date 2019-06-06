@@ -8,6 +8,8 @@ import {
   EventEmitter,
   ContentChild,
   OnInit,
+  DoCheck,
+  OnChanges,
   OnDestroy,
   SimpleChange,
   SimpleChanges,
@@ -20,13 +22,13 @@ import { Observable, Observer, Subscription } from 'rxjs';
 import { SafeStyle } from '@angular/platform-browser';
 import { extend, copy, isEqual, isArray } from '../../../src/core'
 import { LmGroupService } from '../group'
-import { value2name, array2string } from './filters'
+import { value2name, array2string, name2value } from './filters'
 
 @Component({
   selector: 'lm-popup-picker',
   templateUrl: './popup-picker.html',
   preserveWhitespaces: false,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
   providers: [
     {
@@ -36,18 +38,15 @@ import { value2name, array2string } from './filters'
     },
   ]
 })
-export class LmPopupPicker implements ControlValueAccessor, OnDestroy {
+export class LmPopupPicker implements ControlValueAccessor, OnInit, DoCheck, OnDestroy {
   // slot
-  
+
   // props
   @Input('model') set model(val: any[]) {
-    if (!isEqual(val, this.tempValue)) {
+    if (val && !isEqual(val, this.tempValue)) {
       this.tempValue = copy(val)
     }
-    this.currentValue = val;
-    this.controlChange(val);
-    // this.$emit('input', getObject(val))
-    // this.$emit('on-change', getObject(val))
+    this.setCurrentValue(val)
   }
   get model(): any[] {
     return this.currentValue;
@@ -55,7 +54,7 @@ export class LmPopupPicker implements ControlValueAccessor, OnDestroy {
    
   @Input('label') label: string = ''
 
-  @Input('valueTextAlign') valueTextAlign: string = 'right'
+  @Input('value-text-align') valueTextAlign: string = 'right'
 
   @Input('cancel-text') cancelText: string = '取消'
 
@@ -94,6 +93,11 @@ export class LmPopupPicker implements ControlValueAccessor, OnDestroy {
   @Input('borderIntent') borderIntent: boolean = false
   
   // emit
+  @Output('input') input: EventEmitter<any> = new EventEmitter<any>(); 
+  @Output('on-change') onChange: EventEmitter<any> = new EventEmitter<any>(); 
+  @Output('on-show') onShow: EventEmitter<any> = new EventEmitter<any>(); 
+  @Output('on-hide') onHide: EventEmitter<any> = new EventEmitter<any>(); 
+  @Output('on-shadow-change') onShadowChange: EventEmitter<any> = new EventEmitter<any>(); 
   
   // data
   private currentValue: any[] = []
@@ -104,73 +108,73 @@ export class LmPopupPicker implements ControlValueAccessor, OnDestroy {
   private showValue: boolean = false
 
   // computed 
-  labelStyles () {
+  private labelStyles () {
     return {
       display: 'block',
       width: (this.parent && (this.parent.labelWidth)) || 'auto',
       textAlign: this.parent && (this.parent.labelAlign)
-      // marginRight: this.parent && (this.parent.labelMarginRight)
     }
   }
-  labelClass () {
+  private labelClass () {
     return {
       'lm-cell-justify': this.parent && (this.parent.labelAlign === 'justify')
     }
   }
-  getBorderIntent () {
+  private getBorderIntent () {
     return (this.parent && this.parent.borderIntent) || this.borderIntent;
   } 
+
   // methods 
-  
-  getNameValues () {
+  privategetNameValues () {
     return value2name(this.currentValue, this.data)
   }
-  clickHandle(event) {
+  private clickHandle(event) {
     if (!this.disabled) {
       this.showValue = true
     }
   }
   
-  value2name(value: any[]): any[] {
-    return value2name(value);
+  private value2name(value: any[], data: any[]): any[] {
+    return value2name(value, data);
   }
-  onHide (type) {
+  private onHideHandle (type) {
     this.showValue = false
     if (type) {
       this.closeType = true
-      this.currentValue = copy(this.tempValue)
+      this.currentValue = copy(this.tempValue);
+      this.input.emit(this.currentValue)
+      this.onChange.emit(this.currentValue)
     }
     if (!type) {
       this.closeType = false
-      if (this.model.length > 0) {
+      if (this.currentValue.length > 0) {
         this.tempValue = copy(this.currentValue)
       }
     }
   }
   
-  onPopupShow () {
+  private onPopupShow () {
     // reset close type to false
     this.closeType = false
-    console.log('on-show')
-    // this.$emit('on-show')
+
+    this.onShow.emit(this.closeType);
   }
   /**
    * [onPopupHide 弹出层隐藏]
    * @param  {[type]} val [description]
    * @return {[type]}     [description]
    */
-  onPopupHide (val) {
-    if (this.model.length > 0) {
+  private onPopupHide (val) {
+    if (this.currentData.length > 0) {
       this.tempValue = copy(this.currentValue)
     }
-    console.log('on-hide')
-    // this.$emit('on-hide', this.closeType)
+    this.onHide.emit(this.closeType)
   }
   
   onPickerChange (val) {
-    if (JSON.stringify(this.currentValue) !== JSON.stringify(val)) {
+    if (!isEqual(val, this.currentValue)) {
       // if has value, replace it
-      if (this.model.length) {
+      if (this.currentData.length) {
         const nowData = JSON.stringify(this.data)
         if (nowData !== this.currentData && this.currentData !== '[]') {
           this.tempValue = copy(val)
@@ -180,18 +184,46 @@ export class LmPopupPicker implements ControlValueAccessor, OnDestroy {
         // if set to auto update, do update the value
       }
     }
-    const _val = copy(val)
-    console.log(val, 'on-shadow-change')
-    // this.$emit('on-shadow-change', _val, value2name(_val, this.data).split(' '))
+    const _val = copy(val);
+    this.writeValue(_val);
+    this.onShadowChange.emit({
+      'ids': _val,
+      'names': value2name(_val, this.data).split(' ')
+    });
+    this.controlChange(_val);
   }
   
   // 关闭弹窗 => 插件调用
+  constructor(
+    private cdr: ChangeDetectorRef,
+    public parent: LmGroupService) {
+  }
+
+  ngOnInit() {
+    
+  }
   
-  constructor(private cdr: ChangeDetectorRef, public parent: LmGroupService) {
+  ngDoCheck() {
+     
+  }
+  setCurrentValue(val: any): void {
+    if (!isEqual(val, this.currentValue)) {
+      if (val && val.length && !/\d+/.test(val[0])) {
+        const id = name2value(val, this.data).split(' ')
+        if (id[0] !== '__' && id[1] !== '__') {
+          this.currentValue = id
+          return
+        }
+      }
+      this.currentValue = val;
+    }
   }
   // 下面是数据双向绑定
-  writeValue(value: any[]): void {
-    if(isArray(value)) this.model = value;
+  writeValue(value: any) {
+    this.setCurrentValue(value)
+    if (value && !isEqual(value, this.tempValue)) {
+      this.tempValue = copy(value)
+    }
   }
  
   private controlChange: Function = () => {}
