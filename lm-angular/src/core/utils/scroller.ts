@@ -118,14 +118,6 @@ export class Scroller extends AnimationFrameService {
     self.select(self.options.defaultValue, false, true)
   }
   /**
-   * [refresh 刷新dom]
-   * @param  {object} options [description]
-   * @return {any}            [description]
-   */
-  protected refresh(options?: object): any {
-    
-  }
-  /**
    * [touchStartHandler 鼠标按下]
    * @param {any} e [description]
    */

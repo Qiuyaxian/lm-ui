@@ -156,7 +156,7 @@ export class LmPicker implements ControlValueAccessor, OnInit, AfterViewInit, On
     this.cdr.detectChanges();
   }
   
-  updateModel(value) {
+  private updateModel(value) {
     if (value.length) {
       let _data = this._data;
       if (this.columns !== 0) {
