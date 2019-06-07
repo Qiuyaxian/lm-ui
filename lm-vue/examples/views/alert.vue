@@ -34,16 +34,6 @@ import TransferDom from '../../src/directives/transfer-dom'
   },
   created() {
     console.log(this.$lm, 'this.$lm');
-    // this.$lm.alert.show({
-    //   title: 'Vux is Cool',
-    //   content: 'Do you agree?',
-    //   onShow () {
-    //     console.log('Plugin: I\'m showing')
-    //   },
-    //   onHide () {
-    //     console.log('Plugin: I\'m hiding')
-    //   }
-    // })
   },
   // 声明周期钩子
   mounted() {},

@@ -191,7 +191,15 @@ https://www.jianshu.com/p/4780d82e874a
 |
 |
 |
-|
 
 
+基础代码 => 参考antd-design
+| 需要编写的代码
+  view => 控制组件显示与否
+  transtion => css transition 动画效果
+  动态绑定css => 通过 classnames插件
+  动态绑定style => 直接行内样式绑定
+通过 React.CSSProperties 进行类型规定
 
+slot 以及作用域插槽
+通过ref 选择dom或者组件 => https://blog.csdn.net/kuangshp128/article/details/78451409 => https://www.cnblogs.com/chenjinxinlove/p/9706299.html

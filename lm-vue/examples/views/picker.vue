@@ -6,7 +6,7 @@
       <lm-divider>默认，不设置默认值时选中第一个 {{year1}}</lm-divider>
       <lm-picker :data='years' v-model='year1' @on-change='change'></lm-picker>
       <br>
-      <!-- <div> 异步加载及动态改变数据 </div>
+      <div> 异步加载及动态改变数据 </div>
       <lm-picker :data='years001' v-model='year001' @on-change='change'></lm-picker>
       <br>
       <lm-group>
@@ -36,7 +36,7 @@
       <lm-button @click.native="setData1" type="primary"> Set value to ["USA", "usa002", "0005"]</lm-button>
       <lm-button @click.native="setData2" type="primary"> Set value to ["china", "china002", "gz"]</lm-button>
       <lm-button @click.native="setList" type="primary">Set List</lm-button>
-      <br> -->
+      <br>
       <div> 3列的数据，只显示两列 </div>
       <lm-picker :data='year7' :columns=3 v-model='year8Value' @on-change='change'></lm-picker>
     </lm-scroll>
