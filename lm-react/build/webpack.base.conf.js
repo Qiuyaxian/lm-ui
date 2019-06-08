@@ -22,7 +22,11 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.tsx', '.json']
+    extensions: ['.js', '.jsx', '.tsx', '.json'],
+    alias: {
+      '@src': resolve('./src'),
+      '@examples': resolve('./examples')
+    }
   },
   module: {
     rules: [

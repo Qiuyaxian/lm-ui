@@ -47,8 +47,8 @@
     "strictNullChecks": false,  
     //路径映射，如在文件中使用‘~/’相当于‘src/’
     "paths": {
-      "@/*": ["src/*"],
-      "@examples/": ["examples/*"]
+      "@src": ["src/*"],
+      "@examples/*": ["examples/*"]
     },
     // 编译过程中需要引入的库文件的列表
     "lib": [

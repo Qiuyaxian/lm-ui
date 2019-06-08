@@ -38,6 +38,7 @@
     "member-order": [false], //类声明排序
     "no-any": false, //true, //不需使用any类型
     "no-empty-interface": true, //禁止空接口 {}
+    "no-implicit-dependencies": ["optional", ["src", "examples"]],
     "no-import-side-effect": [
       true,
       {
@@ -97,7 +98,7 @@
     "no-eval": true, //不允许使用eval
     "no-floating-promises": true, //必须正确处理promise的返回函数
     "no-for-in-array": true, //不允许使用for in 遍历数组
-    "no-implicit-dependencies": true, //不允许在项目的package.json中导入未列为依赖项的模块
+    // "no-implicit-dependencies": true, //不允许在项目的package.json中导入未列为依赖项的模块
     "no-inferred-empty-object-type": true, //不允许在函数和构造函数中使用{}的类型推断
     "no-invalid-template-strings": true, //警告在非模板字符中使用${
     "no-invalid-this": false, //true, //不允许在非class中使用 this关键字
