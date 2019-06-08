@@ -19,7 +19,7 @@ module.exports = {
   },
   output: {
     path: resolve('dist'), // 输出到目录
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   resolve: {
     extensions: ['.js', '.jsx', '.tsx', '.json'],
