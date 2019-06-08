@@ -1,0 +1,130 @@
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, dl, dt, dd, ol, ul, li, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, section, summary, time, mark, audio, video, input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+ol{
+  /*list-style-type: decimal;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0;*/
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* custom */
+a {
+  color: #7e8c8d;
+  text-decoration: none;
+  -webkit-backface-visibility: hidden;
+}
+p {
+  display: block;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+}
+ul li {
+  list-style: none;
+}
+[v-cloak] {
+    display: none;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  right: -9999px;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:vertical {
+  height: 5px;
+  background-color: rgba(125, 125, 125, 0.7);
+  -webkit-border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:horizontal {
+  width: 5px;
+  background-color: rgba(125, 125, 125, 0.7);
+  -webkit-border-radius: 6px;
+}
+:focus {
+  outline: none;
+}
+input[type="button"], input[type="submit"], input[type="reset"], input[type="file"]::-webkit-file-upload-button, button {
+  padding: 0;
+  margin: 0;
+  border-width: 0;
+  outline: 0;
+  -webkit-appearance: none;
+}
+input:not([type]), input[type="email"], input[type="number"], input[type="password"], input[type="tel"], input[type="url"], input[type="text"] {
+  background-color: transparent;
+}
+
+body, html,.router-view {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+*{
+  touch-action: none;
+}
+body {
+  line-height: 1;
+  font-size: 16px;
+  font-family: -apple-system-font, Helvetica Neue,sans-serif;
+  -webkit-text-size-adjust: none;
+  user-select: none; 
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  background-color: white;
+}
+.bscroll-vertical-scrollbar{
+  right: -99rem !important;
+}
+/** env = windows **/
+::-webkit-input-placeholder {
+  font-family: -apple-system-font, "Helvetica Neue", sans-serif;
+}
+
+/** prevent default menu callout **/
+a {
+  -webkit-touch-callout: none;
+}
+#app{
+  color: green;
+  font-size: 50px;
+}

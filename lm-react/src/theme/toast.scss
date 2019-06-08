@@ -1,0 +1,37 @@
+.#{ $class-prefix } {
+  &-toast {
+    position: fixed;
+    z-index: $toast-z-index;
+    /*width: 9.6em;
+    min-height: 9.6em;*/
+    width: pxTorem(230);
+    min-height: pxTorem(230);
+    top: $toast-top;
+    left: 50%;
+    margin-left: pxTorem(-115);
+    background: rgba(17,17,17,0.7);
+    text-align: center;
+    border-radius: pxTorem(viewTransform(5));
+    color: #FFFFFF;
+  }
+  &-icon_toast {
+    margin: pxTorem(viewTransform(15)) 0 0;
+    display: block;
+    &.weui-icon-success-no-circle{
+      &:before {
+        color: #FFFFFF;
+        font-size: pxTorem(viewTransform(55));
+      }
+    }
+    &.weui-loading{
+      margin: pxTorem(viewTransform(30)) 0 0; 
+      @include setWidthHeight(38, 38);
+      vertical-align: baseline;
+    }
+  }
+
+  &-toast__content {
+    line-height: 1.6; 
+    margin: 0 0 pxTorem(viewTransform(15));
+  }
+}

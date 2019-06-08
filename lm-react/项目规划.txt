@@ -1,0 +1,152 @@
+需要集成的webpack功能
+1. 开发环境
+2. 打包线上环境
+3. 端对端，点对点的测试
+4. flow javascript类型测试
+5. typescript 类型检测测试
+6. react 单元测试 enzyme
+
+
+ps： CodeMirror 建立textarea标签，用于生成代码框根据textarea的id获取到标签元素， 将容器转换为编辑器
+
+1. 目录划分
+   build => webpack 配置
+   examples => demo 页面  
+   src => 
+   flow => flow 类型推断
+   typings => 支持补充完善 typescript 集成  
+
+2. 代码划分
+
+3. 打包工具
+
+4. 使用什么做类型检测
+   flow 作为 对javascript 的类型补充
+   typescript 是为了更加方便 造轮子 同时也是方便支持 typescript 开发
+
+5. 是否支持react+typescript
+
+6. 配置npm 忽略文件夹
+
+------------- 分界 ----------------------
+sudo npm install --dev
+依赖包
+webpack常有用
+   webpack webpack-cli webpack-dev-server webpack-merge html-webpack-plugin uglifyjs-webpack-plugin mini-css-extract-plugin copy-webpack-plugin friendly-errors-webpack-plugin portfinder compression-webpack-plugin webpack-bundle-analyzer node-notifier
+
+loader
+   style-loader css-loader  file-loader url-loader raw-loader
+
+tslint
+  tslint tslint-loader eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-import eslint-plugin-react eslint-plugin-flowtype => flow 校验
+  
+
+TypeScript
+  ts-loader typescript
+
+Flow
+  flow-bin
+   
+Babel
+  babel-cli babel-core babel-eslint babel-loader babel-jest babel-plugin-transform-runtime babel-preset-env babel-preset-react babel-preset-stage-1 babel-runtime babel-standalone
+
+React
+  react react-dom react-hot-loader
+
+@types
+  @types/react
+
+scss 样式
+  node-sass sass-loader --unsafe-perm
+
+core-js
+
+regenerator-runtime
+  regenerator-runtime模块来自facebook的regenerator模块。生成器函数、async、await函数经babel编译后，regenerator-runtime模块用于提供功能实现
+
+prop-types
+  利用propTypes检测prop全部数据类型的变量
+
+
+
+
+是否需要
+  react-click-outside
+  react-transition-group
+  throttle-debounce
+  classnames
+
+
+
+
+
+/**
+ * 
+  optionalArray: React.PropTypes.array,
+  optionalBool: React.PropTypes.bool,
+  optionalFunc: React.PropTypes.func,
+  optionalNumber: React.PropTypes.number,
+  optionalObject: React.PropTypes.object,
+  optionalString: React.PropTypes.string,
+  optionalSymbol: React.PropTypes.symbol,
+
+  // 任何可以渲染的东西：数字，字符串，元素或数组（或片段）。
+  optionalNode: React.PropTypes.node,
+
+  // React元素
+  optionalElement: React.PropTypes.element,
+
+  // 你也可以声明prop是某个类的实例。 内部使用的是JS的instanceof运算符。
+  optionalMessage: React.PropTypes.instanceOf(Message),
+
+  // 你可以通过将它作为枚举来确保你的prop被限制到特定的值。
+  optionalEnum: React.PropTypes.oneOf(['News', 'Photos']),
+
+  // 可以是许多类型之一的对象
+  optionalUnion: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number,
+    React.PropTypes.instanceOf(Message)
+  ]),
+
+  // 某种类型的数组
+  optionalArrayOf: React.PropTypes.arrayOf(React.PropTypes.number),
+
+  // 具有某种类型的属性值的对象
+  optionalObjectOf: React.PropTypes.objectOf(React.PropTypes.number),
+
+  // 采取特定样式的对象
+  optionalObjectWithShape: React.PropTypes.shape({
+    color: React.PropTypes.string,
+    fontSize: React.PropTypes.number
+  }),
+
+  // 你可以用`isRequired`来连接到上面的任何一个类型，以确保如果没有提供props的话会显示一个警告。
+  requiredFunc: React.PropTypes.func.isRequired,
+
+  // 任何数据类型
+  requiredAny: React.PropTypes.any.isRequired,
+
+  // 您还可以指定自定义类型检查器。 如果检查失败，它应该返回一个Error对象。 不要`console.warn`或throw，因为这不会在`oneOfType`内工作。
+  customProp: function(props, propName, componentName) {
+    if (!/matchme/.test(props[propName])) {
+      return new Error(
+        'Invalid prop `' + propName + '` supplied to' +
+        ' `' + componentName + '`. Validation failed.'
+      );
+    }
+  },
+
+  // 您还可以为`arrayOf`和`objectOf`提供自定义类型检查器。 如果检查失败，它应该返回一个Error对象。 
+  // 检查器将为数组或对象中的每个键调用验证函数。 
+  // 检查器有两个参数，第一个参数是数组或对象本身，第二个是当前项的键。
+  customArrayProp: React.PropTypes.arrayOf(function(propValue, key, componentName, location, propFullName) {
+    if (!/matchme/.test(propValue[key])) {
+      return new Error(
+        'Invalid prop `' + propFullName + '` supplied to' +
+        ' `' + componentName + '`. Validation failed.'
+      );
+    }
+  })
+
+ */  

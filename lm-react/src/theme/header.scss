@@ -1,0 +1,127 @@
+/* form 表单 form 表单 preview 展示 */
+.#{$class-prefix} {
+  &-header {
+    position: relative;
+    padding: $header-padding-vertical $header-padding-horizontal;
+    box-sizing: border-box;
+    background-color: $header-background-color;
+  }
+  &-header{
+    .#{$class-prefix}-header-title {
+      line-height: pxTorem(viewTransform(40));
+      text-align: center;
+      font-size: pxTorem(viewTransform(18));
+      font-weight: 400; 
+      color: $header-title-color;
+    }
+    .#{$class-prefix}-header-left,
+    .#{$class-prefix}-header-right {
+      position: absolute;
+      top: pxTorem(viewTransform(14));
+      display: block;
+      font-size: pxTorem(viewTransform(14));
+      line-height: pxTorem(viewTransform(21));
+      color: white;
+    }
+
+    .#{$class-prefix}-header-left a,
+    .#{$class-prefix}-header-left button,
+    .#{$class-prefix}-header-right a,
+    .#{$class-prefix}-header-right button {
+      float: left;
+      margin-right: pxTorem(viewTransform(8));
+    }
+
+    .#{$class-prefix}-header-title > span {
+      display: inline-block;
+    }
+    .#{$class-prefix}-header-left a,
+    .#{$class-prefix}-header-left button{
+      color: $header-left-color;
+    }
+
+    .#{$class-prefix}-header-right a,
+    .#{$class-prefix}-header-right button{
+      color: $header-right-color;
+    }
+    .#{$class-prefix}-header-left a:active,
+    .#{$class-prefix}-header-left button:active,
+    .#{$class-prefix}-header-right a:active,
+    .#{$class-prefix}-header-right button:active {
+      opacity: .5
+    }
+    .#{$class-prefix}-header-left {
+      left: pxTorem(viewTransform(18))
+    }
+    .#{$class-prefix}-header-left .#{$class-prefix}-header-back {
+      padding-left: pxTorem(viewTransform(16))
+    }
+    .#{$class-prefix}-header-left .left-arrow {
+      position: absolute;
+      width: pxTorem(viewTransform(30));
+      height: pxTorem(viewTransform(30));
+      top: pxTorem(viewTransform(-5));
+      left: pxTorem(viewTransform(-5));
+      &:before {
+        content: "";
+        position: absolute;
+        width: pxTorem(viewTransform(12));
+        height: pxTorem(viewTransform(12));
+        border: 1PX solid $header-arrow-color;
+        border-width: 1PX 0 0 1PX;
+        transform: rotate(315deg);
+        top: pxTorem(viewTransform(8));
+        left: pxTorem(viewTransform(7));
+      }
+    }
+    .#{$class-prefix}-header-right {
+      right: pxTorem(viewTransform(15))
+    }
+    .#{$class-prefix}-header .#{$class-prefix}-header-right a,
+    .#{$class-prefix}-header-right button {
+      margin-left: pxTorem(viewTransform(8));
+      margin-right: 0
+    }
+    .#{$class-prefix}-header-right .#{$class-prefix}-header-more:after {
+      content: "\2022\0020\2022\0020\2022\0020";
+      font-size: pxTorem(viewTransform(16));
+    }
+  }
+ 
+  &-header-title-area, 
+  &-header .#{$class-prefix}-header-title {
+    margin: 0 pxTorem(viewTransform(88));
+    height: pxTorem(viewTransform(40));
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } 
+
+  &-header-fade-in-right-enter-active {
+    animation: fadeinR .5s;
+  }
+  &-header-fade-in-left-enter-active {
+    animation: fadeinL .5s;
+  }
+}
+@keyframes fadeinR {
+  0% {
+    opacity: 0;
+    transform: translateX(pxTorem(viewTransform(150)));
+  }
+  100% {
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+@keyframes fadeinL{
+  0% {
+    opacity: 0;
+    transform: translateX(pxTorem(viewTransform(-150)));
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
