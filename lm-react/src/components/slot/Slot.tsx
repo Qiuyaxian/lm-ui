@@ -23,13 +23,44 @@ export default class Slot extends Component<SlotProps, any> {
   componentWillReceiveProps(nextProps): void {
 
   }
+  slotHandle2(slot, newSlot) {
+    let oldslotmap = {}, oldslotset = []
+    let newslotmap = {}, newslotset = []
+    // 优先处理默认slot 处理
+    React.Children.forEach(slot, (child, index) => {
+      if (child.props && child.props.children && React.isValidElement(child.props.children)) {
+        console.log(child.props.children, 'slot children')
+        // this.slotHandle2(child.props.children)
+      } else {
+        if (child.props && child.props.slot && child.props.slot !== 'default') {
+          // 最后一级slot
+          console.log(child.props, 'slot slot')
+        } else {
+          // 文字
+          console.log(child, 'slot 文字')
+        }
+      }
+    });
+
+    React.Children.forEach(newSlot, (child, index) => {
+
+      if (child.props && child.props.children && React.isValidElement(child.props.children)) {
+        // 同时拥有下级别
+        console.log(child.props.children, 'newSlot children')
+      } else {
+        if (child.props && child.props.slot) {
+          // 最后一级slot
+          console.log(child.props, 'newSlot slot')
+        } else {
+          // 文字
+          console.log(child, 'newSlot 文字')
+        }
+
+      }
+    });
+  }
+
   slotHandle(slot, elems) {
-    // console.log(this.props.childrens, 'childrens')
-    // console.log(this.props.name, 'name')
-    // console.log(this.props.children, 'this.props.children')
-    // 第一步 首先拿出旧数据中存在的 具名 slot ,直接直接返回后面 默认 插槽
-    // 第二步 分离出具名插槽，判断是否与默认的插槽相匹配，不匹配则返回 为默认插槽
-    // 第三部，合并处理后的插槽数据， 并输出
     let slotmap = {}, slotset = [];
     // 新
     React.Children.forEach(elems, (child, index) => {
@@ -47,17 +78,17 @@ export default class Slot extends Component<SlotProps, any> {
     });
     // 旧
     let setslotmap = {}, setdefaultmap = []
+
     React.Children.forEach(slot, (child, index) => {
       if (child.props && child.props.slot && slotmap[child.props.slot]) {
-        console.log(child.props.child, slotmap[child.props.slot]['elem'])
-        this.slotHandle(child.props.child, slotmap[child.props.slot]['elem'].props.children)
+        // this.slotHandle(child.props.child, slotmap[child.props.slot]['elem'].props.children)
         slotmap[child.props.slot] = {
           index: index,
           elem: slotmap[child.props.slot]['elem']
         }
       } else {
         if (child.props && child.props.slot && child.props.slot !== 'default') {
-          console.log(child.props.slot, 'child.props.slot')
+          // console.log(child.props.slot, 'child.props.slot')
           slotmap[child.props.slot] = {
             index: index,
             elem: child
