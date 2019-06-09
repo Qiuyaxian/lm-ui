@@ -1,0 +1,109 @@
+@import './commom.scss';
+.#{$class-prefix} {
+  &-flex{
+    @extend %flex;
+  }
+  &-flex-col{ 
+    @extend %flex-col; 
+  }
+  &-flex-row{  
+    @extend %flex-row;
+  } 
+  /*自动分配剩余空间*/
+  &-flex-grow{
+    @extend %flex-grow;
+  }
+  /*空间不足不会缩放*/
+  &-flex-shrink{
+    @extend %flex-shrink;
+  }
+  /*行内flex元素*/
+  &-flex-inline{
+    @extend %flex-inline
+  }
+  /*居中 flex水平排列时垂直居中; 垂直排列水平居中*/
+  &-flex-items-c{
+    @extend %items-c;
+  }
+  &-flex-items-s{ 
+    @extend %items-s;
+  }
+  &-flex-items-e{
+    @extend %items-e;
+  }
+  &-flex-items-stretch{
+    @extend %items-stretch;
+  }
+  &-flex-items-baseline{
+    @extend %items-baseline;
+  }
+  
+  /*居中 flex水平排列时水平居中;垂直排列垂直居中*/
+  &-flex-justify-c{
+    @extend %justify-c; 
+  }
+  &-flex-justify-a{
+    @extend %justify-a;
+  }
+  &-flex-justify-s{
+    @extend %justify-s;
+  }
+  &-flex-justify-e{
+    @extend %justify-e;
+  }
+  &-flex-justify-b{  
+    @extend %justify-b;
+  }  
+  /* 自动换行 */
+  &-flex-wrap{
+    @extend %flex-wrap;
+  }
+  &-flex-item{
+    @extend %flex-item;
+  }
+  /*flex容器内的项目居中 align-self 属性重写了父容器的 align-items */
+  &-flex-item-c{
+    @extend %self-c; 
+  }
+  &-flex-item-s{
+    @extend %self-s;
+  }
+  &-flex-item-e{
+    @extend %self-e;
+  }
+  /* 高度自动补全 */
+  &-flex-item-stretch {
+    @extend %self-stretch;
+  }
+
+  &-flexbox {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    display: -webkit-flex;
+    box-align: center;
+    align-items: center;
+    .#{$class-prefix}-flexbox-item {
+      flex: 1;
+      -webkit-flex: 1;
+      min-width: pxTorem(20, 2);
+      width: 0%;
+      &:first-child {
+        margin-left: 0!important;
+        margin-top: 0!important;
+      }
+    }
+  }
+  &-flex-row {
+    box-direction: row;
+    box-orient: horizontal;
+    flex-direction: row;
+  }
+  &-flex-col {
+    box-orient: vertical;
+    flex-direction: column;
+    .#{$class-prefix}-flexbox-item {
+      width: 100%;
+    }
+  }
+}

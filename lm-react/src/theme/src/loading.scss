@@ -1,0 +1,61 @@
+@import './commom.scss';
+@import './mask.scss';
+@import './toast.scss';
+
+.#{ $class-prefix } {
+
+  &-loading {
+    animation-duration: 0.6s;
+    animation-iteration-count: infinite;
+    animation-name: loading;
+    animation-timing-function: linear;
+    border-radius: 99em;
+    border: pxTorem(3, 2) solid #DDD;
+    border-left-color: #666;
+    display: inline-block;
+    width: pxTorem(16, 2);
+    height: pxTorem(16, 2);
+    border-width: pxTorem(2, 2);
+    display:table-cell;
+    vertical-align:middle;
+  }
+
+
+  &-loading .#{ $class-prefix }-toast {
+    z-index: $loading-z-index;
+  }
+  &-loading.weui-icon-toast {
+    margin: pxTorem(20, 2) 0 pxTorem(10, 2);
+    width: pxTorem(38, 2);
+    height: pxTorem(38, 2);
+    vertical-align: baseline;
+    display: inline-block;
+  }
+  &-mask-enter, 
+  &-mask-leave-active,
+  &-mask-leave-active, 
+  &-mask-enter-active {
+    position: relative;
+    z-index: 1;
+  }
+  &-mask-enter, 
+  &-mask-leave-active {
+    opacity: 0;
+  }
+  &-mask-leave-active, 
+  &-mask-enter-active {
+    transition: opacity 300ms;
+  }
+  &-loading-no-text .weui-toast {
+    min-height: pxTorem(98, 2);
+  }
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(360deg)
+  }
+}

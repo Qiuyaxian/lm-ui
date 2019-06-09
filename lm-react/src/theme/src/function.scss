@@ -1,0 +1,21 @@
+@import './variables.scss';
+@function transformPX($number) { 
+   @return $number * 1PX;
+}; 
+/**
+ * [viewTransform 按照比例放大 640 -> 750]
+ * @param  {[type]} $number [description]
+ * @return {[type]}         [description]
+ */
+@function viewTransform($number) { 
+   @return $number * 2;
+};
+/**
+ * [pxTorem px 转换为 rem]
+ * @param  {[type]} $number [description]
+ * @return {[type]}         [description]
+ * px/75=rem 100px=100/75=0.625rem,50px=50/75=0.33rem
+ */
+@function pxTorem($number, $scale: 1) { 
+   @return ((($number * $scale) / $Layout) / $dpr) * 1rem;
+};

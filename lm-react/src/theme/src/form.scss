@@ -1,0 +1,43 @@
+@import './commom.scss';
+@import './flex.scss';
+.#{$class-prefix} {
+  &-form{
+    display: block; 
+    font-size: 0; 
+  }
+  /*&-toptips {
+    display:none;
+    position: fixed;
+    transform: translateZ(0);
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: pxTorem(5, 2);
+    font-size: pxTorem(14, 2);
+    text-align: center;
+    color: #FFF;
+    z-index: 5000;
+    word-wrap:break-word;
+    word-break:break-all;
+  }
+  &-toptips_warn {
+    background-color: $color-warn;
+  }
+  &-cells_form {
+    .#{$class-prefix}-cell__ft{
+      font-size:0;
+    }
+    .#{$class-prefix}-icon-warn{
+      display:none;
+    }
+    input, textarea, label[for]{
+      @include setTapColor();
+    }
+  }
+  &-cell_warn{
+    color: $color-warn;
+    .#{$class-prefix}-icon-warn{
+      display: inline-block;
+    }
+  }*/
+}

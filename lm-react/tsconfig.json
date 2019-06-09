@@ -39,32 +39,38 @@
     "allowJs": true,
     //指定生成哪个模块系统的代码
     "module": "esnext",
-    "target": "es5",
+    "target": "es6",
     "moduleResolution": "node",
     // 将每个文件作为单独的模块
     "isolatedModules": true,
     //在严格的 null检查模式下， null和 undefined值不包含在任何类型里，只允许用它们自己和 any来赋值（有个例外， undefined可以赋值到 void）
-    "strictNullChecks": false,  
+    "strictNullChecks": false,
     //路径映射，如在文件中使用‘~/’相当于‘src/’
     "paths": {
-      "@src": ["src/*"],
-      "@examples/*": ["examples/*"]
+      "@src": [
+        "src/*"
+      ],
+      "@examples/*": [
+        "examples/*"
+      ]
     },
     // 编译过程中需要引入的库文件的列表
     "lib": [
-      "esnext", 
-      "dom", 
-      "dom.iterable", 
+      "esnext",
+      "dom",
+      "dom.iterable",
       "scripthost",
-      "es5",
+      "es6",
       "es2015.promise"
     ]
   },
   "include": [
     "types/*.ts",
-    "types/*.ts",
     "src/**/*",
     "examples/**/*"
   ],
-  "exclude": ["node_modules", "build"]
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
 }

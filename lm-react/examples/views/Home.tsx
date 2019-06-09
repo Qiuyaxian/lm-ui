@@ -1,61 +1,48 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import { TransferDom, Dialog, Alert } from '@src/index'
-import { Component } from '@src/core'
+import { Component, ComponentProps } from '@src/core'
+import { Page } from '@src/index'
+
 //初始化页面
-interface State {
-  flag: boolean
+
+interface HomeProps extends ComponentProps {
+
 }
-export default class Home extends Component<any, any> {
-  state: State = {
+
+export default class HomePage extends Component<HomeProps, any> {
+  state = {
     flag: true
   }
-  constructor(props) {
+  constructor(props: HomeProps) {
     super(props);
-    console.log('dsfsdf')
   }
 
   private clickHandle() {
-    let { flag } = this.state;
-    this.setState({ flag: !flag });
   }
   private hideHandle() {
-    console.log('hideHandle');
-    this.setState({
-      flag: false
-    });
   }
   private showHandle() {
-    console.log('showHandle App.js');
   }
   render() {
-    let text, { flag } = this.state;
-    let button = {
-      'width': '100px',
-      'height': '100px',
-      'background': 'red',
-      'lineHeight': '100px'
-    }
-    if (flag) {
-      text = '风格1';
-    } else {
-      text = '风格2';
-    } 
+
     return (
-      <div>
-        <TransferDom v-transfer-dom="true">
-          <Alert
-            title={'唐初'}
-            content={'尝试'}
-            visible={flag}
-            onShow={() => this.showHandle()}
-            onHide={() => this.hideHandle()}>
-          </Alert>
-        </TransferDom>
-        <div onClick={this.clickHandle.bind(this)} style={button}>点击</div>
-        <div>{text}</div>
-      </div>
+      <Page>
+        <Page.Header>
+          默认fsfsdsdsf
+          <div slot="right">右边自定义</div>
+
+          <div>默认fsfsdsdsf</div>
+
+          <div slot="left">
+            <div slot="left-nav">
+              左边
+            </div>
+          </div>
+        </Page.Header>
+        首页
+        <Page.Footer></Page.Footer>
+      </Page>
     );
   }
 }

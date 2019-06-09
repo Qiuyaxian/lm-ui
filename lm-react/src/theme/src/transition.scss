@@ -1,0 +1,52 @@
+@import './variables.scss';
+.#{ $class-prefix } {
+  
+  &-fade-enter-active,
+  &-fade-leave-active {
+    opacity: 1;
+    transition: opacity linear 0.2s;
+  }
+  
+  &-fade-enter, 
+  &-fade-leave-to {
+    opacity: 0;
+  }
+  
+  &-dialog-enter-active {
+    animation: dialog-in .5s;
+  }
+  
+  &-dialog-leave-active {
+    animation: dialog-out .3s;
+  }
+  
+  &-mask-enter, 
+  &-mask-leave-active {
+    opacity: 0;
+  }
+  
+  &-mask-leave-active, 
+  &-mask-enter-active {
+    transition: opacity 300ms;
+  }
+}
+@keyframes dialog-in {
+  0% {
+    transform: scale(1.185);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes dialog-out {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+}

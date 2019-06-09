@@ -1,0 +1,542 @@
+/**
+ * @mixin 作用 通过继承从而简化了代码
+ * 引用例子：@include mixin名称(参数);
+ */ 
+@mixin setTapColor($color: rgba(0,0,0,0)) {
+  -webkit-tap-highlight-color: $color;
+}
+/**
+ * [dpr 多种分辨率下显示不同大小的文字]
+ * @param  {[type]} $font-size [description]
+ * @return {[type]}            [description]
+ * 调用 @include font-dpr(16);
+ */
+@mixin font-dpr($font-size){ 
+  font-size: $font-size; 
+  [data-dpr="2"] & { font-size: $font-size * 2; } 
+  [data-dpr="3"] & { font-size: $font-size * 3; } 
+}
+/**
+ * [fontsize 设置文字大小和行高]
+ * @param  {[type]} $size       [description]
+ * @param  {[type]} $lineheight [description]
+ * @return {[type]}             [description]
+ */
+@mixin fontsize($size, $lineheight) {
+  font-size: pxTorem($size);
+  line-height: pxTorem($lineheight);
+}
+/**
+ * [ellipsis 文字隐藏]
+ * @param  {[type]} $num: 2             [description]
+ * @return {[type]}       [description]
+ */
+@mixin ellipsis($num: 2 ) {
+  display:-webkit-box; 
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:$num;
+  display: -moz-box; 
+  -moz-line-clamp: $num !important;
+  -moz-box-orient: vertical;
+  overflow: hidden; 
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis; 
+}
+/**
+ * [textwrap 文字换行]
+ * @return {[type]} [description]
+ */
+@mixin textwrap () {
+  word-wrap:break-word;
+  word-break:break-all;
+}
+/**
+ * [hyphens 带英文字母和中文的混合换行]
+ * @return {[type]} [description]
+ */
+@mixin hyphens () {
+  word-wrap:break-word; 
+  @include css3(hyphens, auto);
+}
+/**
+ * [setWidthHeight 宽高]
+ * @param  {[type]} $width  [description]
+ * @param  {[type]} $height [description]
+ * @return {[type]}         [description]
+ * @include setWidthHeight(16);
+ */
+@mixin setWidthHeight($width, $height, $scale: 1){
+  @if $width == 100% {
+    width: 100%;
+  } @else if $width == auto {
+    width: auto;
+  } @else {
+    width: pxTorem($width, $scale);
+  }
+  @if $height == 100% {
+    height: 100%;
+  } @else if $height == auto {
+    height: auto;
+  } @else {
+    height: pxTorem($height, $scale);
+  }
+}
+/**
+ * [image 图片背景]
+ * @param  {[type]} $url              [description]
+ * @param  {[type]} $direction1:left  [description]
+ * @param  {[type]} $direction2:top   [description]
+ * @param  {[type]} $repeat:no-repeat [description]
+ * @param  {[type]} $size:            100%          [description]
+ * @return {[type]}                   [description]
+ */
+@mixin background-image($url, $direction1:left, $direction2:top, $repeat:no-repeat, $size: 100%){
+  background-image: url( $url );
+  background-position: $direction1 $direction2;
+  background-repeat: $repeat;
+  background-size: $size;
+}
+/**
+ * [clearfix 清除浮动]
+ * @return {[type]} [description]
+ * 引用例子：@include clearfix(); 
+ */
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+/**
+ * [css3 浏览器前缀]
+ * @param  {[type]} $property [description]
+ * @param  {[type]} $value    [description]
+ * @return {[type]}           [description]
+ * 例子：@include css3(transition, 0.5s); 
+ */
+@mixin css3($property, $value) {
+  @each $prefix in -webkit-,
+  -moz-,
+  -ms-,
+  -o-,
+  '' {
+    #{$prefix}#{$property}: $value;
+  }
+}
+
+@mixin flex-item($size) {
+  @each $prefix in -webkit-,
+  -moz-,
+  -ms-,
+  -o-,
+  '' {
+    #{$prefix}-flex: 0 0 $size;
+  }
+}
+
+/**
+ * [box-center 定位上下左右居中]
+ * @return {[type]} [description]
+ */
+@mixin box-center {  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+ 
+/**
+ * [box-center-vertical 定位上下居中]
+ * @return {[type]} [description]
+ */
+@mixin box-vertical-center {  
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/**
+ * [box-center-horizontal 定位左右居中]
+ * @return {[type]} [description]
+ */
+@mixin box-horizontal-center {  
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 
+ * 三角形的通用属性 
+ */
+%triangle{
+  _font-size: 0;
+  _line-height: 0;
+  _overflow: hidden;
+  width: 0;
+  height: 0;
+} 
+/**
+ * [regulaTriangle 正三角(dashed默认透明)]
+ * @param  {[type]} $derection:bottom [description]
+ * @param  {[type]} $color:           #000          [description]
+ * @param  {[type]} $width:           20PX          [description]
+ * @return {[type]}                   [description]
+ * 例子：@include regulaTriangle(top,red); 
+ */
+@mixin regulaTriangle($derection:bottom, $color: #000, $width: 20PX) {
+  @extend %triangle;
+  font-size: 0; 
+  /**
+   * [$derection 向右]
+   * @type {[type]}
+   */
+  @if $derection==right {
+    border-top-width: $width;
+    border-left-width: $width;
+    border-bottom-width: $width;
+    border-style: dashed dashed dashed solid;
+    border-color: transparent transparent transparent $color;
+  }
+  /**
+   * [$derection 向左]
+   * @type {[type]}
+   */
+  @if $derection==left {
+    border-top-width: $width;
+    border-right-width: $width;
+    border-bottom-width: $width;
+    border-style: dashed solid dashed dashed;
+    border-color: transparent $color transparent transparent;
+  }
+  /**
+   * [$derection 向上]
+   * @type {[type]}
+   */
+  @if $derection==top {
+    border-left-width: $width;
+    border-right-width: $width;
+    border-bottom-width: $width;
+    border-style: dashed dashed solid dashed;
+    border-color: transparent transparent $color transparent;
+  }
+  /**
+   * [$derection 向下]
+   * @type {[type]}
+   */
+  @if $derection==bottom {
+    border-top-width: $width;
+    border-left-width: $width;
+    border-right-width: $width;
+    border-style: solid dashed dashed dashed;
+    border-color: $color transparent transparent transparent;
+  }
+}
+ 
+/**
+ * [rightAngledTriangle 直角三角形]
+ * @param  {[type]} $derection: left          [description]
+ * @param  {[type]} $color:#000 [description]
+ * @param  {[type]} $width:     20PX          [description]
+ * @param  {[type]} $opacity:   transparent   [description]
+ * @param  {[type]} $border:    solid         [description]
+ * @return {[type]}             [description]
+ * 例子：@include right-angledTriangle(1,red); 
+ */
+@mixin rightAngledTriangle ($derection: left, $color:#000, $width: 20PX, $opacity: transparent, $border: solid) {
+  @extend %triangle;
+  font-size: 0;
+  width:0;
+  height: 0;
+  /**
+   * [$derection 向上]
+   * @type {[type]}
+   */
+  @if $derection==top {
+    border-top: $width $border $color;
+    border-right: $width $border $opacity;
+  }
+  /**
+   * [$derection 向右]
+   * @type {[type]}
+   */
+  @if $derection==right {
+    border-top: $width $border $color;
+    border-left: $width $border $opacity;
+  }
+  /**
+   * [$derection 向下]
+   * @type {[type]}
+   */
+  @if $derection==bottom {
+    border-bottom: $width $border $color;
+    border-right: $width $border $opacity;
+  }
+  /**
+   * [$derection 向左]
+   * @type {[type]}
+   */
+  @if $derection==left {
+    border-bottom: $width $border $color;
+    border-right: $width $border $opacity;
+  }
+}
+/**
+ * [opacity 透明度]
+ * @param  {[type]} $opacity [description]
+ * @return {[type]}          [description]
+ * 引用例子:@include opacity(0.8); 
+ */
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+/**
+ * [flex flex 布局和 子元素 对其方式]
+ * @param  {[type]} $align: center|flex-start|flex-end        
+ * [flex垂直排列水平居中]
+ * @param  {[type]} $type:  center|space-around|space-between|flex-start|flex-end 
+ * [flex水平排列时水平居中]
+ * @return {[type]}         [description]
+ */
+@mixin flex($align: center, $type: space-between){
+  display: flex;
+  align-items: $align;
+  justify-content: $type;
+}
+/**
+ * [item flex 子项目 对齐]
+ * @param  {[type]} $align: center|flex-start|flex-end|stretch
+ *         [description]
+ * @return {[type]}         [description]
+ */
+@mixin flex-item($align: center, $type: space-between){
+  align-self: $align;
+}
+/**
+ * [column 垂直排列的flex容器]
+ * row | row-reverse | column | column-reverse;
+ * @return {[type]} [description]
+ */
+@mixin flex-middle($type: column){
+  flex-direction: $type;
+}
+/**
+ * [flow description]
+ * @param  {[type]} $direction: row           [description]
+ * @param  {[type]} $wrap:      nowrap        [description]
+ * @return {[type]}             [description]
+ */
+@mixin flex-flow($direction: row, $wrap: nowrap){
+  flex-flow: $direction $wrap;  
+}
+/**
+ * [grow 自动分配剩余空间]
+ * @return {[type]} [description]
+ */
+@mixin flex-grow($grow: 1){
+  flex-grow: $grow;
+}
+/**
+ * [shrink 固定空间]
+ * @param  {[type]} $column: 0             [description]
+ * @return {[type]}          [description]
+ */
+@mixin flex-shrink($column: 0){
+  flex-shrink: $column;
+}
+/**
+ * [column 占比多少份]
+ * flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+ * 两个快捷值：auto (1 1 auto) 和 none (0 0 auto)
+ * @return {[type]} [description]
+ */
+@mixin flex-column($grow: 1, $shrink: 1, $basis: auto){
+  -webkit-flex: $grow $shrink auto;
+  -moz-flex: $grow $shrink auto;
+  -ms-flex: $grow $shrink auto;
+  -o-flex: $grow $shrink auto;
+  flex: $grow $shrink auto;
+}
+
+/*1px 像素边框*/
+@mixin borderAll($type, $color: red){
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200%;
+  border: 1px solid $color;
+  color: $color;
+  height: 200%;
+  transform-origin: left top;
+  transform: scale(0.5);
+}
+/**
+ * [borderStype 单个1px边框]
+ * @param  {[type]} $type:  top           [description]
+ * @param  {[type]} $color: #d9d9d9           [description]
+ * @return {[type]}         [description]
+ * 例子：@include borderStype(top, red); 
+ */
+@mixin borderStype($type: top, $color: #d9d9d9){
+  content: " ";
+  position: absolute;
+  border-#{ $type }: 1px solid $color;
+  color: $color;
+  @if $type== left{ 
+    left: 0;
+    top: 0;
+    width: 1px;
+    bottom: 0;
+    transform-origin: 0 0;
+    transform: scaleX(0.5);
+  }
+  @if $type== right{ 
+    right: 0;
+    top: 0;
+    width: 1px;
+    bottom: 0; 
+    transform-origin: 100% 0;
+    transform: scaleX(0.5);
+  }
+  @if $type== top{ 
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px; 
+    transform-origin: 0 0;
+    transform: scaleY(0.5);
+  }
+  @if $type== bottom{ 
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px; 
+    transform-origin: 0 100%;
+    transform: scaleY(0.5);
+  } 
+}
+
+
+/**
+ * [keyframes 动画keyframes生成]
+ * @param  {[type]} $animationName [description]
+ * @return {[type]}                [description]
+ * 例子：@include keyframes(动画名称);
+   @include keyframes(move-the-object) {
+     0% {
+       transform: translateX(0);
+     }
+     100% {
+       transform: translateX(200px);
+     }
+   } 
+ */
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+/**
+ * [gradient 背景颜渐变]
+ * @param  {[type]} $start  [description]
+ * @param  {[type]} $end    [description]
+ * @param  {[type]} $sColor [description]
+ * @param  {[type]} $eColor [description]
+ * @return {[type]}         [description]
+ */
+@mixin gradient($start, $end, $sColor, $eColor){
+  background: -webkit-linear-gradient($start $end, $sColor, $eColor); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient($start $end, $sColor, $eColor); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient($start $end, $sColor, $eColor); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to $end, $sColor, $eColor); /* 标准的语法 */
+} 
+
+
+
+/**
+ * [transition transition 位移]
+ * @param  {[type]} $transition [description]
+ * @return {[type]}             [description]
+ */
+@mixin transition($transition) {
+  -moz-transition: $transition;
+  -webkit-transition: $transition;
+  -ms-transition: $transition;
+  -o-transition: $transition;
+  transition: $transition;
+}
+/**
+ * [origin transform 变换起点位置]
+ * @param  {[type]} $origin [description]
+ * @return {[type]}         [description]
+ */
+@mixin transform-origin($origin) {
+  -moz-transform-origin:$origin;
+  -webkit-transform-origin:$origin;
+  -ms-transform-origin:$origin;
+  -o-transform-origin:$origin;
+  transform-origin:$origin;
+}
+/**
+ * [scale 缩放]
+ * @param  {[type]} $scale [description]
+ * @return {[type]}        [description]
+ */
+@mixin scale($scale) {
+  -moz-transform:scale($scale);
+  -webkit-transform:scale($scale);
+  -ms-transform:scale($scale); 
+  -o-transform:scale($scale);
+  transform:scale($scale);
+}
+/**
+ * [setArrow 设置后面 三角形符合]
+ * @param {[type]} $derection   [description]
+ * @param {[type]} $arrowsize   [description]
+ * @param {[type]} $borderWidth [description]
+ * @param {[type]} $borderColor [description]
+ */
+@mixin setArrow ($derection, $arrowsize, $borderWidth, $borderColor) {
+  display: inline-block;
+  height: $arrowsize;
+  width: $arrowsize;
+  border-width: $borderWidth $borderWidth 0 0;
+  border-color: $borderColor;
+  border-style: solid; 
+  @if $derection==top {
+    transform: matrix(0.71,-0.71,0.71,0.71,0,0); // rotate(-45deg)
+    top: pxTorem(-2, 2);
+  } 
+  @if $derection==right {
+    transform: matrix(0.71,0.71,-0.71,0.71,0,0); // rotate(45deg);
+    position: relative;
+    top: pxTorem(-2, 2);
+  } 
+  @if $derection==bottom {
+    transform: matrix(-0.71,0.71,-0.71,-0.71,0,0); // rotate(135deg);
+    position: relative;
+    top: pxTorem(-3, 2);
+  } 
+  @if $derection==left {
+    transform: matrix(-0.71,-0.71,0.71,-0.71,0,0); // rotate(-135deg);
+    position: relative;
+    top: pxTorem(-2, 2);
+  }
+}

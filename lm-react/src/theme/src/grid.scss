@@ -1,0 +1,33 @@
+@import './commom.scss';
+.#{$class-prefix} {
+  &-grids {
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    &:before {
+      @include borderStype(top);
+    }
+    &:after {
+      @include borderStype(bottom);
+    }
+  }
+  &-grids.#{$class-prefix}-grid-no-lr-borders {
+    &:after {
+      display: none;
+    }
+  }
+  &-grids.#{$class-prefix}-grid-no-borders {
+    &:before, &:after {
+      display: none;
+    }
+    .#{$class-prefix}-grid{
+      &:before, &:after{
+        display: none;
+      }
+    }
+  }
+}
+
+
+
+

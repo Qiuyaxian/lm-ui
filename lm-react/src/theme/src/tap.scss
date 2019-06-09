@@ -1,0 +1,10 @@
+@import './variables.scss';
+.#{ $class-prefix } {
+  &-tap-active {
+    tap-highlight-color: rgba(0,0,0,0);
+    user-select:none;
+  }
+  &-tap-active:active {
+    background-color: #ECECEC;
+  }
+}

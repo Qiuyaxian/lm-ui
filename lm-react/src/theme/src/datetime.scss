@@ -1,0 +1,35 @@
+@import "./commom.scss";
+@import "./cell.scss";
+@import "./scroller.scss";
+.#{$class-prefix} {
+  &-datetime-clear {
+    text-align: center;
+  }
+  &-datetime-cancel {
+    text-align: left;
+    padding-left: pxTorem(15, 2);
+  }
+  &-datetime-confirm {
+    text-align: right;
+    padding-right: pxTorem(15, 2);
+  }
+  &-datetime {
+    color: #000;
+    text-decoration: none;
+  }
+  &-datetime .#{$class-prefix}-input-icon {
+    float: right;
+  }
+  &-cell-primary {
+    flex: 1;
+  }
+}
+.dp-container {
+  &.#{$class-prefix}-datetime-view {
+    position: static;
+    transition: none;
+    & .dp-header {
+      display: none;
+    }
+  }
+}

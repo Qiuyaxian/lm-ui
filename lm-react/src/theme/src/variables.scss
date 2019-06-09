@@ -1,0 +1,283 @@
+/*
+基本单位  
+ */
+$font-dpr : .01rem !default;
+/**
+ * [$dpr 视网膜的dpr像素比]
+ * @type {[type]}
+ */
+$dpr : 1 !default;
+/**
+ * [$Layout 设计稿大小]
+ * @type {Number}
+ */
+$Layout : 75 !default;
+/**
+ * [prefix 样式名前缀]
+ * @type {[type]}
+ */
+$class-prefix: lm;
+/**
+ * [color 主题颜色]
+ * @type {[type]}
+ */
+$theme-color: #35495e;
+$opacity-disabled: 0.5;
+
+//======== 【global】 ========
+$base-zindex: 1;
+/**
+ * [onepx 1像素边框以及颜色]
+ * @type {[type]}
+ */
+$global-onepx: 1px;
+$onepx-border-color: #d9d9d9;
+/**
+ * [iconsize 图标大小]
+ * @type {[type]}
+ */
+$global-iconsize: pxTorem(26, 2);
+/**
+ * [$default 基本颜色组合]
+ * @type {[type]}
+ */
+$default: #d0d0d0;
+$primary: #04be02;
+$danger: #ef4f4f;
+$warning: #ffb400;
+$hollow: #000000;
+
+//======== 【color】 ========
+$color-default: #333333;
+$color-primary: #1AAD19;
+$color-warn: #E64340;
+
+//========【datetime】========
+$datetime-header-item-font-color: $theme-color;
+$datetime-header-item-cancel-font-color: #828282;
+$datetime-header-item-confirm-font-color: #FF9900;
+
+//========【toast】========
+$toast-content-font-size: pxTorem(16, 2);
+$toast-top: pxTorem(180, 2);
+$toast-position-top-offset: pxTorem(10, 2);
+$toast-position-bottom-offset: pxTorem(10, 2);
+$toast-z-index: 5001;
+$icon-success-color: #09BB07;
+$toast-content-font-size: pxTorem(16, 2);
+ 
+//======== 【spinner】 ========
+$spinner-size: 22;
+$spinner-color: $theme-color;
+$spinner-android-color: $theme-color;
+
+//======== 【link】 ========
+$link-color-default: #586C94;
+ 
+//======== 【background】 ========
+$bg-color-default: #EFEFF4;
+$bg-color-active: #ECECEC;
+
+//======== 【line】 ========
+$line-color-light: #E5E5E5;
+$line-color-dark: #BCBAB6;
+
+//======== 【text】 ========
+$text-color-title: #000000;
+$text-color-tips: #B2B2B2;
+$text-color-warn: $color-warn;
+$text-color-gray: #999999;
+
+//======== 【dialog】 ========
+$dialog-background-color: #FFFFFF;
+$dialog-line-color: #D5D5D6;
+$dialog-link-color: #3CC51F;
+$dialog-link-active-bc: #EEEEEE;
+$dialog-button-text-primary-color: #FF9900;
+$dialog-button-text-default-color: #353535;
+$dialog-button-text-warn-color: #E64340;
+$dialog-width: 80%; 
+$dialog-max-width: pxTorem(300, 2); 
+$dialog-gap-width: 1.6em; 
+
+//======== 【popup-picker】 ========
+$popup-picker-header-text-color: $theme-color;
+$popup-picker-header-bg-color: #fbf9fe;
+$popup-picker-header-font-size: pxTorem(16, 2);
+$popup-picker-header-cancel-text-color: #828282;
+$popup-background-color: #eee;
+$popup-header-height: pxTorem(44, 2);
+$popup-header-bg-color: #fbf9fe;
+$popup-header-font-size: pxTorem(16, 2);
+$popup-header-left-text-color: #828282;
+$popup-header-right-text-color: #FF9900;
+$popup-header-title-text-color: #222;
+$popup-header-left-text-padding: pxTorem(15, 2);
+$popup-header-right-text-padding: pxTorem(15, 2);
+
+//======== 【header】 ========
+$header-background-color: $theme-color;
+$header-padding-horizontal: 0;
+$header-padding-vertical: pxTorem(3, 2);
+$header-title-color: #ffffff;
+$header-left-color: #ffffff;
+$header-arrow-color: #ffffff;
+$header-right-color: #ffffff;
+
+//======== 【loading】 ========
+$loading-z-index: 5001;
+
+//======== 【number】 ========
+$number-input-color: #333;
+$number-input-border-color: #FF9900;
+$number-selector-color: #FF9900;
+$number-selector-border-color: #FF9900;
+$number-selector-icon-color: #FF9900;
+$number-selector-disabled-color: #ccc;
+
+//======== 【button】 ========
+$button-global-border-radius: pxTorem(5, 2);
+$button-border-radius: pxTorem((5 * 2), 2);
+$button-global-font-color: #FFFFFF;
+$button-global-margin-top: 15;
+$button-global-height: 42;
+$button-global-default-height: pxTorem($button-global-height, 2);
+$button-global-disabled-font-color: rgba(255, 255, 255, .6);
+$button-global-active-font-color: rgba(255, 255, 255, .6);
+$button-global-font-size: 18;
+$button-global-default-font-size: pxTorem($button-global-font-size, 2);
+$button-mini-font-size: 13;
+$button-mini-default-fontsize: pxTorem($button-mini-font-size, 2);
+$button-mini-line-height: 2.3;
+$button-padding-left: pxTorem(14, 2);
+$button-padding-right: pxTorem(14, 2);
+$button-warn-bg-color: #E64340;
+$button-warn-active-color: #CE3C39;
+$button-warn-disabled-bg-color: #EC8B89;
+$button-default-bg-color: #F8F8F8;
+$button-default-font-color: #000000;
+$button-default-active-bg-color: #DEDEDE;
+$button-default-disabled-font-color: rgba(0,0,0,.3);
+$button-default-disabled-bg-color: #F7F7F7;
+$button-default-active-font-color: rgba(0,0,0,.6);
+$button-primary-bg-color: #1AAD19;
+$button-primary-active-bg-color: #179B16;
+$button-primary-disabled-bg-color: #9ED99D;
+$button-plain-primary-color: rgba(26,173,25,1);
+$button-plain-primary-border-color: rgba(26,173,25,1);
+$button-plain-primary-active-color: rgba(26,173,25,.6);
+$button-plain-primary-active-border-color: rgba(26,173,25,.6);
+$button-plain-default-color: rgba(53,53,53,1);
+$button-plain-default-border-color: rgba(53,53,53,1);
+$button-plain-default-active-color: rgba(53,53,53,.6);
+$button-plain-default-active-border-color: rgba(53,53,53,.6);
+$button-plain-warn-color: rgba(206,60,57,1);
+$button-plain-warn-border-color: rgba(206,60,57,1);
+$button-plain-warn-active-color: rgba(206,60,57,.6);
+$button-plain-warn-active-border-color: rgba(206,60,57,.6);
+
+//======== 【 swipeout 】 ========
+$swipeout-button-primary-bg-color: $button-primary-bg-color;
+$swipeout-button-warn-bg-color: $button-warn-bg-color;
+$swipeout-button-default-bg-color: #c8c7cd;
+$swipeout-content-bg-color: #FFF;
+$swipeout-button-font-color: #FFF;
+
+//======== 【cell】 ========
+$cell-height: 44.5;
+$cell-fontsize: 17;
+$cell-default-fontsize: pxTorem($cell-fontsize, 2);
+$cell-padding-vertical: 10;
+$cell-padding-horizontal: 15;
+$cell-default-padding-horizontal: pxTorem($cell-padding-horizontal, 2);
+$cell-default-padding-vertical: pxTorem($cell-padding-vertical, 2);
+$cell-line-height: (($cell-height - (2 * $cell-padding-vertical)) / $cell-fontsize);
+$cell-background: #ffffff;
+$cell-default-preview-fontsize: pxTorem(($cell-fontsize * 0.9), 2);
+$cell-left-color: #333333;
+$cell-left-fontsize: pxTorem($cell-fontsize, 2);
+$cell-label-desc-fontsize: pxTorem(14, 2);
+$cell-label-desc-color: #666666;
+$cell-right-color: #333333;
+$cell-right-fontsize: pxTorem($cell-fontsize, 2);
+$cell-content-padding-right: pxTorem(13, 2);
+$cell-arrow-size: pxTorem(6, 2);
+$cell-arrow-width: pxTorem(1, 2);
+$cell-arrow-color: #d9d9d9;
+$cell-input-color: #d9d9d9;
+$cell-border-color: #D9D9D9;
+$cell-tips-font-size: pxTorem(14, 2);
+$cell-inner-gap-height: .35em;
+
+//========【switch】========
+$switch-width: 42;
+$switch-height: 22;
+$switch-checked-bg-color: #FF9900;
+$switch-checked-border-color: #FF9900;
+$switch-disabled-opacity: 0.6;
+$switch-padding: 20;
+$switch-scale: 42 / 52;
+ 
+//======== 【grids】 ========
+$grids-font-size: pxTorem(14, 2);
+$grids-line-height: 1.6;
+$grids-icon-size: pxTorem(28, 2);
+$grids-column-count: 3; 
+$grids-label-color: #000000;
+$grids-label-active-color: #d9d9d9;
+$grids-label-margin-top: pxTorem(4, 2);
+$grids-border-color: #D9D9D9; 
+$grids-padding-horizontal: pxTorem(10, 2);
+$grids-padding-vertical: pxTorem(20, 2);
+
+//======== 【tabbar】 ========
+$tabbar-background-color: #F7F7FA;
+$tabbar-border-color: #D9D9D9;
+$tabbar-tap-highlight-color: rgba(0,0,0,0);
+$tabbar-text-color: #333333;
+$tabbar-text-active-color: #fda31a;
+$tabbar-icon-color: gray;
+$tabbar-icon-active-color: #fda31a;
+$tabbar-label: #999999;
+$tabbar-simple-height: pxTorem(50, 2);
+$tabbar-simple-fontsize: pxTorem(14, 2);
+$tabbar-simple-line-height: pxTorem(50, 2);
+
+//======== 【actionsheet】 ========
+$actionsheet-label-primary-color: #1AAD19;
+$actionsheet-label-warn-color: #E64340;
+$actionsheet-label-default-color: #000;
+$actionsheet-label-disabled-color: #ccc;
+$actionsheet-android-border-radius: pxTorem(2, 2);
+
+//======== 【tab】 ========
+$tab-bg: #FFF;
+$tab-height: .85rem;
+$tab-color: #fda31a;
+$tab-tabbar-item-padding-top: pxTorem(5, 2);
+$tab-tabbar-icon: pxTorem(27, 2);
+$tab-tabbar-label-fontsize: pxTorem(10, 2);
+$tab-tabbar-label-lineheight: pxTorem(21, 2);
+$tab-prefix: lm-tab;
+$tab-easing-in-out: cubic-bezier(0.35, 0, 0.25, 1);
+$tab-effect-duration: .3s;
+$tab-text-disabled-color: #ddd;
+$tab-text-default-color: #666;
+$tab-text-active-color: $theme-color;
+$tab-bar-active-color: $theme-color;
+
+//======== 【badge】 ========
+$badge-default-bg-color: $default;
+$badge-default-color: #fff;
+$badge-primary-bg-color: $primary;
+$badge-primary-color: #fff;
+$badge-danger-bg-color: $danger;
+$badge-danger-color: #fff;
+$badge-warning-bg-color: $warning;
+$badge-warning-color: #fff;
+
+//======== 【rater】 ========
+$rater-color: #cccccc;
+$rater-hover-color: #ffdd99;
+$rater-disabled-color: #cccccc;
+$rater-padding-right: pxTorem(2, 2);

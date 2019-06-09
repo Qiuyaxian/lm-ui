@@ -1,5 +1,5 @@
 import React from 'react';
-import { Component, View, Transition, PropTypes } from '../../core';
+import { Component, View, Transition, ComponentProps } from '@src/core';
 
 type State = {
   hidden: boolean

@@ -1,2 +1,4 @@
-import PropTypes from 'prop-types';
-export { PropTypes };
+import React from 'react';
+export interface ComponentProps {
+  children?: any
+} 

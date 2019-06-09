@@ -1,0 +1,43 @@
+.scroll-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 2;
+  box-sizing: border-box;
+  /*background: transparent;*/
+}
+.scroll-content {
+  position: relative;
+  z-index: 1;
+} 
+.pullingDown-trigger,
+.pull-down-wrapper {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transition: all;
+  transition: all;
+  z-index: 999;
+}
+.pull-message {
+  font-size: pxTorem(26);
+  line-height: pxTorem(44);
+  margin: 0 auto;
+  text-align: center;
+  padding: pxTorem(16) 0;
+  span {
+    vertical-align: middle;
+  }
+}

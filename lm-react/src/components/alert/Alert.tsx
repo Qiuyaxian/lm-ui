@@ -1,10 +1,10 @@
 import React from 'react';
-import { Component, View, Transition, PropTypes } from '../../core';
+import { Component, View, Transition, ComponentProps } from '@src/core';
 import { Dialog } from '../dialog';
 type State = {
 };
 
-interface AlertProps {
+interface AlertProps extends ComponentProps {
   // 显示|隐藏
   visible: boolean;
   // 标题

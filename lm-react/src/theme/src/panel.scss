@@ -1,0 +1,40 @@
+@import "./commom.scss";
+.#{$class-prefix} {
+  &-panel {
+    position: relative;
+    overflow: hidden;
+    &:after {
+      @include borderStype(bottom, $onepx-border-color);  
+    }
+    &:before {
+      @include borderStype(top, $onepx-border-color); 
+    }
+  }
+  &-panel-border-not {
+    &:after {
+      display: none;  
+    }
+    &:before {
+      display: none;  
+    }
+  }
+  &-panel-header {
+    padding: pxTorem(28) pxTorem(32);
+    color: $color-default;
+    font-size: pxTorem(13, 2);
+    position: relative;
+    &:after {
+      @include borderStype(bottom, $onepx-border-color);
+      left: 0;
+    }
+  }
+  &-panel-body {
+    &:after{
+      content: " ";
+      display: block;
+    }
+  }
+  &-panel-footer {
+    padding: 0 pxTorem(32);
+  }
+}

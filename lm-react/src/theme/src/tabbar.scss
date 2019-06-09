@@ -1,0 +1,21 @@
+@import './commom.scss';
+.#{$class-prefix} {
+  &-tabbar {
+    display: flex;
+    width: 100%;
+    position: relative;
+    background-color: $tabbar-background-color;
+    overflow: hidden;
+    &:before {
+      @include borderStype(top);
+    }
+  }
+  &-tabbar-absolute{
+    position: absolute;
+    z-index: 500;
+    bottom: 0;
+  }
+  
+}
+
+

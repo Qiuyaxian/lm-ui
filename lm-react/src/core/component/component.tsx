@@ -4,10 +4,11 @@ import classnames from 'classnames';
 interface ComponentProps {
   className?: string;
   style?: React.CSSProperties;
+  slot?: boolean | string | Symbol
 };
 
 export class Component<ComponentProps, T> extends React.Component<ComponentProps, any> {
-  
+
   classNames(...args) {
     return classnames(args);
   }
@@ -29,6 +30,6 @@ export class Component<ComponentProps, T> extends React.Component<ComponentProps
     }
     return Object.assign({}, args, style)
   }
-  
+
 }
 

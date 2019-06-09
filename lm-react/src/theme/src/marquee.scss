@@ -1,0 +1,7 @@
+@import './commom.scss';
+.#{$class-prefix} {
+  &-marquee {
+    width: 100%;
+    overflow: hidden;
+  }
+}

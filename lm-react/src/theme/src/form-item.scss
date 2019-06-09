@@ -1,0 +1,42 @@
+@import './commom.scss';
+@import './flex.scss';
+.#{$class-prefix} {
+  &-form-row{
+    font-size: $cell-default-fontsize;
+    line-height: $cell-line-height;
+    padding: $cell-default-padding-vertical $cell-default-padding-horizontal;
+    overflow: hidden;
+    .#{$class-prefix}-flex-grow{
+      overflow: hidden;
+    }
+  }
+  &-form-label{ 
+
+  }
+  &-form-input{
+    width: 100%;
+    display: block;
+    height: pxTorem($cell-height - ( 2 * $cell-padding-vertical ));
+    font-size: $cell-default-fontsize;
+    line-height: pxTorem($cell-height - ( 2 * $cell-padding-vertical ));  
+    border: 0;
+    outline: 0;
+    -webkit-appearance: none;
+    background-color: transparent; 
+    &::-webkit-input-placeholder,
+    &:-moz-placeholder,
+    &::-moz-placeholder,
+    &:-ms-input-placeholder{  
+      line-height: pxTorem($cell-height - ( 2 * $cell-padding-vertical ));  
+    }            
+    /*transparent; */
+  }
+  .#{$class-prefix}-form-row,
+  .#{$class-prefix}-cell{
+    align-items: flex-start;
+    .#{$class-prefix}-flex-grow{
+      font-size: 0;
+      line-height: 0;
+    }
+  }
+}
