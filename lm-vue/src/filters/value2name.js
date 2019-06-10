@@ -23,7 +23,6 @@ export default function (value, list, delimiter) {
   rs = rs.filter(one => {
     return typeof one !== 'undefined'
   })
-  console.log(list,'value2name.js')
   return map(rs, one => {
     return one.name
   }).join(delimiter).replace('--', '')

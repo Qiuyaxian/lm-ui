@@ -67,7 +67,7 @@ export default {
   },
   data () {
     return {
-      value: ['150000','150100','150102'],
+      value: ['150000', '150100', '150102'],
       show: false,
       value2: [],
       result: [],
