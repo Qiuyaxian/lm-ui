@@ -45,6 +45,12 @@ export interface bounceProps {
   right: boolean
 }
 
+interface posProps {
+  y: number
+  x: number
+  directionY: number
+}
+
 @Component({
   selector: 'lm-scroll',
   templateUrl: './scroll.html',
@@ -90,45 +96,45 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
    */
   @Input('isDblclick') isDblclick: boolean = true
   /**
-   * [listenScrollStart 是否开启滚动前监听]
+   * [isListenScrollStart 是否开启滚动前监听]
    * @type {Object}
    */
-  @Input('listenScrollStart') listenScrollStart: boolean = false
+  @Input('isListenScrollStart') isListenScrollStart: boolean = false
   /**
    * [listenScroll 是否开启监听]
    * @type {Object}
    */
-  @Input('listenScroll') listenScroll: boolean = false
+  @Input('isListenScroll') isListenScroll: boolean = false
   /**
-   * [listenBeforeScroll 是否开启滚动前监听]
+   * [isListenBeforeScroll 是否开启滚动前监听]
    * @type {Object}
    */
-  @Input('listenBeforeScroll') listenBeforeScroll: boolean = false
+  @Input('isListenBeforeScroll') isListenBeforeScroll: boolean = false
   /**
-   * [listenScrollEnd 是否开启滚动结束监听]
+   * [isListenScrollEnd 是否开启滚动结束监听]
    * @type {Object}
    */
-  @Input('listenScrollEnd') listenScrollEnd: boolean = false
+  @Input('isListenScrollEnd') isListenScrollEnd: boolean = false
   /**
    * [direction 开启滚动方向]
    * @type {Object}
    */
   @Input('direction') direction: string
   /**
-   * [scrollbar 是否开启滚动条]
+   * [isScrollbar 是否开启滚动条]
    * @type {Object}
    */
-  @Input('scrollbar') scrollbar: boolean = false
+  @Input('isScrollbar') isScrollbar: boolean = false
   /**
    * [pullDownRefresh 是否开启下拉加载]
    * @type {Object}
    */
-  @Input('pullDownRefresh') pullDownRefresh: boolean = false
+  @Input('isPullDownRefresh') isPullDownRefresh: boolean = false
   /**
    * [pullDownRefreshAnimation 配置下拉动画位置 两种1.固定顶部top，一种是跟随下拉位置]
    * @type {Object}
    */
-  @Input('pullDownRefreshAnimation') pullDownRefreshAnimation: String
+  @Input('pullDownRefreshAnimation') pullDownRefreshAnimation: string
   /**
    * [pullDownRefreshScroll 是否开启下拉滚动监听]
    * @type {Object}
@@ -141,40 +147,28 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
    * [pullDownRefreshConfig 下拉滚动监听配置]
    * @type {Object}
    */
-  @Input('pullDownRefreshConfig') set pullDownRefreshConfig(option: pullDownRefreshConfigProps){
-    this._pullDownRefreshConfig = extend(this._pullDownRefreshConfig, option)
-  }
-  get pullDownRefreshConfig() {
-    return this._pullDownRefreshConfig;
-  }
-  private _pullDownRefreshConfig: pullDownRefreshConfigProps = {
-    threshold: 80, // 下拉距离到50px触发刷新函数,同时必须搭配bounce中的top值为真，开启弹性才可以触发
-    stop: 80 // 下拉停止位置
-  }
+  @Input('pullDownRefreshThreshold') pullDownRefreshThreshold: number = 92
+  @Input('pullDownRefreshStop') pullDownRefreshStop: number = 92
+  
   /**
    * [pullUpLoad 是否开启上拉加载]
    * @type {Object}
    */
-  @Input('pullUpLoad') pullUpLoad: boolean = false
-  @Input('pullUpLoadType') pullUpLoadType: string = 'end'
+  @Input('isPullUpLoadRefresh') isPullUpLoadRefresh: boolean = false
+  @Input('pullUpLoadType') pullUpLoadType: string = ''
   /**
-   * [pullUpLoadScroll 是否开启上拉加载滚动监听]
+   * [isPullUpLoadScroll 是否开启上拉加载滚动监听]
    * @type {Object}
    */
-  @Input('pullUpLoadScroll') pullUpLoadScroll: boolean = false
+  @Input('isPullUpLoadScroll') isPullUpLoadScroll: boolean = false
   /**
    * [pullUpLoadConfig 配置上拉距离]
    * @type {Object}
    */
-  @Input('pullUpLoadConfig') set pullUpLoadConfig(option: pullUpLoadConfigProps) {
-    this._pullUpLoadConfig = extend(this._pullUpLoadConfig, option);
-  }
-  get pullUpLoadConfig() {
-    return this._pullUpLoadConfig;
-  }
-  private _pullUpLoadConfig: pullUpLoadConfigProps = {
-    threshold: 40
-  }
+  @Input('pullUpLoadThreshold') pullUpLoadThreshold: number = 92
+  // private _pullUpLoadConfig: pullUpLoadConfigProps = {
+  //   threshold: 40
+  // }
   /**
    * [startY 开始位置]
    * @type {Object}
@@ -186,15 +180,15 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
    */
   @Input('refreshDelay') refreshDelay: number = 10
   /**
-   * [freeScroll 是否开启自由滚动]
+   * [isFreeScroll 是否开启自由滚动]
    * @type {Object}
    */
-  @Input('freeScroll') freeScroll: boolean = false
+  @Input('isFreeScroll') isFreeScroll: boolean = false
   /**
-   * [mouseWheel 是否开启鼠标滚动]
+   * [isMouseWheel 是否开启鼠标滚动]
    * @type {Object}
    */
-  @Input('mouseWheel') mouseWheel: boolean = false
+  @Input('isMouseWheel') isMouseWheel: boolean = false
   /**
    * [bounce 是否开启弹性]
    * @type {Object}
@@ -210,25 +204,20 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
   }
   
   /**
-   * [stopPropagation 是否阻止事件冒泡。多用在嵌套 scroll 的场景。]
+   * [isStopPropagation 是否阻止事件冒泡。多用在嵌套 scroll 的场景。]
    * @type {Object}
    */
-  @Input('stopPropagation') stopPropagation: boolean = false
+  @Input('isStopPropagation') isStopPropagation: boolean = false
   /**
-   * [pageStopPropagation description]
+   * [isZoom 是否开启缩放]
    * @type {Object}
    */
-  @Input('pageStopPropagation') pageStopPropagation: boolean = false;
+  @Input('isZoom') isZoom: boolean = false
   /**
-   * [zoom 是否开启缩放]
+   * [isUseTransition 是否开启css3动画  设置false 防止iphone微信滑动卡顿]
    * @type {Object}
    */
-  @Input('zoom') zoom: boolean = false
-  /**
-   * [useTransition 是否开启css3动画  设置false 防止iphone微信滑动卡顿]
-   * @type {Object}
-   */
-  @Input('useTransition') useTransition: boolean = false
+  @Input('isUseTransition') isUseTransition: boolean = false
   /**
    * [pullUpLoadShow 是否显示加载文字]
    * @type {Object}
@@ -253,7 +242,7 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
    * [pullDownInitTopConfig 初始化头部位置]
    * @type {Object}
    */
-  @Input('pullDownInitTopConfig') pullDownInitTopConfig: number = 50;
+  @Input('pullDownInitTopConfig') pullDownInitTopConfig: number = 92;
   /**
    * [Input 页码总数]
    * @param {[type]} 'total' [description]
@@ -283,6 +272,11 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
   private pullDownStyleHeight: number = 0
   private pullDownInitTop: number = 0
   private isRebounding: boolean = false
+  private upLoadThreshold: number = 0
+  private downRefreshThreshold: number = 0
+  private downRefreshStop: number = 0
+  private downInitTopConfig: number = 0
+
   // 提供外部操作事件
   // 开始滚动前
   @Output() readonly beforeScrollStart: EventEmitter<any> = new EventEmitter<any>()
@@ -306,33 +300,32 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
   public scroll: any
 
   private initScroll (): void {
-    let elem = this.el.nativeElement; 
-    if (this.pageStopPropagation) return;
+    let elem = this.el.nativeElement;
     let scrollWrapper = querySelector('.scroll-wrapper', elem)
     let scrollContent = querySelector('.scroll-content', elem)
     let scrollBody = querySelector('.scroll-body', elem)
-    
+   
     if (!scrollWrapper) return;
     if (scrollBody) {
       // 设置高度
-      let height = getRect(scrollWrapper).height,
-        width = getRect(scrollWrapper).width;
+      let height: number = getRect(scrollWrapper).height;
+      let width: number = getRect(scrollWrapper).width;
       if (this.direction === 'horizontal') {
         // 计算水平滚动的宽度
         let childrens = scrollBody.children && scrollBody.children.length >= 2
               ? scrollBody.children
-              : scrollBody.children[0].children,
-          slideWidth = 0;
+              : scrollBody.children[0].children;
+        let slideWidth: number = 0;
         if (childrens && childrens.length !== 0) {
           for (let i = 0; i < childrens.length; i++) {
             let child= childrens[i];
-            let childWidth: number = Number(getRect(child).width);
+            let childWidth: number = getRect(child).width;
             slideWidth += childWidth;
             if (getStyle(child, "margin-left")) {
-              slideWidth += getStyle(child, "margin-left").replace(/px/gi, "");
+              slideWidth += Number(getStyle(child, "margin-left").replace(/px/gi, ""));
             }
             if (getStyle(child, "margin-right")) {
-              slideWidth += getStyle(child, "margin-right").replace(/px/gi, "");
+              slideWidth += Number(getStyle(child, "margin-right").replace(/px/gi, ""));
             }
             child.style.width = `${childWidth}px`;
           }
@@ -342,46 +335,51 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
         scrollBody.style.height = `${childrens[0].height}px`;
       } else {
         // 设置垂直滚动的高度
-        scrollBody.style.minHeight = `${Number(height) + 1}px`;
+        scrollBody.style.minHeight = `${height + 1}px`;
       }
     }
     
     this.scroll = new BScroll(scrollWrapper, {
       scrollX: false, // horizontal水平
       scrollY: true, // vertical垂直
-      mouseWheel: this.mouseWheel,
+      mouseWheel: this.isMouseWheel,
       // eventPassthrough: this.direction === DIRECTION_H?'vertical':'horizontal', // 忽略竖直方向的滚动
-      stopPropagation: this.stopPropagation,
+      stopPropagation: this.isStopPropagation,
       bounce: this._bounce,
-      scrollbar: this.scrollbar, // 是否显示滚动条
+      scrollbar: this.isScrollbar, // 是否显示滚动条
       dblclick: this.isDblclick, // 是否开启双击事件
       click: this.isClick,
       probeType: this.probeType,
-      pullUpLoad: this.pullUpLoad ? this._pullUpLoadConfig : this.pullUpLoad, // 上拉刷新
-      pullDownRefresh: this.pullDownRefresh
-        ? this._pullDownRefreshConfig
-        : this.pullDownRefresh, // 下拉刷新
-      useTransition: this.useTransition
+      pullUpLoad: this.isPullUpLoadRefresh ? {
+        'threshold': this.pullUpLoadThreshold
+      } : this.isPullUpLoadRefresh, // 上拉刷新
+      pullDownRefresh: this.isPullDownRefresh
+        ? {
+          'threshold': this.pullDownRefreshThreshold,
+          'stop': this.downRefreshStop
+        }
+        : this.isPullDownRefresh, // 下拉刷新
+      useTransition: this.isUseTransition
     });
     // 开始滚动前
-    if (this.listenBeforeScroll) {
+    if (this.isListenBeforeScroll) {
       this.scroll.on("beforeScrollStart", () => {
         this.beforeScrollStart.emit();
       });
     }
     // 开始滚动
-    if (this.listenScrollStart) {
+    if (this.isListenScrollStart) {
       this.scroll.on("scrollStart", () => {
         this.scrollStart.emit();
       });
     }
     // 滚动中-1表示从上往下滑,1表示从下往上滑,0表示没有滑动
-    this.scroll.on("scroll", pos => {
+    this.scroll.on("scroll", (pos: posProps) => {
       if (this.scroll.directionY) pos.directionY = this.scroll.directionY;
       this.scrollY = pos.y;
       if (
         this.scroll.directionY <= 0 &&
-        pos.y >= <number>this.pullDownRefreshConfig.stop / 2
+        pos.y >= this.downRefreshStop / 2
       ) {
         this.pullingDownScrollHandle(pos);
       }
@@ -390,14 +388,14 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
       }
     });
     // 滚动结束
-    if (this.listenScrollEnd) {
-      this.scroll.on("scrollEnd", pos => {
+    if (this.isListenScrollEnd) {
+      this.scroll.on("scrollEnd", (pos: posProps) => {
         this.scrollEnd.emit(pos);
       });
     }
     // 调用事件
-    if (this.pullDownRefresh) this.pullingDownHanlde();
-    if (this.pullUpLoad) this.pullingUpHandle();
+    if (this.isPullDownRefresh) this.pullingDownHanlde();
+    if (this.isPullUpLoadRefresh) this.pullingUpHandle();
   }
 
   /**
@@ -405,39 +403,35 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
    * @param  {[type]} pos [description]
    * @return {[type]}     [description]
    */
-  private pullingDownScrollHandle(pos): void {
+  private pullingDownScrollHandle(pos: posProps): void {
     // 首先判断是否开启了下拉事件
-    if (!this.pullDownRefresh) return;
+    if (!this.isPullDownRefresh) return;
     // 是否是处于下拉
     if (!this.beforePullDown) {
-      if (Number(pos.y) < Number(this.pullDownRefreshConfig.stop) / 2) return;
+      if (pos.y < this.downRefreshStop / 2) return;
       // 这里可以写动画效果
-      this.pullDownStyleHeight = parseInt(pos.y);
+      this.pullDownStyleHeight = pos.y;
       if (pos.y >= 0) {
         this.pullingDownStart && this.pullingDownStart(pos);
       }
       this.pullDownStyle = `top:${Math.min(
-        pos.y + Number(this.pullDownInitTop),
+        pos.y + this.pullDownInitTop,
         0
-      )}px;height: ${Math.max(
-        parseInt(pos.y),
-        Number(this.pullDownRefreshConfig.stop)
-      )}px;`;
+      )}px;height: ${Math.max(pos.y,this.downRefreshStop)}px;`;
     } else {
       // 中间动画持续
       if (Math.min(pos.y + this.pullDownInitTop, 0) < 0) {
         // this.pullDownStyle = `top:${Math.min(pos.y + this.pullDownInitTop, 0)}px`;
         this.pullDownStyle = `top:${Math.min(
-          pos.y + Number(this.pullDownInitTop),
+          pos.y + this.pullDownInitTop,
           0
         )}px`;
       }
-      this.pullDownStyle = `${Number(this.pullDownStyle)};height:${Math.max(
-        Number(pos.y),
-        Math.abs(pos.y + Number(this.pullDownInitTop))
+      this.pullDownStyle = `${this.pullDownStyle};height:${Math.max(
+        pos.y,
+        Math.abs(pos.y + this.pullDownInitTop)
       )}px;`;
-      this.pullingDownKeep &&
-        this.pullingDownKeep(pos, Math.min(Number(pos.y) + Number(this.pullDownInitTop), 0));
+      this.pullingDownKeep && this.pullingDownKeep(pos, Math.min(pos.y + this.pullDownInitTop, 0));
     }
     // 完成后下拉动画进行收缩顶部隐藏
     if (this.isRebounding) {
@@ -446,14 +440,12 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
           this.pullingDownEnd(
             pos,
             -Number(this.pullDownInitTopConfig) -
-              (Number(this.pullDownRefreshConfig.stop) - Number(pos.y))
+              (this.downRefreshStop - pos.y)
           );
       }
       // 顶部动画收缩
       this.pullDownStyle = `top:${-Number(this.pullDownInitTopConfig) -
-        (Number(this.pullDownRefreshConfig.stop) - Number(pos.y))}px;height:${Math.max(
-        parseInt(pos.y),
-        Number(this.pullDownRefreshConfig.stop)
+        (this.downRefreshStop - pos.y)}px;height:${Math.max(pos.y, this.downRefreshStop
       )}px;`;
     }
   }
@@ -466,6 +458,7 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
       // 清除绑定
       this.beforePullDown = false;
       this.isPullingDown = true;
+      this.refreshView();
       /* 这里替换为外部下拉函数 */
       this.pullingDown.emit();
     });
@@ -478,7 +471,11 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
     this.scroll.on("pullingUp", () => {
       if (!this.isPullUpLoad) {
         this.isPullUpLoad = true;
-        this.pullingUp.emit(); 
+        this.refreshView();
+        let finish = (state: boolean = false) => {
+          this.forceUpdate(state)
+        }
+        this.pullingUp.emit(finish); 
       }
     });
 
@@ -499,12 +496,13 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
    * @return {[type]}       [description]
    */
   protected forceUpdate(dirty): void {
-    if (this.pullDownRefresh && this.isPullingDown) {
+    if (this.isPullDownRefresh && this.isPullingDown) {
       this.isPullingDown = false;
       this._reboundPullDown().then(() => {
         this._afterPullDown();
+        this.refreshView();
       });
-    } else if (this.pullUpLoad && this.isPullUpLoad) {
+    } else if (this.isPullUpLoadRefresh && this.isPullUpLoad) {
       this.isPullUpLoad = false;
       this.scroll.finishPullUp();
       this.pullUpDirty = dirty;
@@ -523,6 +521,7 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
       setTimeout(() => {
         this.isRebounding = true;
         this.scroll.finishPullDown();
+        this.refreshView();
         resolve();
       }, stopTime);
     });
@@ -534,11 +533,11 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
   private _afterPullDown(): void {
     setTimeout(() => {
       this.pullDownStyle = `top:${this.pullDownInitTop}px;height:${
-        this.pullDownRefreshConfig.stop
+        this.downRefreshStop
       }px;`;
       this.beforePullDown = true;
       this.isRebounding = false;
-      this.refresh();
+      this.refreshView();
     }, this.scroll.options.bounceTime);
   }
   /**
@@ -602,10 +601,14 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
       typeof this.scroll.refresh === "function"
     ) {
       this.scroll.refresh();
-      this.cdr.markForCheck();
-      this.cdr.detectChanges();
+      this.refreshView();
     }
   }
+  private refreshView() {
+    this.cdr.markForCheck();
+    this.cdr.detectChanges();
+  }
+  
   /**
    * [scrollTo 滚动到指定位置]
    * @return {[type]} [description]
@@ -655,17 +658,20 @@ export class LmScroll implements OnInit, AfterViewInit, OnChanges, OnDestroy {
     // if (!event._constructed) return;
     // this.click$emit("", item);
   }
-  // 数据更新释放
-  // updateHandler() {
-  //   setTimeout(() => {
-  //     this.isTouchEnd = false;
-  //     this.forceUpdate(true);
-  //   }, this.refreshDelay);
-  // }
+
+  private adapter (value: number): number {
+    let fontSize = (getStyle(document.documentElement, 'font-size').replace(/px/i, '') || 75);
+    return value ? value * (fontSize / 75) : 0;
+  }
+
   ngOnInit () {
-    this.pullDownInitTop = -(
-      this.pullDownInitTopConfig || this.pullDownRefreshConfig.threshold
-    );
+    
+    this.pullDownInitTop = -this.adapter(this.pullDownInitTopConfig || this.pullDownRefreshThreshold);
+    this.upLoadThreshold = this.adapter(this.pullUpLoadThreshold);
+    this.downRefreshThreshold = this.adapter(this.pullDownRefreshThreshold)
+    this.downRefreshStop = this.adapter(this.pullDownRefreshStop)
+    this.downInitTopConfig = this.adapter(this.pullDownInitTopConfig)
+    
     // //初始化
     setTimeout(() => {
       this.initScroll();

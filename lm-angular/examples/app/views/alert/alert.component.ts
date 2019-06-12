@@ -8,17 +8,17 @@ import { LmAlertService, LmAlertProps } from '../../../../src/lm.module'
 export class AlertComponent {
   title = 'lm-angular-demo';
   switchState: Boolean = false
-  constructor(private alert: LmAlertService) {}
+  constructor(private alert: LmAlertService) { }
 
-  onClickMoreHandle () {
-  	console.log('onClickMoreHandle')
+  onClickMoreHandle() {
+    console.log('onClickMoreHandle')
   }
-  onSwitchChangeHandle (value) {
+  onSwitchChangeHandle(value) {
     this.switchState = value;
   }
-  showSyncHandle () {
+  showSyncHandle() {
     let config: LmAlertProps = {
-      title:'消息',
+      title: '消息',
       content: '回调调用',
       onHide: () => {
         console.log('取消');
@@ -31,7 +31,7 @@ export class AlertComponent {
   }
   showHandle() {
     let config: LmAlertProps = {
-      title:'消息',
+      title: '消息',
       content: 'Observable调用',
       onHide: () => {
         console.log('取消');

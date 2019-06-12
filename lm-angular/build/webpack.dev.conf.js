@@ -127,7 +127,14 @@ const devWebpackConfig = webpackMerge(baseWebpackConfig, {
     new webpack.ContextReplacementPlugin(
       /@angular(\\|\/)core(\\|\/)fesm5/,
       utils.root('./'), {}
-    )
+    ),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        to: conf.dev.assetsSubDirectory,
+        ignore: ['.*']
+      }
+    ])
     // new AngularCompilerPlugin({
     //   tsConfigPath: path.resolve(__dirname, '../tsconfig.json'),
     //   entryModule: path.resolve(__dirname, '../examples/app/app.module#AppModule'),

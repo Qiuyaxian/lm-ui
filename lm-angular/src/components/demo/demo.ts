@@ -36,18 +36,14 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     },
   ],
 })
-export class LmDemo implements ControlValueAccessor, AfterViewInit, OnInit, OnChanges{
+export class LmDemo implements ControlValueAccessor, AfterViewInit, OnInit, OnChanges {
   // slot
   @ContentChild('body') body: TemplateRef<any>
-  @ViewChild('vc', {read: ViewContainerRef}) vc: ViewContainerRef;
+  @ViewChild('vc', { read: ViewContainerRef }) vc: ViewContainerRef;
   @ViewChild('tpl') tpl: TemplateRef<any>;
 
-
-
-
   ngAfterViewInit() {
-    
-    
+
   }
   clickHandle() {
     this.vc.clear()
@@ -67,9 +63,9 @@ export class LmDemo implements ControlValueAccessor, AfterViewInit, OnInit, OnCh
   get model(): any[] {
     return this._model
   }
-   
+
   constructor(
-  	private cdr: ChangeDetectorRef) {
+    private cdr: ChangeDetectorRef) {
   }
   private _model: any[] = []
   // 下面是数据双向绑定
@@ -86,12 +82,12 @@ export class LmDemo implements ControlValueAccessor, AfterViewInit, OnInit, OnCh
     if (model && model.currentValue) {
       this._model = model.currentValue
     }
-    
+
   }
-  private controlChange: Function = () => {}
-  private controlTouch: Function = () => {}
+  private controlChange: Function = () => { }
+  private controlTouch: Function = () => { }
   // private onTouched: any = Function.prototype;
-  
+
   registerOnChange(fn: Function): void {
     this.controlChange = fn;
   }
@@ -101,6 +97,6 @@ export class LmDemo implements ControlValueAccessor, AfterViewInit, OnInit, OnCh
   }
 
   ngOnDestroy(): void {
-     
+
   }
 }

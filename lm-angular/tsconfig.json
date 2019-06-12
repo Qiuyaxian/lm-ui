@@ -10,6 +10,7 @@
     "noEmitHelpers": true,
     "importHelpers": true,
     "stripInternal": true,
+    "allowJs": true,
     "strictNullChecks": false,
     "lib": [
       "dom",

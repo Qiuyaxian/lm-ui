@@ -4,27 +4,26 @@
       <ng-content></ng-content>
       <!-- 自定义上拉样式 start -->
 	  <div id="pullUp">
-	  	
 	  	 <lm-slot [scope]="{isPullUpLoad: isPullUpLoad }" [name]="pullUpWrapper">
-			  <div *ngIf="pullUpLoad" class="before-trigger">
-		        <!-- inlineDesc start -->
-		        <lm-slot [name]="inlineDesc">
-		          <div class="" *ngIf="!isPullUpLoad">
-			      	<lm-slot [name]="beforeTrigger">
-			      	  <div class="pull-message">暂无更多数据</div>
-			      	  <!-- <p *ngIf="total !== 1 && total !== page">加载完成,没有更多数据</p> -->
-			      	</lm-slot>
-			      </div>
-			      <ng-container *ngIf="isPullUpLoad">
-			         <div class="pull-message">
-			           <lm-slot [name]="afterTrigger">
-			          	 <p>加载中...</p>
-			           </lm-slot>
-			          </div>
-			      </ng-container>
-		        </lm-slot>
-		        <!-- inlineDesc end -->
-			  </div>	
+		    <div *ngIf="isPullUpLoadRefresh" class="before-trigger">
+	          <!-- inlineDesc start -->
+	          <lm-slot [name]="inlineDesc">
+	            <div class="" *ngIf="!isPullUpLoad">
+		          <lm-slot [name]="beforeTrigger">
+		      	    <div class="pull-message">加载完成,没有更多数据</div>
+                    <!-- <p *ngIf="total !== 1 && total !== page">加载完成,没有更多数据</p> -->
+		          </lm-slot>
+		        </div>
+		        <ng-container *ngIf="isPullUpLoad">
+		          <div class="pull-message">
+		            <lm-slot [name]="afterTrigger">
+		              <p>加载中...</p>
+		            </lm-slot>
+		          </div>
+		        </ng-container>
+	          </lm-slot>
+	          <!-- inlineDesc end -->
+		    </div>	
 		  </lm-slot>
 	  </div>
 	  <!-- 自定义上拉样式 end -->

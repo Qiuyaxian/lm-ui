@@ -23,7 +23,6 @@ import { LmPopupPickerModule } from './components/popup-picker';
 import { LmPopupHeaderModule } from './components/popup-header';
 import { LmAddressModule } from './components/address';
 import { LmDemoModule } from './components/demo'
-
 // 按需导出,方便按需导入
 export * from './directives';
 export * from './components/template';

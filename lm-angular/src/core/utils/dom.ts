@@ -200,10 +200,10 @@ export function getData (el: HTMLElement | Document, name: String, val: any): an
  * @return {[type]}    [description]
  */
 interface rectProps {
-  top: number | String
-  left: number | String
-  width: number | String
-  height: number | String
+  top: number
+  left: number
+  width: number
+  height: number
 }
 export function getRect (el: HTMLElement | Document): rectProps {
   if (window && el instanceof window['SVGElement']) {
@@ -215,11 +215,16 @@ export function getRect (el: HTMLElement | Document): rectProps {
       height: rect['height']
     };
   } else {
+    let elem: any = el;
+    let top = elem['offsetTop'] && typeof (elem['offsetTop']) === 'string' ? elem['offsetTop'].replace(/px/i, '') : elem['offsetTop'];
+    let left = elem['offsetLeft'] && typeof (elem['offsetLeft']) === 'string' ? elem['offsetLeft'].replace(/px/i, '') : elem['offsetLeft'];
+    let width = elem['offsetWidth'] && typeof (elem['offsetWidth']) === 'string' ? elem['offsetWidth'].replace(/px/i, '') : elem['offsetWidth'];
+    let height = elem['offsetHeight'] && typeof (elem['offsetHeight']) === 'string' ? elem['offsetHeight'].replace(/px/i, '') : elem['offsetHeight'];
     return {
-      top: el['offsetTop'],
-      left: el['offsetLeft'],
-      width: el['offsetWidth'],
-      height: el['offsetHeight']
+      top: top,
+      left: left,
+      width: width,
+      height: height
     };
   }
 }
