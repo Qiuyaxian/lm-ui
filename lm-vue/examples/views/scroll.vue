@@ -5,9 +5,12 @@
     <lm-scroll
       ref="scroll"
       :listenScrollStart="true"
-      :pullUpLoad="true"
-      :listenScrollEnd="true"
+      :isPullDownRefresh="true"
+      :isPullUpLoadRefresh="true"
+      :isListenScrollEnd="true"
       :data="list"
+      :pullUpLoadThreshold="0"
+      @pullingDown="pullingDownHandle"
       @pullingUp="pullingUpHandle"
     >
       <lm-panel v-if="list && list.length !== 0">
@@ -46,9 +49,14 @@ export default {
     this.list = list;
   },
   methods: {
-    pullingUpHandle () {
+    pullingDownHandle (finish) {
+      let timer = setTimeout(() => {
+        finish()
+      }, 2000)
+    },
+    pullingUpHandle (finish) {
       if (this.page > this.total) {
-        this.$refs.scroll.forceUpdate(false);
+        finish();
         return;
       }
       let timer = setTimeout(() => {
@@ -62,7 +70,7 @@ export default {
           })
         }
         this.list = this.list.concat(list);
-        this.$refs.scroll.forceUpdate(false);
+        finish();
         ++this.page;
       }, 5000)
     }

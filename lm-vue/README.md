@@ -182,7 +182,7 @@ https://www.jianshu.com/p/4780d82e874a
 
 |--redux => 状态管理
 |--directives => 
-|--filters => 依靠类的继承实现 => https://segmentfault.com/q/1010000014019313 => 你可以写一个函数代替呀。vue中管道也相当于函数。 => https://blog.csdn.net/zhouziyu2011/article/details/70767636 => https://blog.csdn.net/qq_39840470/article/details/86548195 => https://blog.csdn.net/qq_43258252/article/details/87934282
+|--filters => 依靠类的继承实现 => 写一个函数代替, vue中管道也相当于函数 => https://segmentfault.com/q/1010000014019313 => 你可以写一个函数代替呀。vue中管道也相当于函数。 => https://blog.csdn.net/zhouziyu2011/article/details/70767636 => https://blog.csdn.net/qq_39840470/article/details/86548195 => https://blog.csdn.net/qq_43258252/article/details/87934282
 |
 |--mixins => 依靠类的继承实现 => 写一个合并操作函数返回一个component
 |--plugins => 依靠类的继承实现 => http://yj1438.github.io/2016/10/03/react_alert.html => window 上挂载  => https://github.com/clancysong/react-components => http://aisensiy.github.io/2017/12/21/global-var-in-react/ => https://segmentfault.com/q/1010000009252938
