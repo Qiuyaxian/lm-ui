@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 
 // 适配器模式（Adapter）:将一个类的接口转换成客户希望的另外一个接口。Adapter 模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。
 interface State {
@@ -37,6 +37,7 @@ function asyncComponent(importComponent) {
 }
 
 let HomePage = asyncComponent(() => import('@examples/views/Home.tsx'))
+let DemoPage = asyncComponent(() => import('@examples/views/Demo.tsx'))
 
 export default class LmRouter extends React.Component {
   render() {
@@ -45,6 +46,7 @@ export default class LmRouter extends React.Component {
         <Switch>
           <Route exact path="/" component={() => <HomePage></HomePage>} />
           <Route path="/home" component={HomePage} />
+          <Route path="/demo" component={DemoPage} />
         </Switch>
       </Router>
     )

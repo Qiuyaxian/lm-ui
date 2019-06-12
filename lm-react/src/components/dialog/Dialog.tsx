@@ -6,16 +6,17 @@ type State = {
 };
 
 interface DialogProps {
-  visible: boolean;
-  maskTransition?: string;
-  maskZIndex?: number;
-  dialogTransition?: string;
-  dialogClass?: string;
-  hideOnBlur?: boolean;
+  visible: boolean
+  maskTransition?: string
+  maskZIndex?: number
+  dialogTransition?: string
+  dialogClass?: string
+  hideOnBlur?: boolean
   dialogStyle?: React.CSSProperties
-  scroll?: boolean;
+  scroll?: boolean
   onHide?: Function
   onShow?: Function
+  willUnmount?: Function
 };
 
 export default class Dialog extends Component<DialogProps, any> {
@@ -27,9 +28,9 @@ export default class Dialog extends Component<DialogProps, any> {
 
   static defaultProps: DialogProps = {
     visible: false,
-    maskTransition: 'vup-mask',
-    dialogTransition: 'vup-dialog',
-    dialogClass: 'vup-dialog',
+    maskTransition: 'lm-mask',
+    dialogTransition: 'lm-dialog',
+    dialogClass: 'lm-dialog',
     dialogStyle: {}
   }
 
@@ -54,15 +55,6 @@ export default class Dialog extends Component<DialogProps, any> {
       hidden: nextProps.visible
     })
   }
-  // 判定当前是否是打开 
-  // willOpen(prevProps: Object, nextProps: Object): boolean {
-  //   return (!prevProps.visible && nextProps.visible);
-  // }
-
-  // willClose(prevProps: Object, nextProps: Object): boolean {
-  //   return (prevProps.visible && !nextProps.visible);
-  // }
-
   private open(visible: boolean): void {
     this.props.onShow(visible);
   }
@@ -70,20 +62,39 @@ export default class Dialog extends Component<DialogProps, any> {
   private close(visible: boolean): void {
     this.props.onHide(visible);
   }
-
+  onTouchCancelHandle(event) {
+    event.preventDefault()
+  }
+  onTouchEndHandle(event) {
+    event.preventDefault()
+  }
+  onTouchMoveHandle(event) {
+    event.preventDefault()
+  }
+  onTouchStartHandle(event) {
+    event.preventDefault()
+  }
   render() {
     let { visible, maskZIndex, dialogStyle, maskTransition, dialogTransition, children } = this.props;
     let { hidden } = this.state;
     return (
-      <div className="vup-x-dialog vup-dialog-absolute">
-        <Transition name={maskTransition}>
+      <div className="lm-dialog-wrapper lm-dialog-absolute">
+        <Transition name={maskTransition} onAfterLeave={() => this.props.willUnmount()}>
           <View show={hidden}>
-            <div style={maskZIndex ? { zIndex: maskZIndex } : {}} className="vup-mask" onClick={() => this.close(hidden)}></div>
+            <div
+              onTouchEnd={(e) => this.onTouchEndHandle(e)}
+              onTouchMove={(e) => this.onTouchMoveHandle(e)}
+              onTouchStart={(e) => this.onTouchStartHandle(e)}
+              onMouseDown={(e) => this.onTouchStartHandle(e)}
+              onMouseMove={(e) => this.onTouchMoveHandle(e)}
+              onMouseUp={(e) => this.onTouchEndHandle(e)}
+
+              style={maskZIndex ? { zIndex: maskZIndex } : {}} className="lm-mask" onClick={() => this.close(hidden)}></div>
           </View>
         </Transition>
         <Transition name={dialogTransition}>
           <View show={hidden}>
-            <div style={dialogStyle} className="vup-dialog">{children}</div>
+            <div style={dialogStyle} className="lm-dialog">{children}</div>
           </View>
         </Transition>
       </div>

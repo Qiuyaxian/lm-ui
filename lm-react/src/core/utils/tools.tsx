@@ -7,30 +7,22 @@ declare let window: any;
  * [noop 通用默认方法]
  * @return {[type]} [description]
  */
-export function noop () { }; 
+export function noop() { };
 /**
  * [isProduction 是否是生产环境]
  * process.env.NODE_ENV === 'production'  正式环境
    process.env.NODE_ENV === 'development' 正式环境
  * @return {Boolean} [description]
  */
-export function isProduction () {
+export function isProduction() {
   return process.env.NODE_ENV === 'production';
-} 
-/**
- * [isWechat 判断是否是微信浏览器]
- * @param  {[type]}  userAgent [description]
- * @return {Boolean}           [description]
- */
-export function isWechat (userAgent = (window && window.navigator.userAgent) || '') {
-  return /micromessenger/gi.test(userAgent);
 }
 /**
  * [stateHandle 抛出错误异常]
  * @param  {[type]} args [description]
  * @return {[type]}      [description]
  */
-export function stateHandle (args) {
+export function stateHandle(args) {
   throw new Error(args);
 }
 /**
@@ -40,19 +32,19 @@ export function stateHandle (args) {
  * @return {[type]}            [description]
  */
 export const each = (data, callback) => {
-  if(data.forEach){ 
-    data.forEach( (item, index) => { 
+  if (data.forEach) {
+    data.forEach((item, index) => {
       callback.call(null, item, index);
     });
-  }else{
-    for (let i = 0; i <= data.length; i++) { 
+  } else {
+    for (let i = 0; i <= data.length; i++) {
       callback.call(null, data[i], i);
     }
   }
 };
 const _prototype = Object.prototype,
-      _hasOwnProperty = _prototype.hasOwnProperty,
-      _toString = data => _prototype.toString.call(data);
+  _hasOwnProperty = _prototype.hasOwnProperty,
+  _toString = data => _prototype.toString.call(data);
 /**
  * [hasOwn 判定是否拥有某一个key, 可以减少调用的麻烦]
  * @param  {[type]}  obj [description]
@@ -66,11 +58,11 @@ export const hasOwn = (obj, key) => _hasOwnProperty.call(obj, key);
  * @param  {[type]}  obj2 [description]
  * @return {Boolean}      [description]
  */
-export function isEqual (obj1, obj2, type = false) {
+export function isEqual(obj1, obj2, type = false) {
   if (type) {
-    if(!isNaN(+obj1) && isNumber(+obj1)) obj1 = +obj1;
-    if(!isNaN(+obj2) && isNumber(+obj2)) obj2 = +obj2;
-  } 
+    if (!isNaN(+obj1) && isNumber(+obj1)) obj1 = +obj1;
+    if (!isNaN(+obj2) && isNumber(+obj2)) obj2 = +obj2;
+  }
   return JSON.stringify(obj1) === JSON.stringify(obj2);
 }
 /**
@@ -78,8 +70,8 @@ export function isEqual (obj1, obj2, type = false) {
  * @param  {[type]} string [description]
  * @return {[type]}        [description]
  */
-export function trim (string) {
-  if (isString(string)) return string.replace(/(^\s*)|(\s*$)/g,''); 
+export function trim(string) {
+  if (isString(string)) return string.replace(/(^\s*)|(\s*$)/g, '');
   else stateHandle('js错误:string是不是一个字符串');
 }
 /**
@@ -92,30 +84,30 @@ let classTypeMap = {};
  * @param  {[type]} obj [description]
  * @return {[type]}     [description]
  */
-export const classType = (obj) => { return obj == null ? String( obj ) : classTypeMap[ toString.call(obj) ] || "object"; };
+export const classType = (obj) => { return obj == null ? String(obj) : classTypeMap[toString.call(obj)] || "object"; };
 /**
  * [生成类型map]
  * @param  {[type]} _       [description]
  * @param  {[type]} name){                 classTypeMap["[object " + name + "]"] [description]
  * @return {[type]}         [description]
  */
-each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(name, index){  
-  classTypeMap["[object " + String(name) + "]"] = name.toLowerCase();    
-});   
+each("Boolean Number String Function Array Date RegExp Object Error".split(" "), function (name, index) {
+  classTypeMap["[object " + String(name) + "]"] = name.toLowerCase();
+});
 /**
  * [isArray 判断是否是数组值]
  * @param  {[type]}  arr [description]
  * @return {Boolean}     [description]
  */
-export function isArray (obj) {
-   return classType(obj) === 'array' 
-} 
+export function isArray(obj) {
+  return classType(obj) === 'array'
+}
 /**
  * [isFunction 判断是否是函数值]
  * @param  {Function} fn [description]
  * @return {Boolean}     [description]
  */
-export function isFunction (obj) {
+export function isFunction(obj) {
   return classType(obj) === 'function';
 }
 /**
@@ -123,7 +115,7 @@ export function isFunction (obj) {
  * @param  {[type]}  num [description]
  * @return {Boolean}     [description]
  */
-export function isNumber (obj) {
+export function isNumber(obj) {
   return classType(obj) === 'number';
 }
 /**
@@ -131,7 +123,7 @@ export function isNumber (obj) {
  * @param  {[type]}  obj [description]
  * @return {Boolean}     [description]
  */
-export function isObject (obj) { 
+export function isObject(obj) {
   return classType(obj) === 'object';
 }
 /**
@@ -139,7 +131,7 @@ export function isObject (obj) {
  * @param  {[type]}  obj [description]
  * @return {Boolean}     [description]
  */
-export function isTypeError (obj) { 
+export function isTypeError(obj) {
   return classType(obj) === 'error';
 }
 /**
@@ -147,7 +139,7 @@ export function isTypeError (obj) {
  * @param  {[type]}  boolean [description]
  * @return {Boolean}         [description]
  */
-export function isBoolean (obj) {
+export function isBoolean(obj) {
   return classType(obj) === 'boolean';
 }
 
@@ -156,7 +148,7 @@ export function isBoolean (obj) {
  * @param  {[type]}  string [description]
  * @return {Boolean}        [description]
  */
-export function isString (obj) {
+export function isString(obj) {
   return classType(obj) === 'string';
 }
 /**
@@ -164,7 +156,7 @@ export function isString (obj) {
  * @param  {[type]}  type [description]
  * @return {Boolean}      [description]
  */
-export function isNull (obj) {
+export function isNull(obj) {
   return classType(obj) === 'null';
 }
 /**
@@ -172,15 +164,15 @@ export function isNull (obj) {
  * @param  {[type]}  type [description]
  * @return {Boolean}      [description]
  */
-export function isUndefined (obj) {
+export function isUndefined(obj) {
   return classType(obj) === 'undefined';
-} 
+}
 /**
  * [isEmptyObject 是否是空对象]
  * @param  {[type]}  obj [description]
  * @return {Boolean}     [description]
  */
-export function isEmptyObject (obj) {
+export function isEmptyObject(obj) {
   for (let key in obj) {
     return false;
   }
@@ -193,14 +185,14 @@ export function isEmptyObject (obj) {
  * @param  {[type]} i   [description]
  * @return {[type]}     [description]
  */
-export function inArray (elem: any[], arr: any[], i: number): any {
+export function inArray(elem: any[], arr: any[], i: number): any {
   let len;
-  if ( arr ) {
-    if ( Array.prototype.indexOf ) { return Array.prototype.indexOf.call( arr, elem, i ); }
-    len = arr.length;  
-    i = i ? i < 0 ? Math.max( 0, len + i ) : i : 0;
-    for ( ; i < len; i++ ) {
-      if ( i in arr && arr[ i ] === elem ) { return i; }
+  if (arr) {
+    if (Array.prototype.indexOf) { return Array.prototype.indexOf.call(arr, elem, i); }
+    len = arr.length;
+    i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
+    for (; i < len; i++) {
+      if (i in arr && arr[i] === elem) { return i; }
     }
   }
   return -1;
@@ -210,7 +202,7 @@ export function inArray (elem: any[], arr: any[], i: number): any {
  * @param  {[type]} array [description]
  * @return {[type]}       [description]
  */
-export function toArray (array) {
+export function toArray(array) {
   return Array.prototype.slice.call(array);
 }
 /**
@@ -219,11 +211,11 @@ export function toArray (array) {
  * @param  {[type]} key [description]
  * @return {[type]}     [description]
  */
-export function inObject (obj, key) {
+export function inObject(obj, key) {
   if (hasOwn(obj, key)) return true;
   else {
-    for(let name in obj){ 
-      if(isObject(obj[name])) return inObject(obj[name], key);
+    for (let name in obj) {
+      if (isObject(obj[name])) return inObject(obj[name], key);
     }
     return false;
   }
@@ -234,26 +226,26 @@ export function inObject (obj, key) {
  * @param  {[type]} src [description]
  * @return {[type]}     [description]
  */
-export function extend () { 
+export function extend() {
   let args = toArray(arguments),
-      arg = args.shift();
-  if (objectAssign) { 
+    arg = args.shift();
+  if (objectAssign) {
     return objectAssign.call(null, arg, ...args);
-  } else { 
-    if (Object.assign) { 
-      for (let i = 0; i < args.length; i++ ) {
+  } else {
+    if (Object.assign) {
+      for (let i = 0; i < args.length; i++) {
         arg = Object.assign(arg, args[i]);
       }
-      return arg; 
+      return arg;
     } else {
-      for (let i = 0; i < args.length; i++ ) { 
-        prop (args[i], function (p) {
+      for (let i = 0; i < args.length; i++) {
+        prop(args[i], function (p) {
           arg[p] = args[i][p];
         });
-      } 
+      }
       return arg;
     }
-  }  
+  }
 }
 /**
  * [prop 合并函数]
@@ -261,7 +253,7 @@ export function extend () {
  * @param  {[type]} fun [description]
  * @return {[type]}     [description]
  */
-function prop (obj, fun) {
+function prop(obj, fun) {
   for (var p in obj) {
     hasOwn(obj, p) && fun(p);
   }
@@ -273,9 +265,9 @@ function prop (obj, fun) {
  * [deep 深浅拷贝]
  * @return {[type]} [description]
  */
-export function copy (obj, isDeep = false) {
+export function copy(obj, isDeep = false) {
   if (isBoolean(isDeep) && isDeep) return JSON.parse(JSON.stringify(obj));
-  else return Object.assign({},obj);
+  else return Object.assign({}, obj);
 }
 
 /**
@@ -285,12 +277,12 @@ export function copy (obj, isDeep = false) {
  * @param  {[type]} strict [description]
  * @return {[type]}        [description]
  */
-export function getPropByPath (obj, path, strict) {
+export function getPropByPath(obj, path, strict) {
   let tempObj = obj;
   path = path.replace(/\[(\w+)\]/g, '.$1');
   path = path.replace(/^\./, '');
   let keyArr = path.split('.'),
-      i = 0;
+    i = 0;
   for (let len = keyArr.length; i < len - 1; ++i) {
     if (!tempObj && !strict) break;
     let key = keyArr[i];
@@ -314,28 +306,28 @@ export function getPropByPath (obj, path, strict) {
  * [errorHandler 统一全局错误函数处理]
  * @param  {[type]} error [description]
  * @return {[type]}       [description]
- */ 
-export function errorHandle (error, context) {
+ */
+export function errorHandle(error, context) {
   let message;
-  if (isTypeError(error)) {  
+  if (isTypeError(error)) {
     if (error.reason) {
-      message = `${ error.reason.name }:${ error.reason.message }`;
+      message = `${error.reason.name}:${error.reason.message}`;
     } else if (error.name) {
-      message = `${ error.name }:${ error.message }`;
-    } else { 
+      message = `${error.name}:${error.message}`;
+    } else {
       message = 'unknown:未知错误';
     }
   } else if (isString(error)) {
     message = error;
-  } else { 
+  } else {
     message = 'unknown:未知错误';
-  } 
+  }
   /**
    *  1.可以根据状态不一样处理不一样的错误
    *    根据不同状态是否进行页面跳转，
    *    1 get方式加载  20500 -> 显示错误页面 
    *    2 post方式操作 20500 -> 提示错误信息
-   */  
+   */
   context && context.updateMessageHandle(message);
   //Store.dispatch('system/updateMessage', message);
   //可以接入错误上报日志
@@ -348,7 +340,7 @@ export function errorHandle (error, context) {
  * @param  {[type]} pos [description]
  * @return {[type]}     [description]
  */
-export function easeOutCubic (pos: number): number {
+export function easeOutCubic(pos: number): number {
   return (Math.pow((pos - 1), 3) + 1)
 }
 /**
@@ -356,7 +348,7 @@ export function easeOutCubic (pos: number): number {
  * @param  {[type]} pos [description]
  * @return {[type]}     [description]
  */
-export function easeInOutCubic (pos: number): number {
+export function easeInOutCubic(pos: number): number {
   if ((pos /= 0.5) < 1) {
     return 0.5 * Math.pow(pos, 3)
   }

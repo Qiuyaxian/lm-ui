@@ -4,8 +4,8 @@ import { View } from '../view'
 
 function noop(): void { }
 
-interface TransitionProps {
-  in?: any; 
+interface AnimationProps {
+  in?: any;
   onEnter: () => void;
   onEntering: () => void;
   onEntered: () => void;
@@ -21,9 +21,9 @@ interface TransitionProps {
   children?: React.ReactElement<any>
 }
 
-export class Animation extends React.Component<TransitionProps, any>{
-  
-  static defaultProps: TransitionProps = {
+export class Animation extends React.Component<AnimationProps, any>{
+
+  static defaultProps: AnimationProps = {
     onEnter: noop,
     onEntering: noop,
     onEntered: noop,

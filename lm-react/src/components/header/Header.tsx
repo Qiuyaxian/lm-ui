@@ -1,87 +1,117 @@
 import React, { Children } from 'react';
 import { Component, View, Transition, ComponentProps } from '@src/core';
+import { createHashHistory as createHistory } from "history";
+// 创建历史对象
+const history = createHistory();
 
-import HeaderLeft from './HeaderLeft'
-import HeaderRight from './HeaderRight'
-import HeaderTitle from './HeaderTitle'
-import { Slot } from '../slot'
 // header 组件
+interface LeftOptionsProps {
+  showBack?: boolean
+  preventGoBack?: boolean
+  backText?: string
+}
+interface RightOptionsProps {
+  showMore?: boolean
+}
 interface HeaderProps extends ComponentProps {
-
+  leftOptions?: LeftOptionsProps
+  title?: string
+  transition?: string
+  rightOptions?: RightOptionsProps
+  position?: string
+  left?: any
+  right?: any
+  overwriteLeft?: any
+  overwriteTitle?: any
+  onClickBack?: Function
+  onClickMore?: Function
 };
 
-// {
-//   React.Children.map(this.props.children, (children) => {
-//     console.log(children, 'children')
-//     if (children.type) {
-//       let { componentName } = children.type;
-
-//       if (SlotMap[componentName]) {
-//         return React.cloneElement(children)
-//       } else {
-
-//         return SlotMap[componentName]
-//       }
-
-//     } else {
-//       return React.cloneElement(children)
-//     }
-//   })
-// }
 export default class Header extends Component<HeaderProps, any> {
-  static componentName = 'Header'
-  static left: any = HeaderLeft
-  static right: any = HeaderRight
-  static title: any = HeaderTitle
 
-  state = {}
+  state = {
+  }
 
   wrap: any
 
   static defaultProps: HeaderProps = {
-
+    leftOptions: {
+      showBack: true,
+      preventGoBack: false,
+      backText: ''
+    },
+    title: '',
+    transition: 'lm',
+    rightOptions: {
+      showMore: false
+    },
+    position: 'static'
   }
 
   constructor(props: HeaderProps) {
     super(props);
   }
 
+  get _leftOptions() {
+    let { leftOptions } = this.props;
+    return Object.assign({
+      showBack: true,
+      preventGoBack: false,
+      backText: ''
+    }, leftOptions || {})
+  }
 
-  render(): React.ReactElement<any> {
+  onClickBack() {
 
-
-    let SlotMap = {
-      'HeaderLeft': <HeaderLeft></HeaderLeft>,
-      'HeaderTitle': <HeaderTitle></HeaderTitle>,
-      'HeaderRight': <HeaderRight></HeaderRight>,
+    if (this._leftOptions.preventGoBack) {
+      this.props.onClickBack && this.props.onClickBack()
+    } else {
+      history ? history.goBack() : window.history.back()
     }
-    // let ChildrenMap = {};
+  }
+  onClickMore(event) {
+    this.props.onClickMore && this.props.onClickMore()
+    event.preventDefault();
+  }
+  render(): React.ReactElement<any> {
+    let { children, title, transition, left, right, overwriteTitle, leftOptions, rightOptions, overwriteLeft, className } = this.props;
 
-    // React.Children.forEach(this.props.children, (Children) => {
-    //   if (Children.type.componentName) {
-    //     ChildrenMap[Children.type.componentName] = Children;
-    //   }
-    // })
-    // for (let key in SlotMap) {
-    //   if (ChildrenMap[key]) {
-    //     SlotMap[key] = ChildrenMap[key];
-    //   }
-    // }
-    // let values = Array.from([...Object.values(SlotMap)])
-
-    // const { visible, title, size, top, modal, customClass, showClose, children } = this.props;
     return (
-      <div>
-        <Slot childrens={this.props.children}>
-          <div slot="left">
-            <Slot childrens={this.props.children}>
-              <div slot="left-nav">具名</div>
-              <div slot="left-mene">menu</div>
-            </Slot>
-          </div>
-          <div slot="default">布局吗</div>
-          <div slot="right">测试</div>
-        </Slot>
+      <div className={this.className('lm-header', className)}>
+        <div className="lm-header-left">
+          {
+            overwriteLeft ? overwriteLeft : (
+              <React.Fragment>
+                <Transition name={transition}>
+                  <a style={this._leftOptions.showBack ? { 'display': 'none' } : { 'display': 'block' }} className="lm-header-back">{typeof this._leftOptions.backText === 'undefined' ? '返回' : this._leftOptions.backText}</a>
+                </Transition>
+                <Transition name={transition}>
+                  <div style={this._leftOptions.showBack ? { 'display': 'none' } : { 'display': 'block' }} className="left-arrow" onClick={() => this.onClickBack()}></div>
+                </Transition>
+              </React.Fragment>
+            )
+          }
+          {left}
+        </div>
+        {
+          !overwriteTitle ? (
+            <h1 className="lm-header-title">
+              <Transition name={transition}>
+                {title ? (<span>{title}</span>) : (<React.Fragment>{children}</React.Fragment>)}
+              </Transition>
+            </h1>
+          ) : (
+              <div className="lm-header-title-area">
+                {overwriteTitle}
+              </div>
+            )
+        }
+        <div className="lm-header-right">
+          {
+            rightOptions.showMore ? (<a className="lm-header-more" onClick={(e) => this.onClickMore(e)}></a>) : (null)
+          }
+          {right}
+        </div>
       </div>
     );
   };

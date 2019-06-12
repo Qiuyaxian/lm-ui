@@ -1,19 +1,19 @@
 import React from 'react';
 import classnames from 'classnames';
-
-interface ComponentProps {
+import { ComponentProps } from '../props'
+interface inComponentProps extends ComponentProps {
   className?: string;
   style?: React.CSSProperties;
   slot?: boolean | string | Symbol
 };
 
-export class Component<ComponentProps, T> extends React.Component<ComponentProps, any> {
+export class Component<inComponentProps, T> extends React.Component<inComponentProps, any> {
 
-  classNames(...args) {
+  protected classNames(...args) {
     return classnames(args);
   }
 
-  className(...args) {
+  protected className(...args) {
     let props: any = this.props;
     let className = {};
     if (props.className) {
@@ -22,7 +22,7 @@ export class Component<ComponentProps, T> extends React.Component<ComponentProps
     return this.classNames.apply(this, args.concat([className]));
   }
 
-  style(args) {
+  protected style(args) {
     let props: any = this.props;
     let style = {};
     if (props.style) {

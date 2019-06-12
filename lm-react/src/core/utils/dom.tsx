@@ -12,7 +12,7 @@ const Layout: number = 75;
  * @param  {[type]} val [description]
  * @return {[type]}     [description]
  */
-export function pxTorem (val: number, scale: number = 1): string {
+export function pxTorem(val: number, scale: number = 1): string {
   return `${(((val * scale) / Layout) / dpr) * 1}rem`;
 }
 /**
@@ -20,7 +20,7 @@ export function pxTorem (val: number, scale: number = 1): string {
  * @param  {Object} styles [description]
  * @return {[type]}        [description]
  */
-export function cleanStyle (styles: object = {}) : any {
+export function cleanStyle(styles: object = {}): any {
   let style = {};
   for (let i in styles) {
     if (typeof styles[i] !== 'undefined') style[i] = styles[i];
@@ -28,12 +28,12 @@ export function cleanStyle (styles: object = {}) : any {
   return style;
 }
 
-export function resetScrollIntoView (elem: HTMLElement, state: boolean = true, time: number = 10) : void{
-  if (/iphone/i.test(navigator.userAgent)) { 
-  } 
-  if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') {  
-    let timer = setTimeout(() => { 
-      if(timer) clearTimeout(timer);  
+export function resetScrollIntoView(elem: HTMLElement, state: boolean = true, time: number = 10): void {
+  if (/iphone/i.test(navigator.userAgent)) {
+  }
+  if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') {
+    let timer = setTimeout(() => {
+      if (timer) clearTimeout(timer);
       elem && elem['scrollIntoViewIfNeeded'] && elem['scrollIntoViewIfNeeded'](state);
     }, time);
   }
@@ -45,7 +45,7 @@ export function resetScrollIntoView (elem: HTMLElement, state: boolean = true, t
  * @param  {[type]} name [description]
  * @return {[type]}      [description]
  */
-export function querySelector (name: any, elem: HTMLElement | Document = document): any { 
+export function querySelector(name: any, elem: HTMLElement | Document = document): any {
   return (typeof name === 'string') ? elem['querySelector'](name) : name;
 }
 
@@ -62,15 +62,15 @@ export function querySelectorAll(name: any, elem: HTMLElement | Document = docum
  * @param  {[type]} id [description]
  * @return {[type]}    [description]
  */
-export function getById (id: any, elem: HTMLElement | Document = document): any {
-  return (typeof id === 'string') ? elem['getElementById'](id) : id; 
+export function getById(id: any, elem: HTMLElement | Document = document): any {
+  return (typeof id === 'string') ? elem['getElementById'](id) : id;
 }
 /**
  * [getByName 通过name 查找input]
  * @param  {[type]} name [description]
  * @return {[type]}      [description]
  */
-export function getByName (name: any, elem: HTMLElement | Document = document) {
+export function getByName(name: any, elem: HTMLElement | Document = document) {
   return (typeof name === 'string') ? elem['getElementsByName'](name) : name;
 }
 /**
@@ -78,7 +78,7 @@ export function getByName (name: any, elem: HTMLElement | Document = document) {
  * @param  {[type]} name [description]
  * @return {[type]}      [description]
  */
-export function getByTagName (name: any, elem: HTMLElement | Document = document) { 
+export function getByTagName(name: any, elem: HTMLElement | Document = document) {
   return (typeof name === 'string') ? elem['getElementsByTagName'](name) : name;
 }
 /**
@@ -87,16 +87,16 @@ export function getByTagName (name: any, elem: HTMLElement | Document = document
  * @param  {[type]} elem [description]
  * @return {[type]}      [description]
  */
-export function getByClassName (name: any, elem: HTMLElement | Document = document) {  
+export function getByClassName(name: any, elem: HTMLElement | Document = document) {
   return (typeof name === 'string') ? elem['getElementsByClassName'](name) : name;
-} 
+}
 /**
  * [hasClass 判断是否存在class样式类]
  * @param  {[type]}  el        [description]
  * @param  {[type]}  className [description]
  * @return {Boolean}           [description]
  */
-export function hasClass (el: HTMLElement | Document, className): boolean { 
+export function hasClass(el: HTMLElement | Document, className): boolean {
   let reg = new RegExp('(^|\\s)' + className + '(\\s|$)');
   return reg.test(el['className']);
 }
@@ -105,7 +105,7 @@ export function hasClass (el: HTMLElement | Document, className): boolean {
  * @param {[type]} el        [description]
  * @param {[type]} className [description]
  */
-export function addClass (el: HTMLElement | Document, className): string {
+export function addClass(el: HTMLElement | Document, className): string {
   if (hasClass(el, className)) return;
   let newClass = el['className'].split(' ');
   newClass.push(className);
@@ -117,7 +117,7 @@ export function addClass (el: HTMLElement | Document, className): string {
  * @param  {[type]} className [description]
  * @return {[type]}           [description]
  */
-export function removeClass (el: HTMLElement | Document, className): void {
+export function removeClass(el: HTMLElement | Document, className): void {
   if (!hasClass(el, className)) return;
   let reg = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
   el['className'] = el['className'].replace(reg, ' ')
@@ -129,7 +129,7 @@ export function removeClass (el: HTMLElement | Document, className): void {
  * @param  {[type]} val  [description]
  * @return {[type]}      [description]
  */
-export function getData (el: HTMLElement | Document, name: String, val: any): any {
+export function getData(el: HTMLElement | Document, name: String, val: any): any {
   let prefix = 'data-';
   if (val) return el['setAttribute'](prefix + name, val);
   return el['getAttribute'](prefix + name);
@@ -145,7 +145,7 @@ interface rectProps {
   width: number | String
   height: number | String
 }
-export function getRect (el: HTMLElement | Document): rectProps {
+export function getRect(el: HTMLElement | Document): rectProps {
   if (window && el instanceof window['SVGElement']) {
     let rect = el['getBoundingClientRect']();
     return {
@@ -170,13 +170,13 @@ export function getRect (el: HTMLElement | Document): rectProps {
  * @param  {[type]} attr [description]
  * @return {[type]}      [description]
  */
-export function getStyle (el: any, attr: any): any {
+export function getStyle(el: any, attr: any): any {
   let computedStyle = el['currentStyle'] ? el['currentStyle'] : window['getComputedStyle'](el);
-  if(!attr){
+  if (!attr) {
     return computedStyle;
-  }else{
+  } else {
     return computedStyle[attr];
-  }    
+  }
 }
 
 /* ------- dom end -------- */

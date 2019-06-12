@@ -3,23 +3,22 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import requestAnimationFrame from 'raf';
-
+import { ComponentProps } from '../props'
 declare let window: any
 
-interface TransitionProps {
+interface TransitionProps extends ComponentProps {
   name: string;
   onEnter?: Function;
   onAfterEnter?: Function;
   onLeave?: Function;
   onAfterLeave?: Function;
-  children?: React.ReactElement<any>
 };
 
 export class Transition extends React.Component<TransitionProps, any> {
   public el: any;
   public timeout: any;
   constructor(props) {
-    
+
     super(props);
 
     const { children } = props;
@@ -27,7 +26,7 @@ export class Transition extends React.Component<TransitionProps, any> {
     this.state = {
       children: children && this.enhanceChildren(children)
     }
-     
+
     this.didEnter = this.didEnter.bind(this);
     this.didLeave = this.didLeave.bind(this);
   }
@@ -76,11 +75,11 @@ export class Transition extends React.Component<TransitionProps, any> {
   }
 
   private enhanceChildren(children: React.ReactElement<any>, props?: any): any {
-    return React.cloneElement(children, 
-      Object.assign({ 
+    return React.cloneElement(children,
+      Object.assign({
         ref: (el) => {
-          this.el = el 
-        } 
+          this.el = el
+        }
       }, props))
   }
 
@@ -115,7 +114,7 @@ export class Transition extends React.Component<TransitionProps, any> {
       const duration = parseFloat(styles['animationDuration']) || parseFloat(styles['transitionDuration']);
 
       clearTimeout(this.timeout);
- 
+
       this.timeout = setTimeout(() => {
         fn();
       }, duration * 1000)
@@ -143,7 +142,7 @@ export class Transition extends React.Component<TransitionProps, any> {
 
   private didLeave(e: TransitionEvent): any {
     const childDOM: any = ReactDOM.findDOMNode(this.el);
-     
+
     if (!e || e.target !== childDOM) return;
 
     const { onAfterLeave, children } = this.props;
@@ -167,11 +166,11 @@ export class Transition extends React.Component<TransitionProps, any> {
     })
   }
 
-  private toggleVisible(): any {  
+  private toggleVisible(): any {
     const { onEnter } = this.props;
-    const { enter, enterActive, enterTo, leaveActive, leaveTo } = this.transitionClass; 
+    const { enter, enterActive, enterTo, leaveActive, leaveTo } = this.transitionClass;
     const childDOM: any = ReactDOM.findDOMNode(this.el);
-    
+
     if (!childDOM) return;
 
     childDOM.addEventListener('transitionend', this.didEnter);
@@ -205,7 +204,7 @@ export class Transition extends React.Component<TransitionProps, any> {
     const { onLeave } = this.props;
     const { leave, leaveActive, leaveTo, enterActive, enterTo } = this.transitionClass;
     const childDOM: any = ReactDOM.findDOMNode(this.el);
-    if (!childDOM) return; 
+    if (!childDOM) return;
     childDOM.addEventListener('transitionend', this.didLeave);
     childDOM.addEventListener('animationend', this.didLeave);
 
@@ -232,7 +231,7 @@ export class Transition extends React.Component<TransitionProps, any> {
     })
   }
 
-  render(): React.ReactElement<any> {
-   return this.state.children || null;
+  render() {
+    return this.state.children || null;
   }
 }

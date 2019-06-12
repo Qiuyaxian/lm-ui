@@ -3,28 +3,28 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 export default class TransferDom extends Component<any, any>{
-  
-  static state = { }
+
+  static state = {}
 
   container: any
-  
+
   constructor(props) {
     super(props);
   }
 
   // 向document 进行dom 移动操作
-  appendComponentView () {
+  appendComponentView() {
     const { children } = (this.props as any);
     if (children) {
       ReactDOM.unstable_renderSubtreeIntoContainer(this, children,
-      this.container);
+        this.container);
     }
   }
-  
-  componentWillMount () { 
+
+  componentWillMount() {
   }
-  
-  componentDidMount () {
+
+  componentDidMount() {
     let { 'v-transfer-dom': value } = this.props;
     if (value !== false) {
       let hasMovedOut = false;
@@ -32,8 +32,8 @@ export default class TransferDom extends Component<any, any>{
       container.className = container.className ? container.className + ' v-transfer-dom' : 'v-transfer-dom'
       this.container = container;
       document.body.appendChild(this.container);
-      this.appendComponentView(); 
-    }    
+      this.appendComponentView();
+    }
   }
 
   // 重新渲染dom
@@ -43,18 +43,18 @@ export default class TransferDom extends Component<any, any>{
   //   }
   // }
 
-  componentWillReceiveProps () { 
+  componentWillReceiveProps() {
   }
-  componentWillUpdate () { 
+  componentWillUpdate() {
   }
-  
-  componentDidUpdate () {
-    this.appendComponentView(); 
+
+  componentDidUpdate() {
+    this.appendComponentView();
   }
-   
-  componentWillUnmount () {
+
+  componentWillUnmount() {
     // 移除
-    document.body.removeChild(this.container); 
+    document.body.removeChild(this.container);
   }
 
   // 16版本新增 getDerivedStateFromProps无论是Mounting还是Updating，也无论是因为什么引起的Updating，全部都会被调用
@@ -64,8 +64,8 @@ export default class TransferDom extends Component<any, any>{
   // 调用于render之后，可以读取但无法使用DOM的时候。它使您的组件可以在可能更改之前从DOM捕获一些信息（例如滚动位置）。
   // 此生命周期返回的任何值都将作为参数传递给componentDidUpdate（）
   // getSnapshotBeforeUpdate () { }
-  render (): React.ReactElement<any> {
+  render() {
     //此处返回null 避免报错
-    return null; 
+    return null;
   }
 }

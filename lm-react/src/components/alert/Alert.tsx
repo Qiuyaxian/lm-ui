@@ -1,8 +1,6 @@
 import React from 'react';
-import { Component, View, Transition, ComponentProps } from '@src/core';
+import { Component, View, Transition, ComponentProps, isEqual } from '@src/core';
 import { Dialog } from '../dialog';
-type State = {
-};
 
 interface AlertProps extends ComponentProps {
   // 显示|隐藏
@@ -25,10 +23,10 @@ interface AlertProps extends ComponentProps {
   onHide?: Function;
   // 弹出层弹出前执行的函数
   onShow?: Function;
+  willUnmount?: Function
 };
 
 export default class Alert extends Component<AlertProps, any> {
-  state: State
 
   wrap: any
 
@@ -38,44 +36,63 @@ export default class Alert extends Component<AlertProps, any> {
     content: '消息发送成功',
     buttonText: '确定',
     hideOnBlur: false,
-    maskTransition: 'vup-mask',
-    dialogTransition: 'vup-dialog'
+    maskTransition: 'lm-mask',
+    dialogTransition: 'lm-dialog'
   }
 
   constructor(props: AlertProps) {
     super(props);
     this.wrap = React.createRef();
+    let { visible } = props;
+    this.state = {
+      isVisible: visible || false
+    }
   }
-
-  private open(visible: boolean): void {
-    this.props.onShow(visible)
+  componentWillReceiveProps(newProps: AlertProps) {
+    let { visible } = newProps;
+    let { isVisible } = this.state;
+    if (!isEqual(visible, isVisible)) {
+      this.setState({
+        isVisible: visible
+      })
+    }
   }
-  private close(visible: boolean): void {
-    this.props.onHide(visible);
+  private open(): void {
+    let { onShow } = this.props;
+    onShow && onShow();
+  }
+  private close(): void {
+    let { onHide } = this.props;
+    this.setState({
+      isVisible: false
+    })
+    onHide && onHide();
   };
 
   render(): React.ReactElement<any> {
     // const { visible, title, size, top, modal, customClass, showClose, children } = this.props;
     let { visible, title, content, hideOnBlur, buttonText, maskTransition, dialogTransition } = this.props;
+    let { isVisible } = this.state;
     return (
-      <div className="vup-alert">
+      <div className="lm-alert">
         <Dialog
-          visible={visible}
+          willUnmount={() => this.props.willUnmount()}
+          visible={isVisible}
           hide-on-blur={hideOnBlur}
           maskTransition={maskTransition}
           dialogTransition={dialogTransition}
-          onHide={() => this.close(visible)}
-          onShow={() => this.open(visible)}>
-          <div className="vup-dialog__hd">
-            <strong className="vup-dialog__title">{title}</strong>
+          onHide={() => this.close()}
+          onShow={() => this.open()}>
+          <div className="lm-dialog-header">
+            <strong className="lm-dialog-title">{title}</strong>
           </div>
-          <div className="vup-dialog__bd">
+          <div className="lm-dialog-body">
             <div>{content}</div>
           </div>
-          <div className="vup-dialog__ft">
+          <div className="lm-dialog-footer">
             <a href="javascript:;"
-              className="vup-dialog__btn vup-dialog__btn_primary"
-              onClick={() => this.close(visible)}>{buttonText}</a>
+              className="lm-dialog-btn lm-dialog-btn-primary"
+              onClick={() => this.close()}>{buttonText}</a>
           </div>
         </Dialog>
       </div>
