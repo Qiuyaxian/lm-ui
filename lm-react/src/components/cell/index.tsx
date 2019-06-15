@@ -1,2 +1,2 @@
-import Cell from './Cell';
-export { Cell }
+export * from './PropsType'
+export * from './Cell';

@@ -38,6 +38,10 @@ function asyncComponent(importComponent) {
 
 let HomePage = asyncComponent(() => import('@examples/views/Home.tsx'))
 let DemoPage = asyncComponent(() => import('@examples/views/Demo.tsx'))
+let PickerPage = asyncComponent(() => import('@examples/views/Picker.tsx'))
+let ActionsheetPage = asyncComponent(() => import('@examples/views/Actionsheet.tsx'))
+let PopupPage = asyncComponent(() => import('@examples/views/Popup.tsx'))
+
 
 export default class LmRouter extends React.Component {
   render() {
@@ -47,6 +51,10 @@ export default class LmRouter extends React.Component {
           <Route exact path="/" component={() => <HomePage></HomePage>} />
           <Route path="/home" component={HomePage} />
           <Route path="/demo" component={DemoPage} />
+          <Route path="/picker" component={PickerPage} />
+          <Route path="/actionsheet" component={ActionsheetPage} />
+          <Route path="/popup" component={PopupPage} />
+
         </Switch>
       </Router>
     )

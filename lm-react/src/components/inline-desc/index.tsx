@@ -1,2 +1,2 @@
-import InlineDesc from './InlineDesc';
-export { InlineDesc }
+export * from './PropsType'
+export * from './InlineDesc';

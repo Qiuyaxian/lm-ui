@@ -1,2 +1,1 @@
-import Scroll from './Scroll';
-export { Scroll }
+export * from './Scroll';

@@ -1,10 +1,12 @@
 import React from 'react';
-import { Component, ComponentProps } from '@src/core';
+import { Component } from '@src/core';
+import { InlineDescComponentProps } from './PropsType'
 
-interface InlineDescProps extends ComponentProps {
+interface InlineDescProps extends InlineDescComponentProps {
+
 };
 
-export default class InlineDesc extends Component<InlineDescProps, any> {
+export class InlineDesc extends Component<InlineDescProps, any> {
 
   constructor(props: InlineDescProps) {
     super(props);

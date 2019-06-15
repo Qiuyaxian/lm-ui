@@ -1,6 +1,6 @@
-import Flexbox from './Flexbox'
-import FlexboxItem from './FlexboxItem'
+import { Flexbox } from './Flexbox'
+import { FlexboxItem } from './FlexboxItem'
 
 Flexbox.Item = FlexboxItem;
-
-export { Flexbox }
+export * from './PropsType'
+export { Flexbox, FlexboxItem }

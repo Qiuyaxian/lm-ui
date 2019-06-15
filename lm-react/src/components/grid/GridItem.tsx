@@ -1,27 +1,16 @@
-import React, { Children } from 'react';
-import { Component, View, Transition, ComponentProps, Router } from '@src/core';
+import React from 'react';
+import { Component, Router } from '@src/core';
 import { createHashHistory as createHistory } from "history";
+import { GridItemComponentProps } from './PropsType'
+
 // 创建历史对象
 const history = createHistory();
-interface ParentProps {
-  index?: number
-  column?: number
-  showLrBorders?: boolean
-  showVerticalDividers?: boolean
+
+interface GridItemProps extends GridItemComponentProps {
+
 }
-interface GridItemProps extends ComponentProps {
-  icon?: string
-  label?: string
-  link?: string
-  parent?: ParentProps
-};
 
-export default class GridItem extends Component<GridItemProps, any> {
-  wrap: any
-
-  static defaultProps: GridItemProps = {
-
-  }
+export class GridItem extends Component<GridItemProps, any> {
 
   constructor(props: GridItemProps) {
     super(props);

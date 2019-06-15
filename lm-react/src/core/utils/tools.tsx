@@ -58,7 +58,7 @@ export const hasOwn = (obj, key) => _hasOwnProperty.call(obj, key);
  * @param  {[type]}  obj2 [description]
  * @return {Boolean}      [description]
  */
-export function isEqual(obj1, obj2, type = false) {
+export function isEqual(obj1, obj2, type = false): boolean {
   if (type) {
     if (!isNaN(+obj1) && isNumber(+obj1)) obj1 = +obj1;
     if (!isNaN(+obj2) && isNumber(+obj2)) obj2 = +obj2;
@@ -265,9 +265,8 @@ function prop(obj, fun) {
  * [deep 深浅拷贝]
  * @return {[type]} [description]
  */
-export function copy(obj, isDeep = false) {
-  if (isBoolean(isDeep) && isDeep) return JSON.parse(JSON.stringify(obj));
-  else return Object.assign({}, obj);
+export function copy(obj) {
+  return JSON.parse(JSON.stringify(obj));
 }
 
 /**

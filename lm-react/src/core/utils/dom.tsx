@@ -38,6 +38,65 @@ export function resetScrollIntoView(elem: HTMLElement, state: boolean = true, ti
     }, time);
   }
 }
+/**
+ * [function 向上查找节点]
+ * @param  {HTMLElement} nativeElement [description]
+ * @return {HTMLElement}               [description]
+ */
+export function getParentNode(nativeElement: HTMLElement, className: String): (boolean | HTMLElement) {
+  let parent = nativeElement.parentElement
+  let parentNode: any = false
+  if (className) {
+    let findLen = 5
+    // while (findLen) {
+    //   if (parent.className.indexOf(className)) {
+    //     parentNode = parent
+    //     findLen = 0
+    //   } else {
+    //     parent = parent.parentElement
+    //     findLen --
+    //   }
+    // }
+  } else {
+    parentNode = parent ? parent : false;
+  }
+  return parentNode
+}
+/**
+ * [isEqualVNodeParent 对比是否是虚拟节点]
+ * @param  {HTMLElement} nativeElement [description]
+ * @param  {string}      parentTag     [description]
+ * @return {boolean}                   [description]
+ */
+export function isEqualVNodeParent(nativeElement: HTMLElement, parentTag: String): boolean {
+  let isVNodeParent = false
+  let parent = nativeElement.parentElement
+  let findLen = 3, lowerName = ''
+  while (findLen) {
+    lowerName = parent.localName.toLowerCase()
+    if (lowerName.indexOf('el') > -1) {
+      isVNodeParent = lowerName === parentTag
+      findLen = 0
+    } else {
+      parent = parent.parentElement
+      findLen--
+    }
+  }
+  return isVNodeParent
+}
+
+/**
+ * [replaceVNodeHTMLElement 移除angular 的虚拟标签]
+ * @param {HTMLElement} nativeElement [description]
+ */
+export function replaceVNodeHTMLElement(nativeElement: HTMLElement): void {
+  const parentElement = nativeElement.parentElement
+  if (!parentElement || !parentElement.insertBefore) return
+  while (nativeElement.firstChild) {
+    parentElement.insertBefore(nativeElement.firstChild, nativeElement)
+  }
+  parentElement.removeChild(nativeElement)
+}
 
 /* ------- dom start -------- */
 /**
@@ -140,10 +199,10 @@ export function getData(el: HTMLElement | Document, name: String, val: any): any
  * @return {[type]}    [description]
  */
 interface rectProps {
-  top: number | String
-  left: number | String
-  width: number | String
-  height: number | String
+  top: number
+  left: number
+  width: number
+  height: number
 }
 export function getRect(el: HTMLElement | Document): rectProps {
   if (window && el instanceof window['SVGElement']) {
@@ -155,11 +214,16 @@ export function getRect(el: HTMLElement | Document): rectProps {
       height: rect['height']
     };
   } else {
+    let elem: any = el;
+    let top = elem['offsetTop'] && typeof (elem['offsetTop']) === 'string' ? elem['offsetTop'].replace(/px/i, '') : elem['offsetTop'];
+    let left = elem['offsetLeft'] && typeof (elem['offsetLeft']) === 'string' ? elem['offsetLeft'].replace(/px/i, '') : elem['offsetLeft'];
+    let width = elem['offsetWidth'] && typeof (elem['offsetWidth']) === 'string' ? elem['offsetWidth'].replace(/px/i, '') : elem['offsetWidth'];
+    let height = elem['offsetHeight'] && typeof (elem['offsetHeight']) === 'string' ? elem['offsetHeight'].replace(/px/i, '') : elem['offsetHeight'];
     return {
-      top: el['offsetTop'],
-      left: el['offsetLeft'],
-      width: el['offsetWidth'],
-      height: el['offsetHeight']
+      top: top,
+      left: left,
+      width: width,
+      height: height
     };
   }
 }

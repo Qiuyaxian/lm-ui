@@ -1,14 +1,14 @@
 import React, { Children } from 'react';
 import { Component, View, Transition, ComponentProps } from '@src/core';
-import GridItem from './GridItem'
-interface GridProps extends ComponentProps {
+
+import { GridParentProps, GridComponentProps } from './PropsType'
+
+interface GridProps extends GridComponentProps {
   cols?: number
-  showLrBorders?: boolean
-  showVerticalDividers?: boolean
   showBorders?: boolean
 };
 
-export default class Grid extends Component<GridProps, any> {
+export class Grid extends Component<GridProps, any> {
   static Item: any
   public wrap: any
   public childrenSize: number = 3;
@@ -27,18 +27,19 @@ export default class Grid extends Component<GridProps, any> {
   render() {
     let { cols, children, showLrBorders, showBorders, showVerticalDividers } = this.props;
     if (children && children.length) this.childrenSize = children.length;
-    let column = cols && this.childrenSize;
-    let grids = []
+    let column: number = cols && this.childrenSize;
+    let grids: any[] = []
     if (children && children.length !== 0) {
       for (let i = 0; i < children.length; i++) {
+        let parent: GridParentProps = {
+          index: i,
+          column: column,
+          showLrBorders: showLrBorders,
+          showVerticalDividers: showVerticalDividers
+        }
         grids.push(React.cloneElement(children[i], {
           key: i,
-          parent: {
-            index: i,
-            column: column,
-            showLrBorders: showLrBorders,
-            showVerticalDividers: showVerticalDividers
-          }
+          parent: parent
         }))
       }
     }

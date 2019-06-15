@@ -5,7 +5,6 @@
     position: fixed;
     left: 0;
     bottom: 0;
-    transform: translate(0, 100%);
     backface-visibility: hidden;
     z-index: 5000;
     width: 100%;
@@ -38,8 +37,6 @@
       }
     }
   }
-
-
   /**
    * android actionSheet
    */
@@ -82,10 +79,8 @@
       }
     }
   }
-
-  //actionSheet aniamtion
   &-actionsheet_toggle{
-      transform: translate(0, 0);
+    transform: translate(0, 0); 
   }
 }
 .#{$class-prefix} {
@@ -112,5 +107,14 @@
   &-android-actionsheet-leave-active,
   &-android-actionsheet-enter-active {
     transition: opacity 300ms!important;
+  }
+
+  &-ios-actionsheet-enter,
+  &-ios-actionsheet-leave-active {
+    transform: translate3d(0, 100%, 0);
+  }
+  &-ios-actionsheet-leave-active,
+  &-ios-actionsheet-enter-active {
+    transition: transform 300ms!important;
   }
 }

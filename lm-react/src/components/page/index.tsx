@@ -1,2 +1,2 @@
-import Page from './Page';
-export { Page }
+export * from './PropsType';
+export * from './Page';

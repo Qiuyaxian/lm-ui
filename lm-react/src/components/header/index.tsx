@@ -1,2 +1,2 @@
-import Header from './Header'
-export { Header }
+export * from './PropsType'
+export * from './Header'

@@ -1,12 +1,10 @@
 import React from 'react';
-import { Component, ComponentProps } from '@src/core';
-
-interface GroupTitleProps extends ComponentProps {
-  headerLabel: string
-  headerValue: string
+import { Component } from '@src/core';
+import { GroupTitleComponentProps } from './PropsType'
+interface GroupTitleProps extends GroupTitleComponentProps {
 };
 
-export default class GroupTitle extends Component<GroupTitleProps, any> {
+export class GroupTitle extends Component<GroupTitleProps, any> {
 
   constructor(props: GroupTitleProps) {
     super(props);

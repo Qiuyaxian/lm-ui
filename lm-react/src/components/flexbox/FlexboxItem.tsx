@@ -1,32 +1,29 @@
 import React, { Children } from 'react';
-import { Component, View, Transition, ComponentProps, Router, pxTorem } from '@src/core';
+import { Component, View, Transition, Router, pxTorem } from '@src/core';
+import { FlexboxItemComponentProps } from './PropsType'
 declare let document: any;
 const prefixList = ['-moz-box-', '-webkit-box-', '-ms-box-']
 
-interface ParentProps {
-  gutter?: number
-  orient?: string
-}
-interface FlexboxItemProps extends ComponentProps {
-  span?: number | string
-  order?: number | string
-  parent?: ParentProps
+interface FlexboxItemProps extends FlexboxItemComponentProps {
+
 };
 
-export default class FlexboxItem extends Component<FlexboxItemProps, any> {
-  wrap: any
+export class FlexboxItem extends Component<FlexboxItemProps, any> {
 
   public bodyWidth: number = 0
 
   static defaultProps: FlexboxItemProps = {
 
   }
+
   componentWillMount() {
     this.bodyWidth = document.documentElement.offsetWidth
   }
+
   constructor(props: FlexboxItemProps) {
     super(props);
   }
+
   buildWidth(width: number | string): number {
     if (typeof width === 'number') {
       if (width < 1) {
@@ -38,6 +35,7 @@ export default class FlexboxItem extends Component<FlexboxItemProps, any> {
       return Number(width.replace('px', '')) / this.bodyWidth
     }
   }
+
   get styles() {
     let styles: any = {}
     let { parent, span, order } = this.props;
@@ -56,6 +54,7 @@ export default class FlexboxItem extends Component<FlexboxItemProps, any> {
     }
     return styles
   }
+
   render() {
     // let {  } = this.props;
     let styles = this.styles;

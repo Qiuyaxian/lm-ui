@@ -3,31 +3,11 @@ import { Component, View, Transition, ComponentProps } from '@src/core';
 import { createHashHistory as createHistory } from "history";
 // 创建历史对象
 const history = createHistory();
+import { LeftOptionsProps, RightOptionsProps, HeaderComponentProps } from './PropsType'
+interface HeaderProps extends HeaderComponentProps {
 
-// header 组件
-interface LeftOptionsProps {
-  showBack?: boolean
-  preventGoBack?: boolean
-  backText?: string
 }
-interface RightOptionsProps {
-  showMore?: boolean
-}
-interface HeaderProps extends ComponentProps {
-  leftOptions?: LeftOptionsProps
-  title?: string
-  transition?: string
-  rightOptions?: RightOptionsProps
-  position?: string
-  left?: any
-  right?: any
-  overwriteLeft?: any
-  overwriteTitle?: any
-  onClickBack?: Function
-  onClickMore?: Function
-};
-
-export default class Header extends Component<HeaderProps, any> {
+export class Header extends Component<HeaderProps, any> {
 
   state = {
   }

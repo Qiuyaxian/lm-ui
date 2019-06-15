@@ -1,23 +1,10 @@
 import React from 'react';
 import { Component, View, Transition, ComponentProps, pxTorem, querySelector, addEventHandle, removeEventHandle } from '@src/core';
-import { Header } from '../header/index';
-
-interface PageProps extends ComponentProps {
-  header?: any
-  footer?: any
-  bodyPaddingTop?: number
-  bodyPaddingBottom?: number
+import { PageComponentProps } from './PropsType'
+interface PageProps extends PageComponentProps {
 };
 
-export default class Page extends Component<PageProps, any> {
-  state = {
-  }
-
-  wrap: any
-
-  static defaultProps: PageProps = {
-
-  }
+export class Page extends Component<PageProps, any> {
 
   constructor(props: PageProps) {
     super(props);

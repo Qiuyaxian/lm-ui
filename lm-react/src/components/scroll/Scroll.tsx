@@ -1,65 +1,22 @@
-import React, { Children } from 'react';
-import { Component, ComponentProps, pxTorem, isEqual, getRect, getStyle, querySelector, addEventHandle, removeEventHandle } from '@src/core';
-
+import React from 'react';
+import { Component, pxTorem, isEqual, getRect, getStyle, querySelector, addEventHandle, removeEventHandle } from '@src/core';
 import BScroll from "better-scroll";
+import {
+  ScrollComponentProps,
+  pullDownRefreshThresholdProps,
+  PullUpLoadConfigProps,
+  BounceProps,
+  ScrollState,
+  posProps
+} from './PropsType'
 
 function noop() { }
-const COMPONENT_NAME = "scroll";
-const DIRECTION_H = "horizontal"; // 水平的
-const DIRECTION_V = "vertical"; // 垂直的
-const pullDownStyle = "";
-interface pullDownRefreshThresholdProps {
-  threshold: number
-  stop: number
-}
-interface PullUpLoadConfigProps {
-  threshold: number
-}
-interface BounceProps {
-  top: boolean
-  bottom: boolean
-  left: boolean
-  right: boolean
-}
-interface ScrollProps extends ComponentProps {
-  wrapper?: string
-  disabled?: boolean
-  data?: any
-  probeType?: number
-  direction?: string
-  pullDownRefreshAnimation?: string
-  pullDownRefreshThreshold?: number
-  pullDownRefreshStop?: number
-  pullDownRefreshStopTime?: number
-  pullUpLoadType?: string
-  pullUpLoadThreshold?: number
-  startY?: number
-  refreshDelay?: number
-  bounce?: Object
-  pullDownInitTopConfig?: number
-  isClick?: boolean
-  isDblclick?: boolean
-  isListenScrollStart?: boolean
-  isListenScroll?: boolean
-  isListenBeforeScroll?: boolean
-  isListenScrollEnd?: boolean
-  isZoom?: boolean
-  isStopPropagation?: boolean
-  isUseTransition?: boolean
-  isFreeScroll?: boolean
-  isMouseWheel?: boolean
-  isPullUpLoadRefresh?: boolean
-  isPullUpLoadScroll?: boolean
-  isScrollbar?: boolean
-  isPullDownRefresh?: boolean
 
-  inlineDescSlot?: any
-  isPullUpLoadRefreshSlot?: any,
-  beforeTriggerSlot?: any
-  afterTriggerSlot?: any
+interface ScrollProps extends ScrollComponentProps {
+
 };
 
-export default class Scroll extends Component<ScrollProps, any> {
+export class Scroll extends Component<ScrollProps, ScrollState> {
   wrap: any
   scroll: any
   static defaultProps: ScrollProps = {
@@ -99,7 +56,7 @@ export default class Scroll extends Component<ScrollProps, any> {
     isScrollbar: false,
     isPullDownRefresh: false
   }
-  state = {
+  state: ScrollState = {
     pullDownStyle: "", // 下拉样式设置
     beforePullDown: true, // 记录是否已经触发下拉
     isPullingDown: false, // 是否已经下拉
@@ -127,12 +84,12 @@ export default class Scroll extends Component<ScrollProps, any> {
       pullUpLoadThreshold
     } = this.props;
 
-    let pullDownInitTop = -this.adapter(pullDownInitTopConfig ||
+    let pullDownInitTop: number = -this.adapter(pullDownInitTopConfig ||
       pullDownRefreshThreshold);
-    let upLoadThreshold = this.adapter(pullUpLoadThreshold);
-    let downRefreshThreshold = this.adapter(pullDownRefreshThreshold)
-    let downRefreshStop = this.adapter(pullDownRefreshStop)
-    let downInitTopConfig = this.adapter(pullDownInitTopConfig)
+    let upLoadThreshold: number = this.adapter(pullUpLoadThreshold);
+    let downRefreshThreshold: number = this.adapter(pullDownRefreshThreshold)
+    let downRefreshStop: number = this.adapter(pullDownRefreshStop)
+    let downInitTopConfig: number = this.adapter(pullDownInitTopConfig)
 
     this.setState({
       pullDownInitTop: pullDownInitTop,
@@ -141,14 +98,17 @@ export default class Scroll extends Component<ScrollProps, any> {
       downRefreshStop: downRefreshStop,
       downInitTopConfig: downInitTopConfig
     })
-    setTimeout(() => {
+    let timer = setTimeout(() => {
       this.initScroll();
+      clearTimeout(timer);
     })
   }
-  adapter(value) {
+
+  adapter(value: number): number {
     let fontSize = (getStyle(document.documentElement, 'font-size').replace(/px/i, '') || 75);
     return value ? value * (fontSize / 75) : 0;
   }
+
   componentWillUnmount() {
 
   }
@@ -172,7 +132,7 @@ export default class Scroll extends Component<ScrollProps, any> {
    * [initScroll 初始化]
    * @return {[type]} [description]
    */
-  initScroll() {
+  private initScroll(): void {
     let {
       direction,
       bounce,
@@ -207,7 +167,7 @@ export default class Scroll extends Component<ScrollProps, any> {
       // 设置高度
       let height: number = Number(getRect(scrollWrapper).height),
         width: number = Number(getRect(scrollWrapper).width);
-      if (direction === DIRECTION_H) {
+      if (direction === 'horizontal') {
         // 计算水平滚动的宽度
         let childrens: any[] =
           scrollBody.children && scrollBody.children.length >= 2
@@ -282,7 +242,8 @@ export default class Scroll extends Component<ScrollProps, any> {
       });
     }
     // 滚动中-1表示从上往下滑,1表示从下往上滑,0表示没有滑动
-    this.scroll.on("scroll", pos => {
+
+    this.scroll.on("scroll", (pos: posProps) => {
       if (this.scroll.directionY) {
         pos.directionY = this.scroll.directionY;
       }
@@ -292,7 +253,7 @@ export default class Scroll extends Component<ScrollProps, any> {
       if (
         this.scroll.directionY <= 0 && pos.y >= downRefreshThreshold / 2
       ) {
-        // this.pullingDownScrollHandle(pos);
+        // this.pullingDownScrollHandle(pos: posProps);
       }
       if (this.scroll.directionY >= 0) {
         // this.$emit("scroll", pos);
@@ -321,7 +282,7 @@ export default class Scroll extends Component<ScrollProps, any> {
    * @param  {[type]} pos [description]
    * @return {[type]}     [description]
    */
-  pullingDownScrollHandle(pos) {
+  private pullingDownScrollHandle(pos: posProps): void {
     // 首先判断是否开启了下拉事件
     let {
       isPullDownRefresh,
@@ -345,14 +306,13 @@ export default class Scroll extends Component<ScrollProps, any> {
       if (pos.y < downRefreshStop / 2) return;
       // 这里可以写动画效果
       this.setState({
-        pullDownStyleHeight: parseInt(pos.y)
+        pullDownStyleHeight: pos.y
       })
       if (pos.y >= 0) {
-        // this.pullingDownStart && this.pullingDownStart(pos);
+        // this.pullingDownStart && this.pullingDownStart(pos: posProps);
       }
       this.setState({
-        pullDownStyle: `top:${Math.min(pos.y + pullDownInitTop, 0)}px;height: ${Math.max(parseInt(pos.y), downRefreshStop
-        )}px;`
+        pullDownStyle: `top:${Math.min(pos.y + pullDownInitTop, 0)}px;height: ${Math.max(pos.y, downRefreshStop)}px;`
       })
     } else {
       // 中间动画持续
@@ -388,7 +348,7 @@ export default class Scroll extends Component<ScrollProps, any> {
    * [pullingDownHanlde 内部封装下拉事件,供外部使用]
    * @return {[type]} [description]
    */
-  pullingDownHanlde() {
+  private pullingDownHanlde(): void {
     let { beforePullDown, isPullingDown } = this.state
     this.scroll.on("pullingDown", () => {
       // 清除绑定
@@ -408,9 +368,9 @@ export default class Scroll extends Component<ScrollProps, any> {
    * [pullingUpHandle 内部封装上拉事件,供外部使用]
    * @return {[type]} [description]
    */
-  pullingUpHandle() {
+  private pullingUpHandle() {
     let { isPullUpLoad } = this.state;
-    this.scroll.on("pullingUp", (pos) => {
+    this.scroll.on("pullingUp", (pos: posProps) => {
       if (!isPullUpLoad) {
         this.setState({
           'isPullUpLoad': true
@@ -421,7 +381,7 @@ export default class Scroll extends Component<ScrollProps, any> {
       }
     });
     // 监听手指是否离开屏幕
-    // this.scroll.on('touchEnd',(pos)=>{
+    // this.scroll.on('touchEnd',(pos: posProps)=>{
     //   this.isTouchEnd = true;
     //   if (this.isPullUpLoad) {
     // this.$emit('pullingUp');
@@ -433,7 +393,7 @@ export default class Scroll extends Component<ScrollProps, any> {
    * @param  {[type]} dirty [description]
    * @return {[type]}       [description]
    */
-  forceUpdate(dirty) {
+  public forceUpdate(dirty?: any): void {
     let { isPullDownRefresh, isPullUpLoadRefresh } = this.props;
     let { isPullUpLoad, isPullingDown } = this.state;
     if (isPullDownRefresh && isPullingDown) {
@@ -460,7 +420,7 @@ export default class Scroll extends Component<ScrollProps, any> {
    * [_reboundPullDown 下拉刷新弹性事件]
    * @return {[type]} [description]
    */
-  _reboundPullDown() {
+  private _reboundPullDown(): Promise<any> {
     let { pullDownRefreshStopTime } = this.props;
     // const { stopTime = 600 } = pullDownRefresh;
     return new Promise(resolve => {
@@ -477,7 +437,7 @@ export default class Scroll extends Component<ScrollProps, any> {
    * [_afterPullDown 下拉刷新更改头部加载样子]
    * @return {[type]} [description]
    */
-  _afterPullDown() {
+  private _afterPullDown(): void {
     setTimeout(() => {
       let { pullDownInitTop, downRefreshStop } = this.state;
       this.setState({
@@ -494,7 +454,7 @@ export default class Scroll extends Component<ScrollProps, any> {
    * [finishPullUp 通知刷新完成]
    * @return {[type]} [description]
    */
-  finishPullUp() {
+  public finishPullUp(): void {
     if (
       this.scroll &&
       this.scroll.finishPullUp &&
@@ -506,7 +466,7 @@ export default class Scroll extends Component<ScrollProps, any> {
    * [destroy 销毁scroll]
    * @return {[type]} [description]
    */
-  destroy() {
+  public destroy(): void {
     if (
       this.scroll &&
       this.scroll.destroy &&
@@ -518,7 +478,7 @@ export default class Scroll extends Component<ScrollProps, any> {
    * [disable 禁止滚动]
    * @return {[type]} [description]
    */
-  disable() {
+  public disable(): void {
     if (
       this.scroll &&
       this.scroll.disable &&
@@ -530,7 +490,7 @@ export default class Scroll extends Component<ScrollProps, any> {
    * [enable 允许滚动]
    * @return {[type]} [description]
    */
-  enable() {
+  public enable(): void {
     if (
       this.scroll &&
       this.scroll.enable &&
@@ -542,7 +502,7 @@ export default class Scroll extends Component<ScrollProps, any> {
    * [refresh 刷新dom节点]
    * @return {[type]} [description]
    */
-  refresh() {
+  public refresh(): void {
     if (
       this.scroll &&
       this.scroll.refresh &&
@@ -555,7 +515,7 @@ export default class Scroll extends Component<ScrollProps, any> {
    * [scrollTo 滚动到指定位置]
    * @return {[type]} [description]
    */
-  scrollTo() {
+  public scrollTo(): void {
     if (
       this.scroll &&
       this.scroll.scrollTo &&
@@ -567,7 +527,7 @@ export default class Scroll extends Component<ScrollProps, any> {
    * [scrollToElement 滚动到指定列表中的某一个对象]
    * @return {[type]} [description]
    */
-  scrollToElement() {
+  public scrollToElement(): void {
     if (
       this.scroll &&
       this.scroll.scrollToElement &&
@@ -580,14 +540,14 @@ export default class Scroll extends Component<ScrollProps, any> {
    * [openPullUp 动态开启滚动]
    * @return {[type]} [description]
    */
-  openPullUp() {
+  public openPullUp(): void {
     this.scroll.openPullUp();
   }
   /**
    * [closePullUp 动态关闭滚动]
    * @return {[type]} [description]
    */
-  closePullUp() {
+  public closePullUp(): void {
     this.scroll.closePullUp();
   }
 

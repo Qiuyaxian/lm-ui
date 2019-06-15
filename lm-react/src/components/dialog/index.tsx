@@ -1,2 +1,2 @@
-import Dialog from './Dialog'
-export { Dialog }
+export * from './PropsType'
+export * from './Dialog'

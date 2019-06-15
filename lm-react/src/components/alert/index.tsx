@@ -1,2 +1,2 @@
-import Alert from './Alert'
-export { Alert }
+export * from './PropsType'
+export * from './Alert'

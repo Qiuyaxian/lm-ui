@@ -2,35 +2,17 @@ import React from 'react';
 import { Component, ComponentProps, pxTorem, cleanStyle, isEqual } from '@src/core';
 import { Header } from '../header/index';
 import { InlineDesc } from '../inline-desc'
+import { SwitchComponentProps, SwitchState } from './PropsType'
 
-interface ParentProps {
-  borderIntent?: boolean
-  cellWidth?: string
-  showBorders?: boolean
-  labelWidth?: string
-  labelAlign?: string
+interface SwitchProps extends SwitchComponentProps {
+
 }
 
-interface SwitchProps extends ComponentProps {
-  switchLabel?: any
-  disabled?: boolean
-  value: boolean | string | number
-  inlineDesc?: any
-  preventDefault?: boolean
-  valueMap?: any[]
-  parent?: ParentProps
-  onChange?: Function
-  input?: Function
-};
-
-interface State {
-  currentValue: boolean
-}
-
-export default class Switch extends Component<SwitchProps, any> {
+export class Switch extends Component<SwitchProps, SwitchState> {
 
   wrap: any
-  state: State = {
+
+  state: SwitchState = {
     currentValue: false
   }
 
@@ -45,6 +27,7 @@ export default class Switch extends Component<SwitchProps, any> {
       currentValue: this.toBoolean(props.value ? props.value : false)
     }
   }
+
   toBoolean(val) {
     let { valueMap } = this.props
     if (!valueMap) {
@@ -62,8 +45,8 @@ export default class Switch extends Component<SwitchProps, any> {
       return valueMap[val ? 1 : 0]
     }
   }
-  componentWillReceiveProps(nextProps: SwitchProps) {
 
+  componentWillReceiveProps(nextProps: SwitchProps) {
     let { value } = nextProps;
     let { currentValue } = this.state
     if (!isEqual(value, currentValue)) {
@@ -72,6 +55,7 @@ export default class Switch extends Component<SwitchProps, any> {
       });
     }
   }
+
   get labelStyle() {
     let { switchLabel, parent } = this.props;
     let { labelWidth, labelAlign } = parent;
@@ -83,6 +67,7 @@ export default class Switch extends Component<SwitchProps, any> {
       textAlign: labelAlign
     })
   }
+
   get labelClass() {
     let { parent } = this.props;
     let { labelAlign } = parent

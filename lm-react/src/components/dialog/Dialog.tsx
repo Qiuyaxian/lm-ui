@@ -1,30 +1,19 @@
 import React from 'react';
 import { Component, View, Transition, ComponentProps } from '@src/core';
-
+import { DialogComponentProps } from './PropsType'
+import { Mask } from '../mask'
 type State = {
   hidden: boolean
 };
 
-interface DialogProps {
+interface DialogProps extends DialogComponentProps {
   visible: boolean
-  maskTransition?: string
-  maskZIndex?: number
-  dialogTransition?: string
-  dialogClass?: string
-  hideOnBlur?: boolean
-  dialogStyle?: React.CSSProperties
-  scroll?: boolean
-  onHide?: Function
-  onShow?: Function
-  willUnmount?: Function
 };
 
-export default class Dialog extends Component<DialogProps, any> {
+export class Dialog extends Component<DialogProps, any> {
   state: State = {
     hidden: false
   }
-
-  public wrap: any
 
   static defaultProps: DialogProps = {
     visible: false,
@@ -36,62 +25,36 @@ export default class Dialog extends Component<DialogProps, any> {
 
   constructor(props) {
     super(props);
-    // 创建包裹层
-    this.wrap = React.createRef();
   }
 
   componentDidMount() {
-    let { visible } = this.props;
-    if (visible) this.open(visible);
+    let { visible, onShow } = this.props;
+    if (visible) onShow && onShow();
     this.setState({
       hidden: visible
     });
   }
 
   componentWillReceiveProps(nextProps): void {
-    let { visible } = nextProps;
-    if (visible) this.open(visible);
+    let { visible, onShow } = nextProps;
+    if (visible) onShow && onShow();
     this.setState({
       hidden: nextProps.visible
     })
   }
-  private open(visible: boolean): void {
-    this.props.onShow(visible);
-  }
 
-  private close(visible: boolean): void {
-    this.props.onHide(visible);
-  }
-  onTouchCancelHandle(event) {
-    event.preventDefault()
-  }
-  onTouchEndHandle(event) {
-    event.preventDefault()
-  }
-  onTouchMoveHandle(event) {
-    event.preventDefault()
-  }
-  onTouchStartHandle(event) {
-    event.preventDefault()
-  }
   render() {
     let { visible, maskZIndex, dialogStyle, maskTransition, dialogTransition, children } = this.props;
     let { hidden } = this.state;
     return (
       <div className="lm-dialog-wrapper lm-dialog-absolute">
-        <Transition name={maskTransition} onAfterLeave={() => this.props.willUnmount()}>
-          <View show={hidden}>
-            <div
-              onTouchEnd={(e) => this.onTouchEndHandle(e)}
-              onTouchMove={(e) => this.onTouchMoveHandle(e)}
-              onTouchStart={(e) => this.onTouchStartHandle(e)}
-              onMouseDown={(e) => this.onTouchStartHandle(e)}
-              onMouseMove={(e) => this.onTouchMoveHandle(e)}
-              onMouseUp={(e) => this.onTouchEndHandle(e)}
-
-              style={maskZIndex ? { zIndex: maskZIndex } : {}} className="lm-mask" onClick={() => this.close(hidden)}></div>
-          </View>
-        </Transition>
+        <Mask
+          maskZIndex={maskZIndex}
+          onMaskClick={() => this.props.onMaskClick && this.props.onMaskClick()}
+          maskTransition={maskTransition}
+          onHide={() => this.props.onHide && this.props.onHide()}
+          show={hidden}>
+        </Mask>
         <Transition name={dialogTransition}>
           <View show={hidden}>
             <div style={dialogStyle} className="lm-dialog">{children}</div>

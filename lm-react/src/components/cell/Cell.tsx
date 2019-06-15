@@ -2,34 +2,15 @@ import React from 'react';
 import { Component, ComponentProps, cleanStyle, Router } from '@src/core';
 import { InlineDesc as InlineDescSlot } from '../inline-desc'
 import { createHashHistory as createHistory } from "history";
+import { CellComponentProps } from './PropsType'
 // 创建历史对象
 const history = createHistory();
-interface ParentProps {
-  borderIntent?: boolean
-  cellWidth?: string
-  showBorders?: boolean
-  labelWidth?: string
-  labelAlign?: string
+
+interface CellProps extends CellComponentProps {
+
 }
 
-interface CellProps extends ComponentProps {
-  label?: any
-  content?: any
-  isLink?: boolean
-  inlineDesc?: string | number
-  link?: string | object
-  valueAlign?: string
-  borderIntent?: boolean
-  primary?: string
-  disabled?: boolean
-  alignItems?: string
-  placeholder?: string
-  parent?: ParentProps
-  icon?: any
-  onCellClick?: Function
-};
-
-export default class Cell extends Component<CellProps, any> {
+export class Cell extends Component<CellProps, any> {
 
   constructor(props: CellProps) {
     super(props);
@@ -163,10 +144,10 @@ export default class Cell extends Component<CellProps, any> {
         })
         }>
 
-          {content ? (
-            <React.Fragment>{content || placeholder}</React.Fragment>
+          {children ? (
+            <React.Fragment>{children}</React.Fragment>
           ) : (
-              <React.Fragment>{children}</React.Fragment>
+              <React.Fragment>{content || placeholder}</React.Fragment>
             )
           }
         </div>

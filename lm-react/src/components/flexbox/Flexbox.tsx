@@ -1,16 +1,16 @@
 import React, { Children } from 'react';
-import { Component, View, Transition, ComponentProps } from '@src/core';
+import { Component, View, Transition } from '@src/core';
 
-interface FlexboxProps extends ComponentProps {
-  gutter?: number
+import { FlexboxParentProps, FlexboxComponentProps } from './PropsType'
+
+interface FlexboxProps extends FlexboxComponentProps {
   justify?: string
   align?: string
   wrap?: string,
   direction?: string
-  orient?: string
 };
 
-export default class Flexbox extends Component<FlexboxProps, any> {
+export class Flexbox extends Component<FlexboxProps, any> {
   static Item: any
   static defaultProps: FlexboxProps = {
     gutter: 16,
@@ -40,12 +40,13 @@ export default class Flexbox extends Component<FlexboxProps, any> {
     let flexboxItems = []
     if (children && children.length !== 0) {
       for (let i = 0; i < children.length; i++) {
+        let parent: FlexboxParentProps = {
+          gutter: gutter,
+          orient: orient
+        }
         flexboxItems.push(React.cloneElement(children[i], {
           key: i,
-          parent: {
-            gutter: gutter,
-            orient: orient
-          }
+          parent: parent
         }))
       }
     }
