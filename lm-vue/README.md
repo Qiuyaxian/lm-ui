@@ -14,6 +14,14 @@ npm run dev
 
 ```
 
+## build Start
+
+<p>项目暂不支持打包引用，如果想学习如何打包，可以通过下方链接进行学习</p>
+
+<p>
+  <a href="https://github.com/Qiuyaxian/webpcak_build">webpcak_build</a>
+</p>
+
 ## 项目结构规划
 
 ``` bash
@@ -143,24 +151,50 @@ npm run dev
 
 ```
 
+## Usage
+
+<p>Import all components</p>
+
+``` bash
+import lm from '../src';
+
+Vue.use(lm);
+
+```
+
+<p>Or import specified component.</p>
+
+``` bash
+
+import { Flexbox, FlexboxItem } from '../src';
+
+Vue.component(Flexbox.name, Flexbox);
+
+Vue.component(FlexboxItem.name, FlexboxItem);
+
+```
+
+
+
+
 ## lm-ui is Inspired or Powered By:
 
-<p align="center">
+<p>
   <a href="https://github.com/vuejs/vue">Vue</a>
 </p>
-<p align="center">
+<p>
   <a href="https://github.com/weui/weui">weui</a>
 </p>
-<p align="center">
+<p>
   <a href="https://github.com/ant-design/ant-design">Vue</a>
 </p>
-<p align="center">
+<p>
   <a href="https://github.com/ant-design/ant-design-mobile">ant-design-mobile</a>
 </p>
-<p align="center">
+<p>
   <a href="https://github.com/airyland/vux">vux</a>
 </p>
-<p align="center">
+<p>
   <a href="https://github.com/ElemeFE/mint-ui">mint-ui</a>
 </p>
 
