@@ -27,6 +27,7 @@
     "array-map": "0.0.0",
     "better-scroll": "^1.15.2",
     "big.js": "^5.2.2",
+    "clean-css": "^4.2.1",
     "countup": "^1.8.2",
     "countup.js": "^2.0.4",
     "eslint-plugin-html": "^5.0.3",
