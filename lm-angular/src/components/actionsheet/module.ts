@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { cleanStyle } from '../../utils';
+
 import { LmSlotModule } from '../slot';
 
 // 注册组件

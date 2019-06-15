@@ -1,4 +1,4 @@
-import { passiveSupported } from '../../utils'
+import { passiveSupported } from '../../core'
 const isBrowser = typeof window === 'object'
 
 // not a good way but works well

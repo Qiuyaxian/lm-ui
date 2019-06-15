@@ -1,25 +1,22 @@
 <lm-template>
   <ng-template #header>
-  	<lm-header  class="lm-header-fixed" [left-options]="{ showBack: false }" [right-options]="{ showMore: false }">
-  	  <ng-template #navbarTitle>{{ title }}</ng-template>
-  	  <ng-template #navbarRight>
-  	  	<div (click)="onClickMoreHandle()">right</div>
-  	  </ng-template>	
-  	</lm-header>
+    <lm-header class="lm-header-fixed" [left-options]="{ showBack: false }" [right-options]="{ showMore: false }">
+      <ng-template #navbarTitle>{{ title }}</ng-template>
+      <ng-template #navbarRight>
+        <div (click)="onClickMoreHandle()">right</div>
+      </ng-template>
+    </lm-header>
   </ng-template>
-  
+
   <lm-group>
     <lm-cell (on-cell-click)="showSyncHandle()" [label]="'同步调用'"></lm-cell>
 
     <lm-cell (on-cell-click)="showHandle()" [label]="'js调用'"></lm-cell>
     <lm-cell (on-cell-click)="observableHandle()" [label]="'Observable调用'"></lm-cell>
-  
+
     <div *transfer-dom="true">
-      <lm-actionsheet 
-      [menus]="menus" 
-      (on-click-menu)="onClickMenuHandle($event)" 
-      [(ngModel)]="switchState" 
-      (on-after-show)="onAfterShowHandle()">
+      <lm-actionsheet [menus]="menus" (on-click-menu)="onClickMenuHandle($event)" [(ngModel)]="switchState"
+        (on-after-show)="onAfterShowHandle()">
         <ng-template #menuHeader>
           <div class="">自定义头部</div>
         </ng-template>

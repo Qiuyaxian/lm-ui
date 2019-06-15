@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { cleanStyle } from '../../utils';
 import { LmSlotModule } from '../slot';
 import { LmInlineDescModule } from '../inline-desc';
 import { LmGroupModule } from '../group';

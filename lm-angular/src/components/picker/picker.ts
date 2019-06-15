@@ -93,8 +93,8 @@ export class LmPicker implements ControlValueAccessor, OnInit, AfterViewInit, On
   }
   @Input('fixed-columns') fixedColumns: number = 0
 
-  @Input('item-class') itemClass: String = 'scroller-item'
-  @Input('column-width') columnWidth: Array<number | string>
+  @Input('item-class') itemClass: string = 'scroller-item'
+  @Input('column-width') columnWidth: number[] | string[]
 
   // emit
   @Output('input') input: EventEmitter<any> = new EventEmitter<any>();
@@ -106,9 +106,7 @@ export class LmPicker implements ControlValueAccessor, OnInit, AfterViewInit, On
   private _data: any[] = []
   private _oldData: any[] = []
   private tempList: any[] = [];
-  ngAfterViewInit() {
-
-  }
+  
   constructor(
     private cdr: ChangeDetectorRef,
     private applicationRef: ApplicationRef,
@@ -118,11 +116,15 @@ export class LmPicker implements ControlValueAccessor, OnInit, AfterViewInit, On
   // 
   ngOnInit() {
     this.uuid = Math.random().toString(36).substring(3, 8);
-    setTimeout(() => {
+    let timer = setTimeout(() => {
       this.updateData(this._oldData);
       this.updateModel(this._model);
       this.render();
+      if(timer) clearTimeout(timer);
     })
+  }
+  ngAfterViewInit() {
+
   }
   // 监听数据变化
   ngOnChanges(changes: SimpleChanges): void {
@@ -179,7 +181,6 @@ export class LmPicker implements ControlValueAccessor, OnInit, AfterViewInit, On
     this.cdr.markForCheck();
     this.cdr.detectChanges();
   }
-
 
   // 获取当前值
   private getValue(): any[] {
@@ -270,7 +271,7 @@ export class LmPicker implements ControlValueAccessor, OnInit, AfterViewInit, On
   }
   private createComponent(index, data, model) {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(LmPickerItem);
-    // 产生我们需要的Component并放入componentHost之中
+    // 
     const componentRef = this.temps['_results'][index].createComponent(componentFactory);
     componentRef.instance.index = index
     componentRef.instance.data = data
@@ -290,8 +291,7 @@ export class LmPicker implements ControlValueAccessor, OnInit, AfterViewInit, On
 
   private controlChange: Function = () => { }
   private controlTouch: Function = () => { }
-  // private onTouched: any = Function.prototype;
-
+  
   registerOnChange(fn: Function): void {
     this.controlChange = fn;
   }
@@ -301,7 +301,6 @@ export class LmPicker implements ControlValueAccessor, OnInit, AfterViewInit, On
   }
 
   ngOnDestroy(): void {
-    console.log('picker-item.html')
     this.tempList.length && this.tempList.forEach(item => item.destroy())
   }
 }
