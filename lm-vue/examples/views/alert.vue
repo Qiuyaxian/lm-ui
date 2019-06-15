@@ -44,20 +44,18 @@ import TransferDom from '../../src/directives/transfer-dom'
     next();
   },
   beforeRouteUpdate(to, from, next) {
-    // 在当前路由改变，但是该组件被复用时调用
-    // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
-    // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
-    // 可以访问组件实例 `this`
+    next();
   },
   beforeRouteLeave(to, from, next) {
     // 导航离开该组件的对应路由时调用
     // 可以访问组件实例 `this`
+    next();
   }
 })
 export default class Alert extends Vue {
-  show = false;
-  show1 = false;
-  show2 = false;
+  show: boolean = false;
+  show1: boolean = false;
+  show2: boolean = false;
   onHide() {
     console.log("on hide");
   }
@@ -90,23 +88,3 @@ export default class Alert extends Vue {
   }
 }
 </script>
-<style lang="scss">
-.dialog-demo {
-  .weui-dialog {
-    border-radius: pxTorem(8, 2);
-    padding-bottom: pxTorem(8, 2);
-  }
-  .dialog-title {
-    line-height: pxTorem(30, 2);
-    color: #666;
-  }
-  .img-box {
-    height: pxTorem(350, 2);
-    overflow: hidden;
-  }
-  .lm-close {
-    margin-top: pxTorem(8, 2);
-    margin-bottom: pxTorem(8, 2);
-  }
-}
-</style>

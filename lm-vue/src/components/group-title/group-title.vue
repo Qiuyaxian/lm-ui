@@ -5,7 +5,7 @@
         <label class="lm-form-preview-label" v-html="headerLabel"></label>
       </slot>
       <slot name="header-right">
-        <span class="lm-form-preview-value" v-html="headerValue || '&nbsp;'"></span>
+        <span class="lm-form-preview-value" :style="{'text-align': headerLabel ? 'right' : 'left'}" v-html="headerValue || '&nbsp;'"></span>
       </slot>
     </slot>
   </div>

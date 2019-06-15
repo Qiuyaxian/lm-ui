@@ -113,7 +113,6 @@ Vue.component('lm-address', Address);
 Vue.component('lm-datetime', Datetime);
 Vue.component('lm-datetime-range', DatetimeRange);
 // 使用指令
-console.log(TransferDom, 'TransferDom')
 Vue.directive('transfer-dom', TransferDom);
 // 使用插件
 Vue.use(ActionsheetPlugin);

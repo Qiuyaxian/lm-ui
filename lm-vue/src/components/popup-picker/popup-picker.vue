@@ -207,19 +207,6 @@ export default {
     borderIntent: false
   },
   computed: {
-    labelStyles () {
-      return {
-        display: 'block',
-        width: (this.$parent && (this.$parent.labelWidth || this.$parent.$parent.labelWidth)) || 'auto',
-        textAlign: this.$parent && (this.$parent.labelAlign || this.$parent.$parent.labelAlign),
-        marginRight: this.$parent && (this.$parent.labelMarginRight || this.$parent.$parent.labelMarginRight)
-      }
-    },
-    labelClass () {
-      return {
-        'lm-cell-justify': this.$parent && (this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify')
-      }
-    },
     getBorderIntent () {
       return getParentProp(this, 'borderIntent') || this.borderIntent;
     }

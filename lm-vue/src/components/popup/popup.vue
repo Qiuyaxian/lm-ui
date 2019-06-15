@@ -76,6 +76,10 @@ export default {
      * @type {[type]}
      */
     popupStyle: Object,
+    /**
+     * [是否在 deactived 事件触发时自动关闭，避免在路由切换时依然显示弹窗  ]
+     * @type {Object}
+     */
     hideOnDeactivated: {
       type: Boolean,
       default: true

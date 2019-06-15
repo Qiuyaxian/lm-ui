@@ -1,30 +1,12 @@
-import Vue from 'vue'
 import axios from 'axios'
-import router from '@/router'
 import qs from 'qs'
 import merge from 'lodash/merge'
-import store from '../vuex'
-
-import { 
-  _sessionStorage,
-  _localStorage ,
-  urlParse,
-  isWechat, 
-  isCodeAuth, 
-  loading, 
-  isProduction,
-  errorHandle 
-} from '@/utils'
- 
-var config = require('../../config/blc.config.js');
-const baseURL = isProduction() ? config.prod['axios_url'] : config.dev['axios_url']; 
-
 
 const http = axios.create({
-  baseURL: baseURL,
+  baseURL: '',
   timeout: 1000 * 60,
-  async:true,
-  crossDomain:true,
+  async: true,
+  crossDomain: true,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json; charset=utf-8'
@@ -41,11 +23,7 @@ let source = CancelToken.source();
 /**
  * 请求拦截
  */
-http.interceptors.request.use(config => {
-  // 请求头带上token
-  if(_localStorage.getSync('token')){
-    config.headers['token'] = _localStorage.getSync('token')
-  } 
+http.interceptors.request.use(config => { 
   // 附加取消网络请求属性
   config.cancelToken = source.token;
   return config;
@@ -62,32 +40,14 @@ http.interceptors.response.use(response => {
   if(status == 200 && data){
     let { code, message: msg } = data;  
     switch(code){  
-      case '0':
-      //操作成功 -> 显示页面数据
-         
+      case '200':
       break; 
       case '401':
-      case '20401':
-        /**
-         * 未授权
-         * 首先先记录当前的访问的页面，存储到本地localStroage，然后进行页面跳转，
-         * 在auth页面上发送code给后端，成功则从本地存储读取要访问的指定页面，失败则跳转错误页面
-        */
-        if(_localStorage.getSync('token')){
-          //存在就清除缓存
-          _localStorage.delSync('token');
-        }   
         throw new Error(`${code}:${ methodType }:未授权的`);
-      break;
-      // 业务性性错误 -> 
-      // 弹出错误信息窗
-      // 通过请求方法类型判断
-      // get  获取数据问题错误 -> 显示错误页面 
-      // post 提交数据问题错误 -> 弹窗
+      break; 
       case '20500':
         throw new Error(`${code}:${ methodType }:${msg}`);
       break;
-      // 系统性错误 -> 显示错误页面
       case '10500': 
         throw new Error(`${code}:${ methodType }:${msg}`);
       break;
@@ -99,11 +59,7 @@ http.interceptors.response.use(response => {
   }else{ 
     switch(status){
       case '401':
-        //未登录
-        if(_localStorage.getSync('token')){
-          //存在就清除缓存
-          _localStorage.delSync('token');
-        } 
+         
       break;
       default:  
          // 未知错误
@@ -217,8 +173,6 @@ http.adornData = (data = {}, openDefultdata = true, contentType = 'json') => {
  * @return {[Promise]} Promise  返回一个Promise   
  */
 http.all = (array) => {
-  //加载loading
-  loading.show('加载中...');
   return axios.all(array);
 }
 /**
@@ -228,15 +182,6 @@ http.all = (array) => {
  */
 http.spread = (callback) => {
   return function (args) { 
-    // let responseCode = [], 
-    //     responseMsg, 
-    //     responseData = [];
-    // args.forEach(arg => { 
-    //   let { data } = arg; 
-    //   responseCode = data.code;
-    //   responseMsg = data.msg;  
-    // }); 
-    loading.hide();
     callback.call(null, ...args);
   }
 } 

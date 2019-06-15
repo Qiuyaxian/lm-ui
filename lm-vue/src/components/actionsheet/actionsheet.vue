@@ -107,7 +107,6 @@ export default {
      * @return {[type]}      [description]
      */
     onMenuClick (text, key) {
-      console.log(text, '---', key, this.menus, 'text, key')
       if (typeof text === 'string') {
         this.emitEvent('on-click-menu', key, text)
       } else {

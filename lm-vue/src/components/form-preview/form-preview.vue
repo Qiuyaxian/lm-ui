@@ -1,7 +1,7 @@
 <template>
   <div class="lm-form-preview">
     <slot name="header">
-      <group-title :header-label="headerLabel" :header-value="headerValue"></group-title>
+      <lm-group-title :header-label="headerLabel" :header-value="headerValue"></lm-group-title>
     </slot>
     <slot>
       <lm-cell-preview :list="previewItems"></lm-cell-preview>
