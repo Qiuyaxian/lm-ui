@@ -19,8 +19,7 @@ export default class LocalStorage {
    * @return {[type]} [description]
    */
   static check() {
-	if(window && window.localStorage) return true;
-	else return false;
+    return window && window.localStorage ? true : false;
   }
   /**
    * [get 异步获取localStorage值]
