@@ -52,11 +52,11 @@ export default class ActionsheetPage extends Component<ActionsheetProps, any> {
     }
 
     return (
-      <Page header={<Header leftOptions={leftOptions} className={'lm-header-fixed'}>头部</Header>}>
+      <Page header={<Header leftOptions={leftOptions} className={'lm-header-fixed'}>Actionsheet</Header>}>
 
         <Group>
-          <Group.Cell onCellClick={() => this.clickHandle()} label={'测试'}>html调用</Group.Cell>
-          <Group.Cell onCellClick={() => this.clickHandle2()} label={'测试'}>js调用</Group.Cell>
+          <Group.Cell onCellClick={() => this.clickHandle()} label={'actionsheet'}>html调用</Group.Cell>
+          <Group.Cell onCellClick={() => this.clickHandle2()} label={'actionsheet'}>js调用</Group.Cell>
         </Group>
 
         <TransferDom>

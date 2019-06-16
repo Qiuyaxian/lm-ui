@@ -37,10 +37,18 @@ function asyncComponent(importComponent) {
 }
 
 let HomePage = asyncComponent(() => import('@examples/views/Home.tsx'))
-let DemoPage = asyncComponent(() => import('@examples/views/Demo.tsx'))
+let HeaderPage = asyncComponent(() => import('@examples/views/Header.tsx'))
+let AlertPage = asyncComponent(() => import('@examples/views/Alert.tsx'))
 let PickerPage = asyncComponent(() => import('@examples/views/Picker.tsx'))
 let ActionsheetPage = asyncComponent(() => import('@examples/views/Actionsheet.tsx'))
 let PopupPage = asyncComponent(() => import('@examples/views/Popup.tsx'))
+let CellPage = asyncComponent(() => import('@examples/views/Cell.tsx'))
+let DialogPage = asyncComponent(() => import('@examples/views/Dialog.tsx'))
+let GridPage = asyncComponent(() => import('@examples/views/Grid.tsx'))
+let FlexboxPage = asyncComponent(() => import('@examples/views/Flexbox.tsx'))
+let SwitchPage = asyncComponent(() => import('@examples/views/Switch.tsx'))
+let PopupPickerPage = asyncComponent(() => import('@examples/views/PopupPicker.tsx'))
+let AddressPage = asyncComponent(() => import('@examples/views/Address.tsx'))
 
 
 export default class LmRouter extends React.Component {
@@ -50,11 +58,18 @@ export default class LmRouter extends React.Component {
         <Switch>
           <Route exact path="/" component={() => <HomePage></HomePage>} />
           <Route path="/home" component={HomePage} />
-          <Route path="/demo" component={DemoPage} />
+          <Route path="/Header" component={HeaderPage} />
+          <Route path="/Alert" component={AlertPage} />
+          <Route path="/cell" component={CellPage} />
+          <Route path="/grid" component={GridPage} />
+          <Route path="/dialog" component={DialogPage} />
+          <Route path="/flexbox" component={FlexboxPage} />
+          <Route path="/switch" component={SwitchPage} />
           <Route path="/picker" component={PickerPage} />
+          <Route path="/popup-picker" component={PopupPickerPage} />
+          <Route path="/address" component={AddressPage} />
           <Route path="/actionsheet" component={ActionsheetPage} />
           <Route path="/popup" component={PopupPage} />
-
         </Switch>
       </Router>
     )

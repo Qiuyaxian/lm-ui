@@ -14,5 +14,7 @@ export interface GridItemComponentProps extends ComponentProps {
   icon?: string
   label?: string
   link?: string
+  iconSlot?: any
+  labelSlot?: any
   parent?: GridParentProps
 };

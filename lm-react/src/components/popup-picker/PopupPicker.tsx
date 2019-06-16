@@ -25,7 +25,7 @@ export default class PopupPicker extends Component<PopupPickerProps, PopupPicker
 
   static defaultProps: PopupPickerProps = {
     value: [],
-    label: 'string',
+    label: '请选择',
     cancelText: '取消',
     confirmText: '确定',
     data: [],

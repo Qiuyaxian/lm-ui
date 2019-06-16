@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Component, ComponentProps } from '@src/core'
-import { Page, Header, Grid } from '@src/index'
+import { Page, Header, Grid, Group } from '@src/index'
 //初始化页面
 
 interface HomeProps extends ComponentProps {
@@ -10,42 +10,76 @@ interface HomeProps extends ComponentProps {
   history: object
 }
 
-let grids = []
-for (let i = 0; i < 9; i++) {
-  grids.push({
-    'link': '/demo',
-    'label': 'grid',
-    'icon': 'https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg'
-  })
-}
+let cellLists = [
+  {
+    label: 'header',
+    link: '/header'
+  },
+  {
+    label: 'cell',
+    link: '/cell'
+  },
+  {
+    label: 'grid',
+    link: '/grid'
+  },
+  {
+    label: 'flexbox',
+    link: '/flexbox'
+  },
+  {
+    label: 'switch',
+    link: '/switch'
+  },
+  {
+    label: 'alert',
+    link: '/alert'
+  },
+  {
+    label: 'dialog',
+    link: '/dialog'
+  },
+  {
+    label: 'popup',
+    link: '/popup'
+  },
+  {
+    label: 'picker',
+    link: '/picker'
+  },
+  {
+    label: 'popup-picker',
+    link: '/popup-picker'
+  },
+  {
+    label: 'address',
+    link: '/address'
+  },
+  {
+    label: 'actionsheet',
+    link: '/actionsheet'
+  }
+
+]
+
 
 export default class HomePage extends Component<HomeProps, any> {
-  state = {
-    flag: true
-  }
+
   constructor(props: HomeProps) {
     super(props);
   }
-  public grids: any[] = grids
-  private clickHandle() {
-  }
-  private hideHandle() {
-  }
-  private showHandle() {
-    console.log('showHandle')
-  }
+
   render() {
-    let grids = [];
-    for (let i = 0; i < this.grids.length; i++) {
-      let { icon, label, link } = this.grids[i]
-      grids.push(<Grid.Item key={i} link={link} icon={icon} label={label}></Grid.Item>)
+    let cells = [];
+    for (let i = 0; i < cellLists.length; i++) {
+      let { label, link } = cellLists[i]
+      cells.push(<Group.Cell key={i} link={link} label={label}></Group.Cell>)
     }
     return (
-      <Page
-        header={<Header onClickBack={() => this.showHandle()} className={'lm-header-fixed'}>头部</Header>}>
-        <Grid cols={3} showBorders={true}>
-          {grids}
-        </Grid>
+      <Page header={<Header className={'lm-header-fixed'}>React demo</Header>}>
+        <Group>
+          {cells}
+        </Group>
       </Page>
     );
   }

@@ -1,18 +1,19 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Component, ComponentProps } from '@src/core'
-import { Page, Header, TransferDom, Group, Popup, PopupHeader } from '@src/index'
+import { Page, Header, TransferDom, Group, PopupPicker, Popup, PopupHeader } from '@src/index'
 //初始化页面
 import china_address from './china_address_v4'
 
-interface PopupProps extends ComponentProps {
+interface PopupPickerProps extends ComponentProps {
 
 }
 
-export default class PopupPage extends Component<PopupProps, any> {
-  constructor(props: PopupProps) {
+export default class PopupPickerPage extends Component<PopupPickerProps, any> {
+  constructor(props: PopupPickerProps) {
     super(props);
   }
+
   state = {
     value: false,
     value1: ['iPhone'],
@@ -24,9 +25,7 @@ export default class PopupPage extends Component<PopupProps, any> {
     ]
   }
   clickHandle() {
-    this.setState({
-      value: true
-    })
+
   }
   onClickRight() {
     this.setState({
@@ -39,19 +38,10 @@ export default class PopupPage extends Component<PopupProps, any> {
       showBack: false
     }
     return (
-      <Page header={<Header leftOptions={leftOptions} className={'lm-header-fixed'}>Popup</Header>}>
+      <Page header={<Header leftOptions={leftOptions} className={'lm-header-fixed'}>popup-picker</Header>}>
         <Group>
-          <Group.Cell onCellClick={() => this.clickHandle()} label={'测试'}>调用Popup</Group.Cell>
+          <PopupPicker data={list1} value={value1} label={'popup-picker'}></PopupPicker>
         </Group>
-        <TransferDom>
-          <Popup value={value}>
-            <PopupHeader onClickRight={() => this.onClickRight()}></PopupHeader>
-            <Group>
-              <Group.Cell label={'测试'}>html调用</Group.Cell>
-              <Group.Cell label={'测试'}>js调用</Group.Cell>
-            </Group>
-          </Popup>
-        </TransferDom>
       </Page>
     );
   }

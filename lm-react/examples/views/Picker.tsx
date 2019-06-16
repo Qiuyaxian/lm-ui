@@ -93,7 +93,16 @@ export default class PickerPage extends Component<PickerProps, any> {
       }
     ]
   }
-
+  onChange(value) {
+    this.setState({
+      year1: value
+    })
+  }
+  onChange2(value) {
+    this.setState({
+      year7Value: value
+    })
+  }
   render() {
     let leftOptions = {
       showBack: false
@@ -102,8 +111,11 @@ export default class PickerPage extends Component<PickerProps, any> {
 
     return (
       <Page
-        header={<Header leftOptions={leftOptions} className={'lm-header-fixed'}>头部</Header>}>
-        <Picker columns={3} data={year7} model={year7Value}></Picker>
+        header={<Header leftOptions={leftOptions} className={'lm-header-fixed'}>Picker</Header>}>
+        {year1}
+        <Picker onChange={(e) => this.onChange(e)} data={years} model={year1}></Picker>
+        {year7Value}
+        <Picker onChange={(e) => this.onChange2(e)} columns={3} data={year7} model={year7Value}></Picker>
       </Page>
     );
   }
