@@ -1,9 +1,9 @@
-<p align="center">It's just a WeUI Components Test Demo</p>
-<p align="center">It's Packaged testing is not supported</p>
 
-> A Vue.js webApp UI
+## 技术栈
 
-## Quick Start
+<p>vue2.x + typescript</p>
+
+## 运行项目
 
 ``` bash
 # install dependencies
@@ -14,7 +14,7 @@ npm run dev
 
 ```
 
-## build Start
+## 关于打包引用
 
 <p>项目暂不支持打包引用，如果想学习如何打包，可以通过下方链接进行学习</p>
 
@@ -151,7 +151,7 @@ npm run dev
 
 ```
 
-## Usage
+## 如何使用在项目中使用
 
 <p>Import all components</p>
 
@@ -175,10 +175,7 @@ Vue.component(FlexboxItem.name, FlexboxItem);
 ```
 
 
-
-
-## lm-ui is Inspired or Powered By:
-
+## 参考
 <p>
   <a href="https://github.com/vuejs/vue">Vue</a>
 </p>

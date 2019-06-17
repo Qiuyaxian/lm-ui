@@ -1,9 +1,10 @@
-<p align="center">It's just a WeUI Components Test Demo</p>
-<p align="center">It's Packaged testing is not supported</p>
 
-> A Vue.js webApp UI
+## 技术栈
 
-## Quick Start
+<p>React.x + typescript</p>
+
+
+## 运行项目
 
 ``` bash
 # install dependencies
@@ -14,7 +15,7 @@ npm run dev
 
 ```
 
-## build Start
+## 关于打包引用
 
 <p>项目暂不支持打包引用，如果想学习如何打包，可以通过下方链接进行学习</p>
 
@@ -133,36 +134,73 @@ npm run dev
 
 ```
 
-## Usage
-
-<p>Import all components</p>
-
-``` bash
-import lm from '../src';
-
-Vue.use(lm);
-
-```
-
-<p>Or import specified component.</p>
+## 如何使用在项目中使用
 
 ``` bash
 
-import { Flexbox, FlexboxItem } from '../src';
+import { Alert, TransferDom, AlertPlugins } from '@src/index'
 
-Vue.component(Flexbox.name, Flexbox);
+interface GridProps extends ComponentProps {
+  match: object
+  location: object
+  history: object
+}
+let grids = []
+for (let i = 0; i < 9; i++) {
+  grids.push({
+    'label': 'grid',
+    'icon': 'https://www.jzmt168.com/static/images/goods/3fded81b-c84c-463b-92b7-16765fa0b362.jpg'
+  })
+}
 
-Vue.component(FlexboxItem.name, FlexboxItem);
+export default class GridPage extends Component<GridProps, any> {
+  constructor(props: GridProps) {
+    super(props);
+  }
+  onChange(event) {
+    this.setState({
+      value: event
+    })
+  }
+
+  state = {
+    value: false
+  }
+
+  render() {
+    let leftOptions = {
+      showBack: false
+    }
+    let gridLists = [];
+    let gridLists2 = [];
+    for (let i = 0; i < grids.length; i++) {
+      let { label, icon } = grids[i]
+      gridLists.push(<Grid.Item key={i} icon={icon} label={label}></Grid.Item>)
+      gridLists2.push(<Grid.Item key={i} label={label} iconSlot={<img src={icon} alt="" />}>
+      </Grid.Item>)
+    }
+    return (
+      <Page
+        header={<Header leftOptions={leftOptions} className={'lm-header-fixed'}>Grid</Header>}>
+        <Scroll>
+          <Grid>
+            {gridLists}
+          </Grid>
+          <Grid>
+            {gridLists2}
+          </Grid>
+        </Scroll>
+      </Page>
+    );
+  }
+}
 
 ```
 
 
-
-
-## lm-ui is Inspired or Powered By:
-
+## 参考
 <p>
-  <a href="https://github.com/vuejs/vue">Vue</a>
+  <a href="https://react.docschina.org/">React</a>
 </p>
 <p>
   <a href="https://github.com/weui/weui">weui</a>
@@ -179,4 +217,3 @@ Vue.component(FlexboxItem.name, FlexboxItem);
 <p>
   <a href="https://github.com/ElemeFE/mint-ui">mint-ui</a>
 </p>
-

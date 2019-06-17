@@ -4,16 +4,6 @@ import { stateHandle } from './tools.js'
  * @type {Object}
  */
 export default class LocalStorage {
-  // constructor(options = { method: 'get', name: '', value: '', callback: null }) {
-  //   if (LocalStorage.check()) {
-  //     if (options['method'] == 'getSync') {
-  //       if (options['callback']) options['callback'](LocalStorage[options['method']](options['name']))
-  //       else return LocalStorage[options['method']](options['name'])
-  //     } else {
-  //       return LocalStorage[options['method']](options['name'])
-  //     }
-  //   }
-  // }
   // 使用es6的解构赋值
   constructor({ method = 'get', storageKey = '', callback }) {
     if (this.check()) {
@@ -83,31 +73,12 @@ export default class LocalStorage {
    */
   static setSync(storageKey, value, callback) {
     if (!storageKey || !value) return false;
-
     if (this.check()) {
       typeof value === 'string'
         ? localStorage.setItem(storageKey, value)
         : localStorage.setItem(storageKey, JSON.stringify(value))
-
       // 直接判断是否存在回调函数，存在则回调传入当前设置的value
       callback && callback(value);
-      // if (callback) {
-      //   if (this.getSync(name) != null) {
-      //     callback && callback(value);
-      //   } else {
-      //     stateHandle('null指针异常');
-      //   }
-      // } else {
-      //   if (this.getSync(name) != null) {
-      //     return new Promise((resolve, reject) => {
-      //       if (!this.getSync(name)) {
-      //         reject()
-      //       } else {
-      //         resolve(this.getSync(name));
-      //       }
-      //     }).catch(err => err);
-      //   } else return null;
-      // }
     } else {
       stateHandle('不支持LocalStorage')
     };
@@ -119,12 +90,9 @@ export default class LocalStorage {
    */
   static del(storageKey) {
     return new Promise((resolve, reject) => {
-      this.delSync(storageKey);
-      if (this.getSync(storageKey)) {
-        reject()
-      } else {
-        resolve(null);
-      }
+      this.delSync(storageKey, (value) => {
+        value ? reject(value) : resolve(value);
+      });
     });
   }
   /**
@@ -132,9 +100,28 @@ export default class LocalStorage {
    * @param  {[type]} storageKey [description]
    * @return {[type]}      [description]
    */
-  static delSync(storageKey) {
+  static delSync(storageKey, callback) {
     if (!storageKey) return false;
-    this.check() ? localStorage.removeItem(storageKey) : stateHandle('不支持LocalStorage');
+    if (this.check()) {
+      try {
+        localStorage.removeItem(storageKey);
+        //判断是否移除成功 返回null
+        if (callback) {
+          callback(true);
+        } else {
+          return true;
+        }
+      } catch (e) {
+        // 删除异常
+        if (callback) {
+          callback(e.message);
+        } else {
+          return e.message;
+        }
+      }
+    } else {
+      stateHandle('不支持LocalStorage');
+    }
   }
   /**
    * [clear 异步清除所以localStorage值]
@@ -142,15 +129,34 @@ export default class LocalStorage {
    */
   static clear() {
     return new Promise((resolve, reject) => {
-      this.clearSync();
-      resolve(null);
+      this.clearSync(value => {
+        value ? resolve(value) : reject(value)
+      });
     });
   }
   /**
    * [clearSync 同步清除localStorage值]
    * @return {[type]} [description]
    */
-  static clearSync() {
-    this.check() ? localStorage.clear() : stateHandle('不支持LocalStorage');
+  static clearSync(callback) {
+    if (this.check()) {
+      try {
+        localStorage.clear();
+        if (callback) {
+          callback(true)
+        } else {
+          return true;
+        }
+      } catch (e) {
+        // 删除异常
+        if (callback) {
+          callback(e.message);
+        } else {
+          return e.message;
+        }
+      }
+    } else {
+      stateHandle('不支持LocalStorage')
+    }
   }
 }
