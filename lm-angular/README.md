@@ -10,7 +10,7 @@
 
 <h3>技术栈</h1>
 
-<p>React.x + typescript</p>
+<p>Angular+Angular-Router</p>
 
 <h3>说明</h3>
 
@@ -23,6 +23,7 @@
 </p>
 
 ##  部分截图
+
 <h3>iphone6/7/8</h3>
 <p>
   <img width="375" height="auto" src="../demo/iphone6/actionsheet.jpg">
