@@ -27,7 +27,7 @@
   <img width="375" height="auto" src="./demo/iphone6/address.jpg">
   <img width="375" height="auto" src="./demo/iphone6/alert.jpg">
 </p>
-<h3>iphone6/7/8puls</h3>
+<h3>iphone6/7/8plus</h3>
 <p>
   <img width="375" height="auto" src="./demo/iphone6plus/actionsheet.jpg">
   <img width="375" height="auto" src="./demo/iphone6plus/switch.jpg">
