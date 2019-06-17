@@ -21,38 +21,38 @@
 
 <h3>iphone6/7/8</h3>
 <p>
-  <img width="375" height="auto" src="../demo/iphone6/actionsheet.jpg">
-  <img width="375" height="auto" src="../demo/iphone6/switch.jpg">
-  <img width="375" height="auto" src="../demo/iphone6/popup-picker.jpg">
-  <img width="375" height="auto" src="../demo/iphone6/address.jpg">
-  <img width="375" height="auto" src="../demo/iphone6/alert.jpg">
+  <img width="375" height="auto" src="./demo/iphone6/actionsheet.jpg">
+  <img width="375" height="auto" src="./demo/iphone6/switch.jpg">
+  <img width="375" height="auto" src="./demo/iphone6/popup-picker.jpg">
+  <img width="375" height="auto" src="./demo/iphone6/address.jpg">
+  <img width="375" height="auto" src="./demo/iphone6/alert.jpg">
 </p>
 <h3>iphone6/7/8puls</h3>
 <p>
-  <img width="375" height="auto" src="../demo/iphone6plus/actionsheet.jpg">
-  <img width="375" height="auto" src="../demo/iphone6plus/switch.jpg">
-  <img width="375" height="auto" src="../demo/iphone6plus/popup-picker.jpg">
-  <img width="375" height="auto" src="../demo/iphone6plus/address.jpg">
-  <img width="375" height="auto" src="../demo/iphone6plus/alert.jpg">
+  <img width="375" height="auto" src="./demo/iphone6plus/actionsheet.jpg">
+  <img width="375" height="auto" src="./demo/iphone6plus/switch.jpg">
+  <img width="375" height="auto" src="./demo/iphone6plus/popup-picker.jpg">
+  <img width="375" height="auto" src="./demo/iphone6plus/address.jpg">
+  <img width="375" height="auto" src="./demo/iphone6plus/alert.jpg">
 </p>
 
 
 <h3>ipad</h3>
 <p>
-  <img width="375" height="auto" src="../demo/ipad/actionsheet.jpg">
-  <img width="375" height="auto" src="../demo/ipad/switch.jpg">
-  <img width="375" height="auto" src="../demo/ipad/popup-picker.jpg">
-  <img width="375" height="auto" src="../demo/ipad/address.jpg">
-  <img width="375" height="auto" src="../demo/ipad/alert.jpg">
+  <img width="375" height="auto" src="./demo/ipad/actionsheet.jpg">
+  <img width="375" height="auto" src="./demo/ipad/switch.jpg">
+  <img width="375" height="auto" src="./demo/ipad/popup-picker.jpg">
+  <img width="375" height="auto" src="./demo/ipad/address.jpg">
+  <img width="375" height="auto" src="./demo/ipad/alert.jpg">
 </p>
 
 <h3>ipad pro</h3>
 <p>
-  <img width="375" height="auto" src="../demo/ipadPro/actionsheet.jpg">
-  <img width="375" height="auto" src="../demo/ipadPro/switch.jpg">
-  <img width="375" height="auto" src="../demo/ipadPro/popup-picker.jpg">
-  <img width="375" height="auto" src="../demo/ipadPro/address.jpg">
-  <img width="375" height="auto" src="../demo/ipadPro/alert.jpg">
+  <img width="375" height="auto" src="./demo/ipadPro/actionsheet.jpg">
+  <img width="375" height="auto" src="./demo/ipadPro/switch.jpg">
+  <img width="375" height="auto" src="./demo/ipadPro/popup-picker.jpg">
+  <img width="375" height="auto" src="./demo/ipadPro/address.jpg">
+  <img width="375" height="auto" src="./demo/ipadPro/alert.jpg">
 </p>
 
 
