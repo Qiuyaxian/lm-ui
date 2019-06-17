@@ -1,129 +1,148 @@
-import { stateHandle, isString, isFunction } from './tools.js'
 /**
  * [$sessionStorage 封装 promise版本 sessionStorage]
  * @type {Object}
  */
-function SessionStorage (options = { method: 'get', name: '', value: '', callback: null }) {
-  if (SessionStorage.check()) {
-    if (options['method'] === 'getSync') {
-      if (options['callback']) options['callback'](SessionStorage[options['method']](options['name']))
-      else return SessionStorage[options['method']](options['name'])
-    } else {
-      return SessionStorage[options['method']](options['name'])
-    }
-  }
+function SessionStorage () {  
+}
+SessionStorage.error = function (message) {
+  throw new Error(message);
 }
 /**
  * [check 检查是否支持sessionStorage]
  * @return {[type]} [description]
  */
 SessionStorage.check = function () {
-  if (sessionStorage || (window && window.sessionStorage)) return true;
-  else return false;
+  return sessionStorage || (window && window.sessionStorage) ? true : false;
 }
 /**
  * [get 异步获取sessionStorage值]
- * @param  {[type]} name [description]
+ * @param  {[type]} storageKey [description]
  * @return {[type]}      [description]
  */
-SessionStorage.get = function (name) {
-  let _this = this;
+SessionStorage.get = function (storageKey) {
   return new Promise((resolve, reject) => {
-    let value = _this.getSync(name);
-    value ? resolve(value) : reject(null);
+    this.getSync(storageKey, (value, message) => {
+      value ? resolve(value) : reject(message);
+    });
   });
 }
 /**
  * [getSync 同步获取sessionStorage值]
- * @param  {[type]} name [description]
+ * @param  {[type]} storageKey [description]
  * @return {[type]}      [description]
  */
-SessionStorage.getSync = function (name) {
-  if (!name) return false;
+SessionStorage.getSync = function (storageKey) {
+  if (!storageKey) return null;
   if (this.check()) {
-    let value = value;
-    if (value) {
-      if (/^\{.*?\}$/gi.test())
-        return JSON.parse(value);
-      else
-        return value;
-    } else return null;
-  } else stateHandle('不支持sessionStorage')
+    try {
+      const value = sessionStorage.getItem(storageKey);
+      const result = value ? /^\{.*?\}$/gi.test(value) ? JSON.parse(value) : value : null;
+      if (callback) {
+        callback(result, '');
+      } else {
+        return result;
+      }
+    } catch (e) {
+      // 删除异常
+      if (callback) {
+        callback(null, e.message);
+      } else {
+        // 输出错误不影响后续程序运行
+        console.error(e.message);
+        return null;
+      }
+    }
+  } else {
+    
+  }
 }
 /**
  * [set 异步设置sessionStorage值]
- * @param {[type]} name  [description]
+ * @param {[type]} storageKey  [description]
  * @param {[type]} value [description]
  */
-SessionStorage.set = function (name, value) {
-  let _this = this;
+SessionStorage.set = function (storageKey, value) {
   return new Promise((resolve, reject) => {
-    _this.setSync(name, value, data => {
-      data ? resolve(value) : reject(null);
+    _this.setSync(storageKey, value, (value, message) => {
+      value ? resolve(value) : reject(message);
     });
   });
 }
 /**
  * [setSync 同步设置sessionStorage值]
- * @param {[type]}   name     [description]
+ * @param {[type]}   storageKey     [description]
  * @param {[type]}   value    [description]
  * @param {Function} callback [description]
  */
-SessionStorage.setSync = function (name, value, callback) {
-  if (!name) return false;
+SessionStorage.setSync = function (storageKey, value, callback) {
+  if (!storageKey) return false;
   if (!value) return false;
   if (this.check()) {
-    if (isString(value)) {
-      sessionStorage.setItem(name, value);
-    } else {
-      sessionStorage.setItem(name, JSON.stringify(value));
-    }
-    //判断是否存储成功
-    if (callback && isFunction(callback)) {
-      callback && callback(this.getSync(name));
-    } else {
-      return this.getSync(name);
-    }
-  } else stateHandle('不支持sessionStorage');
-}
-/**
- * [del 异步删除sessionStorage值]
- * @param  {[type]} name [description]
- * @return {[type]}      [description]
- */
-SessionStorage.del = function (name) {
-  let _this = this;
-  return new Promise((resolve, reject) => {
-    _this.delSync(name, (value) => {
-      value ? reject(value) : resolve(value)
-    });
-  });
-}
-/**
- * [delSync 同步删除sessionStorage值]
- * @param  {[type]} name [description]
- * @return {[type]}      [description]
- */
-SessionStorage.delSync = function (name, callback) {
-  if (!name) return false;
-  if (this.check()) {
     try {
-      sessionStorage.removeItem(name);
-      //判断是否移除成功 返回null
+       typeof value === 'string'
+      ? sessionStorage.setItem(storageKey, value)
+      : sessionStorage.setItem(storageKey, JSON.stringify(value));
+      //判断是否移除成功
       if (callback) {
-        callback(true);
+        callback(true, '');
       } else {
         return true;
       }
     } catch (e) {
       // 删除异常
       if (callback) {
-        callback(e.message);
+        callback(false, e.message);
       } else {
-        return e.message;
+        // 输出错误不影响后续程序运行
+        console.error(e.message);
+        return false;
       }
     }
-  } else stateHandle('不支持sessionStorage');
+  } else {
+    this.error('不支持sessionStorage')
+  }
+}
+/**
+ * [del 异步删除sessionStorage值]
+ * @param  {[type]} storageKey [description]
+ * @return {[type]}      [description]
+ */
+SessionStorage.del = function (storageKey) {
+  return new Promise((resolve, reject) => {
+    this.delSync(storageKey, (value, message) => {
+      value ? reject(value) : resolve(message)
+    });
+  });
+}
+/**
+ * [delSync 同步删除sessionStorage值]
+ * @param  {[type]} storageKey [description]
+ * @return {[type]}      [description]
+ */
+SessionStorage.delSync = function (storageKey, callback) {
+  if (!storageKey) return false;
+  if (this.check()) {
+    try {
+      sessionStorage.removeItem(storageKey);
+      //判断是否移除成功
+      if (callback) {
+        callback(true, '');
+      } else {
+        return true;
+      }
+    } catch (e) {
+      // 删除异常
+      if (callback) {
+        callback(false, e.message);
+      } else {
+        // 输出错误不影响后续程序运行
+        console.error(e.message);
+        return false;
+      }
+    }
+  } else {
+    this.error('不支持sessionStorage');
+  }
 }
 /**
  * [clear 异步清除所有sessionStorage值]
@@ -132,8 +151,8 @@ SessionStorage.delSync = function (name, callback) {
 SessionStorage.clear = function () {
   let _this = this;
   return new Promise((resolve, reject) => {
-    _this.clearSync((value) => {
-      value ? resolve(value) : reject(value);
+    _this.clearSync((value, message) => {
+      value ? resolve(value) : reject(message);
     })
   });
 }
@@ -146,19 +165,21 @@ SessionStorage.clearSync = function (callback) {
     try {
       sessionStorage.clear();
       if (callback) {
-        callback(true)
+        callback(true, '')
       } else {
         return true;
       }
     } catch (e) {
       // 删除异常
       if (callback) {
-        callback(e.message);
+        callback(false, e.message);
       } else {
-        return e.message;
+        console.error(e.message);
+        return false;
       }
     }
+  } else {
+    this.error('不支持sessionStorage')
   }
-  else stateHandle('不支持sessionStorage');
 }
 export default SessionStorage;

@@ -1,24 +1,8 @@
-import { stateHandle } from './tools.js'
 /**
  * [$LocalStorage 封装 promise版本 LocalStorage ]
  * @type {Object}
  */
 export default class LocalStorage {
-  // 使用es6的解构赋值
-  constructor({ method = 'get', storageKey = '', callback }) {
-    if (this.check()) {
-      // 应该使用全等符号，采用严格模式的写法
-      if (method === 'getSync') { // 同步执行
-        if (callback) {
-          callback(this[method](storageKey))
-        } else {
-          return this[method](storageKey)
-        }
-      } else { // 异步执行
-        return this[method](storageKey)
-      }
-    }
-  }
   /**
    * [check 是否支持localStorage]
    * @return {[type]} [description]
@@ -33,8 +17,9 @@ export default class LocalStorage {
    */
   static get(storageKey) {
     return new Promise((resolve, reject) => {
-      const value = this.getSync(storageKey);
-      value ? resolve(value) : reject(null);
+      this.getSync(storageKey, (value, message) => {
+        value ? resolve(value) : reject(message);
+      });
     });
   }
   /**
@@ -42,14 +27,29 @@ export default class LocalStorage {
    * @param  {[type]} storageKey key
    * @return {[type]}      value
    */
-  static getSync(storageKey) {
-    if (!storageKey) return null; // 应该返回的是null
-    if (this.check()) { // this 指向 LocatStorate
-      const value = localStorage.getItem(storageKey);
-      // 利用三元运算符解决单行的内容块代码会较为简洁方便
-      return value ? /^\{.*?\}$/gi.test(value) ? JSON.parse(value) : value : null;
+  static getSync(storageKey, callback) {
+    if (!storageKey) return null;
+    if (this.check()) {
+      try {
+        const value = localStorage.getItem(storageKey);
+        const result = value ? /^\{.*?\}$/gi.test(value) ? JSON.parse(value) : value : null;
+        if (callback) {
+          callback(result, '');
+        } else {
+          return result;
+        }
+      } catch (e) {
+        // 删除异常
+        if (callback) {
+          callback(null, e.message);
+        } else {
+          // 输出错误不影响后续程序运行
+          console.error(e.message);
+          return null;
+        }
+      } 
     } else {
-      stateHandle('不支持localStorage'); // 这里采用new Error返回一个错误较为合适，又或者在check时便提示
+      this.error('不支持localStorage'); 
       return null;
     }
   }
@@ -60,8 +60,8 @@ export default class LocalStorage {
    */
   static set(storageKey, value) {
     return new Promise((resolve, reject) => {
-      this.setSync(storageKey, value, (value) => {
-        resolve(value);
+      this.setSync(storageKey, value, (value, message) => {
+        value ? resolve(value) : reject(message);
       });
     });
   }
@@ -72,15 +72,30 @@ export default class LocalStorage {
    * @param {Function} callback [description]
    */
   static setSync(storageKey, value, callback) {
-    if (!storageKey || !value) return false;
+    if (!storageKey || !value) return null;
     if (this.check()) {
-      typeof value === 'string'
+      try {
+         typeof value === 'string'
         ? localStorage.setItem(storageKey, value)
-        : localStorage.setItem(storageKey, JSON.stringify(value))
-      // 直接判断是否存在回调函数，存在则回调传入当前设置的value
-      callback && callback(value);
+        : localStorage.setItem(storageKey, JSON.stringify(value));
+        //判断是否移除成功
+        if (callback) {
+          callback(true, '');
+        } else {
+          return true;
+        }
+      } catch (e) {
+        // 删除异常
+        if (callback) {
+          callback(false, e.message);
+        } else {
+          // 输出错误不影响后续程序运行
+          console.error(e.message);
+          return false;
+        }
+      }
     } else {
-      stateHandle('不支持LocalStorage')
+      this.error('不支持LocalStorage')
     };
   }
   /**
@@ -90,8 +105,8 @@ export default class LocalStorage {
    */
   static del(storageKey) {
     return new Promise((resolve, reject) => {
-      this.delSync(storageKey, (value) => {
-        value ? reject(value) : resolve(value);
+      this.delSync(storageKey, (value, message) => {
+        value ? reject(value) : resolve(message);
       });
     });
   }
@@ -101,26 +116,28 @@ export default class LocalStorage {
    * @return {[type]}      [description]
    */
   static delSync(storageKey, callback) {
-    if (!storageKey) return false;
+    if (!storageKey) return null;
     if (this.check()) {
       try {
         localStorage.removeItem(storageKey);
-        //判断是否移除成功 返回null
+        //判断是否移除成功
         if (callback) {
-          callback(true);
+          callback(true, '');
         } else {
           return true;
         }
       } catch (e) {
         // 删除异常
         if (callback) {
-          callback(e.message);
+          callback(false, e.message);
         } else {
-          return e.message;
+          // 输出错误不影响后续程序运行
+          console.error(e.message);
+          return false;
         }
       }
     } else {
-      stateHandle('不支持LocalStorage');
+      this.error('不支持LocalStorage');
     }
   }
   /**
@@ -129,8 +146,8 @@ export default class LocalStorage {
    */
   static clear() {
     return new Promise((resolve, reject) => {
-      this.clearSync(value => {
-        value ? resolve(value) : reject(value)
+      this.clearSync((value, message) => {
+        value ? resolve(value) : reject(message)
       });
     });
   }
@@ -143,20 +160,25 @@ export default class LocalStorage {
       try {
         localStorage.clear();
         if (callback) {
-          callback(true)
+          callback(true, '')
         } else {
           return true;
         }
       } catch (e) {
         // 删除异常
         if (callback) {
-          callback(e.message);
+          callback(false, e.message);
         } else {
-          return e.message;
+          // 输出错误不影响后续程序运行
+          console.error(e.message);
+          return false;
         }
       }
     } else {
-      stateHandle('不支持LocalStorage')
+      this.error('不支持LocalStorage')
     }
+  }
+  static error(message) {
+    throw new Error(message);
   }
 }
