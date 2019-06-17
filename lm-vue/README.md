@@ -26,39 +26,39 @@
 <h3>部分截图</h3>
 <p>iphone6/7/8</p>
 <p>
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/iphone6/actionsheet.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/iphone6/switch.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/iphone6/popup-picker.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/iphone6/address.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/iphone6/alert.jpg">
+  <img width="375" height="auto" src="../demo/iphone6/actionsheet.jpg">
+  <img width="375" height="auto" src="../demo/iphone6/switch.jpg">
+  <img width="375" height="auto" src="../demo/iphone6/popup-picker.jpg">
+  <img width="375" height="auto" src="../demo/iphone6/address.jpg">
+  <img width="375" height="auto" src="../demo/iphone6/alert.jpg">
 </p>
 <p>iphone6/7/8puls</p>
 <p>
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/iphone6plus/actionsheet.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/iphone6plus/switch.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/iphone6plus/popup-picker.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/iphone6plus/address.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/iphone6plus/alert.jpg">
+  <img width="375" height="auto" src="../demo/iphone6plus/actionsheet.jpg">
+  <img width="375" height="auto" src="../demo/iphone6plus/switch.jpg">
+  <img width="375" height="auto" src="../demo/iphone6plus/popup-picker.jpg">
+  <img width="375" height="auto" src="../demo/iphone6plus/address.jpg">
+  <img width="375" height="auto" src="../demo/iphone6plus/alert.jpg">
 </p>
 
 
 <p>ipad</p>
 <p>
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/ipad/actionsheet.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/ipad/switch.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/ipad/popup-picker.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/ipad/address.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/ipad/alert.jpg">
+  <img width="375" height="auto" src="../demo/ipad/actionsheet.jpg">
+  <img width="375" height="auto" src="../demo/ipad/switch.jpg">
+  <img width="375" height="auto" src="../demo/ipad/popup-picker.jpg">
+  <img width="375" height="auto" src="../demo/ipad/address.jpg">
+  <img width="375" height="auto" src="../demo/ipad/alert.jpg">
 </p>
 
 
 <p>ipad pro</p>
 <p>
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/ipadPro/actionsheet.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/ipadPro/switch.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/ipadPro/popup-picker.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/ipadPro/address.jpg">
-  <img width="375" height="auto" src="https://github.com/Qiuyaxian/lm-ui/tree/master/demo/ipadPro/alert.jpg">
+  <img width="375" height="auto" src="../demo/ipadPro/actionsheet.jpg">
+  <img width="375" height="auto" src="../demo/ipadPro/switch.jpg">
+  <img width="375" height="auto" src="../demo/ipadPro/popup-picker.jpg">
+  <img width="375" height="auto" src="../demo/ipadPro/address.jpg">
+  <img width="375" height="auto" src="../demo/ipadPro/alert.jpg">
 </p>
 
 ## 运行项目
