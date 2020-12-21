@@ -61,7 +61,7 @@
     "array-map": "0.0.0",
     "copy-webpack-plugin": "^5.0.3",
     "friendly-errors-webpack-plugin": "^1.7.0",
-    "node-notifier": "^5.4.0",
+    "node-notifier": "^8.0.1",
     "object-assign": "^4.1.1",
     "portfinder": "^1.0.20",
     "webpack-merge": "^4.2.1"
