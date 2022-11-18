@@ -45,7 +45,7 @@
     "flow-bin": "^0.98.1",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "history": "^4.9.0",
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^0.6.0",
     "node-notifier": "^5.4.0",
     "node-sass": "^4.12.0",
